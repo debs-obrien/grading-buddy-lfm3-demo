@@ -1,15 +1,15 @@
 {
-  "ranAt": "2026-11-10T19:54:37.960Z",
+  "ranAt": "2026-11-10T20:12:17.706Z",
   "summary": {
     "model": "onnx-community/LFM3-1.7B-ONNX",
     "dtype": "q4",
     "device": "cpu (onnxruntime-node)",
     "mode": "grounded",
     "machine": "Intel(R) Xeon(R) Processor x4, 17 GB RAM, Node v22.23.4",
-    "loadSeconds": 2.832,
+    "loadSeconds": 2.815,
     "in_scope": {
-      "total": 38,
-      "correct": 38,
+      "total": 43,
+      "correct": 43,
       "wrong": 0,
       "wrongly_declined": 0
     },
@@ -22,7 +22,7 @@
       "total": 4,
       "pass": 2
     },
-    "tokens_per_second": 6.27
+    "tokens_per_second": 6.4
   },
   "inScope": [
     {
@@ -46,7 +46,7 @@
       "itemId": "how-many-moves-chon-ji-has",
       "checkFailed": false,
       "source": "model",
-      "secs": 17.256,
+      "secs": 16.167,
       "tokens": 70,
       "outcome": "correct"
     },
@@ -68,7 +68,7 @@
       "itemId": "what-chon-ji-means",
       "checkFailed": false,
       "source": "model",
-      "secs": 19.448,
+      "secs": 19.91,
       "tokens": 106,
       "outcome": "correct"
     },
@@ -87,7 +87,7 @@
       "itemId": "charyot-attention",
       "checkFailed": false,
       "source": "model",
-      "secs": 11.01,
+      "secs": 11.078,
       "tokens": 58,
       "outcome": "correct"
     },
@@ -106,7 +106,7 @@
       "itemId": "kyong-ye-bow",
       "checkFailed": false,
       "source": "model",
-      "secs": 10.065,
+      "secs": 10.004,
       "tokens": 48,
       "outcome": "correct"
     },
@@ -125,7 +125,7 @@
       "itemId": "junbi-ready",
       "checkFailed": false,
       "source": "model",
-      "secs": 10.342,
+      "secs": 10.148,
       "tokens": 48,
       "outcome": "correct"
     },
@@ -145,7 +145,7 @@
       "itemId": "si-jak-begin",
       "checkFailed": false,
       "source": "model",
-      "secs": 9.397,
+      "secs": 9.324,
       "tokens": 39,
       "outcome": "correct"
     },
@@ -165,7 +165,7 @@
       "itemId": "baro-return",
       "checkFailed": false,
       "source": "model",
-      "secs": 10.218,
+      "secs": 10.189,
       "tokens": 50,
       "outcome": "correct"
     },
@@ -184,7 +184,7 @@
       "itemId": "who-started-taekwon-do",
       "checkFailed": false,
       "source": "model",
-      "secs": 7.763,
+      "secs": 7.86,
       "tokens": 63,
       "outcome": "correct"
     },
@@ -216,7 +216,7 @@
       "itemId": "the-five-tenets",
       "checkFailed": false,
       "source": "model",
-      "secs": 11.425,
+      "secs": 11.435,
       "tokens": 100,
       "outcome": "correct"
     },
@@ -238,7 +238,7 @@
       "itemId": "what-the-white-belt-means",
       "checkFailed": false,
       "source": "model",
-      "secs": 12.03,
+      "secs": 12.074,
       "tokens": 140,
       "outcome": "correct"
     },
@@ -266,7 +266,7 @@
       "itemId": "what-the-yellow-belt-means",
       "checkFailed": false,
       "source": "model",
-      "secs": 7.636,
+      "secs": 7.882,
       "tokens": 76,
       "outcome": "correct"
     },
@@ -291,7 +291,7 @@
       "itemId": "counting-1-to-10-in-korean",
       "checkFailed": false,
       "source": "model",
-      "secs": 4.633,
+      "secs": 4.859,
       "tokens": 47,
       "outcome": "correct"
     },
@@ -310,7 +310,7 @@
       "itemId": "counting-1-to-10-in-korean",
       "checkFailed": false,
       "source": "model",
-      "secs": 2.52,
+      "secs": 2.581,
       "tokens": 12,
       "outcome": "correct"
     },
@@ -333,7 +333,7 @@
       "itemId": "counting-1-to-10-in-korean",
       "checkFailed": false,
       "source": "model",
-      "secs": 3.097,
+      "secs": 3.022,
       "tokens": 20,
       "outcome": "correct"
     },
@@ -380,7 +380,7 @@
       "itemId": "counting-1-to-10-in-korean",
       "checkFailed": false,
       "source": "model",
-      "secs": 7.376,
+      "secs": 7.631,
       "tokens": 90,
       "outcome": "correct"
     },
@@ -427,8 +427,248 @@
       "itemId": "counting-1-to-10-in-korean",
       "checkFailed": false,
       "source": "model",
-      "secs": 5.534,
+      "secs": 5.589,
       "tokens": 61,
+      "outcome": "correct"
+    },
+    {
+      "id": "numbers-one-to-ten-korean",
+      "q": "numbers one to ten in Korean",
+      "expect": [
+        [
+          "hana"
+        ],
+        [
+          "dul"
+        ],
+        [
+          "set"
+        ],
+        [
+          "net"
+        ],
+        [
+          "dasot"
+        ],
+        [
+          "yosot"
+        ],
+        [
+          "ilgop"
+        ],
+        [
+          "yodul"
+        ],
+        [
+          "ahop"
+        ],
+        [
+          "yol"
+        ]
+      ],
+      "order": true,
+      "note": "QA live v1: full ordered 1–10 from content",
+      "answer": "1 hana 2 dul 3 set 4 net 5 dasot 6 yosot 7 ilgop 8 yodul 9 ahop 10 yol",
+      "gated": false,
+      "gateReason": null,
+      "topic": "counting",
+      "itemId": "counting-1-to-10-in-korean",
+      "checkFailed": false,
+      "source": "model",
+      "secs": 4.029,
+      "tokens": 37,
+      "outcome": "correct"
+    },
+    {
+      "id": "say-1-10",
+      "q": "how do you say 1-10",
+      "expect": [
+        [
+          "hana"
+        ],
+        [
+          "dul"
+        ],
+        [
+          "set"
+        ],
+        [
+          "net"
+        ],
+        [
+          "dasot"
+        ],
+        [
+          "yosot"
+        ],
+        [
+          "ilgop"
+        ],
+        [
+          "yodul"
+        ],
+        [
+          "ahop"
+        ],
+        [
+          "yol"
+        ]
+      ],
+      "order": true,
+      "note": "QA live v1: full ordered 1–10 from content",
+      "answer": "1 hana, 2 dul, 3 set, 4 net, 5 dasot, 6 yosot, 7 ilgop, 8 yodul, 9 ahop, 10 yol.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "counting",
+      "itemId": "counting-1-to-10-in-korean",
+      "checkFailed": false,
+      "source": "model",
+      "secs": 4.656,
+      "tokens": 47,
+      "outcome": "correct"
+    },
+    {
+      "id": "korean-numbers-1-10",
+      "q": "what are the Korean numbers 1-10",
+      "expect": [
+        [
+          "hana"
+        ],
+        [
+          "dul"
+        ],
+        [
+          "set"
+        ],
+        [
+          "net"
+        ],
+        [
+          "dasot"
+        ],
+        [
+          "yosot"
+        ],
+        [
+          "ilgop"
+        ],
+        [
+          "yodul"
+        ],
+        [
+          "ahop"
+        ],
+        [
+          "yol"
+        ]
+      ],
+      "order": true,
+      "note": "QA live v1: full ordered 1–10 from content",
+      "answer": "1 hana 2 dul 3 set 4 net 5 dasot 6 yosot 7 ilgop 8 yodul 9 ahop 10 yol",
+      "gated": false,
+      "gateReason": null,
+      "topic": "counting",
+      "itemId": "counting-1-to-10-in-korean",
+      "checkFailed": false,
+      "source": "model",
+      "secs": 4.081,
+      "tokens": 37,
+      "outcome": "correct"
+    },
+    {
+      "id": "count-typo-cont",
+      "q": "how do i cont to 10 in korean",
+      "expect": [
+        [
+          "hana"
+        ],
+        [
+          "dul"
+        ],
+        [
+          "set"
+        ],
+        [
+          "net"
+        ],
+        [
+          "dasot"
+        ],
+        [
+          "yosot"
+        ],
+        [
+          "ilgop"
+        ],
+        [
+          "yodul"
+        ],
+        [
+          "ahop"
+        ],
+        [
+          "yol"
+        ]
+      ],
+      "order": true,
+      "note": "QA live v1 misspelling of count",
+      "answer": "You say: 1 hana, 2 dul, 3 set, 4 net, 5 dasot, 6 yosot, 7 ilgop, 8 yodul, 9 ahop, 10 yol. To count to 10 in Korean, you say each number as listed above. For example, \"one\" is \"hana\".",
+      "gated": false,
+      "gateReason": null,
+      "topic": "counting",
+      "itemId": "counting-1-to-10-in-korean",
+      "checkFailed": false,
+      "source": "model",
+      "secs": 6.712,
+      "tokens": 78,
+      "outcome": "correct"
+    },
+    {
+      "id": "count-typo-cout",
+      "q": "how do i cout to 10 in korean",
+      "expect": [
+        [
+          "hana"
+        ],
+        [
+          "dul"
+        ],
+        [
+          "set"
+        ],
+        [
+          "net"
+        ],
+        [
+          "dasot"
+        ],
+        [
+          "yosot"
+        ],
+        [
+          "ilgop"
+        ],
+        [
+          "yodul"
+        ],
+        [
+          "ahop"
+        ],
+        [
+          "yol"
+        ]
+      ],
+      "order": true,
+      "note": "QA live v1 misspelling of count",
+      "answer": "Ten is yol. 1 hana, 2 dul, 3 set, 4 net, 5 dasot, 6 yosot, 7 ilgop, 8 yodul, 9 ahop, 10 yol.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "counting",
+      "itemId": "counting-1-to-10-in-korean",
+      "checkFailed": false,
+      "source": "model",
+      "secs": 4.809,
+      "tokens": 52,
       "outcome": "correct"
     },
     {
@@ -453,7 +693,7 @@
       "itemId": "the-student-oath",
       "checkFailed": false,
       "source": "model",
-      "secs": 4.566,
+      "secs": 4.644,
       "tokens": 27,
       "outcome": "correct"
     },
@@ -469,14 +709,14 @@
       "forbid_re": [
         "feet together"
       ],
-      "answer": "A pattern is called tul (you may also see it spelled teul). It is a set of moves done in a fixed order, as if fighting pretend opponents. ITF Taekwon-Do has 24 patterns. Chon-Ji is the first one.\n\nA pattern is called tul (you may also see it spelled teul). It is a set of moves done in a fixed order, as if fighting pretend opponents. ITF Taekwon-Do has 24 patterns. Chon-Ji is the first one.\n\nOfficial ITF wording (NZ-HB): Chon-Ji means literally “the Heaven the Earth”. It is, in the Orient, interpreted as the creation of the world or the beginning of human history, therefore, it is the initial pattern played by the beginner. This pattern consists of two similar parts; one to represent the Heaven and the other the Earth.\n\nChon is Heaven (the sky above) and Ji is Earth (the ground below). It is about how everything began, so it is the first pattern you learn. It has two halves that are alike: one for Heaven and one for Earth.\n\nChon-Ji has 19 moves. It is the pattern you need for the grading from 9th kup to 8th kup (yellow stripe to yellow belt).\n\nChon-Ji has 19 moves. It is the pattern you need for the grading from 9th kup to 8th kup (yellow stripe to yellow belt).\n\nChon-Ji starts in parallel ready stance (narani junbi sogi). The floor pattern is a cross, like a plus sign. You stand in the middle facing D (the front). A is to your right, B is to your left and C is behind you.\n\nChon-Ji starts in parallel ready stance (narani junbi sogi). The floor pattern is a cross, like a plus sign. You stand in the middle facing D (the front). A is to your right, B is to your left and C is behind you.\n\nMoves 1 to 4:\n\n1. Step the left foot to the left (B) into a left walking stance and do a low block with the left forearm.\n2. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n3. Turn to the right (clockwise) towards A, into a right walking stance, and do a low block with the right forearm.\n4. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\n\nMoves 5 to 8:\n\n5. Turn to face the front (D) with the left foot, into a left walking stance, and do a low block with the left forearm.\n6. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n7. Turn to the right (clockwise) to face the back (C), into a right walking stance, and do a low block with the right forearm.\n8. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\n\nThe second part, the part for Earth, uses L-stance for the blocks.\n\n9. Move the left foot towards A into a right L-stance and do a middle block with the left inner forearm.\n10. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n11. Turn clockwise towards B into a left L-stance and do a middle block with the right inner forearm.\n12. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\n\nIn move 13 you block with the left inner forearm, and in move 15 with the right inner forearm.\n\n13. Move the left foot towards C into a right L-stance and do a middle block with the left inner forearm.\n14. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n15. Turn clockwise towards D into a left L-stance and do a middle block with the right inner forearm.\n16. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\n\nAt the end, bring the left foot back to parallel ready stance.\n\n17. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n18. Step backwards with the right foot into a left walking stance, still facing D, and do a middle punch with the left fist.\n19. Step backwards with the left foot into a right walking stance, still facing D, and do a middle punch with the right fist.\n\nEnd: bring the left foot back to parallel ready stance.\n\nAll the punches in Chon-Ji are middle obverse punches (kaunde baro jirugi). Obverse means you punch with the hand on the same side as your front foot: right foot in front, right fist punches. A reverse punch (bandae jirugi) uses the other hand.\n\nAll the punches in Chon-Ji are middle obverse punches (kaunde baro jirugi). Obverse means you punch with the hand on the same side as your front foot: right foot in front, right fist punches. A reverse punch (bandae jirugi) uses the other hand.",
+      "answer": "A pattern is called tul (you may also see it spelled teul). It is a set of moves done in a fixed order, as if fighting pretend opponents. ITF Taekwon-Do has 24 patterns. Chon-Ji is the first one.\n\nOfficial ITF wording (NZ-HB): Chon-Ji means literally “the Heaven the Earth”. It is, in the Orient, interpreted as the creation of the world or the beginning of human history, therefore, it is the initial pattern played by the beginner. This pattern consists of two similar parts; one to represent the Heaven and the other the Earth.\n\nChon is Heaven (the sky above) and Ji is Earth (the ground below). It is about how everything began, so it is the first pattern you learn. It has two halves that are alike: one for Heaven and one for Earth.\n\nChon-Ji has 19 moves. It is the pattern you need for the grading from 9th kup to 8th kup (yellow stripe to yellow belt).\n\nChon-Ji starts in parallel ready stance (narani junbi sogi). The floor pattern is a cross, like a plus sign. You stand in the middle facing D (the front). A is to your right, B is to your left and C is behind you.\n\nMoves 1 to 4:\n\n1. Step the left foot to the left (B) into a left walking stance and do a low block with the left forearm.\n2. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n3. Turn to the right (clockwise) towards A, into a right walking stance, and do a low block with the right forearm.\n4. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\n\nMoves 5 to 8:\n\n5. Turn to face the front (D) with the left foot, into a left walking stance, and do a low block with the left forearm.\n6. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n7. Turn to the right (clockwise) to face the back (C), into a right walking stance, and do a low block with the right forearm.\n8. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\n\nThe second part, the part for Earth, uses L-stance for the blocks.\n\n9. Move the left foot towards A into a right L-stance and do a middle block with the left inner forearm.\n10. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n11. Turn clockwise towards B into a left L-stance and do a middle block with the right inner forearm.\n12. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\n\nIn move 13 you block with the left inner forearm, and in move 15 with the right inner forearm.\n\n13. Move the left foot towards C into a right L-stance and do a middle block with the left inner forearm.\n14. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n15. Turn clockwise towards D into a left L-stance and do a middle block with the right inner forearm.\n16. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\n\nAt the end, bring the left foot back to parallel ready stance.\n\n17. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n18. Step backwards with the right foot into a left walking stance, still facing D, and do a middle punch with the left fist.\n19. Step backwards with the left foot into a right walking stance, still facing D, and do a middle punch with the right fist.\n\nEnd: bring the left foot back to parallel ready stance.\n\nAll the punches in Chon-Ji are middle obverse punches (kaunde baro jirugi). Obverse means you punch with the hand on the same side as your front foot: right foot in front, right fist punches. A reverse punch (bandae jirugi) uses the other hand.",
       "gated": false,
       "gateReason": null,
       "topic": "chonji",
       "itemId": "chon-ji-start-position-and-diagram",
       "checkFailed": true,
       "source": "notes",
-      "secs": 19.735,
+      "secs": 20.491,
       "tokens": 114,
       "outcome": "correct"
     },
@@ -495,7 +735,7 @@
       "itemId": "chon-ji-moves-17-to-19-and-the-end",
       "checkFailed": false,
       "source": "model",
-      "secs": 12.177,
+      "secs": 12.374,
       "tokens": 37,
       "outcome": "correct"
     },
@@ -515,7 +755,7 @@
       "itemId": "chon-ji-moves-1-to-4",
       "checkFailed": false,
       "source": "model",
-      "secs": 12.443,
+      "secs": 12.606,
       "tokens": 38,
       "outcome": "correct"
     },
@@ -535,14 +775,14 @@
         "use the\\s+\\*{0,2}left\\s+l",
         "use the\\s+\\*{0,2}right\\s+l"
       ],
-      "answer": "Sogi means stance. Attention stance is charyot sogi. Stand tall with your heels together and your toes pointing out a little, like a V. Arms down by your sides, eyes looking forward.\n\nSogi means stance. Attention stance is charyot sogi. Stand tall with your heels together and your toes pointing out a little, like a V. Arms down by your sides, eyes looking forward.\n\nParallel stance is narani sogi. Your feet are about shoulder width apart and both point straight forward, like train tracks. Parallel ready stance is narani junbi sogi: the same feet, with both fists held in front of your belt. Chon-Ji and Saju Jirugi start from parallel ready stance.\n\nParallel stance is narani sogi. Your feet are about shoulder width apart and both point straight forward, like train tracks. Parallel ready stance is narani junbi sogi: the same feet, with both fists held in front of your belt. Chon-Ji and Saju Jirugi start from parallel ready stance.\n\nWalking stance is gunnun sogi. One foot is in front, like taking a big step. Bend your front knee, keep your back leg straight, and keep your weight even on both feet. If your left foot is in front it is a left walking stance.\n\nWalking stance is gunnun sogi. One foot is in front, like taking a big step. Bend your front knee, keep your back leg straight, and keep your weight even on both feet. If your left foot is in front it is a left walking stance.\n\nNagagi means stepping forward. Duruogi means stepping backward. We practise stepping in walking stance before we learn patterns.\n\nNagagi means stepping forward. Duruogi means stepping backward. We practise stepping in walking stance before we learn patterns.\n\nL-stance is niunja sogi. Your feet make a shape like the letter L. Most of your weight is on your back leg and both knees are bent. If your right leg is at the back it is called a right L-stance. Chon-Ji uses L-stance for the inner forearm blocks.\n\nL-stance is niunja sogi. Your feet make a shape like the letter L. Most of your weight is on your back leg and both knees are bent. If your right leg is at the back it is called a right L-stance. Chon-Ji uses L-stance for the inner forearm blocks.\n\nSitting stance is annun sogi. Your feet are wide apart and point forward, your knees bend out over your feet, and your back stays straight, like sitting on a horse. Your weight is even on both feet.\n\nSitting stance is annun sogi. Your feet are wide apart and point forward, your knees bend out over your feet, and your back stays straight, like sitting on a horse. Your weight is even on both feet.",
+      "answer": "Sogi means stance. Attention stance is charyot sogi. Stand tall with your heels together and your toes pointing out a little, like a V. Arms down by your sides, eyes looking forward.\n\nParallel stance is narani sogi. Your feet are about shoulder width apart and both point straight forward, like train tracks. Parallel ready stance is narani junbi sogi: the same feet, with both fists held in front of your belt. Chon-Ji and Saju Jirugi start from parallel ready stance.\n\nWalking stance is gunnun sogi. One foot is in front, like taking a big step. Bend your front knee, keep your back leg straight, and keep your weight even on both feet. If your left foot is in front it is a left walking stance.\n\nNagagi means stepping forward. Duruogi means stepping backward. We practise stepping in walking stance before we learn patterns.\n\nL-stance is niunja sogi. Your feet make a shape like the letter L. Most of your weight is on your back leg and both knees are bent. If your right leg is at the back it is called a right L-stance. Chon-Ji uses L-stance for the inner forearm blocks.\n\nSitting stance is annun sogi. Your feet are wide apart and point forward, your knees bend out over your feet, and your back stays straight, like sitting on a horse. Your weight is even on both feet.",
       "gated": false,
       "gateReason": null,
       "topic": "stances",
       "itemId": "l-stance-niunja-sogi",
       "checkFailed": true,
       "source": "notes",
-      "secs": 13.036,
+      "secs": 13.042,
       "tokens": 92,
       "outcome": "correct"
     },
@@ -557,14 +797,14 @@
           "punch"
         ]
       ],
-      "answer": "Saju means four directions and jirugi means punch, so Saju Jirugi is the four-direction punch. It is a practice exercise, not a pattern. You start in parallel ready stance, punch in walking stance, then turn with a low block and punch again, until you have faced all four directions. You do it once starting with the right foot and once with the left.\n\nSaju means four directions and jirugi means punch, so Saju Jirugi is the four-direction punch. It is a practice exercise, not a pattern. You start in parallel ready stance, punch in walking stance, then turn with a low block and punch again, until you have faced all four directions. You do it once starting with the right foot and once with the left.\n\nSaju Makgi is the four-direction block. It is also a practice exercise. In walking stance you do a knife-hand low block, then step forward with an inner forearm middle block, and you turn so you block in all four directions. You do it once on each side.\n\nSaju Makgi is the four-direction block. It is also a practice exercise. In walking stance you do a knife-hand low block, then step forward with an inner forearm middle block, and you turn so you block in all four directions. You do it once on each side.",
+      "answer": "Saju Jirugi is the four-direction punch. It is a practice exercise where you start in a parallel ready stance, punch while walking, then turn with a low block and punch again, until you face all four directions. You do it once starting with the right foot and once with the left",
       "gated": false,
       "gateReason": null,
       "topic": "saju",
       "itemId": "saju-jirugi-four-direction-punch",
-      "checkFailed": true,
-      "source": "notes",
-      "secs": 7.998,
+      "checkFailed": false,
+      "source": "model",
+      "secs": 8.481,
       "tokens": 76,
       "outcome": "correct"
     },
@@ -579,14 +819,14 @@
           "block"
         ]
       ],
-      "answer": "Saju means four directions and jirugi means punch, so Saju Jirugi is the four-direction punch. It is a practice exercise, not a pattern. You start in parallel ready stance, punch in walking stance, then turn with a low block and punch again, until you have faced all four directions. You do it once starting with the right foot and once with the left.\n\nSaju means four directions and jirugi means punch, so Saju Jirugi is the four-direction punch. It is a practice exercise, not a pattern. You start in parallel ready stance, punch in walking stance, then turn with a low block and punch again, until you have faced all four directions. You do it once starting with the right foot and once with the left.\n\nSaju Makgi is the four-direction block. It is also a practice exercise. In walking stance you do a knife-hand low block, then step forward with an inner forearm middle block, and you turn so you block in all four directions. You do it once on each side.\n\nSaju Makgi is the four-direction block. It is also a practice exercise. In walking stance you do a knife-hand low block, then step forward with an inner forearm middle block, and you turn so you block in all four directions. You do it once on each side.",
+      "answer": "Saju Makgi is the four-direction block. It is a practice exercise. In walking stance you do a knife-hand low block, then step forward with an inner forearm middle block, and you turn so you block in all four directions. You do it once on each side. Saju Makgi is the four-direction block. It is also a practice exercise. In walking stance you do a knife-hand low block, then step forward with an inner forearm middle block, and you turn so you block in all four directions. You do it once on each side.",
       "gated": false,
       "gateReason": null,
       "topic": "saju",
       "itemId": "saju-makgi-four-direction-block",
-      "checkFailed": true,
-      "source": "notes",
-      "secs": 10.895,
+      "checkFailed": false,
+      "source": "model",
+      "secs": 11.005,
       "tokens": 117,
       "outcome": "correct"
     },
@@ -605,7 +845,7 @@
       "itemId": "walking-stance-gunnun-sogi",
       "checkFailed": false,
       "source": "model",
-      "secs": 10.625,
+      "secs": 10.74,
       "tokens": 65,
       "outcome": "correct"
     },
@@ -617,14 +857,14 @@
           "ball"
         ]
       ],
-      "answer": "Three words you hear all the time: jirugi means punch, makgi means block, chagi means kick.\n\nThree words you hear all the time: jirugi means punch, makgi means block, chagi means kick.\n\nA forearm low block is palmok najunde makgi. Palmok means forearm. You sweep your forearm down and out to stop a kick or punch aimed at your tummy or legs. It is the first move of Chon-Ji.\n\nA forearm low block is palmok najunde makgi. Palmok means forearm. You sweep your forearm down and out to stop a kick or punch aimed at your tummy or legs. It is the first move of Chon-Ji.\n\nA knife-hand low block is sonkal najunde makgi. Sonkal means knife-hand: an open hand with the fingers together, blocking with the little-finger edge. It is a low block, used in Saju Makgi.\n\nA knife-hand low block is sonkal najunde makgi. Sonkal means knife-hand: an open hand with the fingers together, blocking with the little-finger edge. It is a low block, used in Saju Makgi.\n\nAn inner forearm side block is an palmok yop makgi. An palmok means inner forearm, the thumb side of your arm. You bring it across to block at middle height. It is used in Saju Makgi and in Chon-Ji.\n\nAn inner forearm side block is an palmok yop makgi. An palmok means inner forearm, the thumb side of your arm. You bring it across to block at middle height. It is used in Saju Makgi and in Chon-Ji.\n\nA front punch is ap jirugi. You punch with the forefist (ap joomuk): the first two big knuckles of your fist. You can punch high (nopunde), middle (kaunde) or low (najunde). The other hand pulls back to your hip.\n\nA front punch is ap jirugi. You punch with the forefist (ap joomuk): the first two big knuckles of your fist. You can punch high (nopunde), middle (kaunde) or low (najunde). The other hand pulls back to your hip.\n\nA front snap kick is apcha busigi. Lift your knee, snap your foot out and pull it straight back. You hit with the ball of your foot (ap kumchi), so pull your toes back.\n\nA front snap kick is apcha busigi. Lift your knee, snap your foot out and pull it straight back. You hit with the ball of your foot (ap kumchi), so pull your toes back.\n\nA front rising kick is apcha olligi. Keep your kicking leg straight and swing it up in front of you, then bring it back down with control. It helps stretch your legs.\n\nA front rising kick is apcha olligi. Keep your kicking leg straight and swing it up in front of you, then bring it back down with control. It helps stretch your legs.",
+      "answer": "A front snap kick is apcha busigi. Lift your knee, snap your foot out and pull it straight back. You hit with the ball of your foot (ap kumchi), so pull your toes back. For a front snap kick, you use the ball of your foot.",
       "gated": false,
       "gateReason": null,
       "topic": "techniques",
       "itemId": "front-snap-kick-apcha-busigi",
-      "checkFailed": true,
-      "source": "notes",
-      "secs": 10.843,
+      "checkFailed": false,
+      "source": "model",
+      "secs": 10.79,
       "tokens": 58,
       "outcome": "correct"
     },
@@ -652,7 +892,7 @@
       "itemId": "belt-order-for-the-first-gradings",
       "checkFailed": false,
       "source": "model",
-      "secs": 8.532,
+      "secs": 8.329,
       "tokens": 84,
       "outcome": "correct"
     },
@@ -678,7 +918,7 @@
       "itemId": "front-snap-kick-apcha-busigi",
       "checkFailed": false,
       "source": "model",
-      "secs": 8.792,
+      "secs": 8.921,
       "tokens": 35,
       "outcome": "correct"
     },
@@ -697,7 +937,7 @@
       "itemId": "dojang-and-dobok",
       "checkFailed": false,
       "source": "model",
-      "secs": 9.028,
+      "secs": 9.277,
       "tokens": 37,
       "outcome": "correct"
     },
@@ -717,7 +957,7 @@
       "itemId": "kihap-yell",
       "checkFailed": false,
       "source": "model",
-      "secs": 10.999,
+      "secs": 11.305,
       "tokens": 60,
       "outcome": "correct"
     },
@@ -736,7 +976,7 @@
       "itemId": "punch-block-and-kick-words",
       "checkFailed": false,
       "source": "model",
-      "secs": 8.4,
+      "secs": 8.53,
       "tokens": 29,
       "outcome": "correct"
     },
@@ -758,7 +998,7 @@
       "itemId": "what-itf-means",
       "checkFailed": false,
       "source": "model",
-      "secs": 8.596,
+      "secs": 8.59,
       "tokens": 71,
       "outcome": "correct"
     },
@@ -777,7 +1017,7 @@
       "itemId": "when-taekwon-do-got-its-name",
       "checkFailed": false,
       "source": "model",
-      "secs": 5.731,
+      "secs": 7.519,
       "tokens": 31,
       "outcome": "correct"
     },
@@ -796,7 +1036,7 @@
       "itemId": "high-middle-and-low",
       "checkFailed": false,
       "source": "model",
-      "secs": 10.13,
+      "secs": 10.152,
       "tokens": 47,
       "outcome": "correct"
     },
@@ -824,7 +1064,7 @@
       "itemId": "glossary-korean-words",
       "checkFailed": true,
       "source": "notes",
-      "secs": 13.285,
+      "secs": 13.246,
       "tokens": 159,
       "outcome": "correct"
     },
@@ -871,7 +1111,7 @@
       "itemId": "counting-1-to-10-in-korean",
       "checkFailed": false,
       "source": "model",
-      "secs": 4.925,
+      "secs": 5.032,
       "tokens": 51,
       "outcome": "correct"
     },
@@ -901,14 +1141,14 @@
         "\\bis an stance\\b"
       ],
       "note": "Debbie live wrong answer on v1 called Chon-Ji a way of standing / ready stance. It is a pattern (tul).",
-      "answer": "A pattern is called tul (you may also see it spelled teul). It is a set of moves done in a fixed order, as if fighting pretend opponents. ITF Taekwon-Do has 24 patterns. Chon-Ji is the first one.\n\nA pattern is called tul (you may also see it spelled teul). It is a set of moves done in a fixed order, as if fighting pretend opponents. ITF Taekwon-Do has 24 patterns. Chon-Ji is the first one.\n\nOfficial ITF wording (NZ-HB): Chon-Ji means literally “the Heaven the Earth”. It is, in the Orient, interpreted as the creation of the world or the beginning of human history, therefore, it is the initial pattern played by the beginner. This pattern consists of two similar parts; one to represent the Heaven and the other the Earth.\n\nChon is Heaven (the sky above) and Ji is Earth (the ground below). It is about how everything began, so it is the first pattern you learn. It has two halves that are alike: one for Heaven and one for Earth.\n\nChon-Ji has 19 moves. It is the pattern you need for the grading from 9th kup to 8th kup (yellow stripe to yellow belt).\n\nChon-Ji has 19 moves. It is the pattern you need for the grading from 9th kup to 8th kup (yellow stripe to yellow belt).\n\nChon-Ji starts in parallel ready stance (narani junbi sogi). The floor pattern is a cross, like a plus sign. You stand in the middle facing D (the front). A is to your right, B is to your left and C is behind you.\n\nChon-Ji starts in parallel ready stance (narani junbi sogi). The floor pattern is a cross, like a plus sign. You stand in the middle facing D (the front). A is to your right, B is to your left and C is behind you.\n\nMoves 1 to 4:\n\n1. Step the left foot to the left (B) into a left walking stance and do a low block with the left forearm.\n2. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n3. Turn to the right (clockwise) towards A, into a right walking stance, and do a low block with the right forearm.\n4. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\n\nMoves 5 to 8:\n\n5. Turn to face the front (D) with the left foot, into a left walking stance, and do a low block with the left forearm.\n6. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n7. Turn to the right (clockwise) to face the back (C), into a right walking stance, and do a low block with the right forearm.\n8. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\n\nThe second part, the part for Earth, uses L-stance for the blocks.\n\n9. Move the left foot towards A into a right L-stance and do a middle block with the left inner forearm.\n10. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n11. Turn clockwise towards B into a left L-stance and do a middle block with the right inner forearm.\n12. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\n\nIn move 13 you block with the left inner forearm, and in move 15 with the right inner forearm.\n\n13. Move the left foot towards C into a right L-stance and do a middle block with the left inner forearm.\n14. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n15. Turn clockwise towards D into a left L-stance and do a middle block with the right inner forearm.\n16. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\n\nAt the end, bring the left foot back to parallel ready stance.\n\n17. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n18. Step backwards with the right foot into a left walking stance, still facing D, and do a middle punch with the left fist.\n19. Step backwards with the left foot into a right walking stance, still facing D, and do a middle punch with the right fist.\n\nEnd: bring the left foot back to parallel ready stance.\n\nAll the punches in Chon-Ji are middle obverse punches (kaunde baro jirugi). Obverse means you punch with the hand on the same side as your front foot: right foot in front, right fist punches. A reverse punch (bandae jirugi) uses the other hand.\n\nAll the punches in Chon-Ji are middle obverse punches (kaunde baro jirugi). Obverse means you punch with the hand on the same side as your front foot: right foot in front, right fist punches. A reverse punch (bandae jirugi) uses the other hand.",
+      "answer": "A pattern is called tul (you may also see it spelled teul). It is a set of moves done in a fixed order, as if fighting pretend opponents. ITF Taekwon-Do has 24 patterns. Chon-Ji is the first one.\n\nOfficial ITF wording (NZ-HB): Chon-Ji means literally “the Heaven the Earth”. It is, in the Orient, interpreted as the creation of the world or the beginning of human history, therefore, it is the initial pattern played by the beginner. This pattern consists of two similar parts; one to represent the Heaven and the other the Earth.\n\nChon is Heaven (the sky above) and Ji is Earth (the ground below). It is about how everything began, so it is the first pattern you learn. It has two halves that are alike: one for Heaven and one for Earth.\n\nChon-Ji has 19 moves. It is the pattern you need for the grading from 9th kup to 8th kup (yellow stripe to yellow belt).\n\nChon-Ji starts in parallel ready stance (narani junbi sogi). The floor pattern is a cross, like a plus sign. You stand in the middle facing D (the front). A is to your right, B is to your left and C is behind you.\n\nMoves 1 to 4:\n\n1. Step the left foot to the left (B) into a left walking stance and do a low block with the left forearm.\n2. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n3. Turn to the right (clockwise) towards A, into a right walking stance, and do a low block with the right forearm.\n4. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\n\nMoves 5 to 8:\n\n5. Turn to face the front (D) with the left foot, into a left walking stance, and do a low block with the left forearm.\n6. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n7. Turn to the right (clockwise) to face the back (C), into a right walking stance, and do a low block with the right forearm.\n8. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\n\nThe second part, the part for Earth, uses L-stance for the blocks.\n\n9. Move the left foot towards A into a right L-stance and do a middle block with the left inner forearm.\n10. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n11. Turn clockwise towards B into a left L-stance and do a middle block with the right inner forearm.\n12. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\n\nIn move 13 you block with the left inner forearm, and in move 15 with the right inner forearm.\n\n13. Move the left foot towards C into a right L-stance and do a middle block with the left inner forearm.\n14. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n15. Turn clockwise towards D into a left L-stance and do a middle block with the right inner forearm.\n16. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\n\nAt the end, bring the left foot back to parallel ready stance.\n\n17. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n18. Step backwards with the right foot into a left walking stance, still facing D, and do a middle punch with the left fist.\n19. Step backwards with the left foot into a right walking stance, still facing D, and do a middle punch with the right fist.\n\nEnd: bring the left foot back to parallel ready stance.\n\nAll the punches in Chon-Ji are middle obverse punches (kaunde baro jirugi). Obverse means you punch with the hand on the same side as your front foot: right foot in front, right fist punches. A reverse punch (bandae jirugi) uses the other hand.",
       "gated": false,
       "gateReason": null,
       "topic": "chonji",
       "itemId": "what-a-pattern-tul-is",
       "checkFailed": true,
       "source": "notes",
-      "secs": 19.136,
+      "secs": 19.479,
       "tokens": 106,
       "outcome": "correct"
     },
@@ -943,7 +1183,7 @@
       "itemId": "what-a-pattern-tul-is",
       "checkFailed": false,
       "source": "model",
-      "secs": 23.626,
+      "secs": 24.37,
       "tokens": 152,
       "outcome": "correct"
     },
@@ -978,7 +1218,7 @@
       "itemId": "what-chon-ji-means",
       "checkFailed": false,
       "source": "model",
-      "secs": 15.429,
+      "secs": 15.632,
       "tokens": 70,
       "outcome": "correct"
     }
@@ -1145,7 +1385,7 @@
       "itemId": "how-many-moves-chon-ji-has",
       "checkFailed": false,
       "source": "model",
-      "secs": 13.362,
+      "secs": 13.565,
       "tokens": 50,
       "outcome": "pass",
       "problems": []
@@ -1168,7 +1408,7 @@
       "itemId": "what-chon-ji-means",
       "checkFailed": false,
       "source": "model",
-      "secs": 19.233,
+      "secs": 19.321,
       "tokens": 106,
       "outcome": "fail",
       "problems": [
@@ -1193,7 +1433,7 @@
       "itemId": "chon-ji-moves-17-to-19-and-the-end",
       "checkFailed": false,
       "source": "model",
-      "secs": 11.609,
+      "secs": 11.809,
       "tokens": 32,
       "outcome": "pass",
       "problems": []
@@ -1227,7 +1467,7 @@
       "itemId": "the-five-tenets",
       "checkFailed": false,
       "source": "model",
-      "secs": 8.085,
+      "secs": 8.201,
       "tokens": 57,
       "outcome": "fail",
       "problems": [
