@@ -42,6 +42,9 @@ const show = (id: string, on = true) => {
 };
 const screens = ["unsupported", "setup", "loading", "error", "app"];
 let askReady = false;
+/** True while an Ask request is in flight — blocks button and Enter. */
+let askBusy = false;
+let askWaitTimer: ReturnType<typeof setInterval> | null = null;
 let swUpdate: { setAppIdle: (idle: boolean) => void } = { setAppIdle: () => {} };
 
 const screen = (id: string) => {
@@ -225,28 +228,49 @@ function renderAnswerPanel(panel: HTMLElement, text: string, how: HowAnswered, i
   panel.dataset.source = how.source;
 }
 
+function stopAskWaitCue() {
+  if (askWaitTimer) {
+    clearInterval(askWaitTimer);
+    askWaitTimer = null;
+  }
+}
+
+/** Thinking… for screen readers once; elapsed seconds are visual-only (aria-hidden). */
+function paintAskThinking(panel: HTMLElement, startedAt: number) {
+  const secs = Math.max(0, Math.floor((Date.now() - startedAt) / 1000));
+  panel.innerHTML = `<span class="ask-thinking-label">Thinking…</span> <span class="ask-elapsed" aria-hidden="true">${secs} s</span>`;
+}
+
 function ask() {
-  if (!askReady) return;
+  if (!askReady || askBusy) return;
   const q = $<HTMLTextAreaElement>("question").value.trim();
   if (!q) return;
   const id = nextId++;
   const btn = $<HTMLButtonElement>("ask-btn");
+  askBusy = true;
   btn.disabled = true;
   btn.textContent = "Thinking…";
   show("answer");
   $("answer-diagram").innerHTML = "";
   let view: AskDisplay = nextAskDisplay({ text: "", final: false }, { type: "start" });
   const panel = $("answer");
-  panel.textContent = view.text;
+  const startedAt = Date.now();
+  stopAskWaitCue();
+  paintAskThinking(panel, startedAt);
   panel.setAttribute("aria-busy", "true");
+  // Elapsed cue updates visually only — do not poke aria-live every second.
+  askWaitTimer = setInterval(() => paintAskThinking(panel, startedAt), 1000);
   pending.set(id, (m) => {
     if (m.type === "token") {
+      stopAskWaitCue();
       view = nextAskDisplay(view, { type: "token", text: m.text }, plain);
       panel.textContent = view.text;
       return;
     }
     if (m.type === "answer" || m.type === "error") {
       pending.delete(id);
+      stopAskWaitCue();
+      askBusy = false;
       btn.disabled = false;
       btn.textContent = "Ask";
       panel.removeAttribute("aria-busy");
@@ -448,6 +472,7 @@ function wireAppShell() {
   $("question").addEventListener("keydown", (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
+      if (askBusy) return;
       ask();
     }
   });

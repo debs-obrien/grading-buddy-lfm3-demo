@@ -86,7 +86,7 @@ Numbers below are filled from the latest `npm run eval` on this machine (Node CP
 | In-scope | 38/38 correct after multi-item note fallback (Node CPU q4; `eval/results/grounded.json`) |
 | Out-of-scope | 13/13 correctly declined |
 | Quality | 2/4 (two answers over the short-sentence budget) |
-| Match-only | 38/38 in-scope + 13/13 correctly declined (`eval/results/match-only.json`) |
+| Match-only | 43/43 in-scope + 13/13 correctly declined (`eval/results/match-only.json`) |
 | Tokens / sec | ~6.3 on this CPU box (browser WebGPU not claimed) |
 
 When the model calls Chon-Ji a stance, the type check fails and the UI shows **From the notes** with the matched Chon-Ji items (pattern / heaven / earth / 19), not the bad model sentence.

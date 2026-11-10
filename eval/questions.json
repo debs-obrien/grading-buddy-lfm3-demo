@@ -1,5 +1,5 @@
 {
-  "about": "Frozen eval for Grading Buddy v2. expect is keyword groups; order:true means groups must appear in order. Never edit this file to make a run pass — tune on a separate practice set.",
+  "about": "Frozen eval for Grading Buddy v2. expect is keyword groups; order:true means groups must appear in order. Never edit this file to make a run pass \u2014 tune on a separate practice set.",
   "in_scope": [
     {
       "id": "cj-moves",
@@ -248,6 +248,196 @@
       "order": true
     },
     {
+      "id": "numbers-one-to-ten-korean",
+      "q": "numbers one to ten in Korean",
+      "expect": [
+        [
+          "hana"
+        ],
+        [
+          "dul"
+        ],
+        [
+          "set"
+        ],
+        [
+          "net"
+        ],
+        [
+          "dasot"
+        ],
+        [
+          "yosot"
+        ],
+        [
+          "ilgop"
+        ],
+        [
+          "yodul"
+        ],
+        [
+          "ahop"
+        ],
+        [
+          "yol"
+        ]
+      ],
+      "order": true,
+      "note": "QA live v1: full ordered 1\u201310 from content"
+    },
+    {
+      "id": "say-1-10",
+      "q": "how do you say 1-10",
+      "expect": [
+        [
+          "hana"
+        ],
+        [
+          "dul"
+        ],
+        [
+          "set"
+        ],
+        [
+          "net"
+        ],
+        [
+          "dasot"
+        ],
+        [
+          "yosot"
+        ],
+        [
+          "ilgop"
+        ],
+        [
+          "yodul"
+        ],
+        [
+          "ahop"
+        ],
+        [
+          "yol"
+        ]
+      ],
+      "order": true,
+      "note": "QA live v1: full ordered 1\u201310 from content"
+    },
+    {
+      "id": "korean-numbers-1-10",
+      "q": "what are the Korean numbers 1-10",
+      "expect": [
+        [
+          "hana"
+        ],
+        [
+          "dul"
+        ],
+        [
+          "set"
+        ],
+        [
+          "net"
+        ],
+        [
+          "dasot"
+        ],
+        [
+          "yosot"
+        ],
+        [
+          "ilgop"
+        ],
+        [
+          "yodul"
+        ],
+        [
+          "ahop"
+        ],
+        [
+          "yol"
+        ]
+      ],
+      "order": true,
+      "note": "QA live v1: full ordered 1\u201310 from content"
+    },
+    {
+      "id": "count-typo-cont",
+      "q": "how do i cont to 10 in korean",
+      "expect": [
+        [
+          "hana"
+        ],
+        [
+          "dul"
+        ],
+        [
+          "set"
+        ],
+        [
+          "net"
+        ],
+        [
+          "dasot"
+        ],
+        [
+          "yosot"
+        ],
+        [
+          "ilgop"
+        ],
+        [
+          "yodul"
+        ],
+        [
+          "ahop"
+        ],
+        [
+          "yol"
+        ]
+      ],
+      "order": true,
+      "note": "QA live v1 misspelling of count"
+    },
+    {
+      "id": "count-typo-cout",
+      "q": "how do i cout to 10 in korean",
+      "expect": [
+        [
+          "hana"
+        ],
+        [
+          "dul"
+        ],
+        [
+          "set"
+        ],
+        [
+          "net"
+        ],
+        [
+          "dasot"
+        ],
+        [
+          "yosot"
+        ],
+        [
+          "ilgop"
+        ],
+        [
+          "yodul"
+        ],
+        [
+          "ahop"
+        ],
+        [
+          "yol"
+        ]
+      ],
+      "order": true,
+      "note": "QA live v1 misspelling of count"
+    },
+    {
       "id": "oath-1",
       "q": "What is the first line of the student oath?",
       "expect": [
@@ -259,7 +449,7 @@
         ]
       ],
       "forbid_re": [
-        "[\"“]I shall observe the Tenets of Taekwon-Do\\.\\s+[^\"”]+[\"”]",
+        "[\"\u201c]I shall observe the Tenets of Taekwon-Do\\.\\s+[^\"\u201d]+[\"\u201d]",
         "Tenets of Taekwon-Do\\.\\s+That is the exact"
       ]
     },
@@ -693,5 +883,5 @@
     }
   ],
   "frozen": true,
-  "frozenNote": "v1 questions.json plus korean-words-need, korean-words-counting; count-to-10/count-to-ten require order; cj-moves kept; plus explain-chon-ji-like-im-5, what-is-chon-ji, what-does-chon-ji-mean (pattern + official meaning + 19)."
+  "frozenNote": "v1 questions.json plus korean-words-need, korean-words-counting; count-to-10/count-to-ten and QA live counting variants require order; cj-moves kept; plus explain-chon-ji-like-im-5, what-is-chon-ji, what-does-chon-ji-mean (pattern + official meaning + 19); plus numbers-one-to-ten / say-1-10 / korean-numbers-1-10 / cont+cout typos."
 }

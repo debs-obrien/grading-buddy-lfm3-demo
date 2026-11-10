@@ -52,6 +52,8 @@ textarea { width: 100%; font: inherit; font-size: 1.25rem; padding: 14px; border
 .how-dl dd { margin: 0; }
 .how-pre { white-space: pre-wrap; margin: 0; font: inherit; font-size: .9rem; max-height: 14rem; overflow: auto; }
 .answer-body { white-space: pre-wrap; }
+.ask-thinking-label { font-weight: 800; }
+.ask-elapsed { color: #555; font-variant-numeric: tabular-nums; }
 .sources { font-size: .9rem; color: #555; }
 .bar { height: 22px; background: #eee; border-radius: 999px; overflow: hidden; }
 #bar-fill { height: 100%; width: 0; background: var(--green); transition: width .2s; }

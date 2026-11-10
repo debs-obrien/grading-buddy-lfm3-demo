@@ -21,6 +21,11 @@ describe("topic matching", () => {
       "what are the korean words for counting",
       "how do I count to 10 in Korean",
       "How do I count to 10 in Korean?",
+      "numbers one to ten in Korean",
+      "how do you say 1-10",
+      "what are the Korean numbers 1-10",
+      "how do i cont to 10 in korean",
+      "how do i cout to 10 in korean",
     ]) {
       const m = matchQuestion(bundle, q);
       expect(m?.topic.id, q).toBe("counting");

@@ -82,7 +82,7 @@ function scoreItem(qNorm: string, qTokens: string[], item: ContentItem): number 
     for (const n of item.numbers) {
       if (hasPhrase(qNorm, norm(n.korean)) || qTokens.includes(String(n.n))) score += 2;
     }
-    if (/\bcount(?:s|ing)?\b/.test(qNorm) || /\bnumbers?\b/.test(qNorm)) score += 5;
+    if (wantsCounting(qNorm) || /\bnumbers?\b/.test(qNorm)) score += 5;
   }
 
   return score;
@@ -93,6 +93,23 @@ function hasPhrase(qNorm: string, phrase: string): boolean {
   if (!phrase) return false;
   const esc = phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/\s+/g, "\\s+");
   return new RegExp(`(?:^|\\s)${esc}(?:\\s|$)`).test(qNorm);
+}
+
+/** True when the question is asking for Korean counting 1–10 (including typos / ranges). */
+export function wantsCounting(qNorm: string): boolean {
+  const countWord = /\b(?:count|counts|counting|cont|cout)\b/.test(qNorm);
+  const numbersWord = /\bnumbers?\b/.test(qNorm);
+  const range =
+    /\b1\s*(?:to|-|–)\s*10\b/.test(qNorm) ||
+    /\bone\s+to\s+ten\b/.test(qNorm) ||
+    /\b1\s*10\b/.test(qNorm); // normalised "1-10" → "1 10"
+  if (countWord) return true;
+  if (/\bkorean\b/.test(qNorm) && (numbersWord || range)) return true;
+  if (numbersWord && (/\bone\s+to\s+ten\b/.test(qNorm) || range)) return true;
+  // "how do you say 1-10" / "say 1 to 10"
+  if (range && /\b(say|says|saying|tell|list|recite)\b/.test(qNorm)) return true;
+  if (range && /\bkorean\b/.test(qNorm)) return true;
+  return false;
 }
 
 /**
@@ -113,7 +130,7 @@ export function matchQuestion(bundle: ContentBundle, question: string): Match | 
       /\bwords? (do i|i) need\b/.test(qNorm) ||
       /\bneed to know\b/.test(qNorm)) &&
     !/\bkorean word for\b/.test(qNorm) &&
-    !/\bcount(?:s|ing)?\b/.test(qNorm) &&
+    !wantsCounting(qNorm) &&
     !qTokens.some((t) =>
       ["hana", "dul", "set", "net", "dasot", "yosot", "ilgop", "yodul", "ahop", "yol"].includes(t),
     );
@@ -126,11 +143,8 @@ export function matchQuestion(bundle: ContentBundle, question: string): Match | 
 
   // Counting words / count to 10 → counting topic.
   // Whole words only — "country" / "counter" must not match "count".
-  if (
-    /\bcount(?:s|ing)?\b/.test(qNorm) ||
-    (/\bkorean\b/.test(qNorm) && /\bnumbers?\b/.test(qNorm)) ||
-    (/\bkorean\b/.test(qNorm) && /\bwords?\b/.test(qNorm) && /\bcount(?:s|ing)?\b/.test(qNorm))
-  ) {
+  // Includes common misspellings (cont, cout) and "1-10" / "one to ten" ranges from QA live checks.
+  if (wantsCounting(qNorm)) {
     const topic = bundle.topics.find((t) => t.id === "counting")!;
     const items = itemsByTopic(bundle, "counting");
     return { topic, items, primary: items[0] ?? null, score: 90 };

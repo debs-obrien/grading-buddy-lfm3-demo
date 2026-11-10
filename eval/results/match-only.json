@@ -1,5 +1,5 @@
 {
-  "ranAt": "2026-11-10T19:42:20.483Z",
+  "ranAt": "2026-11-10T20:03:21.091Z",
   "summary": {
     "model": "onnx-community/LFM3-1.7B-ONNX",
     "dtype": "q4",
@@ -8,8 +8,8 @@
     "machine": "Intel(R) Xeon(R) Processor x4, 17 GB RAM, Node v22.23.4",
     "loadSeconds": 0,
     "in_scope": {
-      "total": 38,
-      "correct": 38,
+      "total": 43,
+      "correct": 43,
       "wrong": 0,
       "wrongly_declined": 0
     },
@@ -402,6 +402,241 @@
         ]
       ],
       "order": true,
+      "answer": "Title: Counting 1 to 10 in Korean\nType: counting\nEnglish: Counting from one to ten in Korean\nCounting 1 to 10:\n1 hana\n2 dul\n3 set\n4 net\n5 dasot\n6 yosot\n7 ilgop\n8 yodul\n9 ahop\n10 yol\nSimple: 1 hana, 2 dul, 3 set, 4 net, 5 dasot, 6 yosot, 7 ilgop, 8 yodul, 9 ahop, 10 yol. (Dul is sometimes spelled dool.)",
+      "gated": false,
+      "gateReason": null,
+      "topic": "counting",
+      "itemId": "counting-1-to-10-in-korean",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "numbers-one-to-ten-korean",
+      "q": "numbers one to ten in Korean",
+      "expect": [
+        [
+          "hana"
+        ],
+        [
+          "dul"
+        ],
+        [
+          "set"
+        ],
+        [
+          "net"
+        ],
+        [
+          "dasot"
+        ],
+        [
+          "yosot"
+        ],
+        [
+          "ilgop"
+        ],
+        [
+          "yodul"
+        ],
+        [
+          "ahop"
+        ],
+        [
+          "yol"
+        ]
+      ],
+      "order": true,
+      "note": "QA live v1: full ordered 1–10 from content",
+      "answer": "Title: Counting 1 to 10 in Korean\nType: counting\nEnglish: Counting from one to ten in Korean\nCounting 1 to 10:\n1 hana\n2 dul\n3 set\n4 net\n5 dasot\n6 yosot\n7 ilgop\n8 yodul\n9 ahop\n10 yol\nSimple: 1 hana, 2 dul, 3 set, 4 net, 5 dasot, 6 yosot, 7 ilgop, 8 yodul, 9 ahop, 10 yol. (Dul is sometimes spelled dool.)",
+      "gated": false,
+      "gateReason": null,
+      "topic": "counting",
+      "itemId": "counting-1-to-10-in-korean",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "say-1-10",
+      "q": "how do you say 1-10",
+      "expect": [
+        [
+          "hana"
+        ],
+        [
+          "dul"
+        ],
+        [
+          "set"
+        ],
+        [
+          "net"
+        ],
+        [
+          "dasot"
+        ],
+        [
+          "yosot"
+        ],
+        [
+          "ilgop"
+        ],
+        [
+          "yodul"
+        ],
+        [
+          "ahop"
+        ],
+        [
+          "yol"
+        ]
+      ],
+      "order": true,
+      "note": "QA live v1: full ordered 1–10 from content",
+      "answer": "Title: Counting 1 to 10 in Korean\nType: counting\nEnglish: Counting from one to ten in Korean\nCounting 1 to 10:\n1 hana\n2 dul\n3 set\n4 net\n5 dasot\n6 yosot\n7 ilgop\n8 yodul\n9 ahop\n10 yol\nSimple: 1 hana, 2 dul, 3 set, 4 net, 5 dasot, 6 yosot, 7 ilgop, 8 yodul, 9 ahop, 10 yol. (Dul is sometimes spelled dool.)",
+      "gated": false,
+      "gateReason": null,
+      "topic": "counting",
+      "itemId": "counting-1-to-10-in-korean",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "korean-numbers-1-10",
+      "q": "what are the Korean numbers 1-10",
+      "expect": [
+        [
+          "hana"
+        ],
+        [
+          "dul"
+        ],
+        [
+          "set"
+        ],
+        [
+          "net"
+        ],
+        [
+          "dasot"
+        ],
+        [
+          "yosot"
+        ],
+        [
+          "ilgop"
+        ],
+        [
+          "yodul"
+        ],
+        [
+          "ahop"
+        ],
+        [
+          "yol"
+        ]
+      ],
+      "order": true,
+      "note": "QA live v1: full ordered 1–10 from content",
+      "answer": "Title: Counting 1 to 10 in Korean\nType: counting\nEnglish: Counting from one to ten in Korean\nCounting 1 to 10:\n1 hana\n2 dul\n3 set\n4 net\n5 dasot\n6 yosot\n7 ilgop\n8 yodul\n9 ahop\n10 yol\nSimple: 1 hana, 2 dul, 3 set, 4 net, 5 dasot, 6 yosot, 7 ilgop, 8 yodul, 9 ahop, 10 yol. (Dul is sometimes spelled dool.)",
+      "gated": false,
+      "gateReason": null,
+      "topic": "counting",
+      "itemId": "counting-1-to-10-in-korean",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "count-typo-cont",
+      "q": "how do i cont to 10 in korean",
+      "expect": [
+        [
+          "hana"
+        ],
+        [
+          "dul"
+        ],
+        [
+          "set"
+        ],
+        [
+          "net"
+        ],
+        [
+          "dasot"
+        ],
+        [
+          "yosot"
+        ],
+        [
+          "ilgop"
+        ],
+        [
+          "yodul"
+        ],
+        [
+          "ahop"
+        ],
+        [
+          "yol"
+        ]
+      ],
+      "order": true,
+      "note": "QA live v1 misspelling of count",
+      "answer": "Title: Counting 1 to 10 in Korean\nType: counting\nEnglish: Counting from one to ten in Korean\nCounting 1 to 10:\n1 hana\n2 dul\n3 set\n4 net\n5 dasot\n6 yosot\n7 ilgop\n8 yodul\n9 ahop\n10 yol\nSimple: 1 hana, 2 dul, 3 set, 4 net, 5 dasot, 6 yosot, 7 ilgop, 8 yodul, 9 ahop, 10 yol. (Dul is sometimes spelled dool.)",
+      "gated": false,
+      "gateReason": null,
+      "topic": "counting",
+      "itemId": "counting-1-to-10-in-korean",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "count-typo-cout",
+      "q": "how do i cout to 10 in korean",
+      "expect": [
+        [
+          "hana"
+        ],
+        [
+          "dul"
+        ],
+        [
+          "set"
+        ],
+        [
+          "net"
+        ],
+        [
+          "dasot"
+        ],
+        [
+          "yosot"
+        ],
+        [
+          "ilgop"
+        ],
+        [
+          "yodul"
+        ],
+        [
+          "ahop"
+        ],
+        [
+          "yol"
+        ]
+      ],
+      "order": true,
+      "note": "QA live v1 misspelling of count",
       "answer": "Title: Counting 1 to 10 in Korean\nType: counting\nEnglish: Counting from one to ten in Korean\nCounting 1 to 10:\n1 hana\n2 dul\n3 set\n4 net\n5 dasot\n6 yosot\n7 ilgop\n8 yodul\n9 ahop\n10 yol\nSimple: 1 hana, 2 dul, 3 set, 4 net, 5 dasot, 6 yosot, 7 ilgop, 8 yodul, 9 ahop, 10 yol. (Dul is sometimes spelled dool.)",
       "gated": false,
       "gateReason": null,
