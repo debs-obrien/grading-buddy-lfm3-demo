@@ -1,125 +1,90 @@
-# Grading Buddy (LFM3 demo)
+# Grading Buddy
 
-An offline PWA that helps kids study ITF Taekwon-Do for white to yellow belt grading. It has **Learn**, **Quiz** and **Ask**. Ask runs **LFM3-1.7B** in the browser (Liquid’s documented web path: Transformers.js + ONNX + WebGPU). There is no server and no account. After the first download it works with no signal at the dojang.
+LFM3-1.7B running offline, on your device, in the browser.
 
-Scope: ITF only. Grading 1 is 10th to 9th kup. Grading 2 is 9th to 8th kup (including Chon-Ji’s 19 moves and counting 1 to 10).
+Can a small Liquid model do a real job with no signal? I built a study buddy for my kids' first Taekwon-Do gradings to find out. It runs [LFM3-1.7B](https://huggingface.co/LiquidAI/LFM3-1.7B) with Transformers.js on WebGPU. No server, no account, no API key. Once the model is downloaded, it works offline.
 
-This repo is **private**.
+![Grading Buddy in a desktop browser: asked "What does charyot mean?", LFM3 answers on the device that charyot means attention.](docs/grading-buddy-desktop.png)
 
-## Why LFM3-1.7B
+- **Live demo:** https://grading-buddy-lfm3-demo.pages.dev
+- **Video walkthrough:** TODO(Debbie): YouTube link
 
-We need a small instruction-following model that can answer from a short set of facts on-device. LFM3-1.7B is Liquid’s text model aimed at local agents. The [onnx-community ONNX export](https://huggingface.co/onnx-community/LFM3-1.7B-ONNX) is the path Liquid documents for the web with Transformers.js and WebGPU. We stay on **1.7B** — not the VL / Audio / Omni variants — because this demo is text questions about grading notes, not photos or speech.
+## The problem
 
-## Runtime
+Between classes my kids forget the Korean words, the tenets and the moves of their first pattern, Chon-Ji. A chatbot will happily make things up, needs signal, and sends their questions off the phone. I wanted something that only answers from notes I've checked, and says so when it doesn't know.
 
-| Piece | Choice |
-|---|---|
-| Model | `onnx-community/LFM3-1.7B-ONNX` (q4f16 on WebGPU, ~1.1 GB) |
-| Library | `@huggingface/transformers` 4.3.2 |
-| Decode | Greedy (`do_sample: false`, `repetition_penalty: 1.05`) |
-| Thinking | `enable_thinking: false`; any `<think>` tags are stripped |
-| Answers | No token streaming — UI shows “Thinking…” then the final answer (`aria-live="polite"`, `aria-busy`) |
-| ORT wasm | Small `.mjs` shipped in `dist/ort/`; large asyncify `.wasm` fetched from jsDelivr, magic-checked, cached (Cloudflare Pages 25 MiB limit; never pre-gzip) |
+## Quick start
 
-## Hardware
-
-- **Works for Ask:** desktop Chrome or Edge with WebGPU; Android Chrome with WebGPU.
-- **Learn + Quiz:** any modern browser, with or without WebGPU.
-- **iPhone Safari:** each tab has about 2 GB of memory. The model plus runtime come close to that, so the tab can crash. Installing the PWA does not add memory. The next step is a native app with **llama.cpp** (Liquid’s recommended phone route). A PocketPal test with the LFM3-1.7B GGUF is how we check that path.
-
-## How Ask works
-
-1. Pain / injury / medicine → fixed reply, no model.
-2. Match the question to a whole topic from `data/belts/white-yellow/content.json`.
-3. No match → `Sorry, that's not part of the white to yellow belt grading.`
-4. LFM3 writes one or two sentences from the whole topic’s facts.
-5. Check: every Korean term and number in the answer must appear in those facts, or we show the item card instead. Official ITF wording is always rendered from the content file, never retyped by the model.
-
-Counting 1–10 is **one** item. A glossary is built from every item that has a Korean term.
-
-## Seeing what the model did
-
-Every Ask answer and every Quiz **Learn why** explanation shows a source label:
-
-- **Written by LFM3 on this device** — the model’s checked answer (or Learn why).
-- **From the notes** — fixed replies, item cards, check fallbacks, safety decline, or off-topic refusal.
-
-Under that, **Show how this was answered** is a collapsible panel (`aria-expanded`, labelled region) with the matched topic and items given to the model, the raw model output, token count, generation time, tokens/sec, and the check result (passed, or which term / number / type failed and fell back to the note). That is how developers can see the model doing real work on-device, not a canned string.
-
-## How Quiz works
-
-Questions come from templates over the content (term↔meaning, numbers, tenets, belts, Chon-Ji). Seeded shuffle so the same seed gives the same round. Graded with no model. After a wrong answer, the correct option and the item (official wording + source, plus the simple line) show straight away. Optional **Learn why** (only when the model is loaded) asks LFM3 for a helper explanation grounded in that one item.
-
-## How to run
+You need Node 22.18 or newer (I used 24). Desktop only (a desktop browser with WebGPU).
 
 ```bash
+git clone https://github.com/debs-obrien/grading-buddy-lfm3-demo.git
+cd grading-buddy-lfm3-demo
 npm ci
-npm test          # unit + provenance label tests
-npm run typecheck
-npm run build
-npm run dev       # https://localhost:5173
+npm run dev
 ```
 
-Eval (downloads the model into `.cache/models` on first run; CPU, several minutes):
+Open http://localhost:5173, press **Download and start** (about 1.09 GB, once) and ask "What does charyot mean?". `npm test` runs the tests. `npm run build` then `npm run preview` lets you try it offline.
+
+## How it works
+
+- LFM3-1.7B (q4f16) runs in a Web Worker on WebGPU with Transformers.js.
+- A service worker caches the app and the browser keeps the model, so it works offline.
+- Topic match picks the grading topic that best fits your question and gives the model that topic's facts.
+- If nothing matches, the app says it's not part of the white to yellow belt grading and skips the model.
+- The model answers in a sentence or two from those facts. A grounding check (Korean terms, numbers, type) and a required-facts check must pass; if either fails, the UI shows the note card labelled **From the notes** instead.
+- The quiz is plain code, straight from the notes. No model.
+
+## Why this model, approach and runtime
+
+| Choice | Why | What it cost |
+|---|---|---|
+| **LFM3-1.7B** ([ONNX export](https://huggingface.co/onnx-community/LFM3-1.7B-ONNX), q4f16) | The text model in the LFM3 family: small enough for on-device Ask, strong at following “answer only from these facts” instructions, and the ONNX export is Liquid’s documented web path. | A **1.09 GB** first download (q4f16). Without the notes and checks it can invent Korean words and advice. |
+| **Transformers.js + WebGPU** | One static link, no server and no API key: the model runs in a Web Worker in the browser and works offline after the first download. | **Desktop only** (needs WebGPU). My CPU fallback failed twice, so there isn’t one. Slower than a native llama.cpp build. |
+| **Topic match + LFM3 answers + grounding / required-facts checks, no fine-tune** | Fast to build and easy to check: match a whole topic, let LFM3 write one or two sentences from that topic’s facts, then either keep the answer or fall back to the note card. You can edit the notes without retraining. | When the grounding or required-facts check fails, the UI shows **From the notes** instead of the model’s wording. Incomplete model answers never ship as “Written by LFM3”. One frozen-eval miss remains (see [docs/eval.md](docs/eval.md)). |
+| **Greedy decoding** | The same question gives the same answer, so the eval is repeatable. | Ignores the model card’s suggested sampling settings, so some sentences are flatter than a sampled run. |
+
+## Does it work?
+
+The eval runs the app's topic match, prompt, grounding check and required-facts check on Node, on the CPU (q4 instead of q4f16), so you don't need a GPU.
 
 ```bash
 npm run eval:match   # topic match / refusal only
-npm run eval         # full grounded Ask with the real model
+npm run eval         # with notes, like the app (grounded Ask)
 ```
 
-Deploy script (does **not** run deploy — only checks and prints the wrangler command):
+This repo has no `--no-retrieval` or `--open` baselines, so there is no no-notes column here. Every number below is from the same frozen question set (`eval/questions.json`).
 
-```bash
-./deploy.sh
-# then, when you mean to publish:
-# npx wrangler pages deploy dist --project-name grading-buddy-lfm3-demo
-```
-
-## Eval (frozen)
-
-Frozen set: v1’s questions plus `what korean words do i need to know`, `what are the korean words for counting`, ordered count-to-10, and Chon-Ji moves. **Never edit `eval/questions.json` to make a run pass.**
-
-Numbers below are filled from the latest `npm run eval` on this machine (Node CPU). Browser WebGPU numbers are not claimed here unless a real GPU browser run was done.
-
-| Set | Result |
+| | With notes (topic match + checks) |
 |---|---|
-| In-scope | **42/43** correct (Node CPU q4; `eval/results/grounded.json`) |
-| Of those answers | **Written by LFM3:** 36 · **From the notes:** 7 |
-| Out-of-scope | **13/13** correctly declined |
-| Quality | **2/4** (sentence / meta-reasoning — no further prompt tuning) |
-| Match-only | **43/43** in-scope + **13/13** correctly declined |
-| Tokens / sec | **4.63** on this CPU box (browser WebGPU not claimed) |
+| Grading questions right | **42 / 43** |
+| Off-topic questions declined | **13 / 13** |
 
-Trust rule: incomplete answers fall back to the note card (**From the notes**) via a content-derived required-facts check (not the eval file). Chosen approach: **full note card only** (simpler than splicing model prose + a notes appendix — one label, one source of truth).
+With notes, a real answer was: "Charyot means attention. When you hear charyot, you stand up straight in attention stance, quiet and still, ready to listen." The one graded wrong was "Why do I pull my toes back?" (model said to hit with the ball of the foot and mentioned the knee; the frozen `forbid_re` still fails that wording even though the notes include knee). Of the 43 in-scope answers, 36 kept **Written by LFM3 on this device** and 7 fell back to **From the notes**. Tokens/s for that Node CPU run: **4.5** (from `eval/results/grounded.json` → `summary.tokens_per_second` on the machine recorded there: Intel Xeon x4, 17 GB RAM, Node v22.23.4; desktop/server CPU, not a Mac browser). It's small and keyword-graded, so it's a sanity check, not a benchmark. More in [docs/eval.md](docs/eval.md).
 
-### From the notes (7) — check / required-fact fallbacks
+## Where it falls short
 
-Including: Chon-Ji meaning / move-count when **19** (or other identity facts) are missing; thin glossary coverage; counting answers that omit the required Korean number word; belt/oath after an unclosed `<think>` strip left too little prose (think leak no longer injects rogue numbers into the check).
+- The first download is big, and you need WebGPU.
+- I tested on iPhone and the part that loads the LFM model failed, so it's desktop only for now.
+- Speed numbers I have so far are Node CPU eval figures, not Mac browser timings yet. TODO(Debbie): Mac desktop browser times.
+- I tried having the model explain quiz answers like you're 6. My better prompt still got 6 of 48 wrong ("kup" became "cup"), so I didn't ship it.
+- The notes are still a draft, so always follow your instructor.
 
-### In-scope wrong with LFM3 label (1) — frozen forbid_re vs notes
+## With more time
 
-| Question | Notes |
-|---|---|
-| `Why do I pull my toes back?` | Model answer matches the notes (“Lift your knee… ball of your foot”). Content `front-snap-kick-apcha-busigi.simple` **includes knee**. Frozen `forbid_re` has `\\bknee\\b`, so the eval marks it wrong even though the grounding check correctly allows knee (body-part claims must appear in the facts — and knee does). **Do not edit the frozen eval.** Falling back to the note would still contain “knee” and still fail `forbid_re`. |
+- Fine-tune with Liquid's [DPO notebook](https://colab.research.google.com/github/Liquid4All/cookbook/blob/main/finetuning/notebooks/lfm3_dpo_with_trl.ipynb) to answer from the notes or decline, and re-run the eval.
+- Try [llama.cpp with LFM3-1.7B-GGUF](https://docs.liquid.ai/deployment/on-device/llama-cpp) natively and compare it with the desktop browser.
+- Measure real speed and memory on a Mac desktop browser.
+- Add a CPU fallback for browsers without WebGPU, and more belts.
 
-Wrong answers that fail the content checks now carry **From the notes** (0 content-incomplete answers keep the LFM3 label). The toes case is the forbid_re conflict above.
+## How I used AI
 
-## Trade-offs
+TODO(Debbie): put this in your own words.
 
-- Web-only for this interview demo; phones are memory-tight for a ~1 GB ONNX brain.
-- Greedy decoding is repeatable but not always the prettiest sentence.
-- The grounding check can fall back to the item card when the model invents a Korean word or number — better a card than a wrong fact.
-- Official quotes are frozen character-for-character; kid “simple” lines are ours.
+- **Tools:** TODO
+- **What's mine:** the problem, the scope, the model and runtime choices, what to cut, and checking the notes. TODO
+- **What I changed or rejected:** I cut the AI-written quiz explanations after spotting a wrong one, and stopped the kid-friendly rewrite after two tries. TODO
 
-## What we’d do with more time
+## Licences and sources
 
-- Native shell with llama.cpp / GGUF after PocketPal proves the phone path.
-- Practice eval set for prompt tuning (keep the frozen set untouched).
-- More belts as separate content modules (green is stubbed as “coming soon”).
-- Real device timings on Debbie’s Mac Chrome and an iPhone Safari attempt, reported honestly.
-
-## Licences
-
-- Code: MIT (see `LICENSE`).
-- Content: CC BY-SA 4.0; Chon-Ji move list adapted from Wikipedia “Chon-Ji (teul)”. Official ITF wording quoted from the sources in `data/belts/white-yellow/SOURCES.md` (see `NOTICE`).
-- Model weights: LFM Open License v1.0 (downloaded at runtime, not in this repo).
+**Model:** LFM3-1.7B by Liquid AI under the [LFM Open License v1.0](https://docs.liquid.ai/lfm/help/model-license) (downloaded at runtime, not in this repo; commercial use limited for companies with $10M+ annual revenue). **Code:** MIT. **Notes:** CC BY-SA 4.0. Sources: `data/belts/white-yellow/SOURCES.md` and `NOTICE`.
