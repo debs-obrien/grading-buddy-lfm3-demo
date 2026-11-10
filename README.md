@@ -7,7 +7,6 @@ Can a small Liquid model do a real job with no signal? I built a study buddy for
 ![Grading Buddy in a desktop browser: asked "What does charyot mean?", LFM3 answers on the device that charyot means attention.](docs/grading-buddy-desktop.png)
 
 - **Live demo:** https://grading-buddy-lfm3-demo.pages.dev
-- **Video walkthrough:** TODO(Debbie): YouTube link
 
 ## The problem
 
@@ -24,7 +23,7 @@ npm ci
 npm run dev
 ```
 
-Open http://localhost:5173, press **Download and start** (about 1.1 GB, once) and ask "What does charyot mean?". `npm test` runs the tests. `npm run build` then `npm run preview` lets you try it offline.
+Open http://localhost:5173, press **Download and start** (about 1.1 GB, once) and ask "What does charyot mean?". `npm test` runs the tests; `npm run build` then `npm run preview` serves the built app so you can try it offline.
 
 ## How it works
 
@@ -67,7 +66,7 @@ With notes, a real answer was: "Charyot means attention. When you hear charyot, 
 
 - The first download is big, and you need WebGPU.
 - I tested on iPhone and the part that loads the LFM model failed, so it's desktop only for now.
-- Speed numbers I have so far are Node CPU eval figures, not Mac browser timings yet. TODO(Debbie): Mac desktop browser times.
+- Speed numbers I have so far are Node CPU eval figures, not Mac browser timings yet.
 - Some LFM3 answers still come out messy (repeated or cut off) and pass the checks. Fixes are in progress.
 - Some everyday ways of asking, like "how many tenets are there", are still declined.
 - Quiz "Learn why" is written by LFM3, but if its check fails you get the note instead.
@@ -82,11 +81,9 @@ With notes, a real answer was: "Charyot means attention. When you hear charyot, 
 
 ## How I used AI
 
-TODO(Debbie): put this in your own words.
+I drove and led this project, using Grok Bot, a team of AI agents, as my build crew. I planned it and talked it through over voice chat with my lead bot, which handed work to specialist bots for engineering, QA and design. The engineering bot sent the coding off to cloud agents, and the bots reviewed each other's work before anything got merged.
 
-- **Tools:** TODO
-- **What's mine:** the problem, the scope, the model and runtime choices, what to cut, and checking the notes. TODO
-- **What I changed or rejected:** TODO(Debbie): what I changed or rejected
+I steered every step. I chose the idea, the model and runtime, the scope and the study notes. I fed the agents Liquid's docs, model cards and other resources to study and follow, and I questioned everything they came back with. When the model's quiz explanations got details wrong, I made them stick to my notes. I dropped kid-friendly rewrites after two tries because the model kept inventing facts. I kept the app desktop only, since the LFM model part wouldn't load on iPhone.
 
 ## Licences and sources
 
