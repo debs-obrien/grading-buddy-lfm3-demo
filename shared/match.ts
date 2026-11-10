@@ -48,14 +48,15 @@ function scoreItem(qNorm: string, qTokens: string[], item: ContentItem): number 
   let score = 0;
   const phrases = itemPhrases(item);
 
-  // Exact Korean term in the question (strongest signal).
+  // Exact Korean term in the question (strongest signal). Token boundaries only —
+  // "baro" must not score inside "barometer".
   if (item.korean) {
     const k = norm(item.korean);
-    if (k.length >= 2 && (qNorm.includes(k) || qTokens.includes(k.replace(/\s/g, "")))) score += 8;
+    if (k.length >= 2 && (hasPhrase(qNorm, k) || qTokens.includes(k.replace(/\s/g, "")))) score += 8;
   }
   for (const a of item.alsoKorean ?? []) {
     const k = norm(a.korean);
-    if (k.length >= 2 && qNorm.includes(k)) score += 8;
+    if (k.length >= 2 && hasPhrase(qNorm, k)) score += 8;
   }
 
   // Alias / title / english phrase contained in the question (or vice versa for short answers).
@@ -79,12 +80,19 @@ function scoreItem(qNorm: string, qTokens: string[], item: ContentItem): number 
   // Numbers in counting item
   if (item.numbers) {
     for (const n of item.numbers) {
-      if (qNorm.includes(norm(n.korean)) || qTokens.includes(String(n.n))) score += 2;
+      if (hasPhrase(qNorm, norm(n.korean)) || qTokens.includes(String(n.n))) score += 2;
     }
-    if (/\bcount/.test(qNorm) || /\bnumbers?\b/.test(qNorm)) score += 5;
+    if (/\bcount(?:s|ing)?\b/.test(qNorm) || /\bnumbers?\b/.test(qNorm)) score += 5;
   }
 
   return score;
+}
+
+/** Whole-phrase / token-boundary match on a normalised string (spaces for non-alnum). */
+function hasPhrase(qNorm: string, phrase: string): boolean {
+  if (!phrase) return false;
+  const esc = phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/\s+/g, "\\s+");
+  return new RegExp(`(?:^|\\s)${esc}(?:\\s|$)`).test(qNorm);
 }
 
 /**
@@ -105,7 +113,7 @@ export function matchQuestion(bundle: ContentBundle, question: string): Match | 
       /\bwords? (do i|i) need\b/.test(qNorm) ||
       /\bneed to know\b/.test(qNorm)) &&
     !/\bkorean word for\b/.test(qNorm) &&
-    !/\bcount/.test(qNorm) &&
+    !/\bcount(?:s|ing)?\b/.test(qNorm) &&
     !qTokens.some((t) =>
       ["hana", "dul", "set", "net", "dasot", "yosot", "ilgop", "yodul", "ahop", "yol"].includes(t),
     );
@@ -117,10 +125,11 @@ export function matchQuestion(bundle: ContentBundle, question: string): Match | 
   }
 
   // Counting words / count to 10 → counting topic.
+  // Whole words only — "country" / "counter" must not match "count".
   if (
-    /\bcount/.test(qNorm) ||
-    (/\bkorean\b/.test(qNorm) && /\b(count|number)/.test(qNorm)) ||
-    (/\bkorean\b/.test(qNorm) && /\bwords?\b/.test(qNorm) && /\bcount/.test(qNorm))
+    /\bcount(?:s|ing)?\b/.test(qNorm) ||
+    (/\bkorean\b/.test(qNorm) && /\bnumbers?\b/.test(qNorm)) ||
+    (/\bkorean\b/.test(qNorm) && /\bwords?\b/.test(qNorm) && /\bcount(?:s|ing)?\b/.test(qNorm))
   ) {
     const topic = bundle.topics.find((t) => t.id === "counting")!;
     const items = itemsByTopic(bundle, "counting");
@@ -148,10 +157,10 @@ export function matchQuestion(bundle: ContentBundle, question: string): Match | 
   // "4th degree patterns" → "what a pattern is".
   const itemToks = new Set(itemPhrases(bestItem).flatMap((p) => tokens(p)));
   const contentQ = qTokens.filter((t) => t.length >= 4 || /^\d+$/.test(t));
-  // A clear Korean-term hit in the question is enough on its own.
+  // A clear Korean-term hit in the question is enough on its own (token boundaries).
   const koreanHit =
-    (bestItem.korean && qNorm.includes(norm(bestItem.korean))) ||
-    (bestItem.alsoKorean ?? []).some((a) => qNorm.includes(norm(a.korean)));
+    (bestItem.korean && hasPhrase(qNorm, norm(bestItem.korean))) ||
+    (bestItem.alsoKorean ?? []).some((a) => hasPhrase(qNorm, norm(a.korean)));
   if (contentQ.length && !koreanHit) {
     const hit = contentQ.filter((t) => itemToks.has(t)).length;
     if (hit / contentQ.length < 0.75 && bestScore < 14) return null;

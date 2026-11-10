@@ -33,8 +33,47 @@ const SECTIONS: { key: string; title: string; icon: string; ids: string[] }[] = 
   { key: "belts", title: "Belts", icon: TOPICS.belts.icon, ids: ["what-the-white-belt-means", "what-the-yellow-belt-means", "belt-order-for-the-first-gradings"] },
   { key: "tenets", title: "The five tenets", icon: TOPICS.tenets.icon, ids: ["the-five-tenets", "courtesy", "integrity", "perseverance", "self-control", "indomitable-spirit"] },
   { key: "oath", title: "The student oath", icon: TOPICS.oath.icon, ids: ["the-student-oath", "what-the-oath-promises-mean"] },
-  { key: "words", title: "Dojang words", icon: TOPICS.words.icon, ids: ["dojang-and-dobok", "instructor-sabum-nim", "charyot-attention", "kyong-ye-bow", "junbi-ready", "si-jak-begin", "baro-return", "kihap-yell"] },
+  { key: "words", title: "Dojang words", icon: TOPICS.words.icon, ids: ["dojang-and-dobok", "instructor-sabum-nim", "charyot-attention", "kyong-ye-bow", "junbi-ready", "si-jak-begin", "baro-return", "kihap-yell", "high-middle-and-low", "turning-in-place-and-step-turning"] },
   { key: "counting", title: "Counting in Korean", icon: TOPICS.counting.icon, ids: ["counting-1-to-10-in-korean"] },
+  {
+    key: "stances",
+    title: "Stances",
+    icon: TOPICS.stances.icon,
+    ids: [
+      "attention-stance-charyot-sogi",
+      "parallel-stance-and-parallel-ready-stance",
+      "walking-stance-gunnun-sogi",
+      "stepping-forward-and-backward",
+      "l-stance-niunja-sogi",
+      "sitting-stance-annun-sogi",
+    ],
+  },
+  {
+    key: "techniques",
+    title: "Techniques",
+    icon: TOPICS.techniques.icon,
+    ids: [
+      "punch-block-and-kick-words",
+      "forearm-low-block-palmok-najunde-makgi",
+      "knife-hand-low-block-sonkal-najunde-makgi",
+      "inner-forearm-side-block-an-palmok-yop-makgi",
+      "front-punch-ap-jirugi",
+      "front-snap-kick-apcha-busigi",
+      "front-rising-kick-apcha-olligi",
+    ],
+  },
+  {
+    key: "saju",
+    title: "Saju",
+    icon: TOPICS.saju.icon,
+    ids: ["saju-jirugi-four-direction-punch", "saju-makgi-four-direction-block"],
+  },
+  {
+    key: "story",
+    title: "Taekwon-Do story",
+    icon: TOPICS.story.icon,
+    ids: ["what-the-word-taekwon-do-means", "who-started-taekwon-do", "when-taekwon-do-got-its-name", "what-itf-means"],
+  },
 ];
 
 // ---- Chon-Ji floor diagram ----
@@ -91,6 +130,10 @@ const PANELS: { key: string; label: string }[] = [
   { key: "oath", label: "Oath" },
   { key: "words", label: "Words" },
   { key: "counting", label: "Counting" },
+  { key: "stances", label: "Stances" },
+  { key: "techniques", label: "Techniques" },
+  { key: "saju", label: "Saju" },
+  { key: "story", label: "Story" },
 ];
 
 export function renderLearn(host: HTMLElement, notes: Note[]) {

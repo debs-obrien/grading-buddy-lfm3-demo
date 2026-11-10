@@ -1,7 +1,7 @@
 // All model work happens here so the page stays responsive.
 import { env, pipeline, type TextGenerationPipeline } from "@huggingface/transformers";
 import { activeContent } from "./belt-notes.ts";
-import { planAsk, finaliseAsk, gatedAskResult, stripThinking, learnWhyHow } from "../../shared/answer.ts";
+import { planAsk, finaliseAsk, gatedAskResult, stripThinking, finaliseLearnWhy } from "../../shared/answer.ts";
 import { itemFacts } from "../../shared/content.ts";
 import { whyMessages, type ChatMessage } from "../../shared/prompt.ts";
 import { CONFIG } from "../../shared/config.ts";
@@ -177,16 +177,23 @@ self.onmessage = async (e: MessageEvent<ToWorker>) => {
       }
       const facts = itemFacts(item, bundle);
       const r = await generate(whyMessages(facts), 80);
-      const how = learnWhyHow({ item, facts, raw: r.raw, tokens: r.tokens, seconds: r.seconds });
+      const final = finaliseLearnWhy({
+        item,
+        facts,
+        raw: r.raw,
+        tokens: r.tokens,
+        seconds: r.seconds,
+      });
       post({
         type: "answer",
         id: msg.id,
-        text: r.text,
+        text: final.text,
         sources: [item.title],
         gated: false,
         tokens: r.tokens,
         seconds: r.seconds,
-        how,
+        how: final.how,
+        usedCard: final.usedCard,
         helper: true,
       });
     }

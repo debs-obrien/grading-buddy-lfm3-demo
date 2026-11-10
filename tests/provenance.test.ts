@@ -1,6 +1,14 @@
 import { describe, it, expect } from "vitest";
 import { loadBeltContent } from "../shared/belt-fs.ts";
-import { planAsk, finaliseAsk, gatedAskResult, learnWhyHow, LABEL_MODEL, LABEL_NOTES } from "../shared/answer.ts";
+import {
+  planAsk,
+  finaliseAsk,
+  gatedAskResult,
+  learnWhyHow,
+  finaliseLearnWhy,
+  LABEL_MODEL,
+  LABEL_NOTES,
+} from "../shared/answer.ts";
 import {
   labelMatchesSource,
   howAnsweredPanelHtml,
@@ -97,7 +105,7 @@ describe("source labels match the path taken", () => {
     const item = bundle.items.find((i) => i.id === "charyot-attention")!;
     const how = learnWhyHow({
       item,
-      facts: "Korean: charyot\nEnglish: attention",
+      facts: "Korean: charyot\nEnglish: attention\nType: command\nCharyot means attention.",
       raw: "Charyot means stand still and listen.",
       tokens: 20,
       seconds: 1,
@@ -105,7 +113,25 @@ describe("source labels match the path taken", () => {
     expect(how.source).toBe("model");
     expect(how.label).toBe(LABEL_MODEL);
     expect(how.path).toBe("learn-why");
+    expect(how.check?.ok).toBe(true);
     expect(labelMatchesSource(how)).toBe(true);
+  });
+
+  it("Learn why falls back to From the notes when the check fails", () => {
+    const item = bundle.items.find((i) => i.id === "what-a-pattern-tul-is")!;
+    const r = finaliseLearnWhy({
+      item,
+      facts: "Type: pattern\nKorean: tul\nChon-Ji is a pattern with 19 moves.",
+      raw: "Chon-Ji is a way of standing in a ready stance.",
+      tokens: 20,
+      seconds: 1,
+    });
+    expect(r.usedCard).toBe(true);
+    expect(r.how.source).toBe("notes");
+    expect(r.how.label).toBe(LABEL_NOTES);
+    expect(r.how.path).toBe("learn-why-fallback");
+    expect(r.how.check?.ok).toBe(false);
+    expect(labelMatchesSource(r.how)).toBe(true);
   });
 });
 

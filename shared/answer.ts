@@ -245,7 +245,7 @@ export function cardText(item: ContentItem): string {
   const parts: string[] = [];
   if (item.glossary && item.learnBody) {
     parts.push(item.simple);
-    parts.push(item.learnBody);
+    if (item.learnBody !== item.simple) parts.push(item.learnBody);
     return parts.join("\n\n");
   }
   if (item.official) {
@@ -258,13 +258,68 @@ export function cardText(item: ContentItem): string {
   if (item.moves?.length) {
     parts.push(item.moves.map((m) => `${m.n}. ${m.text}`).join("\n"));
     if (item.end) parts.push(`End: ${item.end}`);
-  } else if (item.learnBody && !item.official) {
+  } else if (item.learnBody && !item.official && item.learnBody !== item.simple) {
     parts.push(item.learnBody);
   }
   return parts.join("\n\n");
 }
 
-/** Learn why: always model-written when it succeeds. */
+/** Learn why: model text when the check passes; otherwise the note for that item. */
+export function finaliseLearnWhy(opts: {
+  item: ContentItem;
+  facts: string;
+  raw: string;
+  tokens: number;
+  seconds: number;
+}): { text: string; how: HowAnswered; usedCard: boolean } {
+  const raw = opts.raw;
+  const text = stripThinking(raw);
+  const check = checkAnswer(text, opts.facts, opts.item.category);
+  const checkTrace = {
+    ok: check.ok,
+    badKorean: check.badKorean,
+    badNumbers: check.badNumbers,
+    badCategory: check.badCategory,
+    summary: checkSummary(check),
+  };
+  const timing = {
+    tokens: opts.tokens,
+    seconds: opts.seconds,
+    tokensPerSecond: tokensPerSecond(opts.tokens, opts.seconds),
+  };
+  const meta = {
+    topic: opts.item.title,
+    items: [opts.item.title],
+    facts: opts.facts,
+    rawModel: raw,
+    ...timing,
+    check: checkTrace,
+  };
+  if (!check.ok || text.length < 12) {
+    return {
+      text: cardText(opts.item),
+      usedCard: true,
+      how: {
+        source: "notes",
+        label: LABEL_NOTES,
+        path: "learn-why-fallback",
+        ...meta,
+      },
+    };
+  }
+  return {
+    text,
+    usedCard: false,
+    how: {
+      source: "model",
+      label: LABEL_MODEL,
+      path: "learn-why",
+      ...meta,
+    },
+  };
+}
+
+/** @deprecated Prefer finaliseLearnWhy — kept for tests that only need a passing how. */
 export function learnWhyHow(opts: {
   item: ContentItem;
   facts: string;
@@ -272,18 +327,7 @@ export function learnWhyHow(opts: {
   tokens: number;
   seconds: number;
 }): HowAnswered {
-  return {
-    source: "model",
-    label: LABEL_MODEL,
-    path: "learn-why",
-    topic: opts.item.title,
-    items: [opts.item.title],
-    facts: opts.facts,
-    rawModel: opts.raw,
-    tokens: opts.tokens,
-    seconds: opts.seconds,
-    tokensPerSecond: tokensPerSecond(opts.tokens, opts.seconds),
-  };
+  return finaliseLearnWhy(opts).how;
 }
 
 export function factsFor(bundle: ContentBundle, item: ContentItem): string {

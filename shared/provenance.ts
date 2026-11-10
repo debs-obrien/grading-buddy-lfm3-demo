@@ -11,7 +11,8 @@ export type NotesPath =
   | "no-match"
   | "check-failed"
   | "model-decline"
-  | "thin-or-glossary-fallback";
+  | "thin-or-glossary-fallback"
+  | "learn-why-fallback";
 
 export interface CheckTrace {
   ok: boolean;

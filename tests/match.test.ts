@@ -49,6 +49,16 @@ describe("topic matching", () => {
     }
   });
 
+  it("does not treat country as a counting question", () => {
+    expect(matchQuestion(bundle, "What country is Paris in?")).toBeNull();
+    const plan = planAsk(bundle, "What country is Paris in?");
+    expect(plan.kind).toBe("gated");
+  });
+
+  it("does not match barometer to baro", () => {
+    expect(matchQuestion(bundle, "How does a barometer work?")).toBeNull();
+  });
+
   it("safety-gates pain without calling the model", () => {
     expect(isSafetyDecline("My knee hurts when I kick, what should I do?")).toBe(true);
     const plan = planAsk(bundle, "My knee hurts after training. What medicine should I take?");

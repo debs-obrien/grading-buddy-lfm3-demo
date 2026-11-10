@@ -42,17 +42,20 @@ self.addEventListener("fetch", (event) => {
 
   if (req.mode === "navigate") {
     // Network-first for the document so a new deploy is seen when online; fall back to the shell offline.
+    // Never cache HTTP error pages — a transient 503/404 must not overwrite the working shell.
+    const shell = () =>
+      caches.match("/index.html", { ignoreSearch: true, ignoreVary: true }).then(
+        (r) => r || caches.match("/", { ignoreSearch: true, ignoreVary: true }),
+      );
     event.respondWith(
       fetch(req)
         .then((res) => {
+          if (!res.ok) return shell().then((cached) => cached || res);
           const copy = res.clone();
           caches.open(CACHE).then((c) => c.put("/index.html", copy)).catch(() => {});
           return res;
         })
-        .catch(() =>
-          caches.match("/index.html", { ignoreSearch: true, ignoreVary: true })
-            .then((r) => r || caches.match("/", { ignoreSearch: true, ignoreVary: true })),
-        ),
+        .catch(() => shell()),
     );
     return;
   }

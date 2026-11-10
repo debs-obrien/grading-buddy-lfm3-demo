@@ -29,6 +29,9 @@ export function wireInstallUi(opts: {
   const nav = opts.nav ?? (navigator as Navigator & { standalone?: boolean });
 
   let deferred: BeforeInstallPromptEvent | null = null;
+  let opener: HTMLElement | null = null;
+  let trapHandler: ((e: KeyboardEvent) => void) | null = null;
+
   const env = () => ({
     standalone: isStandaloneDisplay(matchMedia, nav.standalone),
     dismissed: storage.getItem(INSTALL_DISMISS_KEY) === "1",
@@ -36,10 +39,53 @@ export function wireInstallUi(opts: {
     iosSafari: isIosSafari(nav.userAgent, nav.maxTouchPoints ?? 0, nav.platform ?? ""),
   });
 
+  const focusables = () =>
+    [
+      ...opts.sheet.querySelectorAll<HTMLElement>(
+        'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      ),
+    ].filter((el) => !el.hidden && el.getAttribute("aria-hidden") !== "true");
+
+  const closeSheet = (restoreFocus: boolean) => {
+    opts.sheet.hidden = true;
+    if (trapHandler) {
+      opts.sheet.removeEventListener("keydown", trapHandler);
+      trapHandler = null;
+    }
+    if (restoreFocus) opener?.focus();
+    opener = null;
+  };
+
+  const openSheet = () => {
+    opener = (document.activeElement as HTMLElement) || opts.button;
+    opts.sheet.hidden = false;
+    opts.sheetClose.focus();
+    trapHandler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        closeSheet(true);
+        return;
+      }
+      if (e.key !== "Tab") return;
+      const list = focusables();
+      if (list.length === 0) return;
+      const first = list[0];
+      const last = list[list.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    opts.sheet.addEventListener("keydown", trapHandler);
+  };
+
   const refresh = () => {
     const show = shouldShowInstall(env());
     opts.button.hidden = !show;
-    if (!show) opts.sheet.hidden = true;
+    if (!show) closeSheet(false);
   };
 
   const dismiss = () => {
@@ -48,7 +94,7 @@ export function wireInstallUi(opts: {
     } catch {
       /* quota */
     }
-    opts.sheet.hidden = true;
+    closeSheet(true);
     refresh();
   };
 
@@ -72,15 +118,10 @@ export function wireInstallUi(opts: {
       else refresh();
       return;
     }
-    if (env().iosSafari) {
-      opts.sheet.hidden = false;
-      opts.sheetClose.focus();
-    }
+    if (env().iosSafari) openSheet();
   });
 
-  opts.sheetClose.addEventListener("click", () => {
-    opts.sheet.hidden = true;
-  });
+  opts.sheetClose.addEventListener("click", () => closeSheet(true));
   opts.sheetDismiss.addEventListener("click", dismiss);
 
   // Hide if already installed; show on iOS immediately (no prompt event there).

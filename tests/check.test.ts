@@ -33,6 +33,22 @@ Simple: count in Korean.`;
     expect(r.badKorean.length).toBeGreaterThan(0);
   });
 
+  it("rejects an unsupported technique modifier even when the head word is allowed", () => {
+    const bundle = loadBeltContent();
+    const techFacts = topicFacts(bundle, "techniques");
+    const r = checkAnswer("A front snap kick is called dollyo chagi.", techFacts, "technique");
+    expect(r.ok).toBe(false);
+    expect(r.badKorean.some((k) => /dollyo/.test(k))).toBe(true);
+  });
+
+  it("allows known technique phrases that appear in the facts", () => {
+    const bundle = loadBeltContent();
+    const techFacts = topicFacts(bundle, "techniques");
+    expect(checkAnswer("A front snap kick is apcha busigi. Hit with ap kumchi.", techFacts, "technique").ok).toBe(
+      true,
+    );
+  });
+
   it("fails on a number not in the facts", () => {
     const r = checkAnswer("There are 24 patterns.", facts);
     expect(r.ok).toBe(false);
