@@ -33,7 +33,7 @@ Open http://localhost:5173, press **Download and start** (about 1.09 GB, once) a
 - Topic match picks the grading topic that best fits your question and gives the model that topic's facts.
 - If nothing matches, the app says it's not part of the white to yellow belt grading and skips the model.
 - The model answers in a sentence or two from those facts. A grounding check (Korean terms, numbers, type) and a required-facts check must pass; if either fails, the UI shows the note card labelled **From the notes** instead.
-- The quiz is plain code, straight from the notes. No model.
+- Quiz questions and grading are plain code, straight from the notes (no model). Optional **Learn why** after a wrong answer is written by LFM3, with the same kind of check and a note fallback.
 
 ## Why this model, approach and runtime
 
