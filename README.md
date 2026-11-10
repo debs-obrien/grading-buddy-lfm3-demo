@@ -23,7 +23,7 @@ npm ci
 npm run dev
 ```
 
-Open http://localhost:5173, press **Download and start** (about 1.1 GB, once) and ask "What does charyot mean?". `npm test` runs the tests. `npm run build` then `npm run preview` lets you try it offline.
+Open http://localhost:5173, press **Download and start** (about 1.1 GB, once) and ask "What does charyot mean?". `npm test` runs the tests; `npm run build` then `npm run preview` serves the built app so you can try it offline.
 
 ## How it works
 
