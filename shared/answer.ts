@@ -93,7 +93,13 @@ export function planAsk(bundle: ContentBundle, question: string): AskMode {
 
 /** Strip thinking tags only — no patch-style cleanup. */
 export function stripThinking(text: string): string {
-  return text.replace(/<think>[\s\S]*?<\/think>/g, "").replace(/<\/?think>/g, " ").replace(/\s+/g, " ").trim();
+  // Drop a closed or still-open thinking block so leaked chain-of-thought cannot
+  // inject Korean terms / numbers into the grounding check.
+  return text
+    .replace(/<think>[\s\S]*?(?:<\/think>|$)/gi, "")
+    .replace(/<\/?think>/gi, " ")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 const letters = (s: string) => s.toLowerCase().replace(/[^a-z]+/g, "");

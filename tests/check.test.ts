@@ -3,7 +3,14 @@ import { checkAnswer } from "../shared/check.ts";
 import { answerContradictsCategory } from "../shared/categories.ts";
 import { loadBeltContent } from "../shared/belt-fs.ts";
 import { topicFacts } from "../shared/content.ts";
-import { planAsk, finaliseAsk } from "../shared/answer.ts";
+import { planAsk, finaliseAsk, stripThinking } from "../shared/answer.ts";
+
+describe("stripThinking", () => {
+  it("drops an unclosed think block so leaked numbers cannot reach the check", () => {
+    expect(stripThinking('<think>Simple: 10th kup. After white comes 1 then 2')).toBe("");
+    expect(stripThinking("<think>secret</think>Charyot means attention.")).toBe("Charyot means attention.");
+  });
+});
 
 describe("grounding check", () => {
   const facts = `Title: Counting 1 to 10 in Korean
@@ -45,6 +52,14 @@ Simple: count in Korean.`;
     const bundle = loadBeltContent();
     const techFacts = topicFacts(bundle, "techniques");
     expect(checkAnswer("A front snap kick is apcha busigi. Hit with ap kumchi.", techFacts, "technique").ok).toBe(
+      true,
+    );
+  });
+
+  it("allows a stance sub-phrase when the full term is in the facts", () => {
+    const bundle = loadBeltContent();
+    const facts = topicFacts(bundle, "chonji");
+    expect(checkAnswer("Chon-Ji starts in parallel ready stance (narani junbi sogi).", facts, "pattern").ok).toBe(
       true,
     );
   });

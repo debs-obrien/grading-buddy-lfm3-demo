@@ -83,13 +83,34 @@ Numbers below are filled from the latest `npm run eval` on this machine (Node CP
 
 | Set | Result |
 |---|---|
-| In-scope | 43/43 correct (Node CPU q4; `eval/results/grounded.json`) |
-| Out-of-scope | 13/13 correctly declined |
-| Quality | 2/4 (two answers over the short-sentence budget) |
-| Match-only | 43/43 in-scope + 13/13 correctly declined (`eval/results/match-only.json`) |
-| Tokens / sec | ~6.4 on this CPU box (browser WebGPU not claimed) |
+| In-scope | **40/43** correct (Node CPU q4; `eval/results/grounded.json`) |
+| Of those answers | **Written by LFM3:** 42 · **From the notes:** 1 |
+| Out-of-scope | **13/13** correctly declined |
+| Quality | **3/4** (see fail below) |
+| Match-only | **43/43** in-scope + **13/13** correctly declined |
+| Tokens / sec | **6.11** on this CPU box (browser WebGPU not claimed) |
 
-When the model calls Chon-Ji a stance, the type check fails and the UI shows **From the notes** with the matched Chon-Ji items (pattern / heaven / earth / 19), not the bad model sentence.
+### From the notes fallbacks (1)
+
+| Question | Why the check failed |
+|---|---|
+| `What belt comes after white?` | Model emitted an unclosed `<think>` block; numbers `1` and `2` from that leaked chain-of-thought were not in the belt facts, so the note card was shown. |
+
+### In-scope wrongs (3) — model answers that still graded wrong
+
+| Question | Why |
+|---|---|
+| `Why do I pull my toes back?` | Answer included “knee”, which hits frozen `forbid_re`. |
+| `what korean words do i need to know` | Model hedged / incomplete list (missed required terms such as junbi / hana). |
+| `what does chon-ji mean` | Had heaven / earth / pattern but omitted **19**. |
+
+### Quality fail (1 of 4)
+
+| Question | Why |
+|---|---|
+| `How many moves in Chon-Ji?` | Model meta-reasoned (“Looking at the FACTS”), leaked heading `How many moves Chon-Ji has`, counted as 11 sentences / repeats a fact. |
+
+`What does Chon-Ji mean?`, `How does Chon-Ji end?`, and `What are the tenets?` pass (≤2 sentences). Prompt was tightened for the two-sentence budget; a second anti-meta prompt attempt regressed other quality items, so further quality tuning stopped.
 
 ## Trade-offs
 

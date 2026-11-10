@@ -147,6 +147,9 @@ export function checkAnswer(
         badKorean.push(k);
         continue;
       }
+      // Parts were each allowed (e.g. junbi + sogi inside narani junbi sogi) — do not
+      // also require the two-word substring as its own allowlist entry.
+      continue;
     }
     if (HANGUL.test(k) || !(allowedK.has(low) || allowedK.has(compact) || allowedK.has(low.replace(/-/g, "")))) {
       badKorean.push(k);

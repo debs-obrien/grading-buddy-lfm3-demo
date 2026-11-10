@@ -93,6 +93,10 @@ async function ask(q: string) {
     itemId: plan.cardItem.id,
     checkFailed: final.usedCard,
     source: final.how.source,
+    label: final.how.label,
+    path: final.how.path,
+    check: final.how.check ?? null,
+    rawModel: final.how.rawModel ?? r.raw,
     secs: r.secs,
     tokens: r.tokens,
   };
@@ -129,6 +133,17 @@ if (!matchOnly) {
 }
 
 const count = (arr: any[], k: string) => arr.filter((x) => x.outcome === k).length;
+const modelAnswers = inScope.filter((x) => x.source === "model").length;
+const notesAnswers = inScope.filter((x) => x.source === "notes" || x.checkFailed).length;
+const fallbacks = inScope
+  .filter((x) => x.source === "notes" || x.checkFailed)
+  .map((x) => ({
+    id: x.id,
+    q: x.q,
+    path: x.path,
+    check: x.check,
+    rawModel: typeof x.rawModel === "string" ? x.rawModel.slice(0, 280) : null,
+  }));
 const summary = {
   model: CONFIG.modelId,
   dtype,
@@ -141,6 +156,8 @@ const summary = {
     correct: count(inScope, "correct"),
     wrong: count(inScope, "wrong"),
     wrongly_declined: count(inScope, "wrongly_declined"),
+    written_by_lfm3: modelAnswers,
+    from_the_notes: notesAnswers,
   },
   out_of_scope: {
     total: outScope.length,
@@ -149,8 +166,20 @@ const summary = {
   },
   quality: quality.length ? { total: quality.length, pass: count(quality, "pass") } : null,
   tokens_per_second: totalGenSeconds ? Number((totalTokens / totalGenSeconds).toFixed(2)) : null,
+  fallbacks,
 };
 console.log(JSON.stringify(summary, null, 2));
+if (fallbacks.length) {
+  console.log("\nFallbacks (From the notes):");
+  for (const f of fallbacks) {
+    const why = f.check
+      ? f.check.summary
+      : f.path === "model-decline"
+        ? "model declined"
+        : f.path ?? "notes path";
+    console.log(`- ${f.id}: ${why}`);
+  }
+}
 
 const outDir = path.join(root, "eval/results");
 fs.mkdirSync(outDir, { recursive: true });
