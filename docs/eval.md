@@ -30,7 +30,7 @@ Filled from the latest `npm run eval` on the machine named in `eval/results/grou
 | Match-only | **43/43** in-scope + **13/13** correctly declined (`npm run eval:match`) |
 | Tokens / sec | **4.5** on Node CPU for that run (`summary.tokens_per_second` in `eval/results/grounded.json`; machine `Intel(R) Xeon(R) Processor x4, 17 GB RAM, Node v22.23.4`; desktop/server CPU, not Mac browser, not phone) |
 
-Trust rule: incomplete answers fall back to the note card (**From the notes**) via a content-derived required-facts check (not the eval file), plus the grounding check on Korean terms / numbers / type. Chosen approach: **full note card only** (simpler than splicing model prose + a notes appendix - one label, one source of truth).
+Trust rule: the answer falls back to the note card (**From the notes**) when it uses Korean terms, numbers, type or body parts that are not in the facts, or when it misses a required fact (required facts come from content, not the eval file). Messy or cut-off answers can still pass those checks and keep the LFM3 label. Chosen approach when falling back: **full note card only** (simpler than splicing model prose + a notes appendix - one label, one source of truth).
 
 ### From the notes (7) - check / required-fact fallbacks
 
@@ -42,7 +42,7 @@ Including: Chon-Ji meaning / move-count when **19** (or other identity facts) ar
 |---|---|
 | `Why do I pull my toes back?` | Model answer matches the notes (“Lift your knee… ball of your foot”). Content `front-snap-kick-apcha-busigi.simple` **includes knee**. Frozen `forbid_re` has `\\bknee\\b`, so the eval marks it wrong even though the grounding check correctly allows knee (body-part claims must appear in the facts - and knee does). **Do not edit the frozen eval.** Falling back to the note would still contain “knee” and still fail `forbid_re`. |
 
-Wrong answers that fail the content checks now carry **From the notes** (0 content-incomplete answers keep the LFM3 label). The toes case is the forbid_re conflict above.
+The toes case above is the forbid_re conflict, not a content-check fallback.
 
 ## Model-family and runtime detail
 
