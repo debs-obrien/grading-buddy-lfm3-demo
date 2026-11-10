@@ -1,0 +1,887 @@
+{
+  "about": "Frozen eval for Grading Buddy v2. expect is keyword groups; order:true means groups must appear in order. Never edit this file to make a run pass \u2014 tune on a separate practice set.",
+  "in_scope": [
+    {
+      "id": "cj-moves",
+      "q": "How many moves are in Chon-Ji?",
+      "expect": [
+        [
+          "19",
+          "nineteen"
+        ]
+      ],
+      "forbid_re": [
+        "are listed",
+        "total count is given",
+        "moves 1 to 4 and"
+      ]
+    },
+    {
+      "id": "cj-meaning",
+      "q": "What does Chon-Ji mean?",
+      "expect": [
+        [
+          "heaven"
+        ],
+        [
+          "earth"
+        ]
+      ]
+    },
+    {
+      "id": "charyot",
+      "q": "What does charyot mean?",
+      "expect": [
+        [
+          "attention"
+        ]
+      ]
+    },
+    {
+      "id": "kyong-ye",
+      "q": "What does kyong ye mean?",
+      "expect": [
+        [
+          "bow"
+        ]
+      ]
+    },
+    {
+      "id": "junbi",
+      "q": "What does junbi mean?",
+      "expect": [
+        [
+          "ready"
+        ]
+      ]
+    },
+    {
+      "id": "si-jak",
+      "q": "What does si jak mean?",
+      "expect": [
+        [
+          "begin",
+          "start"
+        ]
+      ]
+    },
+    {
+      "id": "baro",
+      "q": "What does baro mean when the instructor says it?",
+      "expect": [
+        [
+          "return",
+          "back"
+        ]
+      ]
+    },
+    {
+      "id": "founder",
+      "q": "Who is the founder of Taekwon-Do?",
+      "expect": [
+        [
+          "choi"
+        ]
+      ]
+    },
+    {
+      "id": "tenets",
+      "q": "What are the five tenets of Taekwon-Do?",
+      "expect": [
+        [
+          "courtesy"
+        ],
+        [
+          "integrity"
+        ],
+        [
+          "perseverance"
+        ],
+        [
+          "self-control",
+          "self control"
+        ],
+        [
+          "indomitable"
+        ]
+      ]
+    },
+    {
+      "id": "white-belt",
+      "q": "What does the white belt mean?",
+      "expect": [
+        [
+          "innocence",
+          "innocent",
+          "beginner",
+          "new student"
+        ]
+      ]
+    },
+    {
+      "id": "yellow-belt",
+      "q": "What does the yellow belt mean?",
+      "expect": [
+        [
+          "earth"
+        ],
+        [
+          "plant sprouts",
+          "sprouts and takes root",
+          "takes root"
+        ]
+      ],
+      "forbid_re": [
+        "In simple words:",
+        "basic rules"
+      ]
+    },
+    {
+      "id": "three",
+      "q": "How do you say three in Korean?",
+      "expect": [
+        [
+          "set"
+        ]
+      ],
+      "forbid_re": [
+        "sometimes\\s+[\"']?(dool|dul)",
+        "\\bset\\b[^.]{0,50}\\b(dool|dul)\\b",
+        "\\bor\\s+[\"']?(dool|dul)\\b",
+        "[\\uAC00-\\uD7A3]"
+      ]
+    },
+    {
+      "id": "eight",
+      "q": "What is eight in Korean?",
+      "expect": [
+        [
+          "yodul"
+        ]
+      ]
+    },
+    {
+      "id": "ten",
+      "q": "What is ten in Korean?",
+      "expect": [
+        [
+          "yol"
+        ]
+      ],
+      "forbid_re": [
+        "[\\uAC00-\\uD7A3]",
+        "yol\\.\\s+\""
+      ]
+    },
+    {
+      "id": "count-to-10",
+      "q": "How do I count to 10 in Korean?",
+      "expect": [
+        [
+          "hana"
+        ],
+        [
+          "dul"
+        ],
+        [
+          "set"
+        ],
+        [
+          "net"
+        ],
+        [
+          "dasot"
+        ],
+        [
+          "yosot"
+        ],
+        [
+          "ilgop"
+        ],
+        [
+          "yodul"
+        ],
+        [
+          "ahop"
+        ],
+        [
+          "yol"
+        ]
+      ],
+      "order": true
+    },
+    {
+      "id": "count-to-ten",
+      "q": "count to ten in korean",
+      "expect": [
+        [
+          "hana"
+        ],
+        [
+          "dul"
+        ],
+        [
+          "set"
+        ],
+        [
+          "net"
+        ],
+        [
+          "dasot"
+        ],
+        [
+          "yosot"
+        ],
+        [
+          "ilgop"
+        ],
+        [
+          "yodul"
+        ],
+        [
+          "ahop"
+        ],
+        [
+          "yol"
+        ]
+      ],
+      "order": true
+    },
+    {
+      "id": "numbers-one-to-ten-korean",
+      "q": "numbers one to ten in Korean",
+      "expect": [
+        [
+          "hana"
+        ],
+        [
+          "dul"
+        ],
+        [
+          "set"
+        ],
+        [
+          "net"
+        ],
+        [
+          "dasot"
+        ],
+        [
+          "yosot"
+        ],
+        [
+          "ilgop"
+        ],
+        [
+          "yodul"
+        ],
+        [
+          "ahop"
+        ],
+        [
+          "yol"
+        ]
+      ],
+      "order": true,
+      "note": "QA live v1: full ordered 1\u201310 from content"
+    },
+    {
+      "id": "say-1-10",
+      "q": "how do you say 1-10",
+      "expect": [
+        [
+          "hana"
+        ],
+        [
+          "dul"
+        ],
+        [
+          "set"
+        ],
+        [
+          "net"
+        ],
+        [
+          "dasot"
+        ],
+        [
+          "yosot"
+        ],
+        [
+          "ilgop"
+        ],
+        [
+          "yodul"
+        ],
+        [
+          "ahop"
+        ],
+        [
+          "yol"
+        ]
+      ],
+      "order": true,
+      "note": "QA live v1: full ordered 1\u201310 from content"
+    },
+    {
+      "id": "korean-numbers-1-10",
+      "q": "what are the Korean numbers 1-10",
+      "expect": [
+        [
+          "hana"
+        ],
+        [
+          "dul"
+        ],
+        [
+          "set"
+        ],
+        [
+          "net"
+        ],
+        [
+          "dasot"
+        ],
+        [
+          "yosot"
+        ],
+        [
+          "ilgop"
+        ],
+        [
+          "yodul"
+        ],
+        [
+          "ahop"
+        ],
+        [
+          "yol"
+        ]
+      ],
+      "order": true,
+      "note": "QA live v1: full ordered 1\u201310 from content"
+    },
+    {
+      "id": "count-typo-cont",
+      "q": "how do i cont to 10 in korean",
+      "expect": [
+        [
+          "hana"
+        ],
+        [
+          "dul"
+        ],
+        [
+          "set"
+        ],
+        [
+          "net"
+        ],
+        [
+          "dasot"
+        ],
+        [
+          "yosot"
+        ],
+        [
+          "ilgop"
+        ],
+        [
+          "yodul"
+        ],
+        [
+          "ahop"
+        ],
+        [
+          "yol"
+        ]
+      ],
+      "order": true,
+      "note": "QA live v1 misspelling of count"
+    },
+    {
+      "id": "count-typo-cout",
+      "q": "how do i cout to 10 in korean",
+      "expect": [
+        [
+          "hana"
+        ],
+        [
+          "dul"
+        ],
+        [
+          "set"
+        ],
+        [
+          "net"
+        ],
+        [
+          "dasot"
+        ],
+        [
+          "yosot"
+        ],
+        [
+          "ilgop"
+        ],
+        [
+          "yodul"
+        ],
+        [
+          "ahop"
+        ],
+        [
+          "yol"
+        ]
+      ],
+      "order": true,
+      "note": "QA live v1 misspelling of count"
+    },
+    {
+      "id": "oath-1",
+      "q": "What is the first line of the student oath?",
+      "expect": [
+        [
+          "observe"
+        ],
+        [
+          "tenets"
+        ]
+      ],
+      "forbid_re": [
+        "[\"\u201c]I shall observe the Tenets of Taekwon-Do\\.\\s+[^\"\u201d]+[\"\u201d]",
+        "Tenets of Taekwon-Do\\.\\s+That is the exact"
+      ]
+    },
+    {
+      "id": "cj-start",
+      "q": "Which stance does Chon-Ji start in?",
+      "expect": [
+        [
+          "parallel ready",
+          "narani junbi"
+        ]
+      ],
+      "forbid_re": [
+        "feet together"
+      ]
+    },
+    {
+      "id": "cj-end",
+      "q": "Which foot goes back at the end of Chon-Ji?",
+      "expect": [
+        [
+          "left"
+        ]
+      ]
+    },
+    {
+      "id": "cj-first",
+      "q": "What is the first move of Chon-Ji?",
+      "expect": [
+        [
+          "low block",
+          "najunde"
+        ]
+      ]
+    },
+    {
+      "id": "cj-lstance",
+      "q": "Which stance do you use for the blocks in Chon-Ji moves 9 to 16?",
+      "expect": [
+        [
+          "l-stance",
+          "l stance",
+          "niunja"
+        ]
+      ],
+      "forbid_re": [
+        "moves?\\s*9\\s*to\\s*16[^.!?]{0,160}\\bleft\\s+l",
+        "moves?\\s*9\\s*to\\s*16[^.!?]{0,160}\\bright\\s+l",
+        "use the\\s+\\*{0,2}left\\s+l",
+        "use the\\s+\\*{0,2}right\\s+l"
+      ]
+    },
+    {
+      "id": "saju-jirugi",
+      "q": "What does Saju Jirugi mean?",
+      "expect": [
+        [
+          "four"
+        ],
+        [
+          "punch"
+        ]
+      ]
+    },
+    {
+      "id": "saju-makgi",
+      "q": "What is Saju Makgi?",
+      "expect": [
+        [
+          "four"
+        ],
+        [
+          "block"
+        ]
+      ]
+    },
+    {
+      "id": "walking-stance",
+      "q": "What is the Korean name for walking stance?",
+      "expect": [
+        [
+          "gunnun"
+        ]
+      ]
+    },
+    {
+      "id": "snap-kick",
+      "q": "What part of the foot do you use for a front snap kick?",
+      "expect": [
+        [
+          "ball"
+        ]
+      ]
+    },
+    {
+      "id": "belt-after-white",
+      "q": "What belt comes after white?",
+      "expect": [
+        [
+          "stripe",
+          "tag"
+        ],
+        [
+          "9th",
+          "yellow stripe"
+        ]
+      ],
+      "forbid_re": [
+        "\\byellow belt or\\b",
+        "after white[^.!?]{0,50}\\byellow belt\\b(?! with)"
+      ]
+    },
+    {
+      "id": "toes-back",
+      "q": "Why do I pull my toes back?",
+      "expect": [
+        [
+          "ball of the foot",
+          "ball of your foot"
+        ]
+      ],
+      "forbid_re": [
+        "partner",
+        "\\bknee\\b",
+        "roll(?:ing)?",
+        "pads? on the side"
+      ]
+    },
+    {
+      "id": "dobok",
+      "q": "What is a dobok?",
+      "expect": [
+        [
+          "uniform"
+        ]
+      ]
+    },
+    {
+      "id": "kihap",
+      "q": "What does kihap mean?",
+      "expect": [
+        [
+          "yell",
+          "shout"
+        ]
+      ]
+    },
+    {
+      "id": "makgi",
+      "q": "What is the Korean word for block?",
+      "expect": [
+        [
+          "makgi"
+        ]
+      ]
+    },
+    {
+      "id": "itf",
+      "q": "What does ITF stand for?",
+      "expect": [
+        [
+          "international"
+        ],
+        [
+          "federation"
+        ]
+      ]
+    },
+    {
+      "id": "named",
+      "q": "When was Taekwon-Do given its name?",
+      "expect": [
+        [
+          "1955"
+        ]
+      ]
+    },
+    {
+      "id": "kaunde",
+      "q": "What does kaunde mean?",
+      "expect": [
+        [
+          "middle"
+        ]
+      ]
+    },
+    {
+      "id": "korean-words-need",
+      "q": "what korean words do i need to know",
+      "expect": [
+        [
+          "charyot"
+        ],
+        [
+          "junbi"
+        ],
+        [
+          "makgi"
+        ],
+        [
+          "hana"
+        ]
+      ]
+    },
+    {
+      "id": "korean-words-counting",
+      "q": "what are the korean words for counting",
+      "expect": [
+        [
+          "hana"
+        ],
+        [
+          "dul"
+        ],
+        [
+          "set"
+        ],
+        [
+          "net"
+        ],
+        [
+          "dasot"
+        ],
+        [
+          "yosot"
+        ],
+        [
+          "ilgop"
+        ],
+        [
+          "yodul"
+        ],
+        [
+          "ahop"
+        ],
+        [
+          "yol"
+        ]
+      ],
+      "order": true
+    },
+    {
+      "id": "chon-ji-explain-like-im-5",
+      "q": "explain chon ji like im 5",
+      "expect": [
+        [
+          "pattern",
+          "tul",
+          "teul"
+        ],
+        [
+          "heaven"
+        ],
+        [
+          "earth"
+        ],
+        [
+          "19",
+          "nineteen"
+        ]
+      ],
+      "forbid_re": [
+        "way of standing",
+        "\\bis a stance\\b",
+        "\\bis an stance\\b"
+      ],
+      "note": "Debbie live wrong answer on v1 called Chon-Ji a way of standing / ready stance. It is a pattern (tul)."
+    },
+    {
+      "id": "what-is-chon-ji",
+      "q": "what is chon-ji",
+      "expect": [
+        [
+          "pattern",
+          "tul",
+          "teul"
+        ],
+        [
+          "heaven"
+        ],
+        [
+          "earth"
+        ],
+        [
+          "19",
+          "nineteen"
+        ]
+      ],
+      "forbid_re": [
+        "way of standing",
+        "\\bis a stance\\b"
+      ]
+    },
+    {
+      "id": "what-does-chon-ji-mean",
+      "q": "what does chon-ji mean",
+      "expect": [
+        [
+          "pattern",
+          "tul",
+          "teul"
+        ],
+        [
+          "heaven"
+        ],
+        [
+          "earth"
+        ],
+        [
+          "19",
+          "nineteen"
+        ]
+      ],
+      "forbid_re": [
+        "way of standing",
+        "\\bis a stance\\b"
+      ]
+    }
+  ],
+  "out_of_scope": [
+    {
+      "id": "wt-poomsae",
+      "q": "What are the moves of Taegeuk Il Jang?"
+    },
+    {
+      "id": "dan-pattern",
+      "q": "Which patterns do you need for a 4th degree black belt?"
+    },
+    {
+      "id": "medical",
+      "q": "My knee hurts after training. What medicine should I take?"
+    },
+    {
+      "id": "injury-kick",
+      "q": "My knee hurts when I kick, what should I do?"
+    },
+    {
+      "id": "turning-kick",
+      "q": "How do I do a turning kick?"
+    },
+    {
+      "id": "dan-gun",
+      "q": "What does Dan-Gun mean?"
+    },
+    {
+      "id": "olympics",
+      "q": "Who won the Olympic taekwondo gold medal in 2024?"
+    },
+    {
+      "id": "wt-scoring",
+      "q": "How do you score points in World Taekwondo sparring?"
+    },
+    {
+      "id": "france",
+      "q": "What is the capital of France?"
+    },
+    {
+      "id": "black-belt",
+      "q": "What does the black belt mean?"
+    },
+    {
+      "id": "board-break",
+      "q": "How do I break a wooden board with my hand?"
+    },
+    {
+      "id": "twist-fist",
+      "q": "Do I twist my fist when I punch?"
+    },
+    {
+      "id": "twist-hips",
+      "q": "Do I twist my hips in a block?"
+    }
+  ],
+  "quality": [
+    {
+      "id": "q-cj-moves",
+      "q": "How many moves in Chon-Ji?",
+      "expect": [
+        [
+          "19",
+          "nineteen"
+        ]
+      ]
+    },
+    {
+      "id": "q-cj-meaning",
+      "q": "What does Chon-Ji mean?",
+      "expect": [
+        [
+          "heaven"
+        ],
+        [
+          "earth"
+        ]
+      ]
+    },
+    {
+      "id": "q-cj-end",
+      "q": "How does Chon-Ji end?",
+      "expect": [
+        [
+          "left"
+        ],
+        [
+          "ready"
+        ]
+      ]
+    },
+    {
+      "id": "q-tenets",
+      "q": "What are the tenets?",
+      "expect": [
+        [
+          "courtesy"
+        ],
+        [
+          "integrity"
+        ],
+        [
+          "perseverance"
+        ],
+        [
+          "self-control",
+          "self control"
+        ],
+        [
+          "indomitable"
+        ]
+      ],
+      "maxSentences": 2
+    }
+  ],
+  "frozen": true,
+  "frozenNote": "v1 questions.json plus korean-words-need, korean-words-counting; count-to-10/count-to-ten and QA live counting variants require order; cj-moves kept; plus explain-chon-ji-like-im-5, what-is-chon-ji, what-does-chon-ji-mean (pattern + official meaning + 19); plus numbers-one-to-ten / say-1-10 / korean-numbers-1-10 / cont+cout typos."
+}

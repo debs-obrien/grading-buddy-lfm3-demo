@@ -1,0 +1,1326 @@
+{
+  "ranAt": "2026-11-10T20:03:21.091Z",
+  "summary": {
+    "model": "onnx-community/LFM3-1.7B-ONNX",
+    "dtype": "q4",
+    "device": "none",
+    "mode": "match-only",
+    "machine": "Intel(R) Xeon(R) Processor x4, 17 GB RAM, Node v22.23.4",
+    "loadSeconds": 0,
+    "in_scope": {
+      "total": 43,
+      "correct": 43,
+      "wrong": 0,
+      "wrongly_declined": 0
+    },
+    "out_of_scope": {
+      "total": 13,
+      "correctly_declined": 13,
+      "wrongly_answered": 0
+    },
+    "quality": null,
+    "tokens_per_second": null
+  },
+  "inScope": [
+    {
+      "id": "cj-moves",
+      "q": "How many moves are in Chon-Ji?",
+      "expect": [
+        [
+          "19",
+          "nineteen"
+        ]
+      ],
+      "forbid_re": [
+        "are listed",
+        "total count is given",
+        "moves 1 to 4 and"
+      ],
+      "answer": "Title: What a pattern (tul) is\nType: pattern\nEnglish: pattern\nKorean: tul\nSimple: A pattern is called tul (you may also see it spelled teul). It is a set of moves done in a fixed order, as if fighting pretend opponents. ITF Taekwon-Do has 24 patterns. Chon-Ji is the first one.\nA pattern is called tul (you may also see it spelled teul). It is a set of moves done in a fixed order, as if fighting pretend opponents. ITF Taekwon-Do has 24 patterns. Chon-Ji is the first one.\n\nTitle: What Chon-Ji means\nType: pattern\nEnglish: The Heaven the Earth\nOfficial ITF wording (source NZ-HB): Chon-Ji means literally “the Heaven the Earth”. It is, in the Orient, interpreted as the creation of the world or the beginning of human history, therefore, it is the initial pattern played by the beginner. This pattern consists of two similar parts; one to represent the Heaven and the other the Earth.\nSimple: Chon is Heaven (the sky above) and Ji is Earth (the ground below). It is about how everything began, so it is the first pattern you learn. It has two halves that are alike: one for Heaven and one for Earth.\n\nTitle: How many moves Chon-Ji has\nType: pattern\nEnglish: 19\nSimple: Chon-Ji has 19 moves. It is the pattern you need for the grading from 9th kup to 8th kup (yellow stripe to yellow belt).\nChon-Ji has 19 moves. It is the pattern you need for the grading from 9th kup to 8th kup (yellow stripe to yellow belt).\n\nTitle: Chon-Ji start position and diagram\nType: pattern\nEnglish: Parallel ready stance (narani junbi sogi)\nSimple: Chon-Ji starts in parallel ready stance (narani junbi sogi). The floor pattern is a cross, like a plus sign. You stand in the middle facing D (the front). A is to your right, B is to your left and C is behind you.\nChon-Ji starts in parallel ready stance (narani junbi sogi). The floor pattern is a cross, like a plus sign. You stand in the middle facing D (the front). A is to your right, B is to your left and C is behind you.\n\nTitle: Chon-Ji moves 1 to 4\nType: pattern\nEnglish: Left walking stance to the left with a left forearm low block\n1. Step the left foot to the left (B) into a left walking stance and do a low block with the left forearm.\n2. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n3. Turn to the right (clockwise) towards A, into a right walking stance, and do a low block with the right forearm.\n4. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\nSimple: Moves 1 to 4:\n\nTitle: Chon-Ji moves 5 to 8\nType: pattern\nEnglish: A forearm low block in walking stance\n5. Turn to face the front (D) with the left foot, into a left walking stance, and do a low block with the left forearm.\n6. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n7. Turn to the right (clockwise) to face the back (C), into a right walking stance, and do a low block with the right forearm.\n8. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\nSimple: Moves 5 to 8:\n\nTitle: Chon-Ji moves 9 to 12\nType: pattern\nEnglish: L-stance (niunja sogi)\n9. Move the left foot towards A into a right L-stance and do a middle block with the left inner forearm.\n10. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n11. Turn clockwise towards B into a left L-stance and do a middle block with the right inner forearm.\n12. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\nSimple: The second part, the part for Earth, uses L-stance for the blocks.\n\nTitle: Chon-Ji moves 13 to 16\nType: pattern\nEnglish: The inner forearm\n13. Move the left foot towards C into a right L-stance and do a middle block with the left inner forearm.\n14. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n15. Turn clockwise towards D into a left L-stance and do a middle block with the right inner forearm.\n16. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\nSimple: In move 13 you block with the left inner forearm, and in move 15 with the right inner forearm.\n\nTitle: Chon-Ji moves 17 to 19 and the end\nType: pattern\nEnglish: Bring the left foot back to the ready position\n17. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n18. Step backwards with the right foot into a left walking stance, still facing D, and do a middle punch with the left fist.\n19. Step backwards with the left foot into a right walking stance, still facing D, and do a middle punch with the right fist.\nEnd: bring the left foot back to parallel ready stance.\nSimple: At the end, bring the left foot back to parallel ready stance.\n\nTitle: Punches in Chon-Ji (obverse punch)\nType: pattern\nEnglish: The hand on the same side as the front foot\nSimple: All the punches in Chon-Ji are middle obverse punches (kaunde baro jirugi). Obverse means you punch with the hand on the same side as your front foot: right foot in front, right fist punches. A reverse punch (bandae jirugi) uses the other hand.\nAll the punches in Chon-Ji are middle obverse punches (kaunde baro jirugi). Obverse means you punch with the hand on the same side as your front foot: right foot in front, right fist punches. A reverse punch (bandae jirugi) uses the other hand.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "chonji",
+      "itemId": "how-many-moves-chon-ji-has",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "cj-meaning",
+      "q": "What does Chon-Ji mean?",
+      "expect": [
+        [
+          "heaven"
+        ],
+        [
+          "earth"
+        ]
+      ],
+      "answer": "Title: What a pattern (tul) is\nType: pattern\nEnglish: pattern\nKorean: tul\nSimple: A pattern is called tul (you may also see it spelled teul). It is a set of moves done in a fixed order, as if fighting pretend opponents. ITF Taekwon-Do has 24 patterns. Chon-Ji is the first one.\nA pattern is called tul (you may also see it spelled teul). It is a set of moves done in a fixed order, as if fighting pretend opponents. ITF Taekwon-Do has 24 patterns. Chon-Ji is the first one.\n\nTitle: What Chon-Ji means\nType: pattern\nEnglish: The Heaven the Earth\nOfficial ITF wording (source NZ-HB): Chon-Ji means literally “the Heaven the Earth”. It is, in the Orient, interpreted as the creation of the world or the beginning of human history, therefore, it is the initial pattern played by the beginner. This pattern consists of two similar parts; one to represent the Heaven and the other the Earth.\nSimple: Chon is Heaven (the sky above) and Ji is Earth (the ground below). It is about how everything began, so it is the first pattern you learn. It has two halves that are alike: one for Heaven and one for Earth.\n\nTitle: How many moves Chon-Ji has\nType: pattern\nEnglish: 19\nSimple: Chon-Ji has 19 moves. It is the pattern you need for the grading from 9th kup to 8th kup (yellow stripe to yellow belt).\nChon-Ji has 19 moves. It is the pattern you need for the grading from 9th kup to 8th kup (yellow stripe to yellow belt).\n\nTitle: Chon-Ji start position and diagram\nType: pattern\nEnglish: Parallel ready stance (narani junbi sogi)\nSimple: Chon-Ji starts in parallel ready stance (narani junbi sogi). The floor pattern is a cross, like a plus sign. You stand in the middle facing D (the front). A is to your right, B is to your left and C is behind you.\nChon-Ji starts in parallel ready stance (narani junbi sogi). The floor pattern is a cross, like a plus sign. You stand in the middle facing D (the front). A is to your right, B is to your left and C is behind you.\n\nTitle: Chon-Ji moves 1 to 4\nType: pattern\nEnglish: Left walking stance to the left with a left forearm low block\n1. Step the left foot to the left (B) into a left walking stance and do a low block with the left forearm.\n2. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n3. Turn to the right (clockwise) towards A, into a right walking stance, and do a low block with the right forearm.\n4. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\nSimple: Moves 1 to 4:\n\nTitle: Chon-Ji moves 5 to 8\nType: pattern\nEnglish: A forearm low block in walking stance\n5. Turn to face the front (D) with the left foot, into a left walking stance, and do a low block with the left forearm.\n6. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n7. Turn to the right (clockwise) to face the back (C), into a right walking stance, and do a low block with the right forearm.\n8. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\nSimple: Moves 5 to 8:\n\nTitle: Chon-Ji moves 9 to 12\nType: pattern\nEnglish: L-stance (niunja sogi)\n9. Move the left foot towards A into a right L-stance and do a middle block with the left inner forearm.\n10. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n11. Turn clockwise towards B into a left L-stance and do a middle block with the right inner forearm.\n12. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\nSimple: The second part, the part for Earth, uses L-stance for the blocks.\n\nTitle: Chon-Ji moves 13 to 16\nType: pattern\nEnglish: The inner forearm\n13. Move the left foot towards C into a right L-stance and do a middle block with the left inner forearm.\n14. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n15. Turn clockwise towards D into a left L-stance and do a middle block with the right inner forearm.\n16. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\nSimple: In move 13 you block with the left inner forearm, and in move 15 with the right inner forearm.\n\nTitle: Chon-Ji moves 17 to 19 and the end\nType: pattern\nEnglish: Bring the left foot back to the ready position\n17. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n18. Step backwards with the right foot into a left walking stance, still facing D, and do a middle punch with the left fist.\n19. Step backwards with the left foot into a right walking stance, still facing D, and do a middle punch with the right fist.\nEnd: bring the left foot back to parallel ready stance.\nSimple: At the end, bring the left foot back to parallel ready stance.\n\nTitle: Punches in Chon-Ji (obverse punch)\nType: pattern\nEnglish: The hand on the same side as the front foot\nSimple: All the punches in Chon-Ji are middle obverse punches (kaunde baro jirugi). Obverse means you punch with the hand on the same side as your front foot: right foot in front, right fist punches. A reverse punch (bandae jirugi) uses the other hand.\nAll the punches in Chon-Ji are middle obverse punches (kaunde baro jirugi). Obverse means you punch with the hand on the same side as your front foot: right foot in front, right fist punches. A reverse punch (bandae jirugi) uses the other hand.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "chonji",
+      "itemId": "what-chon-ji-means",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "charyot",
+      "q": "What does charyot mean?",
+      "expect": [
+        [
+          "attention"
+        ]
+      ],
+      "answer": "Title: Charyot (attention)\nType: command\nEnglish: attention\nKorean: charyot\nSimple: Charyot means attention. When you hear charyot, you stand up straight in attention stance, quiet and still, ready to listen.\nCharyot means attention. When you hear charyot, you stand up straight in attention stance, quiet and still, ready to listen.\n\nTitle: Kyong ye (bow)\nType: command\nEnglish: bow\nKorean: kyong ye\nSimple: Kyong ye means bow. We bow to show respect, for example to the instructor, to a partner, and when we come into or leave the training hall.\nKyong ye means bow. We bow to show respect, for example to the instructor, to a partner, and when we come into or leave the training hall.\n\nTitle: Junbi (ready)\nType: command\nEnglish: ready\nKorean: junbi\nSimple: Junbi means ready. When you hear junbi, you get into your ready stance and wait for the next command.\nJunbi means ready. When you hear junbi, you get into your ready stance and wait for the next command.\n\nTitle: Si jak (begin)\nType: command\nEnglish: begin or start\nKorean: si jak\nSimple: Si jak means begin, or start. It is the command to start the exercise or the pattern.\nSi jak means begin, or start. It is the command to start the exercise or the pattern.\n\nTitle: Baro (return)\nType: command\nEnglish: return\nKorean: baro\nSimple: Baro means return. When you hear baro at the end of an exercise, you go back to your ready position.\nBaro means return. When you hear baro at the end of an exercise, you go back to your ready position.\n\nTitle: Kihap (yell)\nType: command\nEnglish: yell or shout\nKorean: kihap\nSimple: Kihap means a yell or shout. A good kihap is short, loud and comes from your belly. It helps you breathe out and put power into a move.\nKihap means a yell or shout. A good kihap is short, loud and comes from your belly. It helps you breathe out and put power into a move.\n\nTitle: Dojang and dobok\nType: command\nEnglish: training hall\nKorean: dojang\nKorean: dobok = training uniform\nSimple: The dojang (do jang) is the training hall, the place where we practise. The dobok (do bok) is the white training uniform we wear.\nThe dojang (do jang) is the training hall, the place where we practise. The dobok (do bok) is the white training uniform we wear.\n\nTitle: Instructor (sabum nim)\nType: command\nEnglish: instructor\nKorean: sabum nim\nSimple: We call the instructor sabum nim. Some clubs use boosabum nim for a 1st to 3rd degree black belt instructor and sabum nim for 4th to 6th degree. Ask your club which one they use.\nWe call the instructor sabum nim. Some clubs use boosabum nim for a 1st to 3rd degree black belt instructor and sabum nim for 4th to 6th degree. Ask your club which one they use.\n\nTitle: High, middle and low\nType: command\nEnglish: middle\nKorean: kaunde\nKorean: nopunde = high\nKorean: najunde = low\nSimple: Middle is kaunde, about shoulder level.\nMoves aim at three heights. High is nopunde (about eye level). Middle is kaunde (about shoulder level). Low is najunde (about belt level and below).\n\nTitle: Turning in place and step turning\nType: command\nEnglish: spot turning\nKorean: gujari dolgi\nSimple: Dolgi means turning. Spot turning (gujari dolgi) means you turn around where you are standing. Step turning means you take a step as you turn. Chon-Ji has turns, so practise turning without losing your balance.\nDolgi means turning. Spot turning (gujari dolgi) means you turn around where you are standing. Step turning means you take a step as you turn. Chon-Ji has turns, so practise turning without losing your balance.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "commands",
+      "itemId": "charyot-attention",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "kyong-ye",
+      "q": "What does kyong ye mean?",
+      "expect": [
+        [
+          "bow"
+        ]
+      ],
+      "answer": "Title: Charyot (attention)\nType: command\nEnglish: attention\nKorean: charyot\nSimple: Charyot means attention. When you hear charyot, you stand up straight in attention stance, quiet and still, ready to listen.\nCharyot means attention. When you hear charyot, you stand up straight in attention stance, quiet and still, ready to listen.\n\nTitle: Kyong ye (bow)\nType: command\nEnglish: bow\nKorean: kyong ye\nSimple: Kyong ye means bow. We bow to show respect, for example to the instructor, to a partner, and when we come into or leave the training hall.\nKyong ye means bow. We bow to show respect, for example to the instructor, to a partner, and when we come into or leave the training hall.\n\nTitle: Junbi (ready)\nType: command\nEnglish: ready\nKorean: junbi\nSimple: Junbi means ready. When you hear junbi, you get into your ready stance and wait for the next command.\nJunbi means ready. When you hear junbi, you get into your ready stance and wait for the next command.\n\nTitle: Si jak (begin)\nType: command\nEnglish: begin or start\nKorean: si jak\nSimple: Si jak means begin, or start. It is the command to start the exercise or the pattern.\nSi jak means begin, or start. It is the command to start the exercise or the pattern.\n\nTitle: Baro (return)\nType: command\nEnglish: return\nKorean: baro\nSimple: Baro means return. When you hear baro at the end of an exercise, you go back to your ready position.\nBaro means return. When you hear baro at the end of an exercise, you go back to your ready position.\n\nTitle: Kihap (yell)\nType: command\nEnglish: yell or shout\nKorean: kihap\nSimple: Kihap means a yell or shout. A good kihap is short, loud and comes from your belly. It helps you breathe out and put power into a move.\nKihap means a yell or shout. A good kihap is short, loud and comes from your belly. It helps you breathe out and put power into a move.\n\nTitle: Dojang and dobok\nType: command\nEnglish: training hall\nKorean: dojang\nKorean: dobok = training uniform\nSimple: The dojang (do jang) is the training hall, the place where we practise. The dobok (do bok) is the white training uniform we wear.\nThe dojang (do jang) is the training hall, the place where we practise. The dobok (do bok) is the white training uniform we wear.\n\nTitle: Instructor (sabum nim)\nType: command\nEnglish: instructor\nKorean: sabum nim\nSimple: We call the instructor sabum nim. Some clubs use boosabum nim for a 1st to 3rd degree black belt instructor and sabum nim for 4th to 6th degree. Ask your club which one they use.\nWe call the instructor sabum nim. Some clubs use boosabum nim for a 1st to 3rd degree black belt instructor and sabum nim for 4th to 6th degree. Ask your club which one they use.\n\nTitle: High, middle and low\nType: command\nEnglish: middle\nKorean: kaunde\nKorean: nopunde = high\nKorean: najunde = low\nSimple: Middle is kaunde, about shoulder level.\nMoves aim at three heights. High is nopunde (about eye level). Middle is kaunde (about shoulder level). Low is najunde (about belt level and below).\n\nTitle: Turning in place and step turning\nType: command\nEnglish: spot turning\nKorean: gujari dolgi\nSimple: Dolgi means turning. Spot turning (gujari dolgi) means you turn around where you are standing. Step turning means you take a step as you turn. Chon-Ji has turns, so practise turning without losing your balance.\nDolgi means turning. Spot turning (gujari dolgi) means you turn around where you are standing. Step turning means you take a step as you turn. Chon-Ji has turns, so practise turning without losing your balance.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "commands",
+      "itemId": "kyong-ye-bow",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "junbi",
+      "q": "What does junbi mean?",
+      "expect": [
+        [
+          "ready"
+        ]
+      ],
+      "answer": "Title: Charyot (attention)\nType: command\nEnglish: attention\nKorean: charyot\nSimple: Charyot means attention. When you hear charyot, you stand up straight in attention stance, quiet and still, ready to listen.\nCharyot means attention. When you hear charyot, you stand up straight in attention stance, quiet and still, ready to listen.\n\nTitle: Kyong ye (bow)\nType: command\nEnglish: bow\nKorean: kyong ye\nSimple: Kyong ye means bow. We bow to show respect, for example to the instructor, to a partner, and when we come into or leave the training hall.\nKyong ye means bow. We bow to show respect, for example to the instructor, to a partner, and when we come into or leave the training hall.\n\nTitle: Junbi (ready)\nType: command\nEnglish: ready\nKorean: junbi\nSimple: Junbi means ready. When you hear junbi, you get into your ready stance and wait for the next command.\nJunbi means ready. When you hear junbi, you get into your ready stance and wait for the next command.\n\nTitle: Si jak (begin)\nType: command\nEnglish: begin or start\nKorean: si jak\nSimple: Si jak means begin, or start. It is the command to start the exercise or the pattern.\nSi jak means begin, or start. It is the command to start the exercise or the pattern.\n\nTitle: Baro (return)\nType: command\nEnglish: return\nKorean: baro\nSimple: Baro means return. When you hear baro at the end of an exercise, you go back to your ready position.\nBaro means return. When you hear baro at the end of an exercise, you go back to your ready position.\n\nTitle: Kihap (yell)\nType: command\nEnglish: yell or shout\nKorean: kihap\nSimple: Kihap means a yell or shout. A good kihap is short, loud and comes from your belly. It helps you breathe out and put power into a move.\nKihap means a yell or shout. A good kihap is short, loud and comes from your belly. It helps you breathe out and put power into a move.\n\nTitle: Dojang and dobok\nType: command\nEnglish: training hall\nKorean: dojang\nKorean: dobok = training uniform\nSimple: The dojang (do jang) is the training hall, the place where we practise. The dobok (do bok) is the white training uniform we wear.\nThe dojang (do jang) is the training hall, the place where we practise. The dobok (do bok) is the white training uniform we wear.\n\nTitle: Instructor (sabum nim)\nType: command\nEnglish: instructor\nKorean: sabum nim\nSimple: We call the instructor sabum nim. Some clubs use boosabum nim for a 1st to 3rd degree black belt instructor and sabum nim for 4th to 6th degree. Ask your club which one they use.\nWe call the instructor sabum nim. Some clubs use boosabum nim for a 1st to 3rd degree black belt instructor and sabum nim for 4th to 6th degree. Ask your club which one they use.\n\nTitle: High, middle and low\nType: command\nEnglish: middle\nKorean: kaunde\nKorean: nopunde = high\nKorean: najunde = low\nSimple: Middle is kaunde, about shoulder level.\nMoves aim at three heights. High is nopunde (about eye level). Middle is kaunde (about shoulder level). Low is najunde (about belt level and below).\n\nTitle: Turning in place and step turning\nType: command\nEnglish: spot turning\nKorean: gujari dolgi\nSimple: Dolgi means turning. Spot turning (gujari dolgi) means you turn around where you are standing. Step turning means you take a step as you turn. Chon-Ji has turns, so practise turning without losing your balance.\nDolgi means turning. Spot turning (gujari dolgi) means you turn around where you are standing. Step turning means you take a step as you turn. Chon-Ji has turns, so practise turning without losing your balance.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "commands",
+      "itemId": "junbi-ready",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "si-jak",
+      "q": "What does si jak mean?",
+      "expect": [
+        [
+          "begin",
+          "start"
+        ]
+      ],
+      "answer": "Title: Charyot (attention)\nType: command\nEnglish: attention\nKorean: charyot\nSimple: Charyot means attention. When you hear charyot, you stand up straight in attention stance, quiet and still, ready to listen.\nCharyot means attention. When you hear charyot, you stand up straight in attention stance, quiet and still, ready to listen.\n\nTitle: Kyong ye (bow)\nType: command\nEnglish: bow\nKorean: kyong ye\nSimple: Kyong ye means bow. We bow to show respect, for example to the instructor, to a partner, and when we come into or leave the training hall.\nKyong ye means bow. We bow to show respect, for example to the instructor, to a partner, and when we come into or leave the training hall.\n\nTitle: Junbi (ready)\nType: command\nEnglish: ready\nKorean: junbi\nSimple: Junbi means ready. When you hear junbi, you get into your ready stance and wait for the next command.\nJunbi means ready. When you hear junbi, you get into your ready stance and wait for the next command.\n\nTitle: Si jak (begin)\nType: command\nEnglish: begin or start\nKorean: si jak\nSimple: Si jak means begin, or start. It is the command to start the exercise or the pattern.\nSi jak means begin, or start. It is the command to start the exercise or the pattern.\n\nTitle: Baro (return)\nType: command\nEnglish: return\nKorean: baro\nSimple: Baro means return. When you hear baro at the end of an exercise, you go back to your ready position.\nBaro means return. When you hear baro at the end of an exercise, you go back to your ready position.\n\nTitle: Kihap (yell)\nType: command\nEnglish: yell or shout\nKorean: kihap\nSimple: Kihap means a yell or shout. A good kihap is short, loud and comes from your belly. It helps you breathe out and put power into a move.\nKihap means a yell or shout. A good kihap is short, loud and comes from your belly. It helps you breathe out and put power into a move.\n\nTitle: Dojang and dobok\nType: command\nEnglish: training hall\nKorean: dojang\nKorean: dobok = training uniform\nSimple: The dojang (do jang) is the training hall, the place where we practise. The dobok (do bok) is the white training uniform we wear.\nThe dojang (do jang) is the training hall, the place where we practise. The dobok (do bok) is the white training uniform we wear.\n\nTitle: Instructor (sabum nim)\nType: command\nEnglish: instructor\nKorean: sabum nim\nSimple: We call the instructor sabum nim. Some clubs use boosabum nim for a 1st to 3rd degree black belt instructor and sabum nim for 4th to 6th degree. Ask your club which one they use.\nWe call the instructor sabum nim. Some clubs use boosabum nim for a 1st to 3rd degree black belt instructor and sabum nim for 4th to 6th degree. Ask your club which one they use.\n\nTitle: High, middle and low\nType: command\nEnglish: middle\nKorean: kaunde\nKorean: nopunde = high\nKorean: najunde = low\nSimple: Middle is kaunde, about shoulder level.\nMoves aim at three heights. High is nopunde (about eye level). Middle is kaunde (about shoulder level). Low is najunde (about belt level and below).\n\nTitle: Turning in place and step turning\nType: command\nEnglish: spot turning\nKorean: gujari dolgi\nSimple: Dolgi means turning. Spot turning (gujari dolgi) means you turn around where you are standing. Step turning means you take a step as you turn. Chon-Ji has turns, so practise turning without losing your balance.\nDolgi means turning. Spot turning (gujari dolgi) means you turn around where you are standing. Step turning means you take a step as you turn. Chon-Ji has turns, so practise turning without losing your balance.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "commands",
+      "itemId": "si-jak-begin",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "baro",
+      "q": "What does baro mean when the instructor says it?",
+      "expect": [
+        [
+          "return",
+          "back"
+        ]
+      ],
+      "answer": "Title: Charyot (attention)\nType: command\nEnglish: attention\nKorean: charyot\nSimple: Charyot means attention. When you hear charyot, you stand up straight in attention stance, quiet and still, ready to listen.\nCharyot means attention. When you hear charyot, you stand up straight in attention stance, quiet and still, ready to listen.\n\nTitle: Kyong ye (bow)\nType: command\nEnglish: bow\nKorean: kyong ye\nSimple: Kyong ye means bow. We bow to show respect, for example to the instructor, to a partner, and when we come into or leave the training hall.\nKyong ye means bow. We bow to show respect, for example to the instructor, to a partner, and when we come into or leave the training hall.\n\nTitle: Junbi (ready)\nType: command\nEnglish: ready\nKorean: junbi\nSimple: Junbi means ready. When you hear junbi, you get into your ready stance and wait for the next command.\nJunbi means ready. When you hear junbi, you get into your ready stance and wait for the next command.\n\nTitle: Si jak (begin)\nType: command\nEnglish: begin or start\nKorean: si jak\nSimple: Si jak means begin, or start. It is the command to start the exercise or the pattern.\nSi jak means begin, or start. It is the command to start the exercise or the pattern.\n\nTitle: Baro (return)\nType: command\nEnglish: return\nKorean: baro\nSimple: Baro means return. When you hear baro at the end of an exercise, you go back to your ready position.\nBaro means return. When you hear baro at the end of an exercise, you go back to your ready position.\n\nTitle: Kihap (yell)\nType: command\nEnglish: yell or shout\nKorean: kihap\nSimple: Kihap means a yell or shout. A good kihap is short, loud and comes from your belly. It helps you breathe out and put power into a move.\nKihap means a yell or shout. A good kihap is short, loud and comes from your belly. It helps you breathe out and put power into a move.\n\nTitle: Dojang and dobok\nType: command\nEnglish: training hall\nKorean: dojang\nKorean: dobok = training uniform\nSimple: The dojang (do jang) is the training hall, the place where we practise. The dobok (do bok) is the white training uniform we wear.\nThe dojang (do jang) is the training hall, the place where we practise. The dobok (do bok) is the white training uniform we wear.\n\nTitle: Instructor (sabum nim)\nType: command\nEnglish: instructor\nKorean: sabum nim\nSimple: We call the instructor sabum nim. Some clubs use boosabum nim for a 1st to 3rd degree black belt instructor and sabum nim for 4th to 6th degree. Ask your club which one they use.\nWe call the instructor sabum nim. Some clubs use boosabum nim for a 1st to 3rd degree black belt instructor and sabum nim for 4th to 6th degree. Ask your club which one they use.\n\nTitle: High, middle and low\nType: command\nEnglish: middle\nKorean: kaunde\nKorean: nopunde = high\nKorean: najunde = low\nSimple: Middle is kaunde, about shoulder level.\nMoves aim at three heights. High is nopunde (about eye level). Middle is kaunde (about shoulder level). Low is najunde (about belt level and below).\n\nTitle: Turning in place and step turning\nType: command\nEnglish: spot turning\nKorean: gujari dolgi\nSimple: Dolgi means turning. Spot turning (gujari dolgi) means you turn around where you are standing. Step turning means you take a step as you turn. Chon-Ji has turns, so practise turning without losing your balance.\nDolgi means turning. Spot turning (gujari dolgi) means you turn around where you are standing. Step turning means you take a step as you turn. Chon-Ji has turns, so practise turning without losing your balance.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "commands",
+      "itemId": "baro-return",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "founder",
+      "q": "Who is the founder of Taekwon-Do?",
+      "expect": [
+        [
+          "choi"
+        ]
+      ],
+      "answer": "Title: What the word Taekwon-Do means\nType: history\nEnglish: Tae is foot, Kwon is fist or hand, Do is the way\nSimple: Tae means foot (kicking). Kwon means fist or hand (punching). Do means the way.\nTaekwon-Do is made of three little words. Tae means foot (kicking). Kwon means fist or hand (punching). Do means the way, like a way of living and learning.\n\nTitle: Who started Taekwon-Do\nType: history\nEnglish: General Choi Hong Hi\nSimple: The founder of Taekwon-Do is General Choi Hong Hi. He was a general in the Korean army. He was born in 1918 and died in 2002.\nThe founder of Taekwon-Do is General Choi Hong Hi. He was a general in the Korean army. He was born in 1918 and died in 2002.\n\nTitle: When Taekwon-Do got its name\nType: history\nEnglish: 1955\nSimple: General Choi gave Taekwon-Do its name on 11 April 1955. You can think of 11 April as Taekwon-Do's name day.\nGeneral Choi gave Taekwon-Do its name on 11 April 1955. You can think of 11 April as Taekwon-Do's name day.\n\nTitle: What ITF means\nType: history\nEnglish: International Taekwon-Do Federation\nSimple: ITF stands for International Taekwon-Do Federation. General Choi started it in Seoul, Korea, on 22 March 1966. Our club does ITF Taekwon-Do. World Taekwondo (WT) is a different style with different patterns, so this app only covers ITF.\nITF stands for International Taekwon-Do Federation. General Choi started it in Seoul, Korea, on 22 March 1966. Our club does ITF Taekwon-Do. World Taekwondo (WT) is a different style with different patterns, so this app only covers ITF.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "history",
+      "itemId": "who-started-taekwon-do",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "tenets",
+      "q": "What are the five tenets of Taekwon-Do?",
+      "expect": [
+        [
+          "courtesy"
+        ],
+        [
+          "integrity"
+        ],
+        [
+          "perseverance"
+        ],
+        [
+          "self-control",
+          "self control"
+        ],
+        [
+          "indomitable"
+        ]
+      ],
+      "answer": "Title: The five tenets\nType: tenet\nEnglish: Courtesy, Integrity, Perseverance, Self-Control and Indomitable Spirit\nOfficial ITF wording (source ITF-P): 1. Courtesy. 2. Integrity. 3. Perseverance. 4. Self-Control. 5. Indomitable Spirit.\nSimple: the tenets are the five big ideas every Taekwon-Do student tries to live by.\n\nTitle: Courtesy\nType: tenet\nEnglish: Courtesy\nSimple: Courtesy is the first tenet. It means being polite and kind: saying please and thank you, bowing, listening to your instructor and being nice to other students.\nCourtesy is the first tenet. It means being polite and kind: saying please and thank you, bowing, listening to your instructor and being nice to other students.\n\nTitle: Integrity\nType: tenet\nEnglish: Being honest and doing the right thing\nSimple: Integrity is the second tenet. It means being honest, knowing what is right and wrong, and doing the right thing even when nobody is watching.\nIntegrity is the second tenet. It means being honest, knowing what is right and wrong, and doing the right thing even when nobody is watching.\n\nTitle: Perseverance\nType: tenet\nEnglish: Perseverance\nSimple: Perseverance is the third tenet. It means you keep trying, even when something is hard, and you practise again and again until you get better.\nPerseverance is the third tenet. It means you keep trying, even when something is hard, and you practise again and again until you get better.\n\nTitle: Self-Control\nType: tenet\nEnglish: Self-Control\nSimple: Self-Control is the fourth tenet. It means you are the boss of your body and your feelings. You stay calm, you do not lose your temper, and you are careful not to hurt your partner.\nSelf-Control is the fourth tenet. It means you are the boss of your body and your feelings. You stay calm, you do not lose your temper, and you are careful not to hurt your partner.\n\nTitle: Indomitable Spirit\nType: tenet\nEnglish: Indomitable Spirit\nSimple: Indomitable Spirit is the fifth tenet. It means being brave and having a strong heart: you stand up for what is right and you do not give up, even when you feel scared or tired.\nIndomitable Spirit is the fifth tenet. It means being brave and having a strong heart: you stand up for what is right and you do not give up, even when you feel scared or tired.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "tenets",
+      "itemId": "the-five-tenets",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "white-belt",
+      "q": "What does the white belt mean?",
+      "expect": [
+        [
+          "innocence",
+          "innocent",
+          "beginner",
+          "new student"
+        ]
+      ],
+      "answer": "Title: What the white belt means\nType: belt\nEnglish: Innocence, as that of a beginning student who has no previous knowledge of Taekwon-Do\nOfficial ITF wording (source NZ-HB): White signifies innocence, as that of a beginning student who has no previous knowledge of Taekwon-Do.\nSimple: everyone starts with a white belt. You are a beginner, just starting to learn, with lots to learn.\n\nTitle: What the yellow belt means\nType: belt\nEnglish: The earth from which a plant sprouts and takes root as the Taekwon-Do foundation is being laid\nOfficial ITF wording (source NZ-HB): Yellow signifies the earth from which a plant sprouts and takes root as the Taekwon-Do foundation is being laid.\nSimple: yellow is the colour of the earth. Like a seed putting down roots before it grows tall, at yellow belt you practise the basics until they are strong.\n\nTitle: Belt order for the first gradings\nType: belt\nEnglish: White belt with a yellow stripe (9th kup)\nSimple: 10th kup is white belt. 9th kup is white belt with a yellow stripe (some clubs call it a tag).\nColoured belt grades are called kup (also spelled gup) and they count down. 10th kup is white belt. After white belt comes a white belt with a yellow stripe (9th kup; some clubs call it a tag). 8th kup is yellow belt.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "belts",
+      "itemId": "what-the-white-belt-means",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "yellow-belt",
+      "q": "What does the yellow belt mean?",
+      "expect": [
+        [
+          "earth"
+        ],
+        [
+          "plant sprouts",
+          "sprouts and takes root",
+          "takes root"
+        ]
+      ],
+      "forbid_re": [
+        "In simple words:",
+        "basic rules"
+      ],
+      "answer": "Title: What the white belt means\nType: belt\nEnglish: Innocence, as that of a beginning student who has no previous knowledge of Taekwon-Do\nOfficial ITF wording (source NZ-HB): White signifies innocence, as that of a beginning student who has no previous knowledge of Taekwon-Do.\nSimple: everyone starts with a white belt. You are a beginner, just starting to learn, with lots to learn.\n\nTitle: What the yellow belt means\nType: belt\nEnglish: The earth from which a plant sprouts and takes root as the Taekwon-Do foundation is being laid\nOfficial ITF wording (source NZ-HB): Yellow signifies the earth from which a plant sprouts and takes root as the Taekwon-Do foundation is being laid.\nSimple: yellow is the colour of the earth. Like a seed putting down roots before it grows tall, at yellow belt you practise the basics until they are strong.\n\nTitle: Belt order for the first gradings\nType: belt\nEnglish: White belt with a yellow stripe (9th kup)\nSimple: 10th kup is white belt. 9th kup is white belt with a yellow stripe (some clubs call it a tag).\nColoured belt grades are called kup (also spelled gup) and they count down. 10th kup is white belt. After white belt comes a white belt with a yellow stripe (9th kup; some clubs call it a tag). 8th kup is yellow belt.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "belts",
+      "itemId": "what-the-yellow-belt-means",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "three",
+      "q": "How do you say three in Korean?",
+      "expect": [
+        [
+          "set"
+        ]
+      ],
+      "forbid_re": [
+        "sometimes\\s+[\"']?(dool|dul)",
+        "\\bset\\b[^.]{0,50}\\b(dool|dul)\\b",
+        "\\bor\\s+[\"']?(dool|dul)\\b",
+        "[\\uAC00-\\uD7A3]"
+      ],
+      "answer": "Title: Counting 1 to 10 in Korean\nType: counting\nEnglish: Counting from one to ten in Korean\nCounting 1 to 10:\n1 hana\n2 dul\n3 set\n4 net\n5 dasot\n6 yosot\n7 ilgop\n8 yodul\n9 ahop\n10 yol\nSimple: 1 hana, 2 dul, 3 set, 4 net, 5 dasot, 6 yosot, 7 ilgop, 8 yodul, 9 ahop, 10 yol. (Dul is sometimes spelled dool.)",
+      "gated": false,
+      "gateReason": null,
+      "topic": "counting",
+      "itemId": "counting-1-to-10-in-korean",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "eight",
+      "q": "What is eight in Korean?",
+      "expect": [
+        [
+          "yodul"
+        ]
+      ],
+      "answer": "Title: Counting 1 to 10 in Korean\nType: counting\nEnglish: Counting from one to ten in Korean\nCounting 1 to 10:\n1 hana\n2 dul\n3 set\n4 net\n5 dasot\n6 yosot\n7 ilgop\n8 yodul\n9 ahop\n10 yol\nSimple: 1 hana, 2 dul, 3 set, 4 net, 5 dasot, 6 yosot, 7 ilgop, 8 yodul, 9 ahop, 10 yol. (Dul is sometimes spelled dool.)",
+      "gated": false,
+      "gateReason": null,
+      "topic": "counting",
+      "itemId": "counting-1-to-10-in-korean",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "ten",
+      "q": "What is ten in Korean?",
+      "expect": [
+        [
+          "yol"
+        ]
+      ],
+      "forbid_re": [
+        "[\\uAC00-\\uD7A3]",
+        "yol\\.\\s+\""
+      ],
+      "answer": "Title: Counting 1 to 10 in Korean\nType: counting\nEnglish: Counting from one to ten in Korean\nCounting 1 to 10:\n1 hana\n2 dul\n3 set\n4 net\n5 dasot\n6 yosot\n7 ilgop\n8 yodul\n9 ahop\n10 yol\nSimple: 1 hana, 2 dul, 3 set, 4 net, 5 dasot, 6 yosot, 7 ilgop, 8 yodul, 9 ahop, 10 yol. (Dul is sometimes spelled dool.)",
+      "gated": false,
+      "gateReason": null,
+      "topic": "counting",
+      "itemId": "counting-1-to-10-in-korean",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "count-to-10",
+      "q": "How do I count to 10 in Korean?",
+      "expect": [
+        [
+          "hana"
+        ],
+        [
+          "dul"
+        ],
+        [
+          "set"
+        ],
+        [
+          "net"
+        ],
+        [
+          "dasot"
+        ],
+        [
+          "yosot"
+        ],
+        [
+          "ilgop"
+        ],
+        [
+          "yodul"
+        ],
+        [
+          "ahop"
+        ],
+        [
+          "yol"
+        ]
+      ],
+      "order": true,
+      "answer": "Title: Counting 1 to 10 in Korean\nType: counting\nEnglish: Counting from one to ten in Korean\nCounting 1 to 10:\n1 hana\n2 dul\n3 set\n4 net\n5 dasot\n6 yosot\n7 ilgop\n8 yodul\n9 ahop\n10 yol\nSimple: 1 hana, 2 dul, 3 set, 4 net, 5 dasot, 6 yosot, 7 ilgop, 8 yodul, 9 ahop, 10 yol. (Dul is sometimes spelled dool.)",
+      "gated": false,
+      "gateReason": null,
+      "topic": "counting",
+      "itemId": "counting-1-to-10-in-korean",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "count-to-ten",
+      "q": "count to ten in korean",
+      "expect": [
+        [
+          "hana"
+        ],
+        [
+          "dul"
+        ],
+        [
+          "set"
+        ],
+        [
+          "net"
+        ],
+        [
+          "dasot"
+        ],
+        [
+          "yosot"
+        ],
+        [
+          "ilgop"
+        ],
+        [
+          "yodul"
+        ],
+        [
+          "ahop"
+        ],
+        [
+          "yol"
+        ]
+      ],
+      "order": true,
+      "answer": "Title: Counting 1 to 10 in Korean\nType: counting\nEnglish: Counting from one to ten in Korean\nCounting 1 to 10:\n1 hana\n2 dul\n3 set\n4 net\n5 dasot\n6 yosot\n7 ilgop\n8 yodul\n9 ahop\n10 yol\nSimple: 1 hana, 2 dul, 3 set, 4 net, 5 dasot, 6 yosot, 7 ilgop, 8 yodul, 9 ahop, 10 yol. (Dul is sometimes spelled dool.)",
+      "gated": false,
+      "gateReason": null,
+      "topic": "counting",
+      "itemId": "counting-1-to-10-in-korean",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "numbers-one-to-ten-korean",
+      "q": "numbers one to ten in Korean",
+      "expect": [
+        [
+          "hana"
+        ],
+        [
+          "dul"
+        ],
+        [
+          "set"
+        ],
+        [
+          "net"
+        ],
+        [
+          "dasot"
+        ],
+        [
+          "yosot"
+        ],
+        [
+          "ilgop"
+        ],
+        [
+          "yodul"
+        ],
+        [
+          "ahop"
+        ],
+        [
+          "yol"
+        ]
+      ],
+      "order": true,
+      "note": "QA live v1: full ordered 1–10 from content",
+      "answer": "Title: Counting 1 to 10 in Korean\nType: counting\nEnglish: Counting from one to ten in Korean\nCounting 1 to 10:\n1 hana\n2 dul\n3 set\n4 net\n5 dasot\n6 yosot\n7 ilgop\n8 yodul\n9 ahop\n10 yol\nSimple: 1 hana, 2 dul, 3 set, 4 net, 5 dasot, 6 yosot, 7 ilgop, 8 yodul, 9 ahop, 10 yol. (Dul is sometimes spelled dool.)",
+      "gated": false,
+      "gateReason": null,
+      "topic": "counting",
+      "itemId": "counting-1-to-10-in-korean",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "say-1-10",
+      "q": "how do you say 1-10",
+      "expect": [
+        [
+          "hana"
+        ],
+        [
+          "dul"
+        ],
+        [
+          "set"
+        ],
+        [
+          "net"
+        ],
+        [
+          "dasot"
+        ],
+        [
+          "yosot"
+        ],
+        [
+          "ilgop"
+        ],
+        [
+          "yodul"
+        ],
+        [
+          "ahop"
+        ],
+        [
+          "yol"
+        ]
+      ],
+      "order": true,
+      "note": "QA live v1: full ordered 1–10 from content",
+      "answer": "Title: Counting 1 to 10 in Korean\nType: counting\nEnglish: Counting from one to ten in Korean\nCounting 1 to 10:\n1 hana\n2 dul\n3 set\n4 net\n5 dasot\n6 yosot\n7 ilgop\n8 yodul\n9 ahop\n10 yol\nSimple: 1 hana, 2 dul, 3 set, 4 net, 5 dasot, 6 yosot, 7 ilgop, 8 yodul, 9 ahop, 10 yol. (Dul is sometimes spelled dool.)",
+      "gated": false,
+      "gateReason": null,
+      "topic": "counting",
+      "itemId": "counting-1-to-10-in-korean",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "korean-numbers-1-10",
+      "q": "what are the Korean numbers 1-10",
+      "expect": [
+        [
+          "hana"
+        ],
+        [
+          "dul"
+        ],
+        [
+          "set"
+        ],
+        [
+          "net"
+        ],
+        [
+          "dasot"
+        ],
+        [
+          "yosot"
+        ],
+        [
+          "ilgop"
+        ],
+        [
+          "yodul"
+        ],
+        [
+          "ahop"
+        ],
+        [
+          "yol"
+        ]
+      ],
+      "order": true,
+      "note": "QA live v1: full ordered 1–10 from content",
+      "answer": "Title: Counting 1 to 10 in Korean\nType: counting\nEnglish: Counting from one to ten in Korean\nCounting 1 to 10:\n1 hana\n2 dul\n3 set\n4 net\n5 dasot\n6 yosot\n7 ilgop\n8 yodul\n9 ahop\n10 yol\nSimple: 1 hana, 2 dul, 3 set, 4 net, 5 dasot, 6 yosot, 7 ilgop, 8 yodul, 9 ahop, 10 yol. (Dul is sometimes spelled dool.)",
+      "gated": false,
+      "gateReason": null,
+      "topic": "counting",
+      "itemId": "counting-1-to-10-in-korean",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "count-typo-cont",
+      "q": "how do i cont to 10 in korean",
+      "expect": [
+        [
+          "hana"
+        ],
+        [
+          "dul"
+        ],
+        [
+          "set"
+        ],
+        [
+          "net"
+        ],
+        [
+          "dasot"
+        ],
+        [
+          "yosot"
+        ],
+        [
+          "ilgop"
+        ],
+        [
+          "yodul"
+        ],
+        [
+          "ahop"
+        ],
+        [
+          "yol"
+        ]
+      ],
+      "order": true,
+      "note": "QA live v1 misspelling of count",
+      "answer": "Title: Counting 1 to 10 in Korean\nType: counting\nEnglish: Counting from one to ten in Korean\nCounting 1 to 10:\n1 hana\n2 dul\n3 set\n4 net\n5 dasot\n6 yosot\n7 ilgop\n8 yodul\n9 ahop\n10 yol\nSimple: 1 hana, 2 dul, 3 set, 4 net, 5 dasot, 6 yosot, 7 ilgop, 8 yodul, 9 ahop, 10 yol. (Dul is sometimes spelled dool.)",
+      "gated": false,
+      "gateReason": null,
+      "topic": "counting",
+      "itemId": "counting-1-to-10-in-korean",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "count-typo-cout",
+      "q": "how do i cout to 10 in korean",
+      "expect": [
+        [
+          "hana"
+        ],
+        [
+          "dul"
+        ],
+        [
+          "set"
+        ],
+        [
+          "net"
+        ],
+        [
+          "dasot"
+        ],
+        [
+          "yosot"
+        ],
+        [
+          "ilgop"
+        ],
+        [
+          "yodul"
+        ],
+        [
+          "ahop"
+        ],
+        [
+          "yol"
+        ]
+      ],
+      "order": true,
+      "note": "QA live v1 misspelling of count",
+      "answer": "Title: Counting 1 to 10 in Korean\nType: counting\nEnglish: Counting from one to ten in Korean\nCounting 1 to 10:\n1 hana\n2 dul\n3 set\n4 net\n5 dasot\n6 yosot\n7 ilgop\n8 yodul\n9 ahop\n10 yol\nSimple: 1 hana, 2 dul, 3 set, 4 net, 5 dasot, 6 yosot, 7 ilgop, 8 yodul, 9 ahop, 10 yol. (Dul is sometimes spelled dool.)",
+      "gated": false,
+      "gateReason": null,
+      "topic": "counting",
+      "itemId": "counting-1-to-10-in-korean",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "oath-1",
+      "q": "What is the first line of the student oath?",
+      "expect": [
+        [
+          "observe"
+        ],
+        [
+          "tenets"
+        ]
+      ],
+      "forbid_re": [
+        "[\"“]I shall observe the Tenets of Taekwon-Do\\.\\s+[^\"”]+[\"”]",
+        "Tenets of Taekwon-Do\\.\\s+That is the exact"
+      ],
+      "answer": "Title: The student oath\nType: oath\nEnglish: I shall observe the Tenets of Taekwon-Do\nOfficial ITF wording (source ITF-P): I shall observe the Tenets of Taekwon-Do\nI shall respect the Instructor and Seniors.\nI shall never misuse Taekwon-Do.\nI shall be a champion of freedom and justice.\nI shall build a more peaceful world.\nSimple: The first promise of the oath is \"I shall observe the Tenets of Taekwon-Do\". In simple words: I will follow the five tenets.\nThe student oath is five promises we say together in class.\nCheck with your instructor: some ITF groups use slightly different words (for example \"help to build a more peaceful world\"), so say it the way your club does.\n\nTitle: What the oath promises mean\nType: oath\nEnglish: Never use Taekwon-Do to hurt or bully anyone, only to stay safe\nSimple: In kid words: follow the five tenets, be respectful to your instructor and the older belts, never use Taekwon-Do to bully or show off, stand up for what is fair, and help make the world a kinder place.\nIn kid words: follow the five tenets, be respectful to your instructor and the older belts, never use Taekwon-Do to bully or show off, stand up for what is fair, and help make the world a kinder place.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "oath",
+      "itemId": "the-student-oath",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "cj-start",
+      "q": "Which stance does Chon-Ji start in?",
+      "expect": [
+        [
+          "parallel ready",
+          "narani junbi"
+        ]
+      ],
+      "forbid_re": [
+        "feet together"
+      ],
+      "answer": "Title: What a pattern (tul) is\nType: pattern\nEnglish: pattern\nKorean: tul\nSimple: A pattern is called tul (you may also see it spelled teul). It is a set of moves done in a fixed order, as if fighting pretend opponents. ITF Taekwon-Do has 24 patterns. Chon-Ji is the first one.\nA pattern is called tul (you may also see it spelled teul). It is a set of moves done in a fixed order, as if fighting pretend opponents. ITF Taekwon-Do has 24 patterns. Chon-Ji is the first one.\n\nTitle: What Chon-Ji means\nType: pattern\nEnglish: The Heaven the Earth\nOfficial ITF wording (source NZ-HB): Chon-Ji means literally “the Heaven the Earth”. It is, in the Orient, interpreted as the creation of the world or the beginning of human history, therefore, it is the initial pattern played by the beginner. This pattern consists of two similar parts; one to represent the Heaven and the other the Earth.\nSimple: Chon is Heaven (the sky above) and Ji is Earth (the ground below). It is about how everything began, so it is the first pattern you learn. It has two halves that are alike: one for Heaven and one for Earth.\n\nTitle: How many moves Chon-Ji has\nType: pattern\nEnglish: 19\nSimple: Chon-Ji has 19 moves. It is the pattern you need for the grading from 9th kup to 8th kup (yellow stripe to yellow belt).\nChon-Ji has 19 moves. It is the pattern you need for the grading from 9th kup to 8th kup (yellow stripe to yellow belt).\n\nTitle: Chon-Ji start position and diagram\nType: pattern\nEnglish: Parallel ready stance (narani junbi sogi)\nSimple: Chon-Ji starts in parallel ready stance (narani junbi sogi). The floor pattern is a cross, like a plus sign. You stand in the middle facing D (the front). A is to your right, B is to your left and C is behind you.\nChon-Ji starts in parallel ready stance (narani junbi sogi). The floor pattern is a cross, like a plus sign. You stand in the middle facing D (the front). A is to your right, B is to your left and C is behind you.\n\nTitle: Chon-Ji moves 1 to 4\nType: pattern\nEnglish: Left walking stance to the left with a left forearm low block\n1. Step the left foot to the left (B) into a left walking stance and do a low block with the left forearm.\n2. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n3. Turn to the right (clockwise) towards A, into a right walking stance, and do a low block with the right forearm.\n4. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\nSimple: Moves 1 to 4:\n\nTitle: Chon-Ji moves 5 to 8\nType: pattern\nEnglish: A forearm low block in walking stance\n5. Turn to face the front (D) with the left foot, into a left walking stance, and do a low block with the left forearm.\n6. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n7. Turn to the right (clockwise) to face the back (C), into a right walking stance, and do a low block with the right forearm.\n8. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\nSimple: Moves 5 to 8:\n\nTitle: Chon-Ji moves 9 to 12\nType: pattern\nEnglish: L-stance (niunja sogi)\n9. Move the left foot towards A into a right L-stance and do a middle block with the left inner forearm.\n10. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n11. Turn clockwise towards B into a left L-stance and do a middle block with the right inner forearm.\n12. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\nSimple: The second part, the part for Earth, uses L-stance for the blocks.\n\nTitle: Chon-Ji moves 13 to 16\nType: pattern\nEnglish: The inner forearm\n13. Move the left foot towards C into a right L-stance and do a middle block with the left inner forearm.\n14. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n15. Turn clockwise towards D into a left L-stance and do a middle block with the right inner forearm.\n16. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\nSimple: In move 13 you block with the left inner forearm, and in move 15 with the right inner forearm.\n\nTitle: Chon-Ji moves 17 to 19 and the end\nType: pattern\nEnglish: Bring the left foot back to the ready position\n17. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n18. Step backwards with the right foot into a left walking stance, still facing D, and do a middle punch with the left fist.\n19. Step backwards with the left foot into a right walking stance, still facing D, and do a middle punch with the right fist.\nEnd: bring the left foot back to parallel ready stance.\nSimple: At the end, bring the left foot back to parallel ready stance.\n\nTitle: Punches in Chon-Ji (obverse punch)\nType: pattern\nEnglish: The hand on the same side as the front foot\nSimple: All the punches in Chon-Ji are middle obverse punches (kaunde baro jirugi). Obverse means you punch with the hand on the same side as your front foot: right foot in front, right fist punches. A reverse punch (bandae jirugi) uses the other hand.\nAll the punches in Chon-Ji are middle obverse punches (kaunde baro jirugi). Obverse means you punch with the hand on the same side as your front foot: right foot in front, right fist punches. A reverse punch (bandae jirugi) uses the other hand.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "chonji",
+      "itemId": "chon-ji-start-position-and-diagram",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "cj-end",
+      "q": "Which foot goes back at the end of Chon-Ji?",
+      "expect": [
+        [
+          "left"
+        ]
+      ],
+      "answer": "Title: What a pattern (tul) is\nType: pattern\nEnglish: pattern\nKorean: tul\nSimple: A pattern is called tul (you may also see it spelled teul). It is a set of moves done in a fixed order, as if fighting pretend opponents. ITF Taekwon-Do has 24 patterns. Chon-Ji is the first one.\nA pattern is called tul (you may also see it spelled teul). It is a set of moves done in a fixed order, as if fighting pretend opponents. ITF Taekwon-Do has 24 patterns. Chon-Ji is the first one.\n\nTitle: What Chon-Ji means\nType: pattern\nEnglish: The Heaven the Earth\nOfficial ITF wording (source NZ-HB): Chon-Ji means literally “the Heaven the Earth”. It is, in the Orient, interpreted as the creation of the world or the beginning of human history, therefore, it is the initial pattern played by the beginner. This pattern consists of two similar parts; one to represent the Heaven and the other the Earth.\nSimple: Chon is Heaven (the sky above) and Ji is Earth (the ground below). It is about how everything began, so it is the first pattern you learn. It has two halves that are alike: one for Heaven and one for Earth.\n\nTitle: How many moves Chon-Ji has\nType: pattern\nEnglish: 19\nSimple: Chon-Ji has 19 moves. It is the pattern you need for the grading from 9th kup to 8th kup (yellow stripe to yellow belt).\nChon-Ji has 19 moves. It is the pattern you need for the grading from 9th kup to 8th kup (yellow stripe to yellow belt).\n\nTitle: Chon-Ji start position and diagram\nType: pattern\nEnglish: Parallel ready stance (narani junbi sogi)\nSimple: Chon-Ji starts in parallel ready stance (narani junbi sogi). The floor pattern is a cross, like a plus sign. You stand in the middle facing D (the front). A is to your right, B is to your left and C is behind you.\nChon-Ji starts in parallel ready stance (narani junbi sogi). The floor pattern is a cross, like a plus sign. You stand in the middle facing D (the front). A is to your right, B is to your left and C is behind you.\n\nTitle: Chon-Ji moves 1 to 4\nType: pattern\nEnglish: Left walking stance to the left with a left forearm low block\n1. Step the left foot to the left (B) into a left walking stance and do a low block with the left forearm.\n2. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n3. Turn to the right (clockwise) towards A, into a right walking stance, and do a low block with the right forearm.\n4. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\nSimple: Moves 1 to 4:\n\nTitle: Chon-Ji moves 5 to 8\nType: pattern\nEnglish: A forearm low block in walking stance\n5. Turn to face the front (D) with the left foot, into a left walking stance, and do a low block with the left forearm.\n6. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n7. Turn to the right (clockwise) to face the back (C), into a right walking stance, and do a low block with the right forearm.\n8. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\nSimple: Moves 5 to 8:\n\nTitle: Chon-Ji moves 9 to 12\nType: pattern\nEnglish: L-stance (niunja sogi)\n9. Move the left foot towards A into a right L-stance and do a middle block with the left inner forearm.\n10. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n11. Turn clockwise towards B into a left L-stance and do a middle block with the right inner forearm.\n12. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\nSimple: The second part, the part for Earth, uses L-stance for the blocks.\n\nTitle: Chon-Ji moves 13 to 16\nType: pattern\nEnglish: The inner forearm\n13. Move the left foot towards C into a right L-stance and do a middle block with the left inner forearm.\n14. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n15. Turn clockwise towards D into a left L-stance and do a middle block with the right inner forearm.\n16. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\nSimple: In move 13 you block with the left inner forearm, and in move 15 with the right inner forearm.\n\nTitle: Chon-Ji moves 17 to 19 and the end\nType: pattern\nEnglish: Bring the left foot back to the ready position\n17. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n18. Step backwards with the right foot into a left walking stance, still facing D, and do a middle punch with the left fist.\n19. Step backwards with the left foot into a right walking stance, still facing D, and do a middle punch with the right fist.\nEnd: bring the left foot back to parallel ready stance.\nSimple: At the end, bring the left foot back to parallel ready stance.\n\nTitle: Punches in Chon-Ji (obverse punch)\nType: pattern\nEnglish: The hand on the same side as the front foot\nSimple: All the punches in Chon-Ji are middle obverse punches (kaunde baro jirugi). Obverse means you punch with the hand on the same side as your front foot: right foot in front, right fist punches. A reverse punch (bandae jirugi) uses the other hand.\nAll the punches in Chon-Ji are middle obverse punches (kaunde baro jirugi). Obverse means you punch with the hand on the same side as your front foot: right foot in front, right fist punches. A reverse punch (bandae jirugi) uses the other hand.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "chonji",
+      "itemId": "chon-ji-moves-17-to-19-and-the-end",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "cj-first",
+      "q": "What is the first move of Chon-Ji?",
+      "expect": [
+        [
+          "low block",
+          "najunde"
+        ]
+      ],
+      "answer": "Title: What a pattern (tul) is\nType: pattern\nEnglish: pattern\nKorean: tul\nSimple: A pattern is called tul (you may also see it spelled teul). It is a set of moves done in a fixed order, as if fighting pretend opponents. ITF Taekwon-Do has 24 patterns. Chon-Ji is the first one.\nA pattern is called tul (you may also see it spelled teul). It is a set of moves done in a fixed order, as if fighting pretend opponents. ITF Taekwon-Do has 24 patterns. Chon-Ji is the first one.\n\nTitle: What Chon-Ji means\nType: pattern\nEnglish: The Heaven the Earth\nOfficial ITF wording (source NZ-HB): Chon-Ji means literally “the Heaven the Earth”. It is, in the Orient, interpreted as the creation of the world or the beginning of human history, therefore, it is the initial pattern played by the beginner. This pattern consists of two similar parts; one to represent the Heaven and the other the Earth.\nSimple: Chon is Heaven (the sky above) and Ji is Earth (the ground below). It is about how everything began, so it is the first pattern you learn. It has two halves that are alike: one for Heaven and one for Earth.\n\nTitle: How many moves Chon-Ji has\nType: pattern\nEnglish: 19\nSimple: Chon-Ji has 19 moves. It is the pattern you need for the grading from 9th kup to 8th kup (yellow stripe to yellow belt).\nChon-Ji has 19 moves. It is the pattern you need for the grading from 9th kup to 8th kup (yellow stripe to yellow belt).\n\nTitle: Chon-Ji start position and diagram\nType: pattern\nEnglish: Parallel ready stance (narani junbi sogi)\nSimple: Chon-Ji starts in parallel ready stance (narani junbi sogi). The floor pattern is a cross, like a plus sign. You stand in the middle facing D (the front). A is to your right, B is to your left and C is behind you.\nChon-Ji starts in parallel ready stance (narani junbi sogi). The floor pattern is a cross, like a plus sign. You stand in the middle facing D (the front). A is to your right, B is to your left and C is behind you.\n\nTitle: Chon-Ji moves 1 to 4\nType: pattern\nEnglish: Left walking stance to the left with a left forearm low block\n1. Step the left foot to the left (B) into a left walking stance and do a low block with the left forearm.\n2. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n3. Turn to the right (clockwise) towards A, into a right walking stance, and do a low block with the right forearm.\n4. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\nSimple: Moves 1 to 4:\n\nTitle: Chon-Ji moves 5 to 8\nType: pattern\nEnglish: A forearm low block in walking stance\n5. Turn to face the front (D) with the left foot, into a left walking stance, and do a low block with the left forearm.\n6. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n7. Turn to the right (clockwise) to face the back (C), into a right walking stance, and do a low block with the right forearm.\n8. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\nSimple: Moves 5 to 8:\n\nTitle: Chon-Ji moves 9 to 12\nType: pattern\nEnglish: L-stance (niunja sogi)\n9. Move the left foot towards A into a right L-stance and do a middle block with the left inner forearm.\n10. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n11. Turn clockwise towards B into a left L-stance and do a middle block with the right inner forearm.\n12. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\nSimple: The second part, the part for Earth, uses L-stance for the blocks.\n\nTitle: Chon-Ji moves 13 to 16\nType: pattern\nEnglish: The inner forearm\n13. Move the left foot towards C into a right L-stance and do a middle block with the left inner forearm.\n14. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n15. Turn clockwise towards D into a left L-stance and do a middle block with the right inner forearm.\n16. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\nSimple: In move 13 you block with the left inner forearm, and in move 15 with the right inner forearm.\n\nTitle: Chon-Ji moves 17 to 19 and the end\nType: pattern\nEnglish: Bring the left foot back to the ready position\n17. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n18. Step backwards with the right foot into a left walking stance, still facing D, and do a middle punch with the left fist.\n19. Step backwards with the left foot into a right walking stance, still facing D, and do a middle punch with the right fist.\nEnd: bring the left foot back to parallel ready stance.\nSimple: At the end, bring the left foot back to parallel ready stance.\n\nTitle: Punches in Chon-Ji (obverse punch)\nType: pattern\nEnglish: The hand on the same side as the front foot\nSimple: All the punches in Chon-Ji are middle obverse punches (kaunde baro jirugi). Obverse means you punch with the hand on the same side as your front foot: right foot in front, right fist punches. A reverse punch (bandae jirugi) uses the other hand.\nAll the punches in Chon-Ji are middle obverse punches (kaunde baro jirugi). Obverse means you punch with the hand on the same side as your front foot: right foot in front, right fist punches. A reverse punch (bandae jirugi) uses the other hand.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "chonji",
+      "itemId": "chon-ji-moves-1-to-4",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "cj-lstance",
+      "q": "Which stance do you use for the blocks in Chon-Ji moves 9 to 16?",
+      "expect": [
+        [
+          "l-stance",
+          "l stance",
+          "niunja"
+        ]
+      ],
+      "forbid_re": [
+        "moves?\\s*9\\s*to\\s*16[^.!?]{0,160}\\bleft\\s+l",
+        "moves?\\s*9\\s*to\\s*16[^.!?]{0,160}\\bright\\s+l",
+        "use the\\s+\\*{0,2}left\\s+l",
+        "use the\\s+\\*{0,2}right\\s+l"
+      ],
+      "answer": "Title: Attention stance (charyot sogi)\nType: stance\nEnglish: attention stance\nKorean: charyot sogi\nSimple: Sogi means stance. Attention stance is charyot sogi. Stand tall with your heels together and your toes pointing out a little, like a V. Arms down by your sides, eyes looking forward.\nSogi means stance. Attention stance is charyot sogi. Stand tall with your heels together and your toes pointing out a little, like a V. Arms down by your sides, eyes looking forward.\n\nTitle: Parallel stance and parallel ready stance\nType: stance\nEnglish: parallel ready stance\nKorean: narani junbi sogi\nKorean: narani sogi = parallel stance\nSimple: Parallel stance is narani sogi. Your feet are about shoulder width apart and both point straight forward, like train tracks. Parallel ready stance is narani junbi sogi: the same feet, with both fists held in front of your belt. Chon-Ji and Saju Jirugi start from parallel ready stance.\nParallel stance is narani sogi. Your feet are about shoulder width apart and both point straight forward, like train tracks. Parallel ready stance is narani junbi sogi: the same feet, with both fists held in front of your belt. Chon-Ji and Saju Jirugi start from parallel ready stance.\n\nTitle: Walking stance (gunnun sogi)\nType: stance\nEnglish: walking stance\nKorean: gunnun sogi\nSimple: Walking stance is gunnun sogi. One foot is in front, like taking a big step. Bend your front knee, keep your back leg straight, and keep your weight even on both feet. If your left foot is in front it is a left walking stance.\nWalking stance is gunnun sogi. One foot is in front, like taking a big step. Bend your front knee, keep your back leg straight, and keep your weight even on both feet. If your left foot is in front it is a left walking stance.\n\nTitle: Stepping forward and backward\nType: stance\nEnglish: stepping forward\nKorean: nagagi\nKorean: duruogi = stepping backward\nSimple: Nagagi means stepping forward. Duruogi means stepping backward. We practise stepping in walking stance before we learn patterns.\nNagagi means stepping forward. Duruogi means stepping backward. We practise stepping in walking stance before we learn patterns.\n\nTitle: L-stance (niunja sogi)\nType: stance\nEnglish: L-stance\nKorean: niunja sogi\nSimple: L-stance is niunja sogi. Your feet make a shape like the letter L. Most of your weight is on your back leg and both knees are bent. If your right leg is at the back it is called a right L-stance. Chon-Ji uses L-stance for the inner forearm blocks.\nL-stance is niunja sogi. Your feet make a shape like the letter L. Most of your weight is on your back leg and both knees are bent. If your right leg is at the back it is called a right L-stance. Chon-Ji uses L-stance for the inner forearm blocks.\n\nTitle: Sitting stance (annun sogi)\nType: stance\nEnglish: sitting stance\nKorean: annun sogi\nSimple: Sitting stance is annun sogi. Your feet are wide apart and point forward, your knees bend out over your feet, and your back stays straight, like sitting on a horse. Your weight is even on both feet.\nSitting stance is annun sogi. Your feet are wide apart and point forward, your knees bend out over your feet, and your back stays straight, like sitting on a horse. Your weight is even on both feet.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "stances",
+      "itemId": "l-stance-niunja-sogi",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "saju-jirugi",
+      "q": "What does Saju Jirugi mean?",
+      "expect": [
+        [
+          "four"
+        ],
+        [
+          "punch"
+        ]
+      ],
+      "answer": "Title: Saju Jirugi (four-direction punch)\nType: exercise\nEnglish: four-direction punch\nKorean: Saju Jirugi\nSimple: Saju means four directions and jirugi means punch, so Saju Jirugi is the four-direction punch. It is a practice exercise, not a pattern. You start in parallel ready stance, punch in walking stance, then turn with a low block and punch again, until you have faced all four directions. You do it once starting with the right foot and once with the left.\nSaju means four directions and jirugi means punch, so Saju Jirugi is the four-direction punch. It is a practice exercise, not a pattern. You start in parallel ready stance, punch in walking stance, then turn with a low block and punch again, until you have faced all four directions. You do it once starting with the right foot and once with the left.\n\nTitle: Saju Makgi (four-direction block)\nType: exercise\nEnglish: four-direction block\nKorean: Saju Makgi\nSimple: Saju Makgi is the four-direction block. It is also a practice exercise. In walking stance you do a knife-hand low block, then step forward with an inner forearm middle block, and you turn so you block in all four directions. You do it once on each side.\nSaju Makgi is the four-direction block. It is also a practice exercise. In walking stance you do a knife-hand low block, then step forward with an inner forearm middle block, and you turn so you block in all four directions. You do it once on each side.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "saju",
+      "itemId": "saju-jirugi-four-direction-punch",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "saju-makgi",
+      "q": "What is Saju Makgi?",
+      "expect": [
+        [
+          "four"
+        ],
+        [
+          "block"
+        ]
+      ],
+      "answer": "Title: Saju Jirugi (four-direction punch)\nType: exercise\nEnglish: four-direction punch\nKorean: Saju Jirugi\nSimple: Saju means four directions and jirugi means punch, so Saju Jirugi is the four-direction punch. It is a practice exercise, not a pattern. You start in parallel ready stance, punch in walking stance, then turn with a low block and punch again, until you have faced all four directions. You do it once starting with the right foot and once with the left.\nSaju means four directions and jirugi means punch, so Saju Jirugi is the four-direction punch. It is a practice exercise, not a pattern. You start in parallel ready stance, punch in walking stance, then turn with a low block and punch again, until you have faced all four directions. You do it once starting with the right foot and once with the left.\n\nTitle: Saju Makgi (four-direction block)\nType: exercise\nEnglish: four-direction block\nKorean: Saju Makgi\nSimple: Saju Makgi is the four-direction block. It is also a practice exercise. In walking stance you do a knife-hand low block, then step forward with an inner forearm middle block, and you turn so you block in all four directions. You do it once on each side.\nSaju Makgi is the four-direction block. It is also a practice exercise. In walking stance you do a knife-hand low block, then step forward with an inner forearm middle block, and you turn so you block in all four directions. You do it once on each side.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "saju",
+      "itemId": "saju-makgi-four-direction-block",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "walking-stance",
+      "q": "What is the Korean name for walking stance?",
+      "expect": [
+        [
+          "gunnun"
+        ]
+      ],
+      "answer": "Title: Attention stance (charyot sogi)\nType: stance\nEnglish: attention stance\nKorean: charyot sogi\nSimple: Sogi means stance. Attention stance is charyot sogi. Stand tall with your heels together and your toes pointing out a little, like a V. Arms down by your sides, eyes looking forward.\nSogi means stance. Attention stance is charyot sogi. Stand tall with your heels together and your toes pointing out a little, like a V. Arms down by your sides, eyes looking forward.\n\nTitle: Parallel stance and parallel ready stance\nType: stance\nEnglish: parallel ready stance\nKorean: narani junbi sogi\nKorean: narani sogi = parallel stance\nSimple: Parallel stance is narani sogi. Your feet are about shoulder width apart and both point straight forward, like train tracks. Parallel ready stance is narani junbi sogi: the same feet, with both fists held in front of your belt. Chon-Ji and Saju Jirugi start from parallel ready stance.\nParallel stance is narani sogi. Your feet are about shoulder width apart and both point straight forward, like train tracks. Parallel ready stance is narani junbi sogi: the same feet, with both fists held in front of your belt. Chon-Ji and Saju Jirugi start from parallel ready stance.\n\nTitle: Walking stance (gunnun sogi)\nType: stance\nEnglish: walking stance\nKorean: gunnun sogi\nSimple: Walking stance is gunnun sogi. One foot is in front, like taking a big step. Bend your front knee, keep your back leg straight, and keep your weight even on both feet. If your left foot is in front it is a left walking stance.\nWalking stance is gunnun sogi. One foot is in front, like taking a big step. Bend your front knee, keep your back leg straight, and keep your weight even on both feet. If your left foot is in front it is a left walking stance.\n\nTitle: Stepping forward and backward\nType: stance\nEnglish: stepping forward\nKorean: nagagi\nKorean: duruogi = stepping backward\nSimple: Nagagi means stepping forward. Duruogi means stepping backward. We practise stepping in walking stance before we learn patterns.\nNagagi means stepping forward. Duruogi means stepping backward. We practise stepping in walking stance before we learn patterns.\n\nTitle: L-stance (niunja sogi)\nType: stance\nEnglish: L-stance\nKorean: niunja sogi\nSimple: L-stance is niunja sogi. Your feet make a shape like the letter L. Most of your weight is on your back leg and both knees are bent. If your right leg is at the back it is called a right L-stance. Chon-Ji uses L-stance for the inner forearm blocks.\nL-stance is niunja sogi. Your feet make a shape like the letter L. Most of your weight is on your back leg and both knees are bent. If your right leg is at the back it is called a right L-stance. Chon-Ji uses L-stance for the inner forearm blocks.\n\nTitle: Sitting stance (annun sogi)\nType: stance\nEnglish: sitting stance\nKorean: annun sogi\nSimple: Sitting stance is annun sogi. Your feet are wide apart and point forward, your knees bend out over your feet, and your back stays straight, like sitting on a horse. Your weight is even on both feet.\nSitting stance is annun sogi. Your feet are wide apart and point forward, your knees bend out over your feet, and your back stays straight, like sitting on a horse. Your weight is even on both feet.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "stances",
+      "itemId": "walking-stance-gunnun-sogi",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "snap-kick",
+      "q": "What part of the foot do you use for a front snap kick?",
+      "expect": [
+        [
+          "ball"
+        ]
+      ],
+      "answer": "Title: Punch, block and kick words\nType: technique\nEnglish: block\nKorean: makgi\nKorean: jirugi = punch\nKorean: chagi = kick\nSimple: Three words you hear all the time: jirugi means punch, makgi means block, chagi means kick.\nThree words you hear all the time: jirugi means punch, makgi means block, chagi means kick.\n\nTitle: Forearm low block (palmok najunde makgi)\nType: technique\nEnglish: forearm low block\nKorean: palmok najunde makgi\nSimple: A forearm low block is palmok najunde makgi. Palmok means forearm. You sweep your forearm down and out to stop a kick or punch aimed at your tummy or legs. It is the first move of Chon-Ji.\nA forearm low block is palmok najunde makgi. Palmok means forearm. You sweep your forearm down and out to stop a kick or punch aimed at your tummy or legs. It is the first move of Chon-Ji.\n\nTitle: Knife-hand low block (sonkal najunde makgi)\nType: technique\nEnglish: knife-hand low block\nKorean: sonkal najunde makgi\nSimple: A knife-hand low block is sonkal najunde makgi. Sonkal means knife-hand: an open hand with the fingers together, blocking with the little-finger edge. It is a low block, used in Saju Makgi.\nA knife-hand low block is sonkal najunde makgi. Sonkal means knife-hand: an open hand with the fingers together, blocking with the little-finger edge. It is a low block, used in Saju Makgi.\n\nTitle: Inner forearm side block (an palmok yop makgi)\nType: technique\nEnglish: inner forearm side block\nKorean: an palmok yop makgi\nSimple: An inner forearm side block is an palmok yop makgi. An palmok means inner forearm, the thumb side of your arm. You bring it across to block at middle height. It is used in Saju Makgi and in Chon-Ji.\nAn inner forearm side block is an palmok yop makgi. An palmok means inner forearm, the thumb side of your arm. You bring it across to block at middle height. It is used in Saju Makgi and in Chon-Ji.\n\nTitle: Front punch (ap jirugi)\nType: technique\nEnglish: front punch\nKorean: ap jirugi\nSimple: A front punch is ap jirugi. You punch with the forefist (ap joomuk): the first two big knuckles of your fist. You can punch high (nopunde), middle (kaunde) or low (najunde). The other hand pulls back to your hip.\nA front punch is ap jirugi. You punch with the forefist (ap joomuk): the first two big knuckles of your fist. You can punch high (nopunde), middle (kaunde) or low (najunde). The other hand pulls back to your hip.\n\nTitle: Front snap kick (apcha busigi)\nType: technique\nEnglish: front snap kick\nKorean: apcha busigi\nSimple: A front snap kick is apcha busigi. Lift your knee, snap your foot out and pull it straight back. You hit with the ball of your foot (ap kumchi), so pull your toes back.\nA front snap kick is apcha busigi. Lift your knee, snap your foot out and pull it straight back. You hit with the ball of your foot (ap kumchi), so pull your toes back.\n\nTitle: Front rising kick (apcha olligi)\nType: technique\nEnglish: front rising kick\nKorean: apcha olligi\nSimple: A front rising kick is apcha olligi. Keep your kicking leg straight and swing it up in front of you, then bring it back down with control. It helps stretch your legs.\nA front rising kick is apcha olligi. Keep your kicking leg straight and swing it up in front of you, then bring it back down with control. It helps stretch your legs.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "techniques",
+      "itemId": "front-snap-kick-apcha-busigi",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "belt-after-white",
+      "q": "What belt comes after white?",
+      "expect": [
+        [
+          "stripe",
+          "tag"
+        ],
+        [
+          "9th",
+          "yellow stripe"
+        ]
+      ],
+      "forbid_re": [
+        "\\byellow belt or\\b",
+        "after white[^.!?]{0,50}\\byellow belt\\b(?! with)"
+      ],
+      "answer": "Title: What the white belt means\nType: belt\nEnglish: Innocence, as that of a beginning student who has no previous knowledge of Taekwon-Do\nOfficial ITF wording (source NZ-HB): White signifies innocence, as that of a beginning student who has no previous knowledge of Taekwon-Do.\nSimple: everyone starts with a white belt. You are a beginner, just starting to learn, with lots to learn.\n\nTitle: What the yellow belt means\nType: belt\nEnglish: The earth from which a plant sprouts and takes root as the Taekwon-Do foundation is being laid\nOfficial ITF wording (source NZ-HB): Yellow signifies the earth from which a plant sprouts and takes root as the Taekwon-Do foundation is being laid.\nSimple: yellow is the colour of the earth. Like a seed putting down roots before it grows tall, at yellow belt you practise the basics until they are strong.\n\nTitle: Belt order for the first gradings\nType: belt\nEnglish: White belt with a yellow stripe (9th kup)\nSimple: 10th kup is white belt. 9th kup is white belt with a yellow stripe (some clubs call it a tag).\nColoured belt grades are called kup (also spelled gup) and they count down. 10th kup is white belt. After white belt comes a white belt with a yellow stripe (9th kup; some clubs call it a tag). 8th kup is yellow belt.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "belts",
+      "itemId": "belt-order-for-the-first-gradings",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "toes-back",
+      "q": "Why do I pull my toes back?",
+      "expect": [
+        [
+          "ball of the foot",
+          "ball of your foot"
+        ]
+      ],
+      "forbid_re": [
+        "partner",
+        "\\bknee\\b",
+        "roll(?:ing)?",
+        "pads? on the side"
+      ],
+      "answer": "Title: Punch, block and kick words\nType: technique\nEnglish: block\nKorean: makgi\nKorean: jirugi = punch\nKorean: chagi = kick\nSimple: Three words you hear all the time: jirugi means punch, makgi means block, chagi means kick.\nThree words you hear all the time: jirugi means punch, makgi means block, chagi means kick.\n\nTitle: Forearm low block (palmok najunde makgi)\nType: technique\nEnglish: forearm low block\nKorean: palmok najunde makgi\nSimple: A forearm low block is palmok najunde makgi. Palmok means forearm. You sweep your forearm down and out to stop a kick or punch aimed at your tummy or legs. It is the first move of Chon-Ji.\nA forearm low block is palmok najunde makgi. Palmok means forearm. You sweep your forearm down and out to stop a kick or punch aimed at your tummy or legs. It is the first move of Chon-Ji.\n\nTitle: Knife-hand low block (sonkal najunde makgi)\nType: technique\nEnglish: knife-hand low block\nKorean: sonkal najunde makgi\nSimple: A knife-hand low block is sonkal najunde makgi. Sonkal means knife-hand: an open hand with the fingers together, blocking with the little-finger edge. It is a low block, used in Saju Makgi.\nA knife-hand low block is sonkal najunde makgi. Sonkal means knife-hand: an open hand with the fingers together, blocking with the little-finger edge. It is a low block, used in Saju Makgi.\n\nTitle: Inner forearm side block (an palmok yop makgi)\nType: technique\nEnglish: inner forearm side block\nKorean: an palmok yop makgi\nSimple: An inner forearm side block is an palmok yop makgi. An palmok means inner forearm, the thumb side of your arm. You bring it across to block at middle height. It is used in Saju Makgi and in Chon-Ji.\nAn inner forearm side block is an palmok yop makgi. An palmok means inner forearm, the thumb side of your arm. You bring it across to block at middle height. It is used in Saju Makgi and in Chon-Ji.\n\nTitle: Front punch (ap jirugi)\nType: technique\nEnglish: front punch\nKorean: ap jirugi\nSimple: A front punch is ap jirugi. You punch with the forefist (ap joomuk): the first two big knuckles of your fist. You can punch high (nopunde), middle (kaunde) or low (najunde). The other hand pulls back to your hip.\nA front punch is ap jirugi. You punch with the forefist (ap joomuk): the first two big knuckles of your fist. You can punch high (nopunde), middle (kaunde) or low (najunde). The other hand pulls back to your hip.\n\nTitle: Front snap kick (apcha busigi)\nType: technique\nEnglish: front snap kick\nKorean: apcha busigi\nSimple: A front snap kick is apcha busigi. Lift your knee, snap your foot out and pull it straight back. You hit with the ball of your foot (ap kumchi), so pull your toes back.\nA front snap kick is apcha busigi. Lift your knee, snap your foot out and pull it straight back. You hit with the ball of your foot (ap kumchi), so pull your toes back.\n\nTitle: Front rising kick (apcha olligi)\nType: technique\nEnglish: front rising kick\nKorean: apcha olligi\nSimple: A front rising kick is apcha olligi. Keep your kicking leg straight and swing it up in front of you, then bring it back down with control. It helps stretch your legs.\nA front rising kick is apcha olligi. Keep your kicking leg straight and swing it up in front of you, then bring it back down with control. It helps stretch your legs.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "techniques",
+      "itemId": "front-snap-kick-apcha-busigi",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "dobok",
+      "q": "What is a dobok?",
+      "expect": [
+        [
+          "uniform"
+        ]
+      ],
+      "answer": "Title: Charyot (attention)\nType: command\nEnglish: attention\nKorean: charyot\nSimple: Charyot means attention. When you hear charyot, you stand up straight in attention stance, quiet and still, ready to listen.\nCharyot means attention. When you hear charyot, you stand up straight in attention stance, quiet and still, ready to listen.\n\nTitle: Kyong ye (bow)\nType: command\nEnglish: bow\nKorean: kyong ye\nSimple: Kyong ye means bow. We bow to show respect, for example to the instructor, to a partner, and when we come into or leave the training hall.\nKyong ye means bow. We bow to show respect, for example to the instructor, to a partner, and when we come into or leave the training hall.\n\nTitle: Junbi (ready)\nType: command\nEnglish: ready\nKorean: junbi\nSimple: Junbi means ready. When you hear junbi, you get into your ready stance and wait for the next command.\nJunbi means ready. When you hear junbi, you get into your ready stance and wait for the next command.\n\nTitle: Si jak (begin)\nType: command\nEnglish: begin or start\nKorean: si jak\nSimple: Si jak means begin, or start. It is the command to start the exercise or the pattern.\nSi jak means begin, or start. It is the command to start the exercise or the pattern.\n\nTitle: Baro (return)\nType: command\nEnglish: return\nKorean: baro\nSimple: Baro means return. When you hear baro at the end of an exercise, you go back to your ready position.\nBaro means return. When you hear baro at the end of an exercise, you go back to your ready position.\n\nTitle: Kihap (yell)\nType: command\nEnglish: yell or shout\nKorean: kihap\nSimple: Kihap means a yell or shout. A good kihap is short, loud and comes from your belly. It helps you breathe out and put power into a move.\nKihap means a yell or shout. A good kihap is short, loud and comes from your belly. It helps you breathe out and put power into a move.\n\nTitle: Dojang and dobok\nType: command\nEnglish: training hall\nKorean: dojang\nKorean: dobok = training uniform\nSimple: The dojang (do jang) is the training hall, the place where we practise. The dobok (do bok) is the white training uniform we wear.\nThe dojang (do jang) is the training hall, the place where we practise. The dobok (do bok) is the white training uniform we wear.\n\nTitle: Instructor (sabum nim)\nType: command\nEnglish: instructor\nKorean: sabum nim\nSimple: We call the instructor sabum nim. Some clubs use boosabum nim for a 1st to 3rd degree black belt instructor and sabum nim for 4th to 6th degree. Ask your club which one they use.\nWe call the instructor sabum nim. Some clubs use boosabum nim for a 1st to 3rd degree black belt instructor and sabum nim for 4th to 6th degree. Ask your club which one they use.\n\nTitle: High, middle and low\nType: command\nEnglish: middle\nKorean: kaunde\nKorean: nopunde = high\nKorean: najunde = low\nSimple: Middle is kaunde, about shoulder level.\nMoves aim at three heights. High is nopunde (about eye level). Middle is kaunde (about shoulder level). Low is najunde (about belt level and below).\n\nTitle: Turning in place and step turning\nType: command\nEnglish: spot turning\nKorean: gujari dolgi\nSimple: Dolgi means turning. Spot turning (gujari dolgi) means you turn around where you are standing. Step turning means you take a step as you turn. Chon-Ji has turns, so practise turning without losing your balance.\nDolgi means turning. Spot turning (gujari dolgi) means you turn around where you are standing. Step turning means you take a step as you turn. Chon-Ji has turns, so practise turning without losing your balance.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "commands",
+      "itemId": "dojang-and-dobok",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "kihap",
+      "q": "What does kihap mean?",
+      "expect": [
+        [
+          "yell",
+          "shout"
+        ]
+      ],
+      "answer": "Title: Charyot (attention)\nType: command\nEnglish: attention\nKorean: charyot\nSimple: Charyot means attention. When you hear charyot, you stand up straight in attention stance, quiet and still, ready to listen.\nCharyot means attention. When you hear charyot, you stand up straight in attention stance, quiet and still, ready to listen.\n\nTitle: Kyong ye (bow)\nType: command\nEnglish: bow\nKorean: kyong ye\nSimple: Kyong ye means bow. We bow to show respect, for example to the instructor, to a partner, and when we come into or leave the training hall.\nKyong ye means bow. We bow to show respect, for example to the instructor, to a partner, and when we come into or leave the training hall.\n\nTitle: Junbi (ready)\nType: command\nEnglish: ready\nKorean: junbi\nSimple: Junbi means ready. When you hear junbi, you get into your ready stance and wait for the next command.\nJunbi means ready. When you hear junbi, you get into your ready stance and wait for the next command.\n\nTitle: Si jak (begin)\nType: command\nEnglish: begin or start\nKorean: si jak\nSimple: Si jak means begin, or start. It is the command to start the exercise or the pattern.\nSi jak means begin, or start. It is the command to start the exercise or the pattern.\n\nTitle: Baro (return)\nType: command\nEnglish: return\nKorean: baro\nSimple: Baro means return. When you hear baro at the end of an exercise, you go back to your ready position.\nBaro means return. When you hear baro at the end of an exercise, you go back to your ready position.\n\nTitle: Kihap (yell)\nType: command\nEnglish: yell or shout\nKorean: kihap\nSimple: Kihap means a yell or shout. A good kihap is short, loud and comes from your belly. It helps you breathe out and put power into a move.\nKihap means a yell or shout. A good kihap is short, loud and comes from your belly. It helps you breathe out and put power into a move.\n\nTitle: Dojang and dobok\nType: command\nEnglish: training hall\nKorean: dojang\nKorean: dobok = training uniform\nSimple: The dojang (do jang) is the training hall, the place where we practise. The dobok (do bok) is the white training uniform we wear.\nThe dojang (do jang) is the training hall, the place where we practise. The dobok (do bok) is the white training uniform we wear.\n\nTitle: Instructor (sabum nim)\nType: command\nEnglish: instructor\nKorean: sabum nim\nSimple: We call the instructor sabum nim. Some clubs use boosabum nim for a 1st to 3rd degree black belt instructor and sabum nim for 4th to 6th degree. Ask your club which one they use.\nWe call the instructor sabum nim. Some clubs use boosabum nim for a 1st to 3rd degree black belt instructor and sabum nim for 4th to 6th degree. Ask your club which one they use.\n\nTitle: High, middle and low\nType: command\nEnglish: middle\nKorean: kaunde\nKorean: nopunde = high\nKorean: najunde = low\nSimple: Middle is kaunde, about shoulder level.\nMoves aim at three heights. High is nopunde (about eye level). Middle is kaunde (about shoulder level). Low is najunde (about belt level and below).\n\nTitle: Turning in place and step turning\nType: command\nEnglish: spot turning\nKorean: gujari dolgi\nSimple: Dolgi means turning. Spot turning (gujari dolgi) means you turn around where you are standing. Step turning means you take a step as you turn. Chon-Ji has turns, so practise turning without losing your balance.\nDolgi means turning. Spot turning (gujari dolgi) means you turn around where you are standing. Step turning means you take a step as you turn. Chon-Ji has turns, so practise turning without losing your balance.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "commands",
+      "itemId": "kihap-yell",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "makgi",
+      "q": "What is the Korean word for block?",
+      "expect": [
+        [
+          "makgi"
+        ]
+      ],
+      "answer": "Title: Punch, block and kick words\nType: technique\nEnglish: block\nKorean: makgi\nKorean: jirugi = punch\nKorean: chagi = kick\nSimple: Three words you hear all the time: jirugi means punch, makgi means block, chagi means kick.\nThree words you hear all the time: jirugi means punch, makgi means block, chagi means kick.\n\nTitle: Forearm low block (palmok najunde makgi)\nType: technique\nEnglish: forearm low block\nKorean: palmok najunde makgi\nSimple: A forearm low block is palmok najunde makgi. Palmok means forearm. You sweep your forearm down and out to stop a kick or punch aimed at your tummy or legs. It is the first move of Chon-Ji.\nA forearm low block is palmok najunde makgi. Palmok means forearm. You sweep your forearm down and out to stop a kick or punch aimed at your tummy or legs. It is the first move of Chon-Ji.\n\nTitle: Knife-hand low block (sonkal najunde makgi)\nType: technique\nEnglish: knife-hand low block\nKorean: sonkal najunde makgi\nSimple: A knife-hand low block is sonkal najunde makgi. Sonkal means knife-hand: an open hand with the fingers together, blocking with the little-finger edge. It is a low block, used in Saju Makgi.\nA knife-hand low block is sonkal najunde makgi. Sonkal means knife-hand: an open hand with the fingers together, blocking with the little-finger edge. It is a low block, used in Saju Makgi.\n\nTitle: Inner forearm side block (an palmok yop makgi)\nType: technique\nEnglish: inner forearm side block\nKorean: an palmok yop makgi\nSimple: An inner forearm side block is an palmok yop makgi. An palmok means inner forearm, the thumb side of your arm. You bring it across to block at middle height. It is used in Saju Makgi and in Chon-Ji.\nAn inner forearm side block is an palmok yop makgi. An palmok means inner forearm, the thumb side of your arm. You bring it across to block at middle height. It is used in Saju Makgi and in Chon-Ji.\n\nTitle: Front punch (ap jirugi)\nType: technique\nEnglish: front punch\nKorean: ap jirugi\nSimple: A front punch is ap jirugi. You punch with the forefist (ap joomuk): the first two big knuckles of your fist. You can punch high (nopunde), middle (kaunde) or low (najunde). The other hand pulls back to your hip.\nA front punch is ap jirugi. You punch with the forefist (ap joomuk): the first two big knuckles of your fist. You can punch high (nopunde), middle (kaunde) or low (najunde). The other hand pulls back to your hip.\n\nTitle: Front snap kick (apcha busigi)\nType: technique\nEnglish: front snap kick\nKorean: apcha busigi\nSimple: A front snap kick is apcha busigi. Lift your knee, snap your foot out and pull it straight back. You hit with the ball of your foot (ap kumchi), so pull your toes back.\nA front snap kick is apcha busigi. Lift your knee, snap your foot out and pull it straight back. You hit with the ball of your foot (ap kumchi), so pull your toes back.\n\nTitle: Front rising kick (apcha olligi)\nType: technique\nEnglish: front rising kick\nKorean: apcha olligi\nSimple: A front rising kick is apcha olligi. Keep your kicking leg straight and swing it up in front of you, then bring it back down with control. It helps stretch your legs.\nA front rising kick is apcha olligi. Keep your kicking leg straight and swing it up in front of you, then bring it back down with control. It helps stretch your legs.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "techniques",
+      "itemId": "punch-block-and-kick-words",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "itf",
+      "q": "What does ITF stand for?",
+      "expect": [
+        [
+          "international"
+        ],
+        [
+          "federation"
+        ]
+      ],
+      "answer": "Title: What the word Taekwon-Do means\nType: history\nEnglish: Tae is foot, Kwon is fist or hand, Do is the way\nSimple: Tae means foot (kicking). Kwon means fist or hand (punching). Do means the way.\nTaekwon-Do is made of three little words. Tae means foot (kicking). Kwon means fist or hand (punching). Do means the way, like a way of living and learning.\n\nTitle: Who started Taekwon-Do\nType: history\nEnglish: General Choi Hong Hi\nSimple: The founder of Taekwon-Do is General Choi Hong Hi. He was a general in the Korean army. He was born in 1918 and died in 2002.\nThe founder of Taekwon-Do is General Choi Hong Hi. He was a general in the Korean army. He was born in 1918 and died in 2002.\n\nTitle: When Taekwon-Do got its name\nType: history\nEnglish: 1955\nSimple: General Choi gave Taekwon-Do its name on 11 April 1955. You can think of 11 April as Taekwon-Do's name day.\nGeneral Choi gave Taekwon-Do its name on 11 April 1955. You can think of 11 April as Taekwon-Do's name day.\n\nTitle: What ITF means\nType: history\nEnglish: International Taekwon-Do Federation\nSimple: ITF stands for International Taekwon-Do Federation. General Choi started it in Seoul, Korea, on 22 March 1966. Our club does ITF Taekwon-Do. World Taekwondo (WT) is a different style with different patterns, so this app only covers ITF.\nITF stands for International Taekwon-Do Federation. General Choi started it in Seoul, Korea, on 22 March 1966. Our club does ITF Taekwon-Do. World Taekwondo (WT) is a different style with different patterns, so this app only covers ITF.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "history",
+      "itemId": "what-itf-means",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "named",
+      "q": "When was Taekwon-Do given its name?",
+      "expect": [
+        [
+          "1955"
+        ]
+      ],
+      "answer": "Title: What the word Taekwon-Do means\nType: history\nEnglish: Tae is foot, Kwon is fist or hand, Do is the way\nSimple: Tae means foot (kicking). Kwon means fist or hand (punching). Do means the way.\nTaekwon-Do is made of three little words. Tae means foot (kicking). Kwon means fist or hand (punching). Do means the way, like a way of living and learning.\n\nTitle: Who started Taekwon-Do\nType: history\nEnglish: General Choi Hong Hi\nSimple: The founder of Taekwon-Do is General Choi Hong Hi. He was a general in the Korean army. He was born in 1918 and died in 2002.\nThe founder of Taekwon-Do is General Choi Hong Hi. He was a general in the Korean army. He was born in 1918 and died in 2002.\n\nTitle: When Taekwon-Do got its name\nType: history\nEnglish: 1955\nSimple: General Choi gave Taekwon-Do its name on 11 April 1955. You can think of 11 April as Taekwon-Do's name day.\nGeneral Choi gave Taekwon-Do its name on 11 April 1955. You can think of 11 April as Taekwon-Do's name day.\n\nTitle: What ITF means\nType: history\nEnglish: International Taekwon-Do Federation\nSimple: ITF stands for International Taekwon-Do Federation. General Choi started it in Seoul, Korea, on 22 March 1966. Our club does ITF Taekwon-Do. World Taekwondo (WT) is a different style with different patterns, so this app only covers ITF.\nITF stands for International Taekwon-Do Federation. General Choi started it in Seoul, Korea, on 22 March 1966. Our club does ITF Taekwon-Do. World Taekwondo (WT) is a different style with different patterns, so this app only covers ITF.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "history",
+      "itemId": "when-taekwon-do-got-its-name",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "kaunde",
+      "q": "What does kaunde mean?",
+      "expect": [
+        [
+          "middle"
+        ]
+      ],
+      "answer": "Title: Charyot (attention)\nType: command\nEnglish: attention\nKorean: charyot\nSimple: Charyot means attention. When you hear charyot, you stand up straight in attention stance, quiet and still, ready to listen.\nCharyot means attention. When you hear charyot, you stand up straight in attention stance, quiet and still, ready to listen.\n\nTitle: Kyong ye (bow)\nType: command\nEnglish: bow\nKorean: kyong ye\nSimple: Kyong ye means bow. We bow to show respect, for example to the instructor, to a partner, and when we come into or leave the training hall.\nKyong ye means bow. We bow to show respect, for example to the instructor, to a partner, and when we come into or leave the training hall.\n\nTitle: Junbi (ready)\nType: command\nEnglish: ready\nKorean: junbi\nSimple: Junbi means ready. When you hear junbi, you get into your ready stance and wait for the next command.\nJunbi means ready. When you hear junbi, you get into your ready stance and wait for the next command.\n\nTitle: Si jak (begin)\nType: command\nEnglish: begin or start\nKorean: si jak\nSimple: Si jak means begin, or start. It is the command to start the exercise or the pattern.\nSi jak means begin, or start. It is the command to start the exercise or the pattern.\n\nTitle: Baro (return)\nType: command\nEnglish: return\nKorean: baro\nSimple: Baro means return. When you hear baro at the end of an exercise, you go back to your ready position.\nBaro means return. When you hear baro at the end of an exercise, you go back to your ready position.\n\nTitle: Kihap (yell)\nType: command\nEnglish: yell or shout\nKorean: kihap\nSimple: Kihap means a yell or shout. A good kihap is short, loud and comes from your belly. It helps you breathe out and put power into a move.\nKihap means a yell or shout. A good kihap is short, loud and comes from your belly. It helps you breathe out and put power into a move.\n\nTitle: Dojang and dobok\nType: command\nEnglish: training hall\nKorean: dojang\nKorean: dobok = training uniform\nSimple: The dojang (do jang) is the training hall, the place where we practise. The dobok (do bok) is the white training uniform we wear.\nThe dojang (do jang) is the training hall, the place where we practise. The dobok (do bok) is the white training uniform we wear.\n\nTitle: Instructor (sabum nim)\nType: command\nEnglish: instructor\nKorean: sabum nim\nSimple: We call the instructor sabum nim. Some clubs use boosabum nim for a 1st to 3rd degree black belt instructor and sabum nim for 4th to 6th degree. Ask your club which one they use.\nWe call the instructor sabum nim. Some clubs use boosabum nim for a 1st to 3rd degree black belt instructor and sabum nim for 4th to 6th degree. Ask your club which one they use.\n\nTitle: High, middle and low\nType: command\nEnglish: middle\nKorean: kaunde\nKorean: nopunde = high\nKorean: najunde = low\nSimple: Middle is kaunde, about shoulder level.\nMoves aim at three heights. High is nopunde (about eye level). Middle is kaunde (about shoulder level). Low is najunde (about belt level and below).\n\nTitle: Turning in place and step turning\nType: command\nEnglish: spot turning\nKorean: gujari dolgi\nSimple: Dolgi means turning. Spot turning (gujari dolgi) means you turn around where you are standing. Step turning means you take a step as you turn. Chon-Ji has turns, so practise turning without losing your balance.\nDolgi means turning. Spot turning (gujari dolgi) means you turn around where you are standing. Step turning means you take a step as you turn. Chon-Ji has turns, so practise turning without losing your balance.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "commands",
+      "itemId": "high-middle-and-low",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "korean-words-need",
+      "q": "what korean words do i need to know",
+      "expect": [
+        [
+          "charyot"
+        ],
+        [
+          "junbi"
+        ],
+        [
+          "makgi"
+        ],
+        [
+          "hana"
+        ]
+      ],
+      "answer": "charyot = attention\nkyong ye = bow\njunbi = ready\nsi jak = begin or start\nbaro = return\nkihap = yell or shout\ndojang = training hall\ndobok = training uniform\nsabum nim = instructor\nkaunde = middle\nnopunde = high\nnajunde = low\nmakgi = block\njirugi = punch\nchagi = kick\ncharyot sogi = attention stance\nnarani junbi sogi = parallel ready stance\nnarani sogi = parallel stance\ngunnun sogi = walking stance\nnagagi = stepping forward\nduruogi = stepping backward\npalmok najunde makgi = forearm low block\nsonkal najunde makgi = knife-hand low block\nan palmok yop makgi = inner forearm side block\nap jirugi = front punch\napcha busigi = front snap kick\napcha olligi = front rising kick\nSaju Jirugi = four-direction punch\nSaju Makgi = four-direction block\ntul = pattern\nniunja sogi = L-stance\nannun sogi = sitting stance\ngujari dolgi = spot turning\nhana = 1\ndul = 2\nset = 3\nnet = 4\ndasot = 5\nyosot = 6\nilgop = 7\nyodul = 8\nahop = 9\nyol = 10",
+      "gated": false,
+      "gateReason": null,
+      "topic": "glossary",
+      "itemId": "glossary-korean-words",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "korean-words-counting",
+      "q": "what are the korean words for counting",
+      "expect": [
+        [
+          "hana"
+        ],
+        [
+          "dul"
+        ],
+        [
+          "set"
+        ],
+        [
+          "net"
+        ],
+        [
+          "dasot"
+        ],
+        [
+          "yosot"
+        ],
+        [
+          "ilgop"
+        ],
+        [
+          "yodul"
+        ],
+        [
+          "ahop"
+        ],
+        [
+          "yol"
+        ]
+      ],
+      "order": true,
+      "answer": "Title: Counting 1 to 10 in Korean\nType: counting\nEnglish: Counting from one to ten in Korean\nCounting 1 to 10:\n1 hana\n2 dul\n3 set\n4 net\n5 dasot\n6 yosot\n7 ilgop\n8 yodul\n9 ahop\n10 yol\nSimple: 1 hana, 2 dul, 3 set, 4 net, 5 dasot, 6 yosot, 7 ilgop, 8 yodul, 9 ahop, 10 yol. (Dul is sometimes spelled dool.)",
+      "gated": false,
+      "gateReason": null,
+      "topic": "counting",
+      "itemId": "counting-1-to-10-in-korean",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "chon-ji-explain-like-im-5",
+      "q": "explain chon ji like im 5",
+      "expect": [
+        [
+          "pattern",
+          "tul",
+          "teul"
+        ],
+        [
+          "heaven"
+        ],
+        [
+          "earth"
+        ],
+        [
+          "19",
+          "nineteen"
+        ]
+      ],
+      "forbid_re": [
+        "way of standing",
+        "\\bis a stance\\b",
+        "\\bis an stance\\b"
+      ],
+      "note": "Debbie live wrong answer on v1 called Chon-Ji a way of standing / ready stance. It is a pattern (tul).",
+      "answer": "Title: What a pattern (tul) is\nType: pattern\nEnglish: pattern\nKorean: tul\nSimple: A pattern is called tul (you may also see it spelled teul). It is a set of moves done in a fixed order, as if fighting pretend opponents. ITF Taekwon-Do has 24 patterns. Chon-Ji is the first one.\nA pattern is called tul (you may also see it spelled teul). It is a set of moves done in a fixed order, as if fighting pretend opponents. ITF Taekwon-Do has 24 patterns. Chon-Ji is the first one.\n\nTitle: What Chon-Ji means\nType: pattern\nEnglish: The Heaven the Earth\nOfficial ITF wording (source NZ-HB): Chon-Ji means literally “the Heaven the Earth”. It is, in the Orient, interpreted as the creation of the world or the beginning of human history, therefore, it is the initial pattern played by the beginner. This pattern consists of two similar parts; one to represent the Heaven and the other the Earth.\nSimple: Chon is Heaven (the sky above) and Ji is Earth (the ground below). It is about how everything began, so it is the first pattern you learn. It has two halves that are alike: one for Heaven and one for Earth.\n\nTitle: How many moves Chon-Ji has\nType: pattern\nEnglish: 19\nSimple: Chon-Ji has 19 moves. It is the pattern you need for the grading from 9th kup to 8th kup (yellow stripe to yellow belt).\nChon-Ji has 19 moves. It is the pattern you need for the grading from 9th kup to 8th kup (yellow stripe to yellow belt).\n\nTitle: Chon-Ji start position and diagram\nType: pattern\nEnglish: Parallel ready stance (narani junbi sogi)\nSimple: Chon-Ji starts in parallel ready stance (narani junbi sogi). The floor pattern is a cross, like a plus sign. You stand in the middle facing D (the front). A is to your right, B is to your left and C is behind you.\nChon-Ji starts in parallel ready stance (narani junbi sogi). The floor pattern is a cross, like a plus sign. You stand in the middle facing D (the front). A is to your right, B is to your left and C is behind you.\n\nTitle: Chon-Ji moves 1 to 4\nType: pattern\nEnglish: Left walking stance to the left with a left forearm low block\n1. Step the left foot to the left (B) into a left walking stance and do a low block with the left forearm.\n2. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n3. Turn to the right (clockwise) towards A, into a right walking stance, and do a low block with the right forearm.\n4. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\nSimple: Moves 1 to 4:\n\nTitle: Chon-Ji moves 5 to 8\nType: pattern\nEnglish: A forearm low block in walking stance\n5. Turn to face the front (D) with the left foot, into a left walking stance, and do a low block with the left forearm.\n6. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n7. Turn to the right (clockwise) to face the back (C), into a right walking stance, and do a low block with the right forearm.\n8. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\nSimple: Moves 5 to 8:\n\nTitle: Chon-Ji moves 9 to 12\nType: pattern\nEnglish: L-stance (niunja sogi)\n9. Move the left foot towards A into a right L-stance and do a middle block with the left inner forearm.\n10. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n11. Turn clockwise towards B into a left L-stance and do a middle block with the right inner forearm.\n12. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\nSimple: The second part, the part for Earth, uses L-stance for the blocks.\n\nTitle: Chon-Ji moves 13 to 16\nType: pattern\nEnglish: The inner forearm\n13. Move the left foot towards C into a right L-stance and do a middle block with the left inner forearm.\n14. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n15. Turn clockwise towards D into a left L-stance and do a middle block with the right inner forearm.\n16. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\nSimple: In move 13 you block with the left inner forearm, and in move 15 with the right inner forearm.\n\nTitle: Chon-Ji moves 17 to 19 and the end\nType: pattern\nEnglish: Bring the left foot back to the ready position\n17. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n18. Step backwards with the right foot into a left walking stance, still facing D, and do a middle punch with the left fist.\n19. Step backwards with the left foot into a right walking stance, still facing D, and do a middle punch with the right fist.\nEnd: bring the left foot back to parallel ready stance.\nSimple: At the end, bring the left foot back to parallel ready stance.\n\nTitle: Punches in Chon-Ji (obverse punch)\nType: pattern\nEnglish: The hand on the same side as the front foot\nSimple: All the punches in Chon-Ji are middle obverse punches (kaunde baro jirugi). Obverse means you punch with the hand on the same side as your front foot: right foot in front, right fist punches. A reverse punch (bandae jirugi) uses the other hand.\nAll the punches in Chon-Ji are middle obverse punches (kaunde baro jirugi). Obverse means you punch with the hand on the same side as your front foot: right foot in front, right fist punches. A reverse punch (bandae jirugi) uses the other hand.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "chonji",
+      "itemId": "what-a-pattern-tul-is",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "what-is-chon-ji",
+      "q": "what is chon-ji",
+      "expect": [
+        [
+          "pattern",
+          "tul",
+          "teul"
+        ],
+        [
+          "heaven"
+        ],
+        [
+          "earth"
+        ],
+        [
+          "19",
+          "nineteen"
+        ]
+      ],
+      "forbid_re": [
+        "way of standing",
+        "\\bis a stance\\b"
+      ],
+      "answer": "Title: What a pattern (tul) is\nType: pattern\nEnglish: pattern\nKorean: tul\nSimple: A pattern is called tul (you may also see it spelled teul). It is a set of moves done in a fixed order, as if fighting pretend opponents. ITF Taekwon-Do has 24 patterns. Chon-Ji is the first one.\nA pattern is called tul (you may also see it spelled teul). It is a set of moves done in a fixed order, as if fighting pretend opponents. ITF Taekwon-Do has 24 patterns. Chon-Ji is the first one.\n\nTitle: What Chon-Ji means\nType: pattern\nEnglish: The Heaven the Earth\nOfficial ITF wording (source NZ-HB): Chon-Ji means literally “the Heaven the Earth”. It is, in the Orient, interpreted as the creation of the world or the beginning of human history, therefore, it is the initial pattern played by the beginner. This pattern consists of two similar parts; one to represent the Heaven and the other the Earth.\nSimple: Chon is Heaven (the sky above) and Ji is Earth (the ground below). It is about how everything began, so it is the first pattern you learn. It has two halves that are alike: one for Heaven and one for Earth.\n\nTitle: How many moves Chon-Ji has\nType: pattern\nEnglish: 19\nSimple: Chon-Ji has 19 moves. It is the pattern you need for the grading from 9th kup to 8th kup (yellow stripe to yellow belt).\nChon-Ji has 19 moves. It is the pattern you need for the grading from 9th kup to 8th kup (yellow stripe to yellow belt).\n\nTitle: Chon-Ji start position and diagram\nType: pattern\nEnglish: Parallel ready stance (narani junbi sogi)\nSimple: Chon-Ji starts in parallel ready stance (narani junbi sogi). The floor pattern is a cross, like a plus sign. You stand in the middle facing D (the front). A is to your right, B is to your left and C is behind you.\nChon-Ji starts in parallel ready stance (narani junbi sogi). The floor pattern is a cross, like a plus sign. You stand in the middle facing D (the front). A is to your right, B is to your left and C is behind you.\n\nTitle: Chon-Ji moves 1 to 4\nType: pattern\nEnglish: Left walking stance to the left with a left forearm low block\n1. Step the left foot to the left (B) into a left walking stance and do a low block with the left forearm.\n2. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n3. Turn to the right (clockwise) towards A, into a right walking stance, and do a low block with the right forearm.\n4. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\nSimple: Moves 1 to 4:\n\nTitle: Chon-Ji moves 5 to 8\nType: pattern\nEnglish: A forearm low block in walking stance\n5. Turn to face the front (D) with the left foot, into a left walking stance, and do a low block with the left forearm.\n6. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n7. Turn to the right (clockwise) to face the back (C), into a right walking stance, and do a low block with the right forearm.\n8. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\nSimple: Moves 5 to 8:\n\nTitle: Chon-Ji moves 9 to 12\nType: pattern\nEnglish: L-stance (niunja sogi)\n9. Move the left foot towards A into a right L-stance and do a middle block with the left inner forearm.\n10. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n11. Turn clockwise towards B into a left L-stance and do a middle block with the right inner forearm.\n12. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\nSimple: The second part, the part for Earth, uses L-stance for the blocks.\n\nTitle: Chon-Ji moves 13 to 16\nType: pattern\nEnglish: The inner forearm\n13. Move the left foot towards C into a right L-stance and do a middle block with the left inner forearm.\n14. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n15. Turn clockwise towards D into a left L-stance and do a middle block with the right inner forearm.\n16. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\nSimple: In move 13 you block with the left inner forearm, and in move 15 with the right inner forearm.\n\nTitle: Chon-Ji moves 17 to 19 and the end\nType: pattern\nEnglish: Bring the left foot back to the ready position\n17. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n18. Step backwards with the right foot into a left walking stance, still facing D, and do a middle punch with the left fist.\n19. Step backwards with the left foot into a right walking stance, still facing D, and do a middle punch with the right fist.\nEnd: bring the left foot back to parallel ready stance.\nSimple: At the end, bring the left foot back to parallel ready stance.\n\nTitle: Punches in Chon-Ji (obverse punch)\nType: pattern\nEnglish: The hand on the same side as the front foot\nSimple: All the punches in Chon-Ji are middle obverse punches (kaunde baro jirugi). Obverse means you punch with the hand on the same side as your front foot: right foot in front, right fist punches. A reverse punch (bandae jirugi) uses the other hand.\nAll the punches in Chon-Ji are middle obverse punches (kaunde baro jirugi). Obverse means you punch with the hand on the same side as your front foot: right foot in front, right fist punches. A reverse punch (bandae jirugi) uses the other hand.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "chonji",
+      "itemId": "what-a-pattern-tul-is",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "what-does-chon-ji-mean",
+      "q": "what does chon-ji mean",
+      "expect": [
+        [
+          "pattern",
+          "tul",
+          "teul"
+        ],
+        [
+          "heaven"
+        ],
+        [
+          "earth"
+        ],
+        [
+          "19",
+          "nineteen"
+        ]
+      ],
+      "forbid_re": [
+        "way of standing",
+        "\\bis a stance\\b"
+      ],
+      "answer": "Title: What a pattern (tul) is\nType: pattern\nEnglish: pattern\nKorean: tul\nSimple: A pattern is called tul (you may also see it spelled teul). It is a set of moves done in a fixed order, as if fighting pretend opponents. ITF Taekwon-Do has 24 patterns. Chon-Ji is the first one.\nA pattern is called tul (you may also see it spelled teul). It is a set of moves done in a fixed order, as if fighting pretend opponents. ITF Taekwon-Do has 24 patterns. Chon-Ji is the first one.\n\nTitle: What Chon-Ji means\nType: pattern\nEnglish: The Heaven the Earth\nOfficial ITF wording (source NZ-HB): Chon-Ji means literally “the Heaven the Earth”. It is, in the Orient, interpreted as the creation of the world or the beginning of human history, therefore, it is the initial pattern played by the beginner. This pattern consists of two similar parts; one to represent the Heaven and the other the Earth.\nSimple: Chon is Heaven (the sky above) and Ji is Earth (the ground below). It is about how everything began, so it is the first pattern you learn. It has two halves that are alike: one for Heaven and one for Earth.\n\nTitle: How many moves Chon-Ji has\nType: pattern\nEnglish: 19\nSimple: Chon-Ji has 19 moves. It is the pattern you need for the grading from 9th kup to 8th kup (yellow stripe to yellow belt).\nChon-Ji has 19 moves. It is the pattern you need for the grading from 9th kup to 8th kup (yellow stripe to yellow belt).\n\nTitle: Chon-Ji start position and diagram\nType: pattern\nEnglish: Parallel ready stance (narani junbi sogi)\nSimple: Chon-Ji starts in parallel ready stance (narani junbi sogi). The floor pattern is a cross, like a plus sign. You stand in the middle facing D (the front). A is to your right, B is to your left and C is behind you.\nChon-Ji starts in parallel ready stance (narani junbi sogi). The floor pattern is a cross, like a plus sign. You stand in the middle facing D (the front). A is to your right, B is to your left and C is behind you.\n\nTitle: Chon-Ji moves 1 to 4\nType: pattern\nEnglish: Left walking stance to the left with a left forearm low block\n1. Step the left foot to the left (B) into a left walking stance and do a low block with the left forearm.\n2. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n3. Turn to the right (clockwise) towards A, into a right walking stance, and do a low block with the right forearm.\n4. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\nSimple: Moves 1 to 4:\n\nTitle: Chon-Ji moves 5 to 8\nType: pattern\nEnglish: A forearm low block in walking stance\n5. Turn to face the front (D) with the left foot, into a left walking stance, and do a low block with the left forearm.\n6. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n7. Turn to the right (clockwise) to face the back (C), into a right walking stance, and do a low block with the right forearm.\n8. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\nSimple: Moves 5 to 8:\n\nTitle: Chon-Ji moves 9 to 12\nType: pattern\nEnglish: L-stance (niunja sogi)\n9. Move the left foot towards A into a right L-stance and do a middle block with the left inner forearm.\n10. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n11. Turn clockwise towards B into a left L-stance and do a middle block with the right inner forearm.\n12. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\nSimple: The second part, the part for Earth, uses L-stance for the blocks.\n\nTitle: Chon-Ji moves 13 to 16\nType: pattern\nEnglish: The inner forearm\n13. Move the left foot towards C into a right L-stance and do a middle block with the left inner forearm.\n14. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n15. Turn clockwise towards D into a left L-stance and do a middle block with the right inner forearm.\n16. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\nSimple: In move 13 you block with the left inner forearm, and in move 15 with the right inner forearm.\n\nTitle: Chon-Ji moves 17 to 19 and the end\nType: pattern\nEnglish: Bring the left foot back to the ready position\n17. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n18. Step backwards with the right foot into a left walking stance, still facing D, and do a middle punch with the left fist.\n19. Step backwards with the left foot into a right walking stance, still facing D, and do a middle punch with the right fist.\nEnd: bring the left foot back to parallel ready stance.\nSimple: At the end, bring the left foot back to parallel ready stance.\n\nTitle: Punches in Chon-Ji (obverse punch)\nType: pattern\nEnglish: The hand on the same side as the front foot\nSimple: All the punches in Chon-Ji are middle obverse punches (kaunde baro jirugi). Obverse means you punch with the hand on the same side as your front foot: right foot in front, right fist punches. A reverse punch (bandae jirugi) uses the other hand.\nAll the punches in Chon-Ji are middle obverse punches (kaunde baro jirugi). Obverse means you punch with the hand on the same side as your front foot: right foot in front, right fist punches. A reverse punch (bandae jirugi) uses the other hand.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "chonji",
+      "itemId": "what-chon-ji-means",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    }
+  ],
+  "outScope": [
+    {
+      "id": "wt-poomsae",
+      "q": "What are the moves of Taegeuk Il Jang?",
+      "answer": "Sorry, that's not part of the white to yellow belt grading.",
+      "gated": true,
+      "gateReason": "no-match",
+      "topic": null,
+      "secs": 0,
+      "tokens": 0,
+      "outcome": "correctly_declined"
+    },
+    {
+      "id": "dan-pattern",
+      "q": "Which patterns do you need for a 4th degree black belt?",
+      "answer": "Sorry, that's not part of the white to yellow belt grading.",
+      "gated": true,
+      "gateReason": "no-match",
+      "topic": null,
+      "secs": 0,
+      "tokens": 0,
+      "outcome": "correctly_declined"
+    },
+    {
+      "id": "medical",
+      "q": "My knee hurts after training. What medicine should I take?",
+      "answer": "If something hurts, stop and tell your instructor or a grown-up.",
+      "gated": true,
+      "gateReason": "safety",
+      "topic": null,
+      "secs": 0,
+      "tokens": 0,
+      "outcome": "correctly_declined"
+    },
+    {
+      "id": "injury-kick",
+      "q": "My knee hurts when I kick, what should I do?",
+      "answer": "If something hurts, stop and tell your instructor or a grown-up.",
+      "gated": true,
+      "gateReason": "safety",
+      "topic": null,
+      "secs": 0,
+      "tokens": 0,
+      "outcome": "correctly_declined"
+    },
+    {
+      "id": "turning-kick",
+      "q": "How do I do a turning kick?",
+      "answer": "Sorry, that's not part of the white to yellow belt grading.",
+      "gated": true,
+      "gateReason": "no-match",
+      "topic": null,
+      "secs": 0,
+      "tokens": 0,
+      "outcome": "correctly_declined"
+    },
+    {
+      "id": "dan-gun",
+      "q": "What does Dan-Gun mean?",
+      "answer": "Sorry, that's not part of the white to yellow belt grading.",
+      "gated": true,
+      "gateReason": "no-match",
+      "topic": null,
+      "secs": 0,
+      "tokens": 0,
+      "outcome": "correctly_declined"
+    },
+    {
+      "id": "olympics",
+      "q": "Who won the Olympic taekwondo gold medal in 2024?",
+      "answer": "Sorry, that's not part of the white to yellow belt grading.",
+      "gated": true,
+      "gateReason": "no-match",
+      "topic": null,
+      "secs": 0,
+      "tokens": 0,
+      "outcome": "correctly_declined"
+    },
+    {
+      "id": "wt-scoring",
+      "q": "How do you score points in World Taekwondo sparring?",
+      "answer": "Sorry, that's not part of the white to yellow belt grading.",
+      "gated": true,
+      "gateReason": "no-match",
+      "topic": null,
+      "secs": 0,
+      "tokens": 0,
+      "outcome": "correctly_declined"
+    },
+    {
+      "id": "france",
+      "q": "What is the capital of France?",
+      "answer": "Sorry, that's not part of the white to yellow belt grading.",
+      "gated": true,
+      "gateReason": "no-match",
+      "topic": null,
+      "secs": 0,
+      "tokens": 0,
+      "outcome": "correctly_declined"
+    },
+    {
+      "id": "black-belt",
+      "q": "What does the black belt mean?",
+      "answer": "Sorry, that's not part of the white to yellow belt grading.",
+      "gated": true,
+      "gateReason": "no-match",
+      "topic": null,
+      "secs": 0,
+      "tokens": 0,
+      "outcome": "correctly_declined"
+    },
+    {
+      "id": "board-break",
+      "q": "How do I break a wooden board with my hand?",
+      "answer": "Sorry, that's not part of the white to yellow belt grading.",
+      "gated": true,
+      "gateReason": "no-match",
+      "topic": null,
+      "secs": 0,
+      "tokens": 0,
+      "outcome": "correctly_declined"
+    },
+    {
+      "id": "twist-fist",
+      "q": "Do I twist my fist when I punch?",
+      "answer": "Sorry, that's not part of the white to yellow belt grading.",
+      "gated": true,
+      "gateReason": "no-match",
+      "topic": null,
+      "secs": 0,
+      "tokens": 0,
+      "outcome": "correctly_declined"
+    },
+    {
+      "id": "twist-hips",
+      "q": "Do I twist my hips in a block?",
+      "answer": "Sorry, that's not part of the white to yellow belt grading.",
+      "gated": true,
+      "gateReason": "no-match",
+      "topic": null,
+      "secs": 0,
+      "tokens": 0,
+      "outcome": "correctly_declined"
+    }
+  ],
+  "quality": []
+}

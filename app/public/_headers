@@ -1,0 +1,33 @@
+# Cloudflare Pages headers for the static PWA build.
+# Hashed Vite assets can be cached forever; the shell and SW must revalidate.
+# COOP/COEP credentialless: SharedArrayBuffer for ORT threads; cross-origin
+# model (Hugging Face) and ORT wasm (jsDelivr) still load (jsDelivr sends CORP).
+#
+# Do NOT set Content-Encoding here for pre-gzipped bodies. Pages ignores that
+# header from _headers and would serve gzip bytes as the raw file (breaks WASM).
+
+/*
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Embedder-Policy: credentialless
+
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/ort/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/icons/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/index.html
+  Cache-Control: no-cache
+
+/
+  Cache-Control: no-cache
+
+/sw.js
+  Cache-Control: no-cache
+
+/manifest.webmanifest
+  Content-Type: application/manifest+json
+  Cache-Control: no-cache
