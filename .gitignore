@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.cache/
+*.onnx
+*.onnx_data
+.env*
+screenshots/raw/
+*.log
+PLAN.md
+*.log.txt

@@ -1,0 +1,30 @@
+{
+  "name": "grading-buddy-lfm3-demo",
+  "version": "1.0.0",
+  "description": "Offline ITF Taekwon-Do study buddy: LFM3-1.7B in the browser for white to yellow belt grading",
+  "scripts": {
+    "test": "vitest run",
+    "eval": "node eval/run.ts",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc -p .",
+    "eval:match": "node eval/run.ts --match-only"
+  },
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "@huggingface/transformers": "4.3.2"
+  },
+  "devDependencies": {
+    "@types/node": "26.6.6",
+    "@vitejs/plugin-basic-ssl": "2.3.0",
+    "typescript": "7.0.2",
+    "vite": "8.3.7",
+    "vitest": "5.1.0"
+  },
+  "engines": {
+    "node": ">=22.18"
+  },
+  "private": true
+}

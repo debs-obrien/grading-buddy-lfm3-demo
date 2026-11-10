@@ -1,0 +1,39 @@
+Grading Buddy
+Copyright (c) 2026 Debbie O'Brien
+
+1. Code
+   The source code in this repository is licensed under the MIT License (see LICENSE).
+
+2. Notes (data/belts/white-yellow/notes.md and content.json)
+   The study notes in data/belts/white-yellow/notes.md / content.json are licensed under the Creative Commons
+   Attribution-ShareAlike 4.0 International licence (CC BY-SA 4.0):
+   https://creativecommons.org/licenses/by-sa/4.0/
+
+   The Chon-Ji move list is adapted from the Wikipedia article "Chon-Ji (teul)"
+   (https://en.wikipedia.org/wiki/Chon-Ji_(teul)) by Wikipedia contributors,
+   licensed under CC BY-SA 4.0. Changes: reworded and shortened for young
+   children, grouped into sets of moves, and the ending changed to "left foot"
+   to match the ITF's own description. Any adaptation of data/belts/white-yellow/notes.md must be
+   shared under the same licence.
+
+   The official ITF meanings and fixed formulas (the Chon-Ji meaning, the white
+   and yellow belt meanings, the list of tenets and the student oath) are short
+   factual quotations, reproduced word for word and marked "Official ITF
+   wording" in the notes. Sources: ITF New Zealand Techniques Handbook (2017)
+   and the ITF Official Protocol (itftkd.sport). These quotations remain the
+   wording of their sources. Other sources (tkddigitallibrary.co.nz,
+   itf-administration.com, itf.fi, Gen. Choi Hong Hi's Encyclopedia) were used
+   to check facts. See data/belts/white-yellow/SOURCES.md.
+
+3. Model
+   The app downloads the LFM3-1.7B model (ONNX export
+   onnx-community/LFM3-1.7B-ONNX, based on LiquidAI LFM3-1.7B) at runtime from
+   Hugging Face. The model weights are NOT included in this repository.
+   LFM3 models are made available by Liquid AI under the LFM Open License v1.0:
+   https://docs.liquid.ai/lfm/help/model-license
+   Your use of the model is subject to that licence.
+
+4. Third-party libraries
+   Transformers.js (@huggingface/transformers, Apache-2.0) and ONNX Runtime Web
+   (onnxruntime-web, MIT). The ONNX Runtime WASM files are copied into the build
+   output unchanged.

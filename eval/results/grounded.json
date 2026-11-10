@@ -1,0 +1,1198 @@
+{
+  "ranAt": "2026-11-10T19:46:57.183Z",
+  "summary": {
+    "model": "onnx-community/LFM3-1.7B-ONNX",
+    "dtype": "q4",
+    "device": "cpu (onnxruntime-node)",
+    "mode": "grounded",
+    "machine": "Intel(R) Xeon(R) Processor x4, 17 GB RAM, Node v22.23.4",
+    "loadSeconds": 3.091,
+    "in_scope": {
+      "total": 38,
+      "correct": 38,
+      "wrong": 0,
+      "wrongly_declined": 0
+    },
+    "out_of_scope": {
+      "total": 13,
+      "correctly_declined": 13,
+      "wrongly_answered": 0
+    },
+    "quality": {
+      "total": 4,
+      "pass": 2
+    },
+    "tokens_per_second": 6.04
+  },
+  "inScope": [
+    {
+      "id": "cj-moves",
+      "q": "How many moves are in Chon-Ji?",
+      "expect": [
+        [
+          "19",
+          "nineteen"
+        ]
+      ],
+      "forbid_re": [
+        "are listed",
+        "total count is given",
+        "moves 1 to 4 and"
+      ],
+      "answer": "Chon-Ji has 19 moves. It is the pattern you need for the grading from 9th kup to 8th kup (yellow stripe to yellow belt). Chon-Ji has 19 moves. It is the pattern you need for the grading from 9th kup to 8th kup (yellow stripe to yellow belt).",
+      "gated": false,
+      "gateReason": null,
+      "topic": "chonji",
+      "itemId": "how-many-moves-chon-ji-has",
+      "checkFailed": false,
+      "secs": 16.134,
+      "tokens": 70,
+      "outcome": "correct"
+    },
+    {
+      "id": "cj-meaning",
+      "q": "What does Chon-Ji mean?",
+      "expect": [
+        [
+          "heaven"
+        ],
+        [
+          "earth"
+        ]
+      ],
+      "answer": "Chon-Ji means “the Heaven the Earth.” It is the first pattern you learn, about how everything began, and it has two halves that are alike: one for Heaven and one for Earth. Chon-Ji starts in parallel ready stance. The floor pattern is a cross, like a plus sign. You stand in the middle facing D (the front). A is to your right, B is to your left and C is behind you",
+      "gated": false,
+      "gateReason": null,
+      "topic": "chonji",
+      "itemId": "what-chon-ji-means",
+      "checkFailed": false,
+      "secs": 19.43,
+      "tokens": 106,
+      "outcome": "correct"
+    },
+    {
+      "id": "charyot",
+      "q": "What does charyot mean?",
+      "expect": [
+        [
+          "attention"
+        ]
+      ],
+      "answer": "Charyot means attention. When you hear charyot, you stand up straight in attention stance, quiet and still, ready to listen. Charyot means attention. When you hear charyot, you stand up straight in attention stance, quiet and still, ready to listen.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "commands",
+      "itemId": "charyot-attention",
+      "checkFailed": false,
+      "secs": 11.056,
+      "tokens": 58,
+      "outcome": "correct"
+    },
+    {
+      "id": "kyong-ye",
+      "q": "What does kyong ye mean?",
+      "expect": [
+        [
+          "bow"
+        ]
+      ],
+      "answer": "Kyong ye means bow. We bow to show respect, for example to the instructor, to a partner, and when we come into or leave the training hall",
+      "gated": false,
+      "gateReason": null,
+      "topic": "commands",
+      "itemId": "kyong-ye-bow",
+      "checkFailed": false,
+      "secs": 10.387,
+      "tokens": 48,
+      "outcome": "correct"
+    },
+    {
+      "id": "junbi",
+      "q": "What does junbi mean?",
+      "expect": [
+        [
+          "ready"
+        ]
+      ],
+      "answer": "Junbi means ready. When you hear junbi, you get into your ready stance and wait for the next command. Junbi means ready. When you hear junbi, you get into your ready stance and wait for the next command.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "commands",
+      "itemId": "junbi-ready",
+      "checkFailed": false,
+      "secs": 10.283,
+      "tokens": 48,
+      "outcome": "correct"
+    },
+    {
+      "id": "si-jak",
+      "q": "What does si jak mean?",
+      "expect": [
+        [
+          "begin",
+          "start"
+        ]
+      ],
+      "answer": "Si jak means begin or start. It is the command to start the exercise or the pattern. Si jak means begin, or start. It is the command to start the exercise or the pattern.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "commands",
+      "itemId": "si-jak-begin",
+      "checkFailed": false,
+      "secs": 9.338,
+      "tokens": 39,
+      "outcome": "correct"
+    },
+    {
+      "id": "baro",
+      "q": "What does baro mean when the instructor says it?",
+      "expect": [
+        [
+          "return",
+          "back"
+        ]
+      ],
+      "answer": "Baro means return. When you hear baro at the end of an exercise, you go back to your ready position. Baro means return. When you hear baro at the end of an exercise, you go back to your ready position.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "commands",
+      "itemId": "baro-return",
+      "checkFailed": false,
+      "secs": 10.117,
+      "tokens": 50,
+      "outcome": "correct"
+    },
+    {
+      "id": "founder",
+      "q": "Who is the founder of Taekwon-Do?",
+      "expect": [
+        [
+          "choi"
+        ]
+      ],
+      "answer": "General Choi Hong Hi was the founder of Taekwon-Do. He was a general in the Korean army, born in 1918 and died in 2002. General Choi Hong Hi. He was a general in the Korean army. He was born in 1918 and died in 2002.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "history",
+      "itemId": "who-started-taekwon-do",
+      "checkFailed": false,
+      "secs": 7.787,
+      "tokens": 63,
+      "outcome": "correct"
+    },
+    {
+      "id": "tenets",
+      "q": "What are the five tenets of Taekwon-Do?",
+      "expect": [
+        [
+          "courtesy"
+        ],
+        [
+          "integrity"
+        ],
+        [
+          "perseverance"
+        ],
+        [
+          "self-control",
+          "self control"
+        ],
+        [
+          "indomitable"
+        ]
+      ],
+      "answer": "Courtesy, Integrity, Perseverance, Self-Control and Indomitable Spirit. These are the five big ideas every Taekwon-Do student tries to live by. Courtesy is being polite and kind. Integrity is being honest and doing the right thing. Perseverance is keeping trying even when it is hard. Self-Control is staying calm and not losing your temper. Indomitable Spirit is being brave and not giving up even when you feel scared or tired.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "tenets",
+      "itemId": "the-five-tenets",
+      "checkFailed": false,
+      "secs": 11.524,
+      "tokens": 100,
+      "outcome": "correct"
+    },
+    {
+      "id": "white-belt",
+      "q": "What does the white belt mean?",
+      "expect": [
+        [
+          "innocence",
+          "innocent",
+          "beginner",
+          "new student"
+        ]
+      ],
+      "answer": "White belt means innocence, as that of a beginning student who has no previous knowledge of Taekwon-Do. Everyone starts with a white belt, and you are a beginner just starting to learn",
+      "gated": false,
+      "gateReason": null,
+      "topic": "belts",
+      "itemId": "what-the-white-belt-means",
+      "checkFailed": false,
+      "secs": 12.23,
+      "tokens": 140,
+      "outcome": "correct"
+    },
+    {
+      "id": "yellow-belt",
+      "q": "What does the yellow belt mean?",
+      "expect": [
+        [
+          "earth"
+        ],
+        [
+          "plant sprouts",
+          "sprouts and takes root",
+          "takes root"
+        ]
+      ],
+      "forbid_re": [
+        "In simple words:",
+        "basic rules"
+      ],
+      "answer": "Yellow signifies the earth from which a plant sprouts and takes root as the Taekwon-Do foundation is being laid. Simple: yellow is the colour of the earth. Like a seed putting down roots before it grows tall, at yellow belt you practise the basics until they are strong",
+      "gated": false,
+      "gateReason": null,
+      "topic": "belts",
+      "itemId": "what-the-yellow-belt-means",
+      "checkFailed": false,
+      "secs": 7.79,
+      "tokens": 76,
+      "outcome": "correct"
+    },
+    {
+      "id": "three",
+      "q": "How do you say three in Korean?",
+      "expect": [
+        [
+          "set"
+        ]
+      ],
+      "forbid_re": [
+        "sometimes\\s+[\"']?(dool|dul)",
+        "\\bset\\b[^.]{0,50}\\b(dool|dul)\\b",
+        "\\bor\\s+[\"']?(dool|dul)\\b",
+        "[\\uAC00-\\uD7A3]"
+      ],
+      "answer": "Three in Korean is set. The facts say: 3 set. So you say \"3 set\" or \"3 set\" (or \"set\" spelled as \"set\"). Direct answer: 3 set. 3 set.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "counting",
+      "itemId": "counting-1-to-10-in-korean",
+      "checkFailed": false,
+      "secs": 4.899,
+      "tokens": 47,
+      "outcome": "correct"
+    },
+    {
+      "id": "eight",
+      "q": "What is eight in Korean?",
+      "expect": [
+        [
+          "yodul"
+        ]
+      ],
+      "answer": "Yodul. Eight in Korean is yodul.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "counting",
+      "itemId": "counting-1-to-10-in-korean",
+      "checkFailed": false,
+      "secs": 2.643,
+      "tokens": 12,
+      "outcome": "correct"
+    },
+    {
+      "id": "ten",
+      "q": "What is ten in Korean?",
+      "expect": [
+        [
+          "yol"
+        ]
+      ],
+      "forbid_re": [
+        "[\\uAC00-\\uD7A3]",
+        "yol\\.\\s+\""
+      ],
+      "answer": "Ten in Korean is yol. The facts say: 10 yol. So the answer is yol.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "counting",
+      "itemId": "counting-1-to-10-in-korean",
+      "checkFailed": false,
+      "secs": 3.069,
+      "tokens": 20,
+      "outcome": "correct"
+    },
+    {
+      "id": "count-to-10",
+      "q": "How do I count to 10 in Korean?",
+      "expect": [
+        [
+          "hana"
+        ],
+        [
+          "dul"
+        ],
+        [
+          "set"
+        ],
+        [
+          "net"
+        ],
+        [
+          "dasot"
+        ],
+        [
+          "yosot"
+        ],
+        [
+          "ilgop"
+        ],
+        [
+          "yodul"
+        ],
+        [
+          "ahop"
+        ],
+        [
+          "yol"
+        ]
+      ],
+      "order": true,
+      "answer": "1 hana, 2 dul, 3 set, 4 net, 5 dasot, 6 yosot, 7 ilgop, 8 yodul, 9 ahop, 10 yol. To count to 10 in Korean, say each number followed by its Korean word. For example, \"one\" is \"hana\"",
+      "gated": false,
+      "gateReason": null,
+      "topic": "counting",
+      "itemId": "counting-1-to-10-in-korean",
+      "checkFailed": false,
+      "secs": 7.438,
+      "tokens": 90,
+      "outcome": "correct"
+    },
+    {
+      "id": "count-to-ten",
+      "q": "count to ten in korean",
+      "expect": [
+        [
+          "hana"
+        ],
+        [
+          "dul"
+        ],
+        [
+          "set"
+        ],
+        [
+          "net"
+        ],
+        [
+          "dasot"
+        ],
+        [
+          "yosot"
+        ],
+        [
+          "ilgop"
+        ],
+        [
+          "yodul"
+        ],
+        [
+          "ahop"
+        ],
+        [
+          "yol"
+        ]
+      ],
+      "order": true,
+      "answer": "1 hana, 2 dul, 3 set, 4 net, 5 dasot, 6 yosot, 7 ilgop, 8 yodul, 9 ahop, 10 yol. That's how you say each number from one to ten in Korean.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "counting",
+      "itemId": "counting-1-to-10-in-korean",
+      "checkFailed": false,
+      "secs": 5.613,
+      "tokens": 61,
+      "outcome": "correct"
+    },
+    {
+      "id": "oath-1",
+      "q": "What is the first line of the student oath?",
+      "expect": [
+        [
+          "observe"
+        ],
+        [
+          "tenets"
+        ]
+      ],
+      "forbid_re": [
+        "[\"“]I shall observe the Tenets of Taekwon-Do\\.\\s+[^\"”]+[\"”]",
+        "Tenets of Taekwon-Do\\.\\s+That is the exact"
+      ],
+      "answer": "I shall observe the Tenets of Taekwon-Do",
+      "gated": false,
+      "gateReason": null,
+      "topic": "oath",
+      "itemId": "the-student-oath",
+      "checkFailed": false,
+      "secs": 4.703,
+      "tokens": 27,
+      "outcome": "correct"
+    },
+    {
+      "id": "cj-start",
+      "q": "Which stance does Chon-Ji start in?",
+      "expect": [
+        [
+          "parallel ready",
+          "narani junbi"
+        ]
+      ],
+      "forbid_re": [
+        "feet together"
+      ],
+      "answer": "Chon-Ji starts in parallel ready stance (narani junbi sogi). The floor pattern is a cross, like a plus sign. You stand in the middle facing D (the front). A is to your right, B is to your left and C is behind you.\n\nChon-Ji starts in parallel ready stance (narani junbi sogi). The floor pattern is a cross, like a plus sign. You stand in the middle facing D (the front). A is to your right, B is to your left and C is behind you.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "chonji",
+      "itemId": "chon-ji-start-position-and-diagram",
+      "checkFailed": true,
+      "secs": 20.264,
+      "tokens": 114,
+      "outcome": "correct"
+    },
+    {
+      "id": "cj-end",
+      "q": "Which foot goes back at the end of Chon-Ji?",
+      "expect": [
+        [
+          "left"
+        ]
+      ],
+      "answer": "At the end of Chon-Ji, the left foot goes back to the parallel ready stance. Simple: The last step says to bring the left foot back to parallel ready stance.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "chonji",
+      "itemId": "chon-ji-moves-17-to-19-and-the-end",
+      "checkFailed": false,
+      "secs": 12.729,
+      "tokens": 37,
+      "outcome": "correct"
+    },
+    {
+      "id": "cj-first",
+      "q": "What is the first move of Chon-Ji?",
+      "expect": [
+        [
+          "low block",
+          "najunde"
+        ]
+      ],
+      "answer": "Step the left foot to the left (B) into a left walking stance and do a low block with the left forearm. This is move 1 of Chon-Ji.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "chonji",
+      "itemId": "chon-ji-moves-1-to-4",
+      "checkFailed": false,
+      "secs": 12.521,
+      "tokens": 38,
+      "outcome": "correct"
+    },
+    {
+      "id": "cj-lstance",
+      "q": "Which stance do you use for the blocks in Chon-Ji moves 9 to 16?",
+      "expect": [
+        [
+          "l-stance",
+          "l stance",
+          "niunja"
+        ]
+      ],
+      "forbid_re": [
+        "moves?\\s*9\\s*to\\s*16[^.!?]{0,160}\\bleft\\s+l",
+        "moves?\\s*9\\s*to\\s*16[^.!?]{0,160}\\bright\\s+l",
+        "use the\\s+\\*{0,2}left\\s+l",
+        "use the\\s+\\*{0,2}right\\s+l"
+      ],
+      "answer": "L-stance is niunja sogi. Your feet make a shape like the letter L. Most of your weight is on your back leg and both knees are bent. If your right leg is at the back it is called a right L-stance. Chon-Ji uses L-stance for the inner forearm blocks.\n\nL-stance is niunja sogi. Your feet make a shape like the letter L. Most of your weight is on your back leg and both knees are bent. If your right leg is at the back it is called a right L-stance. Chon-Ji uses L-stance for the inner forearm blocks.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "stances",
+      "itemId": "l-stance-niunja-sogi",
+      "checkFailed": true,
+      "secs": 13.316,
+      "tokens": 92,
+      "outcome": "correct"
+    },
+    {
+      "id": "saju-jirugi",
+      "q": "What does Saju Jirugi mean?",
+      "expect": [
+        [
+          "four"
+        ],
+        [
+          "punch"
+        ]
+      ],
+      "answer": "Saju means four directions and jirugi means punch, so Saju Jirugi is the four-direction punch. It is a practice exercise, not a pattern. You start in parallel ready stance, punch in walking stance, then turn with a low block and punch again, until you have faced all four directions. You do it once starting with the right foot and once with the left.\n\nSaju means four directions and jirugi means punch, so Saju Jirugi is the four-direction punch. It is a practice exercise, not a pattern. You start in parallel ready stance, punch in walking stance, then turn with a low block and punch again, until you have faced all four directions. You do it once starting with the right foot and once with the left.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "saju",
+      "itemId": "saju-jirugi-four-direction-punch",
+      "checkFailed": true,
+      "secs": 8.268,
+      "tokens": 76,
+      "outcome": "correct"
+    },
+    {
+      "id": "saju-makgi",
+      "q": "What is Saju Makgi?",
+      "expect": [
+        [
+          "four"
+        ],
+        [
+          "block"
+        ]
+      ],
+      "answer": "Saju Makgi is the four-direction block. It is also a practice exercise. In walking stance you do a knife-hand low block, then step forward with an inner forearm middle block, and you turn so you block in all four directions. You do it once on each side.\n\nSaju Makgi is the four-direction block. It is also a practice exercise. In walking stance you do a knife-hand low block, then step forward with an inner forearm middle block, and you turn so you block in all four directions. You do it once on each side.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "saju",
+      "itemId": "saju-makgi-four-direction-block",
+      "checkFailed": true,
+      "secs": 11.343,
+      "tokens": 117,
+      "outcome": "correct"
+    },
+    {
+      "id": "walking-stance",
+      "q": "What is the Korean name for walking stance?",
+      "expect": [
+        [
+          "gunnun"
+        ]
+      ],
+      "answer": "Gunnun sogi. The Korean name for walking stance is gunnun sogi. One foot is in front, like taking a big step. Bend your front knee, keep your back leg straight, and keep your weight even on both feet. If your left foot is in front it is a left walking stance.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "stances",
+      "itemId": "walking-stance-gunnun-sogi",
+      "checkFailed": false,
+      "secs": 10.927,
+      "tokens": 65,
+      "outcome": "correct"
+    },
+    {
+      "id": "snap-kick",
+      "q": "What part of the foot do you use for a front snap kick?",
+      "expect": [
+        [
+          "ball"
+        ]
+      ],
+      "answer": "A front snap kick is apcha busigi. Lift your knee, snap your foot out and pull it straight back. You hit with the ball of your foot (ap kumchi), so pull your toes back.\n\nA front snap kick is apcha busigi. Lift your knee, snap your foot out and pull it straight back. You hit with the ball of your foot (ap kumchi), so pull your toes back.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "techniques",
+      "itemId": "front-snap-kick-apcha-busigi",
+      "checkFailed": true,
+      "secs": 12.996,
+      "tokens": 58,
+      "outcome": "correct"
+    },
+    {
+      "id": "belt-after-white",
+      "q": "What belt comes after white?",
+      "expect": [
+        [
+          "stripe",
+          "tag"
+        ],
+        [
+          "9th",
+          "yellow stripe"
+        ]
+      ],
+      "forbid_re": [
+        "\\byellow belt or\\b",
+        "after white[^.!?]{0,50}\\byellow belt\\b(?! with)"
+      ],
+      "answer": "After white belt comes a white belt with a yellow stripe (9th kup), then 8th kup is yellow belt. So the next belt after white is white with a yellow stripe. White belt with a yellow stripe (9th kup) comes after white belt. Then 8th kup is yellow belt. So the belt that comes after white is the one with a yellow stripe, called 9th kup.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "belts",
+      "itemId": "belt-order-for-the-first-gradings",
+      "checkFailed": false,
+      "secs": 8.763,
+      "tokens": 84,
+      "outcome": "correct"
+    },
+    {
+      "id": "toes-back",
+      "q": "Why do I pull my toes back?",
+      "expect": [
+        [
+          "ball of the foot",
+          "ball of your foot"
+        ]
+      ],
+      "forbid_re": [
+        "partner",
+        "\\bknee\\b",
+        "roll(?:ing)?",
+        "pads? on the side"
+      ],
+      "answer": "Pulling your toes back helps you hit the foot with the ball of your foot and keeps the foot straight when you kick. This is part of the front snap kick.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "techniques",
+      "itemId": "front-snap-kick-apcha-busigi",
+      "checkFailed": false,
+      "secs": 10.201,
+      "tokens": 35,
+      "outcome": "correct"
+    },
+    {
+      "id": "dobok",
+      "q": "What is a dobok?",
+      "expect": [
+        [
+          "uniform"
+        ]
+      ],
+      "answer": "The dobok is the white training uniform we wear. The dojang is the training hall where we practice",
+      "gated": false,
+      "gateReason": null,
+      "topic": "commands",
+      "itemId": "dojang-and-dobok",
+      "checkFailed": false,
+      "secs": 12.291,
+      "tokens": 37,
+      "outcome": "correct"
+    },
+    {
+      "id": "kihap",
+      "q": "What does kihap mean?",
+      "expect": [
+        [
+          "yell",
+          "shout"
+        ]
+      ],
+      "answer": "Kihap means a yell or shout. It is a short, loud sound from your belly that helps you breathe out and put power into a move. Charyot means attention. When you hear charyot, you stand up straight in attention stance, quiet and still, ready to listen.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "commands",
+      "itemId": "kihap-yell",
+      "checkFailed": false,
+      "secs": 13.774,
+      "tokens": 60,
+      "outcome": "correct"
+    },
+    {
+      "id": "makgi",
+      "q": "What is the Korean word for block?",
+      "expect": [
+        [
+          "makgi"
+        ]
+      ],
+      "answer": "Makgi means block. (From the first line: \"English: block Korean: makgi\") The direct answer is: makgi.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "techniques",
+      "itemId": "punch-block-and-kick-words",
+      "checkFailed": false,
+      "secs": 8.709,
+      "tokens": 29,
+      "outcome": "correct"
+    },
+    {
+      "id": "itf",
+      "q": "What does ITF stand for?",
+      "expect": [
+        [
+          "international"
+        ],
+        [
+          "federation"
+        ]
+      ],
+      "answer": "International Taekwon-Do Federation ITF stands for International Taekwon-Do Federation. General Choi started it in Seoul, Korea, on 22 March 1966. Our club does ITF Taekwon-Do. World Taekwondo (WT) is a different style with different patterns, so this app only covers ITF.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "history",
+      "itemId": "what-itf-means",
+      "checkFailed": false,
+      "secs": 8.64,
+      "tokens": 71,
+      "outcome": "correct"
+    },
+    {
+      "id": "named",
+      "q": "When was Taekwon-Do given its name?",
+      "expect": [
+        [
+          "1955"
+        ]
+      ],
+      "answer": "General Choi gave Taekwon-Do its name on 11 April 1955. That day is called Taekwon-Do's name day.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "history",
+      "itemId": "when-taekwon-do-got-its-name",
+      "checkFailed": false,
+      "secs": 5.714,
+      "tokens": 31,
+      "outcome": "correct"
+    },
+    {
+      "id": "kaunde",
+      "q": "What does kaunde mean?",
+      "expect": [
+        [
+          "middle"
+        ]
+      ],
+      "answer": "Kaunde means middle, about shoulder level. Moves aim at three heights: high is nopunde (about eye level), middle is kaunde (about shoulder level), low is najunde (about belt level and below).",
+      "gated": false,
+      "gateReason": null,
+      "topic": "commands",
+      "itemId": "high-middle-and-low",
+      "checkFailed": false,
+      "secs": 9.935,
+      "tokens": 47,
+      "outcome": "correct"
+    },
+    {
+      "id": "korean-words-need",
+      "q": "what korean words do i need to know",
+      "expect": [
+        [
+          "charyot"
+        ],
+        [
+          "junbi"
+        ],
+        [
+          "makgi"
+        ],
+        [
+          "hana"
+        ]
+      ],
+      "answer": "These are the Korean words you need for white to yellow belt grading.\n\ncharyot: attention\nkyong ye: bow\njunbi: ready\nsi jak: begin or start\nbaro: return\nkihap: yell or shout\ndojang: training hall\ndobok: training uniform\nsabum nim: instructor\nkaunde: middle\nnopunde: high\nnajunde: low\nmakgi: block\njirugi: punch\nchagi: kick\ncharyot sogi: attention stance\nnarani junbi sogi: parallel ready stance\nnarani sogi: parallel stance\ngunnun sogi: walking stance\nnagagi: stepping forward\nduruogi: stepping backward\npalmok najunde makgi: forearm low block\nsonkal najunde makgi: knife-hand low block\nan palmok yop makgi: inner forearm side block\nap jirugi: front punch\napcha busigi: front snap kick\napcha olligi: front rising kick\nSaju Jirugi: four-direction punch\nSaju Makgi: four-direction block\ntul: pattern\nniunja sogi: L-stance\nannun sogi: sitting stance\ngujari dolgi: spot turning\nhana: 1\ndul: 2\nset: 3\nnet: 4\ndasot: 5\nyosot: 6\nilgop: 7\nyodul: 8\nahop: 9\nyol: 10",
+      "gated": false,
+      "gateReason": null,
+      "topic": "glossary",
+      "itemId": "glossary-korean-words",
+      "checkFailed": true,
+      "secs": 13.014,
+      "tokens": 159,
+      "outcome": "correct"
+    },
+    {
+      "id": "korean-words-counting",
+      "q": "what are the korean words for counting",
+      "expect": [
+        [
+          "hana"
+        ],
+        [
+          "dul"
+        ],
+        [
+          "set"
+        ],
+        [
+          "net"
+        ],
+        [
+          "dasot"
+        ],
+        [
+          "yosot"
+        ],
+        [
+          "ilgop"
+        ],
+        [
+          "yodul"
+        ],
+        [
+          "ahop"
+        ],
+        [
+          "yol"
+        ]
+      ],
+      "order": true,
+      "answer": "1 hana 2 dul 3 set 4 net 5 dasot 6 yosot 7 ilgop 8 yodul 9 ahop 10 yol These are the Korean words for counting from 1 to 10.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "counting",
+      "itemId": "counting-1-to-10-in-korean",
+      "checkFailed": false,
+      "secs": 4.935,
+      "tokens": 51,
+      "outcome": "correct"
+    },
+    {
+      "id": "chon-ji-explain-like-im-5",
+      "q": "explain chon ji like im 5",
+      "expect": [
+        [
+          "pattern",
+          "tul",
+          "teul"
+        ],
+        [
+          "heaven"
+        ],
+        [
+          "earth"
+        ],
+        [
+          "19",
+          "nineteen"
+        ]
+      ],
+      "forbid_re": [
+        "way of standing",
+        "\\bis a stance\\b",
+        "\\bis an stance\\b"
+      ],
+      "note": "Debbie live wrong answer on v1 called Chon-Ji a way of standing / ready stance. It is a pattern (tul).",
+      "answer": "A pattern is called tul (you may also see it spelled teul). It is a set of moves done in a fixed order, as if fighting pretend opponents. ITF Taekwon-Do has 24 patterns. Chon-Ji is the first one.\n\nA pattern is called tul (you may also see it spelled teul). It is a set of moves done in a fixed order, as if fighting pretend opponents. ITF Taekwon-Do has 24 patterns. Chon-Ji is the first one.\n\nOfficial ITF wording (NZ-HB): Chon-Ji means literally “the Heaven the Earth”. It is, in the Orient, interpreted as the creation of the world or the beginning of human history, therefore, it is the initial pattern played by the beginner. This pattern consists of two similar parts; one to represent the Heaven and the other the Earth.\n\nChon is Heaven (the sky above) and Ji is Earth (the ground below). It is about how everything began, so it is the first pattern you learn. It has two halves that are alike: one for Heaven and one for Earth.\n\nChon-Ji has 19 moves. It is the pattern you need for the grading from 9th kup to 8th kup (yellow stripe to yellow belt).\n\nChon-Ji has 19 moves. It is the pattern you need for the grading from 9th kup to 8th kup (yellow stripe to yellow belt).\n\nChon-Ji starts in parallel ready stance (narani junbi sogi). The floor pattern is a cross, like a plus sign. You stand in the middle facing D (the front). A is to your right, B is to your left and C is behind you.\n\nChon-Ji starts in parallel ready stance (narani junbi sogi). The floor pattern is a cross, like a plus sign. You stand in the middle facing D (the front). A is to your right, B is to your left and C is behind you.\n\nMoves 1 to 4:\n\n1. Step the left foot to the left (B) into a left walking stance and do a low block with the left forearm.\n2. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n3. Turn to the right (clockwise) towards A, into a right walking stance, and do a low block with the right forearm.\n4. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\n\nMoves 5 to 8:\n\n5. Turn to face the front (D) with the left foot, into a left walking stance, and do a low block with the left forearm.\n6. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n7. Turn to the right (clockwise) to face the back (C), into a right walking stance, and do a low block with the right forearm.\n8. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\n\nThe second part, the part for Earth, uses L-stance for the blocks.\n\n9. Move the left foot towards A into a right L-stance and do a middle block with the left inner forearm.\n10. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n11. Turn clockwise towards B into a left L-stance and do a middle block with the right inner forearm.\n12. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\n\nIn move 13 you block with the left inner forearm, and in move 15 with the right inner forearm.\n\n13. Move the left foot towards C into a right L-stance and do a middle block with the left inner forearm.\n14. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n15. Turn clockwise towards D into a left L-stance and do a middle block with the right inner forearm.\n16. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\n\nAt the end, bring the left foot back to parallel ready stance.\n\n17. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n18. Step backwards with the right foot into a left walking stance, still facing D, and do a middle punch with the left fist.\n19. Step backwards with the left foot into a right walking stance, still facing D, and do a middle punch with the right fist.\n\nEnd: bring the left foot back to parallel ready stance.\n\nAll the punches in Chon-Ji are middle obverse punches (kaunde baro jirugi). Obverse means you punch with the hand on the same side as your front foot: right foot in front, right fist punches. A reverse punch (bandae jirugi) uses the other hand.\n\nAll the punches in Chon-Ji are middle obverse punches (kaunde baro jirugi). Obverse means you punch with the hand on the same side as your front foot: right foot in front, right fist punches. A reverse punch (bandae jirugi) uses the other hand.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "chonji",
+      "itemId": "what-a-pattern-tul-is",
+      "checkFailed": true,
+      "secs": 19.331,
+      "tokens": 106,
+      "outcome": "correct",
+      "source": "notes"
+    },
+    {
+      "id": "what-is-chon-ji",
+      "q": "what is chon-ji",
+      "expect": [
+        [
+          "pattern",
+          "tul",
+          "teul"
+        ],
+        [
+          "heaven"
+        ],
+        [
+          "earth"
+        ],
+        [
+          "19",
+          "nineteen"
+        ]
+      ],
+      "forbid_re": [
+        "way of standing",
+        "\\bis a stance\\b"
+      ],
+      "answer": "Chon-Ji is the first pattern, called \"Heaven the Earth\" (Chon is Heaven, Ji is Earth). It has 19 moves and starts in a parallel ready stance. It is the initial pattern for beginners and goes up through the yellow belt. Chon-Ji starts with a cross-shaped floor pattern. You stand in the middle facing D (front). A is to your right, B is to your left, and C is behind you. The moves alternate between left and right walking stances and forearm low blocks and middle punches. At the end, bring the left foot back to a parallel ready stance. All punches are middle obverse punches, using the hand on the same side as the front foot.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "chonji",
+      "itemId": "what-a-pattern-tul-is",
+      "checkFailed": false,
+      "secs": 24.868,
+      "tokens": 152,
+      "outcome": "correct"
+    },
+    {
+      "id": "what-does-chon-ji-mean",
+      "q": "what does chon-ji mean",
+      "expect": [
+        [
+          "pattern",
+          "tul",
+          "teul"
+        ],
+        [
+          "heaven"
+        ],
+        [
+          "earth"
+        ],
+        [
+          "19",
+          "nineteen"
+        ]
+      ],
+      "forbid_re": [
+        "way of standing",
+        "\\bis a stance\\b"
+      ],
+      "answer": "Chon-Ji means “the Heaven the Earth.” It is the first pattern you learn, and it has two similar parts for Heaven and Earth. It starts in a parallel ready stance and goes in a fixed order, like fighting pretend opponents. It has 19 moves",
+      "gated": false,
+      "gateReason": null,
+      "topic": "chonji",
+      "itemId": "what-chon-ji-means",
+      "checkFailed": false,
+      "secs": 16.256,
+      "tokens": 70,
+      "outcome": "correct"
+    }
+  ],
+  "outScope": [
+    {
+      "id": "wt-poomsae",
+      "q": "What are the moves of Taegeuk Il Jang?",
+      "answer": "Sorry, that's not part of the white to yellow belt grading.",
+      "gated": true,
+      "gateReason": "no-match",
+      "topic": null,
+      "secs": 0,
+      "tokens": 0,
+      "outcome": "correctly_declined"
+    },
+    {
+      "id": "dan-pattern",
+      "q": "Which patterns do you need for a 4th degree black belt?",
+      "answer": "Sorry, that's not part of the white to yellow belt grading.",
+      "gated": true,
+      "gateReason": "no-match",
+      "topic": null,
+      "secs": 0,
+      "tokens": 0,
+      "outcome": "correctly_declined"
+    },
+    {
+      "id": "medical",
+      "q": "My knee hurts after training. What medicine should I take?",
+      "answer": "If something hurts, stop and tell your instructor or a grown-up.",
+      "gated": true,
+      "gateReason": "safety",
+      "topic": null,
+      "secs": 0,
+      "tokens": 0,
+      "outcome": "correctly_declined"
+    },
+    {
+      "id": "injury-kick",
+      "q": "My knee hurts when I kick, what should I do?",
+      "answer": "If something hurts, stop and tell your instructor or a grown-up.",
+      "gated": true,
+      "gateReason": "safety",
+      "topic": null,
+      "secs": 0,
+      "tokens": 0,
+      "outcome": "correctly_declined"
+    },
+    {
+      "id": "turning-kick",
+      "q": "How do I do a turning kick?",
+      "answer": "Sorry, that's not part of the white to yellow belt grading.",
+      "gated": true,
+      "gateReason": "no-match",
+      "topic": null,
+      "secs": 0,
+      "tokens": 0,
+      "outcome": "correctly_declined"
+    },
+    {
+      "id": "dan-gun",
+      "q": "What does Dan-Gun mean?",
+      "answer": "Sorry, that's not part of the white to yellow belt grading.",
+      "gated": true,
+      "gateReason": "no-match",
+      "topic": null,
+      "secs": 0,
+      "tokens": 0,
+      "outcome": "correctly_declined"
+    },
+    {
+      "id": "olympics",
+      "q": "Who won the Olympic taekwondo gold medal in 2024?",
+      "answer": "Sorry, that's not part of the white to yellow belt grading.",
+      "gated": true,
+      "gateReason": "no-match",
+      "topic": null,
+      "secs": 0,
+      "tokens": 0,
+      "outcome": "correctly_declined"
+    },
+    {
+      "id": "wt-scoring",
+      "q": "How do you score points in World Taekwondo sparring?",
+      "answer": "Sorry, that's not part of the white to yellow belt grading.",
+      "gated": true,
+      "gateReason": "no-match",
+      "topic": null,
+      "secs": 0,
+      "tokens": 0,
+      "outcome": "correctly_declined"
+    },
+    {
+      "id": "france",
+      "q": "What is the capital of France?",
+      "answer": "Sorry, that's not part of the white to yellow belt grading.",
+      "gated": true,
+      "gateReason": "no-match",
+      "topic": null,
+      "secs": 0,
+      "tokens": 0,
+      "outcome": "correctly_declined"
+    },
+    {
+      "id": "black-belt",
+      "q": "What does the black belt mean?",
+      "answer": "Sorry, that's not part of the white to yellow belt grading.",
+      "gated": true,
+      "gateReason": "no-match",
+      "topic": null,
+      "secs": 0,
+      "tokens": 0,
+      "outcome": "correctly_declined"
+    },
+    {
+      "id": "board-break",
+      "q": "How do I break a wooden board with my hand?",
+      "answer": "Sorry, that's not part of the white to yellow belt grading.",
+      "gated": true,
+      "gateReason": "no-match",
+      "topic": null,
+      "secs": 0,
+      "tokens": 0,
+      "outcome": "correctly_declined"
+    },
+    {
+      "id": "twist-fist",
+      "q": "Do I twist my fist when I punch?",
+      "answer": "Sorry, that's not part of the white to yellow belt grading.",
+      "gated": true,
+      "gateReason": "no-match",
+      "topic": null,
+      "secs": 0,
+      "tokens": 0,
+      "outcome": "correctly_declined"
+    },
+    {
+      "id": "twist-hips",
+      "q": "Do I twist my hips in a block?",
+      "answer": "Sorry, that's not part of the white to yellow belt grading.",
+      "gated": true,
+      "gateReason": "no-match",
+      "topic": null,
+      "secs": 0,
+      "tokens": 0,
+      "outcome": "correctly_declined"
+    }
+  ],
+  "quality": [
+    {
+      "id": "q-cj-moves",
+      "q": "How many moves in Chon-Ji?",
+      "expect": [
+        [
+          "19",
+          "nineteen"
+        ]
+      ],
+      "answer": "Chon-Ji has 19 moves. It is the pattern you need for the grading from 9th kup to 8th kup (yellow stripe to yellow belt)",
+      "gated": false,
+      "gateReason": null,
+      "topic": "chonji",
+      "itemId": "how-many-moves-chon-ji-has",
+      "checkFailed": false,
+      "secs": 13.863,
+      "tokens": 50,
+      "outcome": "pass",
+      "problems": []
+    },
+    {
+      "id": "q-cj-meaning",
+      "q": "What does Chon-Ji mean?",
+      "expect": [
+        [
+          "heaven"
+        ],
+        [
+          "earth"
+        ]
+      ],
+      "answer": "Chon-Ji means “the Heaven the Earth.” It is the first pattern you learn, about how everything began, and it has two halves that are alike: one for Heaven and one for Earth. Chon-Ji starts in parallel ready stance. The floor pattern is a cross, like a plus sign. You stand in the middle facing D (the front). A is to your right, B is to your left and C is behind you",
+      "gated": false,
+      "gateReason": null,
+      "topic": "chonji",
+      "itemId": "what-chon-ji-means",
+      "checkFailed": false,
+      "secs": 19.925,
+      "tokens": 106,
+      "outcome": "fail",
+      "problems": [
+        "6 sentences"
+      ]
+    },
+    {
+      "id": "q-cj-end",
+      "q": "How does Chon-Ji end?",
+      "expect": [
+        [
+          "left"
+        ],
+        [
+          "ready"
+        ]
+      ],
+      "answer": "Bring the left foot back to parallel ready stance. Chon-Ji ends by bringing the left foot back to the ready position, facing D (the front).",
+      "gated": false,
+      "gateReason": null,
+      "topic": "chonji",
+      "itemId": "chon-ji-moves-17-to-19-and-the-end",
+      "checkFailed": false,
+      "secs": 12.284,
+      "tokens": 32,
+      "outcome": "pass",
+      "problems": []
+    },
+    {
+      "id": "q-tenets",
+      "q": "What are the tenets?",
+      "expect": [
+        [
+          "courtesy"
+        ],
+        [
+          "integrity"
+        ],
+        [
+          "perseverance"
+        ],
+        [
+          "self-control",
+          "self control"
+        ],
+        [
+          "indomitable"
+        ]
+      ],
+      "maxSentences": 2,
+      "answer": "Courtesy, Integrity, Perseverance, Self-Control and Indomitable Spirit. These are the five big ideas for being a good Taekwon-Do student. They mean being polite, being honest, keeping try, staying calm, and having a strong heart.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "tenets",
+      "itemId": "the-five-tenets",
+      "checkFailed": false,
+      "secs": 8.887,
+      "tokens": 57,
+      "outcome": "fail",
+      "problems": [
+        "3 sentences"
+      ]
+    }
+  ],
+  "note": "chon-ji-explain-like-im-5 regraded after multi-item note fallback (same check-failed stance path as live CPU run)"
+}
