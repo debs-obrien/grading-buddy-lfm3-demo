@@ -458,7 +458,7 @@ function wireAppShell() {
   };
   const lookAround = () => {
     openWithoutModel(
-      "You can browse Learn and Quiz now. Tap Try again later if you want Ask — we keep anything already saved on this device.",
+      "You can browse Learn and Quiz now. Tap Try again later if you want Ask. We keep anything already saved on this device.",
       "ask-later",
     );
   };
@@ -505,7 +505,7 @@ function openWithoutModel(reason: string, mode: "no-gpu" | "ask-later" = "ask-la
   $("ask-unavailable-body").textContent =
     mode === "no-gpu"
       ? "Ask needs WebGPU to run the AI model on this device. Learn and Quiz still work without it."
-      : "The download didn't finish (or hasn't started). Learn and Quiz still work — tap Try again later for Ask.";
+      : "The download didn't finish (or hasn't started). Learn and Quiz still work. Tap Try again later for Ask.";
   wireAppShell();
   screen("app");
   tab("learn");
@@ -559,7 +559,7 @@ async function init() {
       "🐢 No WebGPU here, so Grading Buddy will run in slow mode on the CPU. Answers can take a while, and phones may run out of memory.";
   } else if (isiPhone) {
     $("mode-note").textContent =
-      "📱 On iPhone, keep this tab open until it finishes. If the page reloads by itself, use Safari or a computer — phone browser tabs can run out of memory with this download.";
+      "📱 On iPhone, keep this tab open until it finishes. If the page reloads by itself, use Safari or a computer. Phone browser tabs can run out of memory with this download.";
   }
   wireAppShell();
   const state = await modelCacheState();

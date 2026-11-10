@@ -1,5 +1,5 @@
 {
-  "ranAt": "2026-11-10T22:12:41.369Z",
+  "ranAt": "2026-11-10T22:53:50.277Z",
   "summary": {
     "model": "onnx-community/LFM3-1.7B-ONNX",
     "dtype": "q4",

@@ -195,6 +195,6 @@ export function checkRequiredFacts(
   return {
     ok: false,
     missing,
-    summary: `Failed — showed the note instead. Missing required fact(s): ${bits}.`,
+    summary: `Failed. Showed the note instead. Missing required fact(s): ${bits}.`,
   };
 }

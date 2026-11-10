@@ -39,6 +39,19 @@ describe("stripThinking", () => {
   });
 });
 
+describe("short verbatim repeats fall back to notes", () => {
+  it("treats a short repeated sentence as broken (e.g. 5 dasot. 5 dasot.)", () => {
+    const plan = planAsk(loadBeltContent(), "whats 5 in korean");
+    expect(plan.kind).toBe("model");
+    if (plan.kind !== "model") return;
+    const r = finaliseAsk("5 dasot. 5 dasot.", plan);
+    expect(r.usedCard).toBe(true);
+    expect(r.how.source).toBe("notes");
+    expect(r.how.check?.ok).toBe(false);
+    expect(r.how.check?.summary ?? "").toMatch(/repeated|note instead/i);
+  });
+});
+
 describe("grounding check", () => {
   const facts = `Title: Counting 1 to 10 in Korean
 Type: counting

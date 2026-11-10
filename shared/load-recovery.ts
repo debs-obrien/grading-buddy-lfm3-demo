@@ -22,9 +22,9 @@ export function startupScreen(cache: CacheState, loadAttempted: boolean): Startu
 /** Kid/parent-friendly wording for a load that was interrupted. Mentions iPhone only on iPhone. */
 export function recoverLoadMessage(isiPhone: boolean): string {
   if (isiPhone) {
-    return "The brain started loading last time, but this page had to reload before it finished. On an iPhone, browser tabs sometimes run out of memory with a big download — try Safari, or a computer. If the download already finished, tap Try again; we may already have it saved on this device. Or look around in Learn and Quiz first.";
+    return "The brain started loading last time, but this page had to reload before it finished. On an iPhone, browser tabs sometimes run out of memory with a big download, so try Safari, or a computer. If the download already finished, tap Try again; we may already have it saved on this device. Or look around in Learn and Quiz first.";
   }
-  return "The brain started loading last time, but this page had to reload before it finished. Tap Try again — we may already have it saved on this device. Or look around in Learn and Quiz first.";
+  return "The brain started loading last time, but this page had to reload before it finished. Tap Try again. We may already have it saved on this device. Or look around in Learn and Quiz first.";
 }
 
 /** When the browser also has no WebGPU: recover copy + Learn/Quiz still work. */

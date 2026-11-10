@@ -150,20 +150,21 @@ export function answerLooksBroken(text: string, opts?: { hitTokenCap?: boolean }
   return false;
 }
 
-/** True when a substantial sentence or the 1–10 list appears twice. */
+/** True when a sentence (any length) or the 1–10 list appears twice. */
 function repeatsChunk(text: string): boolean {
   const low = text.toLowerCase().replace(/\s+/g, " ").trim();
   // Counting list fingerprint
   if ((low.match(/\b1\s+hana\b/g) ?? []).length >= 2) return true;
   if ((low.match(/\b10\s+yol\b/g) ?? []).length >= 2) return true;
-  // Whole-sentence repeat (12+ letter chars)
+  // Verbatim sentence repeat — including short ones like "5 dasot. 5 dasot."
   const sentences = low
     .split(/[.!?]+/)
     .map((s) => s.trim())
-    .filter((s) => s.replace(/[^a-z]/g, "").length >= 12);
+    .filter((s) => s.length > 0);
   const seen = new Set<string>();
   for (const s of sentences) {
     const key = s.replace(/[^a-z0-9]+/g, "");
+    if (!key) continue;
     if (seen.has(key)) return true;
     seen.add(key);
   }
@@ -265,7 +266,7 @@ export function finaliseAsk(
     badBodyParts: check.badBodyParts,
     missingRequired: required.missing.map((m) => `${m.id} [${m.alts.join("|")}]`),
     summary: broken
-      ? "Failed — showed the note instead. Answer looked truncated, repeated, or meta-reasoned."
+      ? "Failed. Showed the note instead. Answer looked truncated, repeated, or meta-reasoned."
       : !required.ok
         ? required.summary
         : checkSummary({
