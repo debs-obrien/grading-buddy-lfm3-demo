@@ -8,3 +8,4 @@ screenshots/raw/
 *.log
 PLAN.md
 *.log.txt
+.vitest/

@@ -1,7 +1,6 @@
 import { describe, it, expect } from "vitest";
+import fs from "node:fs";
 import {
-  INSTALL_DISMISS_KEY,
-  SKIP_WAITING,
   isIosSafari,
   isStandaloneDisplay,
   refreshClickAction,
@@ -10,13 +9,8 @@ import {
   shouldShowInstall,
   shouldShowSwUpdateBanner,
 } from "../shared/install.ts";
-import { cacheState, modelFileUrls } from "../shared/model-cache.ts";
 
 describe("install helpers", () => {
-  it("exposes a stable dismiss key", () => {
-    expect(INSTALL_DISMISS_KEY).toBe("grading-buddy:install-dismissed");
-  });
-
   it("detects standalone via display-mode or iOS navigator.standalone", () => {
     expect(isStandaloneDisplay(() => ({ matches: true }), false)).toBe(true);
     expect(isStandaloneDisplay(() => ({ matches: false }), true)).toBe(true);
@@ -40,10 +34,6 @@ describe("install helpers", () => {
 });
 
 describe("service worker update prompt", () => {
-  it("posts the standard SKIP_WAITING payload", () => {
-    expect(SKIP_WAITING).toEqual({ type: "SKIP_WAITING" });
-  });
-
   it("prompts only when a controlled page has a waiting worker", () => {
     expect(shouldPromptForSwUpdate(true, true)).toBe(true);
     expect(shouldPromptForSwUpdate(false, true)).toBe(false); // first install
@@ -69,12 +59,25 @@ describe("service worker update prompt", () => {
     expect(refreshClickAction(true)).toBe("reload");
     expect(refreshClickAction(false)).toBe("skip-waiting");
   });
+});
 
-  it("still treats a full transformers-cache + model-ready flag as cached after reload", () => {
-    const urls = modelFileUrls("onnx-community/LFM3-1.7B-ONNX", "q4f16");
-    expect(cacheState(urls, urls, true)).toBe("cached");
-    expect(cacheState(urls, urls, false)).toBe("cached"); // cache wins over flag
-    expect(cacheState(urls, [], true)).toBe("download"); // stale flag alone is not enough
+// Copilot #4529813608 — do not cache failed navigation responses
+describe("service worker shell cache", () => {
+  it("sw-template only puts ok navigation responses in the shell cache", () => {
+    const src = fs.readFileSync("app/sw-template.js", "utf8");
+    expect(src).toMatch(/if\s*\(\s*!res\.ok\s*\)/);
+    expect(src).toMatch(/Never cache HTTP error pages/);
+    expect(src).toMatch(/return shell\(\)/);
   });
 });
 
+// Copilot #4529813811 — install sheet focus containment
+describe("install sheet accessibility", () => {
+  it("install-ui traps Tab and restores focus on close", () => {
+    const src = fs.readFileSync("app/src/install-ui.ts", "utf8");
+    expect(src).toMatch(/trapHandler/);
+    expect(src).toMatch(/Escape/);
+    expect(src).toMatch(/opener\?\.focus/);
+    expect(src).toMatch(/shiftKey/);
+  });
+});

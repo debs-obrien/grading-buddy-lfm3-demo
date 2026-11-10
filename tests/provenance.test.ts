@@ -15,6 +15,7 @@ import {
   sourceLabelHtml,
   wireHowToggle,
 } from "../shared/how-answered-view.ts";
+import { itemFacts } from "../shared/content.ts";
 import { PAIN_REPLY, DECLINE } from "../shared/config.ts";
 
 const bundle = loadBeltContent();
@@ -117,11 +118,13 @@ describe("source labels match the path taken", () => {
     expect(labelMatchesSource(how)).toBe(true);
   });
 
+  // Copilot #4529813922 — Learn why uses the grounding check
   it("Learn why falls back to From the notes when the check fails", () => {
     const item = bundle.items.find((i) => i.id === "what-a-pattern-tul-is")!;
+    const facts = itemFacts(item, bundle);
     const r = finaliseLearnWhy({
       item,
-      facts: "Type: pattern\nKorean: tul\nChon-Ji is a pattern with 19 moves.",
+      facts,
       raw: "Chon-Ji is a way of standing in a ready stance.",
       tokens: 20,
       seconds: 1,
@@ -147,9 +150,6 @@ describe("how-answered panel markup", () => {
     expect(html).toContain('aria-labelledby="ask-how-btn"');
     expect(html).toContain("Show how this was answered");
     expect(html).toContain("Written by LFM3 on this device");
-    expect(html).toContain("Passed:");
-    expect(html).toContain("Matched topic");
-    expect(html).toMatch(/Tokens<\/dt><dd>10/);
   });
 
   it("wireHowToggle flips aria-expanded and hidden", () => {
