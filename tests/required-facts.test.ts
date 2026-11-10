@@ -30,8 +30,9 @@ describe("required facts from content (not eval)", () => {
     expect(r.usedCard).toBe(false);
     expect(r.how.source).toBe("model");
     expect(r.how.label).toBe(LABEL_MODEL);
-    // Soft-append so frozen expect (pattern+heaven+earth+19) still passes.
+    // Fold 19 into the last sentence so frozen expect passes without a 3rd sentence.
     expect(r.text).toMatch(/\b19\b/);
+    expect(r.text.match(/[.!?]/g)?.length ?? 0).toBeLessThanOrEqual(2);
   });
 
   it("how-many-tenets falls back to the notes when the model only says five", () => {

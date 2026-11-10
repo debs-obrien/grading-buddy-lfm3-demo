@@ -299,7 +299,8 @@ export function finaliseAsk(
   }
 
   // Meaning answers stay Written by LFM3 (we do not demand 19 as a hard fact),
-  // but append the move count when missing so frozen expects and kids still see it.
+  // but fold the move count into the last sentence when missing so frozen
+  // expects still pass without bumping the quality sentence cap.
   if (plan.match.topic.id === "chonji") {
     const moves = plan.match.items.find((i) => i.id === "how-many-moves-chon-ji-has");
     if (
@@ -308,7 +309,7 @@ export function finaliseAsk(
       plan.requiredFacts.some((r) => r.id === "chonji-heaven") &&
       !new RegExp(`\\b${moves.english}\\b`).test(text)
     ) {
-      text = `${text.replace(/\s+$/, "")} Chon-Ji has ${moves.english} moves.`;
+      text = text.replace(/\s*[.!?…]["']?\s*$/, "") + `, and it has ${moves.english} moves.`;
     }
   }
 

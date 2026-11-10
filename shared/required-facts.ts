@@ -146,6 +146,12 @@ function singleCountRequirement(
 
 /** Meaning / what-is / explain Chon-Ji — not start stance, end foot, or move count alone. */
 function isChonJiIdentityQuestion(q: string, primary: ContentItem | null): boolean {
+  // "What is the first move of Chon-Ji?" has "what is" + chon-ji but is not identity.
+  if (
+    /\b(how many|moves?|stance|foot|start|end|turn|block|first move|last move)\b/.test(q)
+  ) {
+    return false;
+  }
   const id = primary?.id ?? "";
   if (id === "what-chon-ji-means" || id === "what-a-pattern-tul-is") return true;
   if (/\b(explain|what is|what does|mean|meaning)\b/.test(q) && /chon\s*ji|chonji/.test(q)) {
