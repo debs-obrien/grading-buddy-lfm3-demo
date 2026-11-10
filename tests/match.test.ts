@@ -54,14 +54,17 @@ describe("topic matching", () => {
     }
   });
 
+  // Copilot #4529814054 — counting shortcut is whole words only
   it("does not treat country as a counting question", () => {
     expect(matchQuestion(bundle, "What country is Paris in?")).toBeNull();
     const plan = planAsk(bundle, "What country is Paris in?");
     expect(plan.kind).toBe("gated");
   });
 
+  // Copilot #4529813732 — Korean terms at token boundaries (baro ≠ barometer)
   it("does not match barometer to baro", () => {
     expect(matchQuestion(bundle, "How does a barometer work?")).toBeNull();
+    expect(matchQuestion(bundle, "What does baro mean?")?.primary?.id).toBe("baro-return");
   });
 
   it("safety-gates pain without calling the model", () => {

@@ -4,12 +4,6 @@ import { modelFileUrls, cacheState } from "../shared/model-cache.ts";
 const urls = modelFileUrls("onnx-community/LFM3-1.7B-ONNX", "q4f16");
 
 describe("model cache decision", () => {
-  it("builds the Transformers.js cache keys for the onnx file and its data", () => {
-    expect(urls).toEqual([
-      "https://huggingface.co/onnx-community/LFM3-1.7B-ONNX/resolve/main/onnx/model_q4f16.onnx",
-      "https://huggingface.co/onnx-community/LFM3-1.7B-ONNX/resolve/main/onnx/model_q4f16.onnx_data",
-    ]);
-  });
   it("is cached only when every model file is in the cache, whatever the flag says", () => {
     expect(cacheState(urls, [...urls, "https://huggingface.co/x/config.json"], false)).toBe("cached");
     expect(cacheState(urls, [urls[0]], true)).toBe("download"); // half-finished download

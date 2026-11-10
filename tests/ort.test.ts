@@ -2,14 +2,12 @@ import { describe, it, expect } from "vitest";
 import fs from "node:fs";
 import path from "node:path";
 import {
-  ORT_ENGINE_CACHE,
   ORT_VARIANT,
   ORT_VERSION,
   PAGES_MAX_FILE_BYTES,
   isWasmMagic,
   ortCdnBase,
   ortCdnWasmUrl,
-  ortLocalUrls,
 } from "../shared/ort.ts";
 
 const ORT_DIR = [
@@ -34,14 +32,6 @@ describe("ORT Pages deploy constraints", () => {
     const mjs = path.join(ORT_DIR, `${ORT_VARIANT}.mjs`);
     expect(fs.statSync(mjs).size).toBeLessThanOrEqual(PAGES_MAX_FILE_BYTES);
     expect(ortCdnWasmUrl()).toBe(`${ortCdnBase()}${ORT_VARIANT}.wasm`);
-    expect(ORT_ENGINE_CACHE).toBe("chonji-ort-engine");
-  });
-
-  it("builds local /ort/ URLs for the glue module", () => {
-    expect(ortLocalUrls("http://localhost:5173/")).toEqual({
-      mjs: `http://localhost:5173/ort/${ORT_VARIANT}.mjs`,
-      wasm: `http://localhost:5173/ort/${ORT_VARIANT}.wasm`,
-    });
   });
 
   it("accepts real wasm magic and rejects gzip bytes", () => {

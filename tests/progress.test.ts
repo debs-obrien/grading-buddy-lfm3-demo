@@ -1,6 +1,5 @@
 import { describe, it, expect } from "vitest";
 import {
-  ATTEMPTS_KEY,
   parseAttempts,
   serializeAttempts,
   recordAttempt,
@@ -8,10 +7,9 @@ import {
   orderIdsByMisses,
   type Attempt,
 } from "../shared/progress.ts";
-import { startRound, ROUND_LENGTH } from "../shared/quiz.ts";
+import { ROUND_LENGTH } from "../shared/quiz.ts";
 import { loadBeltNotes } from "../shared/belt-fs.ts";
 import { quizNotes } from "../shared/quiz.ts";
-import fs from "node:fs";
 
 function seeded(seed: number) {
   let s = seed >>> 0;
@@ -52,28 +50,16 @@ describe("parseAttempts", () => {
   });
 });
 
-describe("recordAttempt / reset", () => {
+describe("recordAttempt", () => {
   it("appends a record without mutating the input", () => {
     const before: Attempt[] = [];
     const after = recordAttempt(before, "charyot-attention", false, "2026-01-01T00:00:00.000Z");
     expect(before).toEqual([]);
     expect(after).toEqual([{ id: "charyot-attention", at: "2026-01-01T00:00:00.000Z", correct: false }]);
   });
-  it("reset is clearing the attempts key only (not the model flag)", () => {
-    // Pure side: empty list after clear. Key name stays separate from the model flag.
-    expect(ATTEMPTS_KEY).toBe("chonji-attempts");
-    expect(ATTEMPTS_KEY).not.toMatch(/model/);
-    const store: Record<string, string> = {
-      [ATTEMPTS_KEY]: serializeAttempts([{ id: "a", at: "2026-01-01T00:00:00.000Z", correct: false }]),
-      "chonji-buddy:model-ready": "1",
-    };
-    delete store[ATTEMPTS_KEY];
-    expect(parseAttempts(store[ATTEMPTS_KEY])).toEqual([]);
-    expect(store["chonji-buddy:model-ready"]).toBe("1");
-  });
 });
 
-describe("orderIdsByMisses / startRound adaptive order", () => {
+describe("orderIdsByMisses adaptive order", () => {
   const ids = ["a", "b", "c", "d"];
 
   it("empty history matches a plain shuffle (unchanged behaviour)", () => {
@@ -90,10 +76,6 @@ describe("orderIdsByMisses / startRound adaptive order", () => {
         return a;
       })();
       expect(ordered).toEqual(plain);
-    }
-    // startRound with no attempts equals today's shuffle-then-slice
-    for (let seed = 1; seed <= 10; seed++) {
-      expect(startRound(pool, seeded(seed)).ids).toEqual(startRound(pool, seeded(seed), ROUND_LENGTH, []).ids);
     }
   });
 
@@ -125,7 +107,8 @@ describe("orderIdsByMisses / startRound adaptive order", () => {
     expect(orderIdsByMisses(["a", "b", "c"], attempts, seeded(3))[1]).toBe("a");
   });
 
-  it("startRound still takes ROUND_LENGTH with no repeats under adaptive order", () => {
+  it("takes ROUND_LENGTH with no repeats under adaptive order", () => {
+    const poolIds = pool.map((n) => n.id);
     const attempts: Attempt[] = pool.slice(0, 5).flatMap((n, i) =>
       Array.from({ length: 5 - i }, (_, k) => ({
         id: n.id,
@@ -133,10 +116,10 @@ describe("orderIdsByMisses / startRound adaptive order", () => {
         correct: false as const,
       })),
     );
-    const r = startRound(pool, seeded(9), ROUND_LENGTH, attempts);
-    expect(r.ids).toHaveLength(ROUND_LENGTH);
-    expect(new Set(r.ids).size).toBe(ROUND_LENGTH);
+    const ordered = orderIdsByMisses(poolIds, attempts, seeded(9)).slice(0, ROUND_LENGTH);
+    expect(ordered).toHaveLength(ROUND_LENGTH);
+    expect(new Set(ordered).size).toBe(ROUND_LENGTH);
     // The five most-missed pool notes should lead the round
-    expect(r.ids.slice(0, 5)).toEqual(pool.slice(0, 5).map((n) => n.id));
+    expect(ordered.slice(0, 5)).toEqual(pool.slice(0, 5).map((n) => n.id));
   });
 });

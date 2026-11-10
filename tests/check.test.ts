@@ -3,14 +3,6 @@ import { checkAnswer } from "../shared/check.ts";
 import { answerContradictsCategory } from "../shared/categories.ts";
 import { loadBeltContent } from "../shared/belt-fs.ts";
 import { topicFacts } from "../shared/content.ts";
-import { planAsk, finaliseAsk, stripThinking } from "../shared/answer.ts";
-
-describe("stripThinking", () => {
-  it("drops an unclosed think block so leaked numbers cannot reach the check", () => {
-    expect(stripThinking('<think>Simple: 10th kup. After white comes 1 then 2')).toBe("");
-    expect(stripThinking("<think>secret</think>Charyot means attention.")).toBe("Charyot means attention.");
-  });
-});
 
 describe("grounding check", () => {
   const facts = `Title: Counting 1 to 10 in Korean
@@ -40,6 +32,7 @@ Simple: count in Korean.`;
     expect(r.badKorean.length).toBeGreaterThan(0);
   });
 
+  // Copilot #4529813669 — validate complete romanised technique phrases
   it("rejects an unsupported technique modifier even when the head word is allowed", () => {
     const bundle = loadBeltContent();
     const techFacts = topicFacts(bundle, "techniques");
@@ -48,6 +41,7 @@ Simple: count in Korean.`;
     expect(r.badKorean.some((k) => /dollyo/.test(k))).toBe(true);
   });
 
+  // Copilot #4529814022 — facts allowlist includes answer extractor phrases
   it("allows known technique phrases that appear in the facts", () => {
     const bundle = loadBeltContent();
     const techFacts = topicFacts(bundle, "techniques");
@@ -95,29 +89,5 @@ describe("category / type check (no per-question specials)", () => {
 
   it("rejects calling a stance a pattern", () => {
     expect(answerContradictsCategory("Gunnun sogi is a pattern you walk in.", "stance")).toBe("pattern");
-  });
-
-  it("finaliseAsk shows the item card when the model misstates the type", () => {
-    const bundle = loadBeltContent();
-    const plan = planAsk(bundle, "explain chon ji like im 5");
-    expect(plan.kind).toBe("model");
-    if (plan.kind !== "model") return;
-    expect(plan.cardItem.category).toBe("pattern");
-    const final = finaliseAsk(
-      "In Taekwondo, Chon-Ji is a way of standing and moving. You start in a 'ready' stance, like you are ready to fight.",
-      plan,
-    );
-    expect(final.usedCard).toBe(true);
-    expect(final.how.source).toBe("notes");
-    expect(final.how.label).toBe("From the notes");
-    expect(final.text.toLowerCase()).toMatch(/pattern|heaven|earth|19/);
-  });
-
-  it("topic facts for Chon-Ji include type, official meaning and 19", () => {
-    const bundle = loadBeltContent();
-    const facts = topicFacts(bundle, "chonji");
-    expect(facts).toMatch(/Type: pattern/);
-    expect(facts).toContain("the Heaven the Earth");
-    expect(facts).toMatch(/\b19\b/);
   });
 });

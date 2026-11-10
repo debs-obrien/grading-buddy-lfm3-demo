@@ -2,6 +2,7 @@ import { describe, it, expect } from "vitest";
 import fs from "node:fs";
 import { loadBeltContent, loadBeltNotes } from "../shared/belt-fs.ts";
 import { countingItem, glossaryEntries, contentNotes } from "../shared/content.ts";
+import { cardText } from "../shared/answer.ts";
 
 const bundle = loadBeltContent();
 
@@ -49,5 +50,27 @@ describe("content.json", () => {
     expect(raw).not.toMatch(/DRAFT/);
     const sources = fs.readFileSync("data/belts/white-yellow/SOURCES.md", "utf8");
     expect(sources).not.toMatch(/\*\*Status:\s*DRAFT\*\*/i);
+  });
+});
+
+// Copilot #4529813869 — Learn panels for stances/techniques/Saju/story
+describe("Learn panels", () => {
+  it("learn.ts includes the missing topic panels", () => {
+    const src = fs.readFileSync("app/src/learn.ts", "utf8");
+    for (const key of ["stances", "techniques", "saju", "story"]) {
+      expect(src).toContain(`key: "${key}"`);
+    }
+  });
+});
+
+// Copilot #4529813965 — no duplicate simple/learnBody in cardText
+describe("note card text", () => {
+  it("does not append learnBody when it equals simple", () => {
+    const item = bundle.items.find((i) => i.simple && i.learnBody === i.simple && !i.glossary)!;
+    expect(item).toBeTruthy();
+    const text = cardText(item);
+    const parts = text.split("\n\n");
+    const simpleHits = parts.filter((p) => p === item.simple);
+    expect(simpleHits.length).toBe(1);
   });
 });

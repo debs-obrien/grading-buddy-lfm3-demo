@@ -1,5 +1,5 @@
 {
-  "ranAt": "2026-11-10T20:03:21.091Z",
+  "ranAt": "2026-11-10T21:31:27.741Z",
   "summary": {
     "model": "onnx-community/LFM3-1.7B-ONNX",
     "dtype": "q4",
@@ -11,7 +11,9 @@
       "total": 43,
       "correct": 43,
       "wrong": 0,
-      "wrongly_declined": 0
+      "wrongly_declined": 0,
+      "written_by_lfm3": 0,
+      "from_the_notes": 0
     },
     "out_of_scope": {
       "total": 13,
@@ -19,7 +21,8 @@
       "wrongly_answered": 0
     },
     "quality": null,
-    "tokens_per_second": null
+    "tokens_per_second": null,
+    "fallbacks": []
   },
   "inScope": [
     {

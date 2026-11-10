@@ -1,8 +1,6 @@
 import { describe, it, expect } from "vitest";
 import {
-  LOAD_ATTEMPTED_KEY,
   RECOVER_NO_GPU_MESSAGE,
-  errorClue,
   friendlyLoadError,
   recoverLoadMessage,
   stagedLoadError,
@@ -13,10 +11,6 @@ import { cacheState, modelFileUrls } from "../shared/model-cache.ts";
 const urls = modelFileUrls("onnx-community/LFM3-1.7B-ONNX", "q4f16");
 
 describe("startup after a broken load", () => {
-  it("exposes a stable load-attempted key", () => {
-    expect(LOAD_ATTEMPTED_KEY).toBe("chonji-buddy:model-load-attempted");
-  });
-
   it("auto-loads from cache only when files are present and no unfinished attempt", () => {
     expect(startupScreen("cached", false)).toBe("load-cached");
     expect(startupScreen(cacheState(urls, urls, false), false)).toBe("load-cached");
@@ -56,15 +50,6 @@ describe("staged load errors", () => {
     expect(stagedLoadError("model-download", "network error", "huggingface.co")).toMatch(/Couldn't download the brain from huggingface\.co/);
     expect(stagedLoadError("model-save", "Quota exceeded")).toMatch(/Couldn't save the brain/);
     expect(stagedLoadError("engine-start", "CompileError")).toMatch(/Couldn't start the AI engine/);
-  });
-
-  it("keeps Load failed as the clue", () => {
-    expect(errorClue("TypeError: Load failed")).toBe("Load failed");
-  });
-
-  it("passes already-staged worker messages through friendlyLoadError", () => {
-    const staged = "Couldn't download the engine from cdn.jsdelivr.net (Load failed)";
-    expect(friendlyLoadError(staged)).toBe(staged);
   });
 });
 

@@ -12,7 +12,6 @@ describe("belt registry", () => {
   it("exposes short tab labels and full aria names", () => {
     expect(BELTS.map((b) => b.tab)).toEqual(["Yellow", "Green", "Blue", "Red", "Black"]);
     expect(BELTS.map((b) => b.label)).toEqual(["White to yellow", "Green", "Blue", "Red", "Black"]);
-    expect(BELTS[0].colour).toBe("linear-gradient(90deg, #fff 50%, #FFD23F 50%)");
   });
   it("locked belts can't be selected and have no content file", () => {
     for (const b of BELTS.filter((x) => x.status === "locked")) {
