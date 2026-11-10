@@ -78,7 +78,7 @@ Under that, **Show how this was answered** is a collapsible panel with the match
 
 ## How Quiz works (detail)
 
-Questions come from templates over the content (term↔meaning, numbers, tenets, belts, Chon-Ji). Seeded shuffle so the same seed gives the same round. Graded with no model. After a wrong answer, the correct option and the item show straight away. Optional **Learn why** (only when the model is loaded) asks LFM3 for a helper explanation grounded in that one item.
+Questions come from templates over the content (term↔meaning, numbers, tenets, belts, Chon-Ji). Seeded shuffle so the same seed gives the same round. Graded with no model. After a wrong answer, the correct option and the item show straight away. Optional **Learn why** (only when the model is loaded) asks LFM3 for a helper explanation grounded in that one item; if the grounding check fails (or the text is too thin), `finaliseLearnWhy` shows the note instead (**From the notes**).
 
 ## Browser and device notes
 
@@ -91,8 +91,6 @@ Questions come from templates over the content (term↔meaning, numbers, tenets,
 An iPhone Safari tab has about 2 GB of memory. The model plus runtime come close to that, so the tab can crash. Installing the PWA does not add memory.
 
 The codebase includes an ONNX Runtime session option aimed at iOS Safari memory (`optimization.disable_specified_optimizers: ConstantFolding`, see onnxruntime issue #33793, wired in `shared/config.ts`). That was an attempt to keep the load alive on phone WebKit. **It did not make Ask reliable on iPhone.** Treat it as a failed mitigation, not a working phone path. The honest next step is a native shell with **llama.cpp** / GGUF (Liquid’s recommended phone route), checked for example via PocketPal with the LFM3-1.7B GGUF.
-
-Product fact recorded in the README: Ask failed to load the LFM model on iPhone in testing, so the demo is desktop only for now.
 
 ## Trade-offs
 

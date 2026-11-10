@@ -41,7 +41,7 @@ Open http://localhost:5173, press **Download and start** (about 1.09 GB, once) a
 |---|---|---|
 | **LFM3-1.7B** ([ONNX export](https://huggingface.co/onnx-community/LFM3-1.7B-ONNX), q4f16) | The text model in the LFM3 family: small enough for on-device Ask, strong at following “answer only from these facts” instructions, and the ONNX export is Liquid’s documented web path. | A **1.09 GB** first download (q4f16). Without the notes and checks it can invent Korean words and advice. |
 | **Transformers.js + WebGPU** | One static link, no server and no API key: the model runs in a Web Worker in the browser and works offline after the first download. | **Desktop only** (needs WebGPU). My CPU fallback failed twice, so there isn’t one. Slower than a native llama.cpp build. |
-| **Topic match + LFM3 answers + grounding / required-facts checks, no fine-tune** | Fast to build and easy to check: match a whole topic, let LFM3 write one or two sentences from that topic’s facts, then either keep the answer or fall back to the note card. You can edit the notes without retraining. | When the grounding or required-facts check fails, the UI shows **From the notes** instead of the model’s wording. Incomplete model answers never ship as “Written by LFM3”. One frozen-eval miss remains (see [docs/eval.md](docs/eval.md)). |
+| **Topic match + LFM3 answers + grounding / required-facts checks, no fine-tune** | Fast to build and easy to check: match a whole topic, let LFM3 write one or two sentences from that topic’s facts, then either keep the answer or fall back to the note card. You can edit the notes without retraining. | When the grounding or required-facts check fails, the UI shows **From the notes** instead of the model’s wording. One frozen-eval miss remains (see [docs/eval.md](docs/eval.md)). |
 | **Greedy decoding** | The same question gives the same answer, so the eval is repeatable. | Ignores the model card’s suggested sampling settings, so some sentences are flatter than a sampled run. |
 
 ## Does it work?
@@ -60,14 +60,14 @@ This repo has no `--no-retrieval` or `--open` baselines, so there is no no-notes
 | Grading questions right | **42 / 43** |
 | Off-topic questions declined | **13 / 13** |
 
-With notes, a real answer was: "Charyot means attention. When you hear charyot, you stand up straight in attention stance, quiet and still, ready to listen." The one graded wrong was "Why do I pull my toes back?" (model said to hit with the ball of the foot and mentioned the knee; the frozen `forbid_re` still fails that wording even though the notes include knee). Of the 43 in-scope answers, 36 kept **Written by LFM3 on this device** and 7 fell back to **From the notes**. Tokens/s for that Node CPU run: **4.5** (from `eval/results/grounded.json` → `summary.tokens_per_second` on the machine recorded there: Intel Xeon x4, 17 GB RAM, Node v22.23.4; desktop/server CPU, not a Mac browser). It's small and keyword-graded, so it's a sanity check, not a benchmark. More in [docs/eval.md](docs/eval.md).
+With notes, a real answer was: "Charyot means attention. When you hear charyot, you stand up straight in attention stance, quiet and still, ready to listen." The one graded wrong was "Why do I pull my toes back?" (model said to hit with the ball of the foot and mentioned the knee; the frozen `forbid_re` still fails that wording even though the notes include knee). Of the 43 in-scope answers, 36 kept **Written by LFM3 on this device** and 7 fell back to **From the notes**. Tokens/s on that Node CPU run: **4.5** (`eval/results/grounded.json`, an Intel Xeon x4 server CPU, not a Mac browser). It's small and keyword-graded, so it's a sanity check, not a benchmark. More in [docs/eval.md](docs/eval.md).
 
 ## Where it falls short
 
 - The first download is big, and you need WebGPU.
 - I tested on iPhone and the part that loads the LFM model failed, so it's desktop only for now.
 - Speed numbers I have so far are Node CPU eval figures, not Mac browser timings yet. TODO(Debbie): Mac desktop browser times.
-- I tried having the model explain quiz answers like you're 6. My better prompt still got 6 of 48 wrong ("kup" became "cup"), so I didn't ship it.
+- Quiz "Learn why" is written by LFM3, but if its check fails you get the note instead.
 - The notes are still a draft, so always follow your instructor.
 
 ## With more time
@@ -83,7 +83,7 @@ TODO(Debbie): put this in your own words.
 
 - **Tools:** TODO
 - **What's mine:** the problem, the scope, the model and runtime choices, what to cut, and checking the notes. TODO
-- **What I changed or rejected:** I cut the AI-written quiz explanations after spotting a wrong one, and stopped the kid-friendly rewrite after two tries. TODO
+- **What I changed or rejected:** TODO(Debbie): what I changed or rejected
 
 ## Licences and sources
 
