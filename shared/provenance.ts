@@ -12,6 +12,7 @@ export type NotesPath =
   | "check-failed"
   | "model-decline"
   | "thin-or-glossary-fallback"
+  | "missing-required-fact"
   | "learn-why-fallback";
 
 export interface CheckTrace {
@@ -19,6 +20,8 @@ export interface CheckTrace {
   badKorean: string[];
   badNumbers: string[];
   badCategory?: string;
+  badBodyParts?: string[];
+  missingRequired?: string[];
   /** Human summary for the how-answered panel. */
   summary: string;
 }
@@ -50,12 +53,22 @@ export function checkSummary(c: {
   badKorean: string[];
   badNumbers: string[];
   badCategory?: string;
+  badBodyParts?: string[];
+  missingRequired?: string[];
 }): string {
-  if (c.ok) return "Passed: every Korean term and number was in the facts, and the type matched.";
+  if (c.ok && !c.missingRequired?.length) {
+    return "Passed: every Korean term and number was in the facts, and the type matched.";
+  }
   const bits: string[] = [];
   if (c.badKorean.length) bits.push(`Korean term(s) not in facts: ${c.badKorean.join(", ")}`);
   if (c.badNumbers.length) bits.push(`number(s) not in facts: ${c.badNumbers.join(", ")}`);
   if (c.badCategory) bits.push(`type mismatch: answer claimed a ${c.badCategory}`);
+  if (c.badBodyParts?.length) {
+    bits.push(`body-part claim(s) not in facts: ${c.badBodyParts.join(", ")}`);
+  }
+  if (c.missingRequired?.length) {
+    bits.push(`missing required fact(s): ${c.missingRequired.join("; ")}`);
+  }
   return `Failed — showed the note instead. ${bits.join("; ")}.`;
 }
 

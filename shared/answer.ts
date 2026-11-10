@@ -2,6 +2,7 @@
 // No per-question special cases, no retrievalFitsQuestion patches, no output rewrite patches.
 import type { ContentBundle, ContentItem } from "./content.ts";
 import { itemFacts, topicFacts } from "./content.ts";
+// ContentBundle used on AskMode.model for required-fact checks.
 import { matchQuestion, type Match } from "./match.ts";
 import { checkAnswer } from "./check.ts";
 import { askMessages, type ChatMessage } from "./prompt.ts";
@@ -14,6 +15,11 @@ import {
   tokensPerSecond,
   type HowAnswered,
 } from "./provenance.ts";
+import {
+  checkRequiredFacts,
+  requiredFactsForMatch,
+  type RequiredFact,
+} from "./required-facts.ts";
 
 export type GateReason = "safety" | "no-match";
 
@@ -26,6 +32,9 @@ export type AskMode =
       match: Match;
       /** Item whose card is shown if the check fails; official wording always from content. */
       cardItem: ContentItem;
+      /** Key facts from structured content that the answer must include. */
+      requiredFacts: RequiredFact[];
+      bundle: ContentBundle;
     };
 
 const INJURY_BODY =
@@ -88,6 +97,8 @@ export function planAsk(bundle: ContentBundle, question: string): AskMode {
     facts,
     match,
     cardItem,
+    requiredFacts: requiredFactsForMatch(bundle, match, question),
+    bundle,
   };
 }
 
@@ -184,22 +195,33 @@ export function finaliseAsk(
     };
   }
   const check = checkAnswer(text, plan.facts, plan.cardItem.category);
+  const required = checkRequiredFacts(text, plan.requiredFacts, plan.bundle);
   const sources = [plan.match.topic.name];
   const checkTrace = {
-    ok: check.ok,
+    ok: check.ok && required.ok,
     badKorean: check.badKorean,
     badNumbers: check.badNumbers,
     badCategory: check.badCategory,
-    summary: checkSummary(check),
+    badBodyParts: check.badBodyParts,
+    missingRequired: required.missing.map((m) => `${m.id} [${m.alts.join("|")}]`),
+    summary: !required.ok
+      ? required.summary
+      : checkSummary({
+          ...check,
+          missingRequired: [],
+        }),
   };
 
   const useCard = (path: HowAnswered["path"]): FinalAsk => ({
     // Whole-topic Ask: when several items were given to the model, the note
     // fallback shows those items together (not only the primary card).
+    // Glossary: always the full glossary note when coverage fails.
     text:
-      plan.match.items.length > 1
-        ? plan.match.items.map((i) => cardText(i)).join("\n\n")
-        : cardText(plan.cardItem),
+      plan.match.topic.id === "glossary"
+        ? cardText(plan.cardItem)
+        : plan.match.items.length > 1
+          ? plan.match.items.map((i) => cardText(i)).join("\n\n")
+          : cardText(plan.cardItem),
     sources,
     gated: false,
     usedCard: true,
@@ -207,14 +229,10 @@ export function finaliseAsk(
     how: baseNotes(path, checkTrace),
   });
 
+  // Simpler of the two missing-fact options: show the note card only (one label,
+  // one source of truth) rather than splicing model prose + a notes appendix.
   if (!check.ok) return useCard("check-failed");
-
-  if (plan.match.topic.id === "glossary") {
-    const listed = (text.toLowerCase().match(/\b[a-z]+(?:\s+[a-z]+)?\b/g) ?? []).filter(
-      (w) => plan.facts.toLowerCase().includes(`${w} =`) || plan.facts.toLowerCase().includes(`korean: ${w}`),
-    );
-    if (listed.length < 4) return useCard("thin-or-glossary-fallback");
-  }
+  if (!required.ok) return useCard("missing-required-fact");
 
   if (text.length < 24 || /:\s*$/.test(text)) return useCard("thin-or-glossary-fallback");
 

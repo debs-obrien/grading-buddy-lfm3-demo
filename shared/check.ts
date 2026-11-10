@@ -117,6 +117,30 @@ export interface CheckResult {
   badNumbers: string[];
   /** Set when the answer claims the item is a different category/type. */
   badCategory?: string;
+  /** Body-part claims in the answer that never appear in the facts. */
+  badBodyParts?: string[];
+}
+
+/**
+ * Body parts the model might claim in a technique answer. Not a one-word blocklist —
+ * a claim is only bad when that part does not appear anywhere in the facts.
+ */
+const BODY_PART_RE =
+  /\b(knees?|toes?|feet|foot|hands?|wrists?|ankles?|hips?|shoulders?|elbows?|legs?|arms?|fists?|heels?|thighs?|shins?|ball of (?:the|your) foot)\b/gi;
+
+/** Body-part words/phrases claimed in the answer but absent from the facts. */
+export function unsupportedBodyParts(answer: string, facts: string): string[] {
+  const factLow = facts.toLowerCase();
+  const bad: string[] = [];
+  for (const m of answer.matchAll(BODY_PART_RE)) {
+    const part = m[0].toLowerCase();
+    const stem = part.replace(/s$/, "");
+    if (factLow.includes(part) || factLow.includes(stem)) continue;
+    // "ball of your foot" vs facts saying "ball of the foot"
+    if (part.includes("ball of") && factLow.includes("ball of")) continue;
+    if (!bad.includes(part)) bad.push(part);
+  }
+  return bad;
 }
 
 /**
@@ -164,10 +188,16 @@ export function checkAnswer(
     const contradicted = answerContradictsCategory(answer, category);
     if (contradicted) badCategory = contradicted;
   }
+  const badBodyParts = unsupportedBodyParts(answer, facts);
   return {
-    ok: badKorean.length === 0 && badNumbers.length === 0 && !badCategory,
+    ok:
+      badKorean.length === 0 &&
+      badNumbers.length === 0 &&
+      !badCategory &&
+      badBodyParts.length === 0,
     badKorean,
     badNumbers,
     badCategory,
+    badBodyParts,
   };
 }

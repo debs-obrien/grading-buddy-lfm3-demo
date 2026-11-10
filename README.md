@@ -83,34 +83,26 @@ Numbers below are filled from the latest `npm run eval` on this machine (Node CP
 
 | Set | Result |
 |---|---|
-| In-scope | **40/43** correct (Node CPU q4; `eval/results/grounded.json`) |
-| Of those answers | **Written by LFM3:** 42 · **From the notes:** 1 |
+| In-scope | **42/43** correct (Node CPU q4; `eval/results/grounded.json`) |
+| Of those answers | **Written by LFM3:** 36 · **From the notes:** 7 |
 | Out-of-scope | **13/13** correctly declined |
-| Quality | **3/4** (see fail below) |
+| Quality | **2/4** (sentence / meta-reasoning — no further prompt tuning) |
 | Match-only | **43/43** in-scope + **13/13** correctly declined |
-| Tokens / sec | **6.11** on this CPU box (browser WebGPU not claimed) |
+| Tokens / sec | **4.63** on this CPU box (browser WebGPU not claimed) |
 
-### From the notes fallbacks (1)
+Trust rule: incomplete answers fall back to the note card (**From the notes**) via a content-derived required-facts check (not the eval file). Chosen approach: **full note card only** (simpler than splicing model prose + a notes appendix — one label, one source of truth).
 
-| Question | Why the check failed |
+### From the notes (7) — check / required-fact fallbacks
+
+Including: Chon-Ji meaning / move-count when **19** (or other identity facts) are missing; thin glossary coverage; counting answers that omit the required Korean number word; belt/oath after an unclosed `<think>` strip left too little prose (think leak no longer injects rogue numbers into the check).
+
+### In-scope wrong with LFM3 label (1) — frozen forbid_re vs notes
+
+| Question | Notes |
 |---|---|
-| `What belt comes after white?` | Model emitted an unclosed `<think>` block; numbers `1` and `2` from that leaked chain-of-thought were not in the belt facts, so the note card was shown. |
+| `Why do I pull my toes back?` | Model answer matches the notes (“Lift your knee… ball of your foot”). Content `front-snap-kick-apcha-busigi.simple` **includes knee**. Frozen `forbid_re` has `\\bknee\\b`, so the eval marks it wrong even though the grounding check correctly allows knee (body-part claims must appear in the facts — and knee does). **Do not edit the frozen eval.** Falling back to the note would still contain “knee” and still fail `forbid_re`. |
 
-### In-scope wrongs (3) — model answers that still graded wrong
-
-| Question | Why |
-|---|---|
-| `Why do I pull my toes back?` | Answer included “knee”, which hits frozen `forbid_re`. |
-| `what korean words do i need to know` | Model hedged / incomplete list (missed required terms such as junbi / hana). |
-| `what does chon-ji mean` | Had heaven / earth / pattern but omitted **19**. |
-
-### Quality fail (1 of 4)
-
-| Question | Why |
-|---|---|
-| `How many moves in Chon-Ji?` | Model meta-reasoned (“Looking at the FACTS”), leaked heading `How many moves Chon-Ji has`, counted as 11 sentences / repeats a fact. |
-
-`What does Chon-Ji mean?`, `How does Chon-Ji end?`, and `What are the tenets?` pass (≤2 sentences). Prompt was tightened for the two-sentence budget; a second anti-meta prompt attempt regressed other quality items, so further quality tuning stopped.
+Wrong answers that fail the content checks now carry **From the notes** (0 content-incomplete answers keep the LFM3 label). The toes case is the forbid_re conflict above.
 
 ## Trade-offs
 
