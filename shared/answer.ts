@@ -102,19 +102,31 @@ export function planAsk(bundle: ContentBundle, question: string): AskMode {
   };
 }
 
-/** Strip thinking tags only — no patch-style cleanup. */
+/**
+ * Strip LFM3 thinking traces the same way Liquid's chat_template.jinja does:
+ * `content.split("</think>")[-1].trim()` — keep only text after the LAST
+ * closing tag. Never replace the tag with a space (that glued duplicated
+ * answers together).
+ *
+ * `enable_thinking=False` is inconsistent (Liquid model card): the model may
+ * still emit an unpaired `</think>` or open a fresh `<think>`. Handle both.
+ */
 export function stripThinking(text: string): string {
-  // Drop a closed or still-open thinking block so leaked chain-of-thought cannot
-  // inject Korean terms / numbers into the grounding check.
-  let out = text.replace(/<think>[\s\S]*?(?:<\/think>|$)/gi, "");
-  // Orphan </think> (no opening tag): models often emit `answer</think>answer`.
-  // Keep only the text after the last closing tag so the list prints once.
-  const close = out.toLowerCase().lastIndexOf("</think>");
-  if (close >= 0) out = out.slice(close + "</think>".length);
-  return out
-    .replace(/<\/?think>/gi, " ")
-    .replace(/\s+/g, " ")
-    .trim();
+  const CLOSE = "</think>";
+  const OPEN = "<think>";
+  const low = text.toLowerCase();
+
+  // After the last close — covers paired blocks and orphan closes
+  // (`1 hana…10 yol.</think>1 hana…`).
+  const lastClose = low.lastIndexOf(CLOSE);
+  let out = lastClose >= 0 ? text.slice(lastClose + CLOSE.length) : text;
+
+  // Fresh unclosed <think> in the remainder (or the whole string when there
+  // was never a close): drop unfinished reasoning so it cannot reach the check.
+  const openIdx = out.toLowerCase().indexOf(OPEN);
+  if (openIdx >= 0) out = out.slice(0, openIdx);
+
+  return out.replace(/\s+/g, " ").trim();
 }
 
 /** Meta / markdown / truncated generation — must not keep the LFM3 label. */

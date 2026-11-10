@@ -6,14 +6,35 @@ import { topicFacts } from "../shared/content.ts";
 import { planAsk, finaliseAsk, stripThinking } from "../shared/answer.ts";
 
 describe("stripThinking", () => {
-  it("drops an unclosed think block so leaked numbers cannot reach the check", () => {
-    expect(stripThinking("<think>Simple: 10th kup. After white comes 1 then 2")).toBe("");
-    expect(stripThinking("<think>secret</think>Charyot means attention.")).toBe("Charyot means attention.");
+  it("keeps only text after the last </think> (Liquid chat_template split[-1])", () => {
+    expect(stripThinking("<think>secret</think>Charyot means attention.")).toBe(
+      "Charyot means attention.",
+    );
+    // Multiple closes — same as content.split("</think>")[-1]
+    expect(stripThinking("first</think>second</think>third")).toBe("third");
   });
 
-  it("keeps only text after an orphan closing think tag", () => {
+  it("handles an unpaired </think> without replacing it with a space", () => {
+    // Real eval shape: answer</think>answer — must not glue both copies.
     expect(stripThinking("1 hana, 2 dul, 10 yol.</think>1 hana, 2 dul, 3 set")).toBe(
       "1 hana, 2 dul, 3 set",
+    );
+    expect(stripThinking("Junbi means ready.</think>Junbi means ready.")).toBe("Junbi means ready.");
+    // No space substitution artifact
+    expect(stripThinking("ready.</think>Junbi")).not.toMatch(/ready\.\s*Junbi/);
+    expect(stripThinking("ready.</think>Junbi")).toBe("Junbi");
+  });
+
+  it("drops a leaked unclosed <think> (enable_thinking=False can still open one)", () => {
+    expect(stripThinking("<think>Simple: 10th kup. After white comes 1 then 2")).toBe("");
+    expect(
+      stripThinking(
+        "<think>We need to answer the question from the FACTS.\n\nLooking at the FACTS:",
+      ),
+    ).toBe("");
+    // Answer then a fresh unclosed think block — keep the answer only
+    expect(stripThinking("Chon-Ji has 19 moves.<think>wait, also check")).toBe(
+      "Chon-Ji has 19 moves.",
     );
   });
 });
