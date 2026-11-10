@@ -73,6 +73,21 @@ describe("topic matching", () => {
     expect(plan.kind).toBe("gated");
     if (plan.kind === "gated") expect(plan.text).toBe(PAIN_REPLY);
   });
+
+  it("matches everyday in-scope phrasings that kids actually ask", () => {
+    for (const q of [
+      "how many tenets",
+      "what is 3 in korean",
+      "what's 1 to 5 in Korean",
+      "who invented taekwondo",
+      "what is a pattern",
+      "what do i call my instructor",
+      "when was the ITF founded",
+    ]) {
+      const plan = planAsk(bundle, q);
+      expect(plan.kind, q).toBe("model");
+    }
+  });
 });
 
 describe("frozen eval: match or refuse every question", () => {

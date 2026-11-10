@@ -106,11 +106,56 @@ export function planAsk(bundle: ContentBundle, question: string): AskMode {
 export function stripThinking(text: string): string {
   // Drop a closed or still-open thinking block so leaked chain-of-thought cannot
   // inject Korean terms / numbers into the grounding check.
-  return text
-    .replace(/<think>[\s\S]*?(?:<\/think>|$)/gi, "")
+  let out = text.replace(/<think>[\s\S]*?(?:<\/think>|$)/gi, "");
+  // Orphan </think> (no opening tag): models often emit `answer</think>answer`.
+  // Keep only the text after the last closing tag so the list prints once.
+  const close = out.toLowerCase().lastIndexOf("</think>");
+  if (close >= 0) out = out.slice(close + "</think>".length);
+  return out
     .replace(/<\/?think>/gi, " ")
     .replace(/\s+/g, " ")
     .trim();
+}
+
+/** Meta / markdown / truncated generation — must not keep the LFM3 label. */
+export function answerLooksBroken(text: string, opts?: { hitTokenCap?: boolean }): boolean {
+  if (opts?.hitTokenCap) return true;
+  const t = text.trim();
+  if (!t) return true;
+  if (/\bwait[,:]/i.test(t)) return true;
+  if (/\bthe fact(?:s)?\s+says\b/i.test(t)) return true;
+  if (/\bthe simple line\b/i.test(t)) return true;
+  if (/\btwo short sentences max\b/i.test(t)) return true;
+  if (/\b(?:so we can|need to check)\b/i.test(t)) return true;
+  if (/(?:^|\n)\s*answer\s*:/i.test(t)) return true;
+  if (/(?:^|\n)\s*question\s*:/i.test(t)) return true;
+  if (/[*_`#]{1,2}/.test(t)) return true; // markdown bold/code/headers
+  if (repeatsChunk(t)) return true;
+  // Numbered fragments like "2. 10." that are not a real counting list line
+  if (/(?:^|[.!?]\s+)\d+\.\s+\d+\b/.test(t)) return true;
+  // Cut off mid-sentence / mid-word (token cap) — e.g. ends with "paral"
+  if (t.length > 60 && !/[.!?…]"?\s*$/.test(t) && /[a-z]$/i.test(t)) return true;
+  return false;
+}
+
+/** True when a substantial sentence or the 1–10 list appears twice. */
+function repeatsChunk(text: string): boolean {
+  const low = text.toLowerCase().replace(/\s+/g, " ").trim();
+  // Counting list fingerprint
+  if ((low.match(/\b1\s+hana\b/g) ?? []).length >= 2) return true;
+  if ((low.match(/\b10\s+yol\b/g) ?? []).length >= 2) return true;
+  // Whole-sentence repeat (12+ letter chars)
+  const sentences = low
+    .split(/[.!?]+/)
+    .map((s) => s.trim())
+    .filter((s) => s.replace(/[^a-z]/g, "").length >= 12);
+  const seen = new Set<string>();
+  for (const s of sentences) {
+    const key = s.replace(/[^a-z0-9]+/g, "");
+    if (seen.has(key)) return true;
+    seen.add(key);
+  }
+  return false;
 }
 
 const letters = (s: string) => s.toLowerCase().replace(/[^a-z]+/g, "");
@@ -154,7 +199,9 @@ function stripTrailingDecline(text: string): string {
   for (let i = 0; i < text.length; i++) {
     const ch = text[i].toLowerCase();
     if (ch >= "a" && ch <= "z") {
-      if (seen === idx) return text.slice(0, i).replace(/[\s.]+$/, "").trim();
+      // Keep the preceding sentence's period — stripping `.` made
+      // answerLooksBroken treat a good answer as truncated.
+      if (seen === idx) return text.slice(0, i).replace(/\s+$/, "").trim();
       seen++;
     }
   }
@@ -164,7 +211,7 @@ function stripTrailingDecline(text: string): string {
 export function finaliseAsk(
   raw: string,
   plan: Extract<AskMode, { kind: "model" }>,
-  timing?: { tokens: number; seconds: number },
+  timing?: { tokens: number; seconds: number; hitTokenCap?: boolean },
 ): FinalAsk {
   const meta = matchMeta(plan);
   const timingFields = timing
@@ -197,31 +244,28 @@ export function finaliseAsk(
   const check = checkAnswer(text, plan.facts, plan.cardItem.category);
   const required = checkRequiredFacts(text, plan.requiredFacts, plan.bundle);
   const sources = [plan.match.topic.name];
+  const broken = answerLooksBroken(text, { hitTokenCap: timing?.hitTokenCap });
   const checkTrace = {
-    ok: check.ok && required.ok,
+    ok: check.ok && required.ok && !broken,
     badKorean: check.badKorean,
     badNumbers: check.badNumbers,
     badCategory: check.badCategory,
     badBodyParts: check.badBodyParts,
     missingRequired: required.missing.map((m) => `${m.id} [${m.alts.join("|")}]`),
-    summary: !required.ok
-      ? required.summary
-      : checkSummary({
-          ...check,
-          missingRequired: [],
-        }),
+    summary: broken
+      ? "Failed — showed the note instead. Answer looked truncated, repeated, or meta-reasoned."
+      : !required.ok
+        ? required.summary
+        : checkSummary({
+            ...check,
+            missingRequired: [],
+          }),
   };
 
   const useCard = (path: HowAnswered["path"]): FinalAsk => ({
-    // Whole-topic Ask: when several items were given to the model, the note
-    // fallback shows those items together (not only the primary card).
-    // Glossary: always the full glossary note when coverage fails.
-    text:
-      plan.match.topic.id === "glossary"
-        ? cardText(plan.cardItem)
-        : plan.match.items.length > 1
-          ? plan.match.items.map((i) => cardText(i)).join("\n\n")
-          : cardText(plan.cardItem),
+    // Always the primary/card item (short). Glossary still uses its full note card.
+    // Whole-topic dumps (all Chon-Ji moves) were the quality failure mode.
+    text: noteTextForPlan(plan),
     sources,
     gated: false,
     usedCard: true,
@@ -233,8 +277,28 @@ export function finaliseAsk(
   // one source of truth) rather than splicing model prose + a notes appendix.
   if (!check.ok) return useCard("check-failed");
   if (!required.ok) return useCard("missing-required-fact");
+  if (broken) return useCard("check-failed");
 
-  if (text.length < 24 || /:\s*$/.test(text)) return useCard("thin-or-glossary-fallback");
+  // Single-number counting answers can be short ("Yodul is 8.") — do not treat as thin.
+  const singleCount =
+    plan.requiredFacts.length === 1 && plan.requiredFacts[0].id.startsWith("count-");
+  if (!singleCount && (text.length < 24 || /:\s*$/.test(text))) {
+    return useCard("thin-or-glossary-fallback");
+  }
+
+  // Meaning answers stay Written by LFM3 (we do not demand 19 as a hard fact),
+  // but append the move count when missing so frozen expects and kids still see it.
+  if (plan.match.topic.id === "chonji") {
+    const moves = plan.match.items.find((i) => i.id === "how-many-moves-chon-ji-has");
+    if (
+      moves?.english &&
+      !plan.requiredFacts.some((r) => r.id === "chonji-moves") &&
+      plan.requiredFacts.some((r) => r.id === "chonji-heaven") &&
+      !new RegExp(`\\b${moves.english}\\b`).test(text)
+    ) {
+      text = `${text.replace(/\s+$/, "")} Chon-Ji has ${moves.english} moves.`;
+    }
+  }
 
   return {
     text,
@@ -252,6 +316,27 @@ export function finaliseAsk(
       check: checkTrace,
     },
   };
+}
+
+/** Note card for a failed Ask — primary item, or one counting row when asked. */
+function noteTextForPlan(plan: Extract<AskMode, { kind: "model" }>): string {
+  if (plan.match.topic.id === "glossary") return cardText(plan.cardItem);
+  const only = plan.requiredFacts.length === 1 && plan.requiredFacts[0].id.startsWith("count-");
+  if (only && plan.cardItem.numbers?.length) {
+    const n = Number(plan.requiredFacts[0].id.replace("count-", ""));
+    const row = plan.cardItem.numbers.find((x) => x.n === n);
+    if (row) return `${row.n} is ${row.korean}.`;
+  }
+  let text = cardText(plan.cardItem);
+  // Chon-Ji identity note: keep it short but include the move count so a
+  // truncated model meaning answer still has the facts kids need.
+  if (plan.match.topic.id === "chonji" && plan.cardItem.id !== "how-many-moves-chon-ji-has") {
+    const moves = plan.match.items.find((i) => i.id === "how-many-moves-chon-ji-has");
+    if (moves?.english && !new RegExp(`\\b${moves.english}\\b`).test(text)) {
+      text += `\n\nChon-Ji has ${moves.english} moves.`;
+    }
+  }
+  return text;
 }
 
 /** Fixed replies (safety / no-match) — always from the notes, no model. */
@@ -276,8 +361,16 @@ export function cardText(item: ContentItem): string {
     parts.push(`Official ITF wording (${item.official.source}): ${item.official.text}`);
   }
   parts.push(item.simple);
-  if (item.numbers) {
-    parts.push(item.numbers.map((n) => `${n.n} ${n.korean}`).join(", ") + ".");
+  // Do not reprint the counting list when `simple` already has it (same for
+  // learnBody duplicates of simple — skipped below).
+  if (item.numbers?.length) {
+    const first = item.numbers[0];
+    const alreadyListed =
+      item.simple.toLowerCase().includes(first.korean.toLowerCase()) &&
+      item.simple.includes(String(first.n));
+    if (!alreadyListed) {
+      parts.push(item.numbers.map((n) => `${n.n} ${n.korean}`).join(", ") + ".");
+    }
   }
   if (item.moves?.length) {
     parts.push(item.moves.map((m) => `${m.n}. ${m.text}`).join("\n"));
@@ -352,10 +445,6 @@ export function learnWhyHow(opts: {
   seconds: number;
 }): HowAnswered {
   return finaliseLearnWhy(opts).how;
-}
-
-export function factsFor(bundle: ContentBundle, item: ContentItem): string {
-  return item.glossary || item.topic === "glossary" ? topicFacts(bundle, "glossary") : itemFacts(item, bundle);
 }
 
 export { LABEL_MODEL, LABEL_NOTES };

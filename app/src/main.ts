@@ -449,18 +449,22 @@ function wireAppShell() {
   $("download").onclick = () => startLoad("download");
   $("retry").onclick = async () => {
     if (!choice) {
-      openWithoutModel(RECOVER_NO_GPU_MESSAGE);
+      openWithoutModel(RECOVER_NO_GPU_MESSAGE, "no-gpu");
       return;
     }
     const state = await modelCacheState();
     const alreadyReady = !!localStorage.getItem(DOWNLOADED_KEY);
     startLoad(state === "cached" || alreadyReady ? "cached" : state);
   };
-  $("look-around").onclick = () => {
+  const lookAround = () => {
     openWithoutModel(
       "You can browse Learn and Quiz now. Tap Try again later if you want Ask — we keep anything already saved on this device.",
+      "ask-later",
     );
   };
+  $("look-around").onclick = lookAround;
+  $("look-around-setup").onclick = lookAround;
+  $("look-around-loading").onclick = lookAround;
   $("ask-btn").onclick = ask;
   $("next-btn").onclick = nextQuestion;
   $("again-btn").onclick = newRound;
@@ -485,12 +489,23 @@ function wireAppShell() {
   });
 }
 
-function openWithoutModel(reason: string) {
+/** Browse Learn/Quiz without Ask. `no-gpu` is a missing WebGPU browser; `ask-later` is download/setup. */
+function openWithoutModel(reason: string, mode: "no-gpu" | "ask-later" = "ask-later") {
   askReady = false;
   $("no-gpu-why").textContent = reason;
+  $("no-gpu-title").textContent =
+    mode === "no-gpu" ? "Ask needs a newer browser" : "Ask isn't ready yet";
+  const hint = $("no-gpu-hint");
+  if (hint) hint.hidden = mode !== "no-gpu";
   show("no-gpu");
   show("ask-form", false);
   show("ask-unavailable");
+  $("ask-unavailable-label").textContent =
+    mode === "no-gpu" ? "Ask isn't available on this browser" : "Ask isn't ready yet";
+  $("ask-unavailable-body").textContent =
+    mode === "no-gpu"
+      ? "Ask needs WebGPU to run the AI model on this device. Learn and Quiz still work without it."
+      : "The download didn't finish (or hasn't started). Learn and Quiz still work — tap Try again later for Ask.";
   wireAppShell();
   screen("app");
   tab("learn");
@@ -533,6 +548,7 @@ async function init() {
       loadAttempted
         ? RECOVER_NO_GPU_MESSAGE
         : "This phone's browser can't run the on-device AI (it needs WebGPU). You can still use Learn and Quiz offline.",
+      "no-gpu",
     );
     return;
   }

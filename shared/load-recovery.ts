@@ -27,9 +27,6 @@ export function recoverLoadMessage(isiPhone: boolean): string {
   return "The brain started loading last time, but this page had to reload before it finished. Tap Try again — we may already have it saved on this device. Or look around in Learn and Quiz first.";
 }
 
-/** @deprecated Use recoverLoadMessage(true) — kept so older imports keep working in tests. */
-export const RECOVER_LOAD_MESSAGE = recoverLoadMessage(true);
-
 /** When the browser also has no WebGPU: recover copy + Learn/Quiz still work. */
 export const RECOVER_NO_GPU_MESSAGE =
   "The brain started loading last time, but this page had to reload before it finished. This browser can't run the on-device AI (it needs WebGPU). You can still use Learn and Quiz offline. For Ask answers, try Safari on a newer iPhone, or a computer.";

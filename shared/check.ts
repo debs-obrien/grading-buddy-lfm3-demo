@@ -160,19 +160,20 @@ export function checkAnswer(
     const low = k.toLowerCase();
     const compact = low.replace(/[\s-]/g, "");
     const parts = low.split(/\s+/);
-    // Multi-word technique phrase: require the full phrase (or every part) in facts.
-    // Stops "dollyo chagi" passing when only "chagi" is allowed.
+    // Multi-word technique phrase: require the full phrase in facts (or as a
+    // contiguous subphrase of a longer allowed phrase, e.g. "junbi sogi" inside
+    // "narani junbi sogi"). Do NOT allow merely because each part is separately
+    // listed — that let "yop chagi" / "ap chagi" pass when only "chagi" and "yop"
+    // (from yop makgi) were known.
     if (parts.length === 2 && TECH_HEAD.test(parts[1]) && !ENGLISH_SKIP.has(parts[0])) {
       const phraseOk =
         allowedK.has(low) ||
         allowedK.has(compact) ||
-        (allowedK.has(parts[0]) && allowedK.has(parts[1]));
+        [...allowedK].some((a) => a.includes(low));
       if (!phraseOk) {
         badKorean.push(k);
         continue;
       }
-      // Parts were each allowed (e.g. junbi + sogi inside narani junbi sogi) — do not
-      // also require the two-word substring as its own allowlist entry.
       continue;
     }
     if (HANGUL.test(k) || !(allowedK.has(low) || allowedK.has(compact) || allowedK.has(low.replace(/-/g, "")))) {

@@ -12,15 +12,29 @@ export interface Match {
 }
 
 const STOP = new Set(
-  "a an and are as at be by can do does for from how i in is it its me my of on or our so that the this to was we what when where which who why with you your tell about please mean means meaning say says said need know the instructor".split(
+  "a an and are as at be by can do does for from how i in is it its me my of on or our so that the this to was we what when where which who why with you your tell about please mean means meaning say says said need know the".split(
     " ",
   ),
 );
+
+/** Multi-word aliases that are question frames, not distinctive content. */
+const GENERIC_PHRASES = new Set([
+  "how many",
+  "who",
+  "started",
+  "who started",
+  "word",
+  "meaning",
+  "list",
+  "after",
+  "comes after",
+]);
 
 const norm = (s: string) =>
   s
     .toLowerCase()
     .replace(/[’']/g, "")
+    .replace(/taekwon\s*-?\s*do/g, "taekwondo")
     .replace(/[^a-z0-9]+/g, " ")
     .trim();
 
@@ -60,12 +74,16 @@ function scoreItem(qNorm: string, qTokens: string[], item: ContentItem): number 
   }
 
   // Alias / title / english phrase contained in the question (or vice versa for short answers).
+  // Use token-boundary hasPhrase — bare includes() matched "ten" inside "tenets".
   for (const phrase of phrases) {
     if (phrase.length < 3) continue;
     if (STOP.has(phrase)) continue;
-    if (qNorm.includes(phrase)) score += phrase.split(" ").length >= 2 ? 6 : 3;
+    if (hasPhrase(qNorm, phrase)) {
+      if (GENERIC_PHRASES.has(phrase)) score += 1;
+      else score += phrase.split(" ").length >= 2 ? 6 : 3;
+    }
     // Question is mostly the phrase ("charyot?", "what is dobok")
-    if (phrase.includes(qNorm) && qNorm.length >= 4) score += 4;
+    if (hasPhrase(phrase, qNorm) && qNorm.length >= 4) score += 4;
   }
 
   // Token overlap with the item's distinctive tokens only (not the whole learn body).
@@ -103,18 +121,31 @@ export function wantsCounting(qNorm: string): boolean {
     /\b1\s*(?:to|-|–)\s*10\b/.test(qNorm) ||
     /\bone\s+to\s+ten\b/.test(qNorm) ||
     /\b1\s*10\b/.test(qNorm); // normalised "1-10" → "1 10"
+  // Partial ranges kids ask: "1 to 5", "6 to 10"
+  const partialRange = /\b([1-9]|10)\s+to\s+([1-9]|10)\b/.test(qNorm);
   if (countWord) return true;
-  if (/\bkorean\b/.test(qNorm) && (numbersWord || range)) return true;
-  if (numbersWord && (/\bone\s+to\s+ten\b/.test(qNorm) || range)) return true;
+  if (/\bkorean\b/.test(qNorm) && (numbersWord || range || partialRange)) return true;
+  if (numbersWord && (/\bone\s+to\s+ten\b/.test(qNorm) || range || partialRange)) return true;
   // "how do you say 1-10" / "say 1 to 10"
   if (range && /\b(say|says|saying|tell|list|recite)\b/.test(qNorm)) return true;
   if (range && /\bkorean\b/.test(qNorm)) return true;
+  if (partialRange && /\bkorean\b/.test(qNorm)) return true;
+  // Digit / word number in Korean: "what is 3 in korean", "whats 5 in korean"
+  // Require a clear number ask — not "tenets" / "attention" false friends.
+  if (
+    /\bkorean\b/.test(qNorm) &&
+    (/\b([1-9]|10)\b/.test(qNorm) ||
+      /\b(one|two|three|four|five|six|seven|eight|nine|ten)\b/.test(qNorm)) &&
+    /\b(say|says|what|whats|number|numbers|count|counts|counting)\b/.test(qNorm)
+  ) {
+    return true;
+  }
   return false;
 }
 
 /**
  * Match a question to a whole topic (and its items).
- * Returns null when nothing in the white-to-yellow content fits.
+ * Returns null when nothing in the white-to-yellow content matches.
  */
 export function matchQuestion(bundle: ContentBundle, question: string): Match | null {
   const qNorm = norm(question);
@@ -163,21 +194,46 @@ export function matchQuestion(bundle: ContentBundle, question: string): Match | 
   }
 
   // Need solid item-level evidence (a Korean term, a multi-word alias, or several tokens).
-  // A single generic token like "belt" / "kick" / "punch" must not win.
-  if (!bestItem || bestScore < 5) return null;
+  // A single distinctive alias (pattern, courtesy, oath, bow, itf, kup) scores ~4.5.
+  if (!bestItem || bestScore < 4) return null;
 
   // Most of the question's content words must also appear on the item.
-  // Stops "turning kick" → spot-turning, "Olympic taekwondo" → name-of-art note,
-  // "4th degree patterns" → "what a pattern is".
-  const itemToks = new Set(itemPhrases(bestItem).flatMap((p) => tokens(p)));
-  const contentQ = qTokens.filter((t) => t.length >= 4 || /^\d+$/.test(t));
-  // A clear Korean-term hit in the question is enough on its own (token boundaries).
+  // Drop question scaffolding before the 0.75 gate so everyday phrasings
+  // ("how many tenets are there") still match, while off-topic near-misses
+  // ("black belt", "turning kick") stay declined.
+  const SCAFFOLD = new Set([
+    "many",
+    "whats",
+    "korean",
+    "grade",
+    "call",
+    "made",
+    "invented",
+    "founded",
+    "there",
+    "does",
+    "doing",
+    "name",
+  ]);
+  const phrases = itemPhrases(bestItem);
+  const itemToks = new Set(phrases.flatMap((p) => tokens(p)));
+  const contentQ = qTokens.filter(
+    (t) => (t.length >= 4 || /^\d+$/.test(t)) && !SCAFFOLD.has(t),
+  );
+  // Strong evidence: Korean term, or a multi-word alias/title/english in the question.
   const koreanHit =
     (bestItem.korean && hasPhrase(qNorm, norm(bestItem.korean))) ||
     (bestItem.alsoKorean ?? []).some((a) => hasPhrase(qNorm, norm(a.korean)));
-  if (contentQ.length && !koreanHit) {
+  const strongPhraseHit = phrases.some((p) => p.split(" ").length >= 2 && hasPhrase(qNorm, p));
+  const englishHit = !!(bestItem.english && hasPhrase(qNorm, norm(bestItem.english)));
+  if (contentQ.length && !koreanHit && !strongPhraseHit) {
     const hit = contentQ.filter((t) => itemToks.has(t)).length;
-    if (hit / contentQ.length < 0.75 && bestScore < 14) return null;
+    const ratio = hit / contentQ.length;
+    // Full coverage, or english meaning hit with at least half the content words
+    // (e.g. "middle punch" → height note), or a very strong score.
+    const ok =
+      ratio >= 0.75 || (englishHit && ratio >= 0.5 && bestScore >= 4) || bestScore >= 14;
+    if (!ok) return null;
   }
 
   const topic = bundle.topics.find((t) => t.id === bestItem!.topic);

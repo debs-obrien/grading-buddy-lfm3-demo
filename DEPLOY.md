@@ -43,16 +43,16 @@ find dist -type f -printf '%s %p\n' | sort -n | tail
 ## Deploy
 
 ```bash
-npx wrangler pages deploy dist --project-name grading-buddy
+npx wrangler pages deploy dist --project-name grading-buddy-lfm3-demo
 ```
 
-First time: log in with `npx wrangler login` and create the `grading-buddy` Pages project if it does not exist yet.
+First time: log in with `npx wrangler login` and create the `grading-buddy-lfm3-demo` Pages project if it does not exist yet. **Do not** deploy to the v1 project name `grading-buddy`.
 
 After deploy, open the Pages URL over **https://**, confirm Install app / Add to Home Screen, then check DevTools → Application → Manifest and Service workers. First load needs network for jsDelivr (ORT wasm) and Hugging Face (model); later visits can be offline.
 
 ## What `deploy.sh` must stop doing
 
-If you use `/workspace/grading-buddy-deploy/deploy.sh` (or any wrapper outside this repo):
+If you use `./deploy.sh` in this repo (or any wrapper):
 
 1. **Stop pre-gzipping** `ort-wasm-simd-threaded.asyncify.wasm` (or any ORT `.wasm`) before upload.
 2. **Stop writing** `Content-Encoding: gzip` for those files in `_headers` / deploy overrides.

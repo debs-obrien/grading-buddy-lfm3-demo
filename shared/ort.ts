@@ -26,15 +26,6 @@ export function ortCdnWasmUrl(version = ORT_VERSION): string {
   return `${ortCdnBase(version)}${ORT_VARIANT}.wasm`;
 }
 
-/** @deprecated Prefer ortCdnWasmUrl + local mjs; kept for tests/docs. */
-export function ortCdnUrls(version = ORT_VERSION): { mjs: string; wasm: string } {
-  const base = ortCdnBase(version);
-  return {
-    mjs: `${base}${ORT_VARIANT}.mjs`,
-    wasm: `${base}${ORT_VARIANT}.wasm`,
-  };
-}
-
 /** Absolute same-origin paths (Vite dev middleware + production /ort/*.mjs). */
 export function ortLocalUrls(originBase: string): { mjs: string; wasm: string } {
   const base = originBase.endsWith("/") ? originBase : `${originBase}/`;

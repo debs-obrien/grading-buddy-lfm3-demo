@@ -44,10 +44,6 @@ export interface HowAnswered {
   check?: CheckTrace;
 }
 
-export function labelFor(source: AnswerSource): string {
-  return source === "model" ? LABEL_MODEL : LABEL_NOTES;
-}
-
 export function checkSummary(c: {
   ok: boolean;
   badKorean: string[];
