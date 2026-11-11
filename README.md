@@ -25,6 +25,16 @@ npm run dev
 
 Open http://localhost:5173, press **Download and start** (about 1.1 GB, once) and ask "What does charyot mean?". `npm test` runs the tests; `npm run build` then `npm run preview` serves the built app so you can try it offline.
 
+## Try the model in one file
+
+Want just the model, no app shell? See [`examples/minimal`](examples/minimal): one HTML page that loads LFM3 with Transformers.js. Pure model out of the box; the full app adds topic notes and answer checks on top.
+
+```bash
+cd examples/minimal && python3 -m http.server 8000
+```
+
+Open http://localhost:8000 in desktop Chrome or Edge and click **Ask** (first run downloads about 1 GB; needs WebGPU).
+
 ## How it works
 
 - LFM3-1.7B (q4f16) runs in a Web Worker on WebGPU with Transformers.js.
