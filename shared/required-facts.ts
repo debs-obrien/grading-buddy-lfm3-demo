@@ -141,10 +141,29 @@ function singleCountRequirement(
     const row = numbers.find((x) => x.n === n);
     return row ? { id: `count-${n}`, alts: [row.korean, String(n)] } : null;
   }
-  // Reverse ask: "what number is yodul"
+  // Reverse ask: "what number is yodul" — require the digit / English word, not the Korean alone.
+  const englishFor: Record<number, string> = {
+    1: "one",
+    2: "two",
+    3: "three",
+    4: "four",
+    5: "five",
+    6: "six",
+    7: "seven",
+    8: "eight",
+    9: "nine",
+    10: "ten",
+  };
   for (const row of numbers) {
-    if (new RegExp(`\\b${row.korean}\\b`, "i").test(q)) {
-      return { id: `count-${row.n}`, alts: [row.korean, String(row.n)] };
+    const ko = row.korean.toLowerCase();
+    const matched =
+      new RegExp(`\\b${ko}\\b`, "i").test(q) ||
+      (ko === "dul" && /\bdool\b/i.test(q));
+    if (matched) {
+      return {
+        id: `count-${row.n}`,
+        alts: [String(row.n), englishFor[row.n]].filter(Boolean),
+      };
     }
   }
   return null;

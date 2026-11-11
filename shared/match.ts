@@ -34,9 +34,15 @@ const GENERIC_PHRASES = new Set([
 const OTHER_ART =
   /\b(karate|kung\s*fu|kungfu|wushu|judo|jiu\s*jitsu|jiujitsu|aikido|hapkido|muay\s*thai|boxing|mma|krav\s*maga)\b/;
 
-/** Non-grading domains that share a word with our content (pattern, kup, middle, korean…). */
+/**
+ * Off-topic *contexts* that share a grading word (pattern, kup, middle, korean…).
+ * Do not blacklist ordinary words like "clothing" alone — "dobok … clothing" is in scope.
+ */
 const OFF_TOPIC =
-  /\b(maths?|mathematics|algebra|geometry|dress|skirt|fabric|clothing|tea|coffee|cup|won|currency|money|parting|haircut|hairstyle|chess|football|soccer)\b/;
+  /\bpattern\b.{0,24}\b(maths?|mathematics|algebra|geometry|dress|skirt|fabric)\b|\b(maths?|mathematics|algebra|geometry|dress|skirt|fabric)\b.{0,24}\bpattern\b|\bkup\b.{0,16}\b(tea|coffee)\b|\b(tea|coffee)\b.{0,16}\bkup\b|\bmiddle\s+parting\b|\bparting\b|\b(korean\s+)?won\b|\b(currency|money|chess|football|soccer|haircut|hairstyle)\b/;
+
+/** Counting Korean that are also ordinary English words — need counting context. */
+const AMBIGUOUS_COUNT_KO = new Set(["set", "net"]);
 
 const COUNT_KO = new Set([
   "hana",
@@ -51,6 +57,13 @@ const COUNT_KO = new Set([
   "ahop",
   "yol",
 ]);
+
+function hasCountingContext(qNorm: string): boolean {
+  return (
+    /\b(korean|number|numbers|count|counts|counting|cont|cout)\b/.test(qNorm) ||
+    /\b(one|two|three|four|five|six|seven|eight|nine|ten|[1-9]|10)\b/.test(qNorm)
+  );
+}
 
 const norm = (s: string) =>
   s
@@ -131,12 +144,23 @@ function scoreItem(qNorm: string, qTokens: string[], item: ContentItem): number 
   if (/\bpunch(?:es|ing)?\b/.test(qNorm) && /\b(?:punch|jirugi)\b/.test(joined)) score += 4;
   if (/\bkick(?:s|ing)?\b/.test(qNorm) && /\b(?:kick|chagi|busigi|olligi)\b/.test(joined)) score += 4;
   if (/\bblock(?:s|ing)?\b/.test(qNorm) && /\b(?:block|makgi)\b/.test(joined)) score += 4;
+  // Generic turning note only when the question is not about Chon-Ji directions.
   if (
     /\bturn(?:s|ing|ed)?\b/.test(qNorm) &&
     !/\bkick\b/.test(qNorm) &&
+    !/chon\s*ji/.test(qNorm) &&
     /\b(?:turn|turning|dolgi|gujari)\b/.test(joined)
   ) {
     score += 5;
+  }
+  // "which way do i turn in chon ji" → a Chon-Ji move card that names the turn.
+  if (
+    /\bturn(?:s|ing|ed)?\b/.test(qNorm) &&
+    /chon\s*ji/.test(qNorm) &&
+    item.topic === "chonji" &&
+    /\bturn/.test(norm(`${item.simple} ${item.learnBody ?? ""}`))
+  ) {
+    score += 10;
   }
   // Prefer the technique card whose Korean term matches the action asked
   // (ap jirugi for punch), not a vocab list whose primary korean is something else.
@@ -196,7 +220,14 @@ export function wantsCounting(qNorm: string): boolean {
     return true;
   }
   // "what number is yodul" — Korean counting word looking for its digit.
-  if (numbersWord && qNorm.split(/\s+/).some((t) => COUNT_KO.has(t))) return true;
+  // Ambiguous English words (set, net) need clearer counting context than "number" alone
+  // only when paired with a non-ambiguous counting token, or korean + number ask above.
+  if (
+    numbersWord &&
+    qNorm.split(/\s+/).some((t) => COUNT_KO.has(t) && !AMBIGUOUS_COUNT_KO.has(t))
+  ) {
+    return true;
+  }
   return false;
 }
 
@@ -301,10 +332,17 @@ export function matchQuestion(bundle: ContentBundle, question: string): Match | 
   );
   // Strong evidence: Korean term, counting row, or a multi-word alias/title/english.
   // Generic frames ("comes after") must not count as strong evidence.
+  // Ambiguous counting words (set, net) need Korean/counting context ("what is a film set").
+  const numberHit = (bestItem.numbers ?? []).some((n) => {
+    const k = norm(n.korean);
+    if (!hasPhrase(qNorm, k) && !(k === "dul" && hasPhrase(qNorm, "dool"))) return false;
+    if (AMBIGUOUS_COUNT_KO.has(k) && !hasCountingContext(qNorm)) return false;
+    return true;
+  });
   const koreanHit =
     (bestItem.korean && hasPhrase(qNorm, norm(bestItem.korean))) ||
     (bestItem.alsoKorean ?? []).some((a) => hasPhrase(qNorm, norm(a.korean))) ||
-    (bestItem.numbers ?? []).some((n) => hasPhrase(qNorm, norm(n.korean)));
+    numberHit;
   const strongPhraseHit = phrases.some(
     (p) => p.split(" ").length >= 2 && hasPhrase(qNorm, p) && !GENERIC_PHRASES.has(p),
   );

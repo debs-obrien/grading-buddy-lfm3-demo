@@ -74,15 +74,60 @@ const clearLoadAttempted = () => {
 };
 /** True after Look around first while a download/load is still in flight. */
 let browsingDuringLoad = false;
+/** True while a model load message is outstanding (blocks duplicate retries). */
+let loadInFlight = false;
+/** Prevents re-binding chips/listeners when Ask status updates mid-browse. */
+let shellWired = false;
+
+function setLoadRetryEnabled(on: boolean) {
+  for (const id of ["ask-retry-download", "retry", "download"] as const) {
+    const btn = document.getElementById(id) as HTMLButtonElement | null;
+    if (btn) btn.disabled = !on;
+  }
+}
+
+/** Update the Ask-unavailable panel without rewiring the shell or changing tabs. */
+function paintAskUnavailable(mode: "no-gpu" | "ask-later", bodyOverride?: string) {
+  askReady = false;
+  $("no-gpu-why").textContent =
+    bodyOverride ??
+    (mode === "no-gpu"
+      ? "Ask needs a desktop browser with WebGPU. Learn and Quiz work everywhere."
+      : "The download didn't finish. Learn and Quiz still work. Use Download and start below when you want Ask.");
+  $("no-gpu-title").textContent =
+    mode === "no-gpu" ? "Ask needs a newer browser" : "Ask isn't ready yet";
+  const hint = $("no-gpu-hint");
+  if (hint) hint.hidden = mode !== "no-gpu";
+  show("no-gpu");
+  show("ask-form", false);
+  show("ask-unavailable");
+  $("ask-unavailable-label").textContent =
+    mode === "no-gpu" ? "Ask isn't available on this browser" : "Ask isn't ready yet";
+  $("ask-unavailable-body").textContent =
+    mode === "no-gpu"
+      ? "Ask needs a desktop browser with WebGPU (latest Chrome or Edge on a laptop or desktop). Learn and Quiz work everywhere."
+      : bodyOverride
+        ? bodyOverride
+        : browsingDuringLoad
+          ? "The download is still running. Learn and Quiz still work. Ask will turn on when it finishes, or use Download and start below to try again."
+          : "The download didn't finish. Learn and Quiz still work. Use Download and start below when you want Ask.";
+  const askRetry = $("ask-retry-download") as HTMLButtonElement | null;
+  if (askRetry) {
+    askRetry.hidden = mode === "no-gpu";
+    askRetry.textContent = "Download and start";
+    askRetry.disabled = loadInFlight;
+  }
+}
 
 const showLoadError = (raw: string) => {
-  // If the kid is already browsing Learn/Quiz, stay there — update the Ask panel
-  // instead of yanking them to the error screen with a stale card above it.
-  if (browsingDuringLoad || !$("app").hidden) {
+  loadInFlight = false;
+  setLoadRetryEnabled(true);
+  // Already browsing: update Ask only. Keep the current tab and shell wiring.
+  if (browsingDuringLoad || (shellWired && !$("app").hidden)) {
     browsingDuringLoad = false;
-    openWithoutModel(
-      "The download didn't finish. Learn and Quiz still work. Use Download and start below when you want to try Ask again.",
+    paintAskUnavailable(
       "ask-later",
+      "The download didn't finish. Learn and Quiz still work. Use Download and start below when you want to try Ask again.",
     );
     return;
   }
@@ -171,6 +216,8 @@ worker.onmessage = (e: MessageEvent<FromWorker>) => {
     localStorage.setItem(DOWNLOADED_KEY, "1");
     clearLoadAttempted();
     browsingDuringLoad = false;
+    loadInFlight = false;
+    setLoadRetryEnabled(true);
     askReady = true;
     show("ask-form");
     show("ask-unavailable", false);
@@ -207,6 +254,9 @@ function setLoadingUi(state: CacheState) {
 }
 
 function startLoad(state: CacheState = "download") {
+  if (loadInFlight) return;
+  loadInFlight = true;
+  setLoadRetryEnabled(false);
   markLoadAttempted();
   screen("loading");
   setLoadingUi(state);
@@ -457,11 +507,14 @@ function tab(which: (typeof MODES)[number]) {
 }
 
 function wireAppShell() {
+  if (shellWired) return;
+  shellWired = true;
   renderChips();
   renderLearn($("learn"), notes);
   renderScore();
   $("download").onclick = () => startLoad("download");
   const retryAskLoad = async () => {
+    if (loadInFlight) return;
     if (!choice) {
       openWithoutModel(RECOVER_NO_GPU_MESSAGE, "no-gpu");
       return;
@@ -474,7 +527,7 @@ function wireAppShell() {
   const askRetry = $("ask-retry-download");
   if (askRetry) askRetry.onclick = retryAskLoad;
   const lookAround = () => {
-    const stillDownloading = !$("loading").hidden;
+    const stillDownloading = !$("loading").hidden || loadInFlight;
     browsingDuringLoad = stillDownloading;
     openWithoutModel(
       stillDownloading
@@ -512,28 +565,11 @@ function wireAppShell() {
 
 /** Browse Learn/Quiz without Ask. `no-gpu` is a missing WebGPU browser; `ask-later` is download/setup. */
 function openWithoutModel(reason: string, mode: "no-gpu" | "ask-later" = "ask-later") {
-  askReady = false;
-  $("no-gpu-why").textContent = reason;
-  $("no-gpu-title").textContent =
-    mode === "no-gpu" ? "Ask needs a newer browser" : "Ask isn't ready yet";
-  const hint = $("no-gpu-hint");
-  if (hint) hint.hidden = mode !== "no-gpu";
-  show("no-gpu");
-  show("ask-form", false);
-  show("ask-unavailable");
-  $("ask-unavailable-label").textContent =
-    mode === "no-gpu" ? "Ask isn't available on this browser" : "Ask isn't ready yet";
-  $("ask-unavailable-body").textContent =
-    mode === "no-gpu"
-      ? "Ask needs a desktop browser with WebGPU (latest Chrome or Edge on a laptop or desktop). Learn and Quiz work everywhere."
-      : browsingDuringLoad
-        ? "The download is still running. Learn and Quiz still work. Ask will turn on when it finishes, or use Download and start below to try again."
-        : "The download didn't finish. Learn and Quiz still work. Use Download and start below when you want Ask.";
-  const askRetry = $("ask-retry-download");
-  if (askRetry) {
-    // Download cannot enable Ask without WebGPU; only show for deferred setup/download.
-    askRetry.hidden = mode === "no-gpu";
-    askRetry.textContent = "Download and start";
+  const alreadyOpen = shellWired && !$("app").hidden;
+  paintAskUnavailable(mode, reason);
+  if (alreadyOpen) {
+    // Keep Learn/Quiz where the kid was; only refresh Ask status.
+    return;
   }
   wireAppShell();
   screen("app");

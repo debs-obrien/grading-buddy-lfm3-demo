@@ -75,6 +75,12 @@ describe("browse-only Ask retry", () => {
     // Download failure while browsing must not yank the kid to the error screen.
     expect(main).toMatch(/browsingDuringLoad/);
     expect(main).not.toMatch(/hasn't started/);
+    // No duplicate load pipelines; no shell rewire / tab steal on background fail.
+    expect(main).toMatch(/loadInFlight/);
+    expect(main).toMatch(/if \(loadInFlight\) return/);
+    expect(main).toMatch(/shellWired/);
+    expect(main).toMatch(/if \(shellWired\) return/);
+    expect(main).toMatch(/paintAskUnavailable/);
   });
 });
 

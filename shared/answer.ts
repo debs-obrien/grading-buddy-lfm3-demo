@@ -109,7 +109,15 @@ function cardItemForQuestion(match: Match, question: string): ContentItem {
   const q = question.toLowerCase();
   const pool = [primary, ...match.items.filter((i) => i.id !== primary.id)];
 
-  // Named tenet → that tenet's note, not the whole five-tenets list.
+  // List/count of tenets → the five-tenets card even if a named tenet appears.
+  if (
+    /\btenets?\b/.test(q) &&
+    /\b(how many|what are|list|five|all|including)\b/.test(q)
+  ) {
+    const five = pool.find((i) => i.id === "the-five-tenets");
+    if (five) return five;
+  }
+  // Named tenet alone → that tenet's note, not the whole list.
   for (const name of ["courtesy", "integrity", "perseverance", "self-control", "indomitable"]) {
     if (new RegExp(`\\b${name}\\b`).test(q)) {
       const tenet = pool.find(
@@ -122,6 +130,12 @@ function cardItemForQuestion(match: Match, question: string): ContentItem {
     }
   }
 
+  // Yellow belt grade → the belt-order note (has "8th kup"), not only the colour meaning.
+  if (/\byellow\b/.test(q) && /\b(grade|kup)\b/.test(q)) {
+    const order = pool.find((i) => i.id === "belt-order-for-the-first-gradings");
+    if (order) return order;
+  }
+
   // Last / first move of Chon-Ji → the matching move-range card.
   if (/\bmoves?\b/.test(q) && /chon\s*-?\s*ji/.test(q)) {
     if (/\b(last|end|final)\b/.test(q)) {
@@ -132,6 +146,16 @@ function cardItemForQuestion(match: Match, question: string): ContentItem {
       const first = pool.find((i) => i.id === "chon-ji-moves-1-to-4");
       if (first) return first;
     }
+  }
+
+  // Turn directions in Chon-Ji → a move card that names the turn, not the generic dolgi note.
+  if (/\bturn/.test(q) && /chon\s*-?\s*ji/.test(q)) {
+    const move = pool.find(
+      (i) =>
+        i.topic === "chonji" &&
+        /\bturn/i.test(`${i.simple} ${i.learnBody ?? ""}`),
+    );
+    if (move) return move;
   }
 
   const action = /\bturn/.test(q)
@@ -187,9 +211,10 @@ export function answerLooksBroken(text: string, opts?: { hitTokenCap?: boolean }
   if (/\bthe simple line\b/i.test(t)) return true;
   if (/\btwo short sentences max\b/i.test(t)) return true;
   if (/\b(?:so we can|need to check)\b/i.test(t)) return true;
-  // After stripThinking flattens newlines, still catch "…. Answer: …" mid-text.
-  if (/(?:^|[.!?]\s+)answer\s*:/i.test(t)) return true;
-  if (/(?:^|[.!?]\s+)question\s*:/i.test(t)) return true;
+  // After stripThinking flattens newlines, catch Answer:/Question: even with no
+  // preceding period ("Makgi means block Answer: It is a block.").
+  if (/\banswer\s*:/i.test(t)) return true;
+  if (/\bquestion\s*:/i.test(t)) return true;
   if (/[*_`#]{1,2}/.test(t)) return true; // markdown bold/code/headers
   if (repeatsChunk(t)) return true;
   // Numbered fragments like "2. 10." that are not a real counting list line
@@ -220,9 +245,9 @@ function repeatsChunk(text: string): boolean {
   return false;
 }
 
-const COUNT_ROWS: [number, string][] = [
+const COUNT_ROWS: [number, string, ...string[]][] = [
   [1, "hana"],
-  [2, "dul"],
+  [2, "dul", "dool"],
   [3, "set"],
   [4, "net"],
   [5, "dasot"],
@@ -233,24 +258,41 @@ const COUNT_ROWS: [number, string][] = [
   [10, "yol"],
 ];
 
-/** How many of the canonical "N korean" counting rows appear in the answer. */
-function countListRowHits(text: string): number {
+/** Parse counting rows: "3 set", "3 is set", "3. set", "set is 3", punctuation forms. */
+function parseCountRows(text: string): { n: number; at: number }[] {
   const low = text.toLowerCase().replace(/\s+/g, " ");
-  let hits = 0;
-  for (const [n, ko] of COUNT_ROWS) {
-    if (new RegExp(`\\b${n}\\s+${ko}\\b`).test(low)) hits += 1;
+  const found: { n: number; at: number }[] = [];
+  for (const [n, ...kos] of COUNT_ROWS) {
+    for (const ko of kos) {
+      const patterns = [
+        new RegExp(`\\b${n}\\s*(?:is|=|:|\\.)?\\s*${ko}\\b`, "g"),
+        new RegExp(`\\b${ko}\\s*(?:is|=|:)?\\s*${n}\\b`, "g"),
+      ];
+      for (const re of patterns) {
+        let m: RegExpExecArray | null;
+        while ((m = re.exec(low)) !== null) {
+          found.push({ n, at: m.index });
+        }
+      }
+    }
   }
-  return hits;
+  // Dedupe by number (keep earliest mention).
+  const byN = new Map<number, number>();
+  for (const row of found) {
+    const prev = byN.get(row.n);
+    if (prev === undefined || row.at < prev) byN.set(row.n, row.at);
+  }
+  return [...byN.entries()].map(([n, at]) => ({ n, at }));
+}
+
+/** How many of the canonical counting rows appear in the answer. */
+function countListRowHits(text: string): number {
+  return parseCountRows(text).length;
 }
 
 /** True when several counting rows appear but not in ascending order. */
 function countingListOutOfOrder(text: string): boolean {
-  const low = text.toLowerCase().replace(/\s+/g, " ");
-  const positions: { n: number; at: number }[] = [];
-  for (const [n, ko] of COUNT_ROWS) {
-    const m = low.match(new RegExp(`\\b${n}\\s+${ko}\\b`));
-    if (m && m.index !== undefined) positions.push({ n, at: m.index });
-  }
+  const positions = parseCountRows(text);
   if (positions.length < 3) return false;
   positions.sort((a, b) => a.at - b.at);
   for (let i = 1; i < positions.length; i++) {

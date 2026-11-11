@@ -849,6 +849,10 @@
     {
       "id": "korean-won",
       "q": "what is 5 in korean won"
+    },
+    {
+      "id": "film-set",
+      "q": "what is a film set"
     }
   ],
   "quality": [
@@ -931,10 +935,13 @@
     { "id": "everyday-instructor", "q": "what do i call my instructor", "expect": [["sabum"]] },
     { "id": "everyday-kup", "q": "what is a kup", "expect": [["kup"], ["grade", "belt", "colour", "color"]] },
     { "id": "everyday-bow", "q": "how do i bow", "expect": [["kyong", "bow"]] },
-    { "id": "everyday-last-move", "q": "what is the last move of chon ji", "expect": [["left"], ["ready"]] },
-    { "id": "everyday-turn", "q": "which way do i turn in chon ji", "expect": [["dolgi", "gujari", "spot"], ["turn", "turning"]] },
+    { "id": "everyday-last-move", "q": "what is the last move of chon ji", "expect": [["left"], ["punch", "jirugi"], ["right"]] },
+    { "id": "everyday-turn", "q": "which way do i turn in chon ji", "expect": [["clockwise", "right", "left"], ["turn", "turning"]] },
     { "id": "everyday-itf-mean", "q": "what does ITF mean", "expect": [["international"]] },
     { "id": "everyday-itf-founded", "q": "when was the ITF founded", "expect": [["1966", "international"]] },
-    { "id": "everyday-yellow-grade", "q": "what grade is yellow belt", "expect": [["yellow"], ["8th", "earth", "kup"]] }
+    { "id": "everyday-yellow-grade", "q": "what grade is yellow belt", "expect": [["yellow"], ["8th"]] },
+    { "id": "everyday-number-yodul", "q": "what number is yodul", "expect": [["8", "eight"]] },
+    { "id": "everyday-tenets-including-courtesy", "q": "what are the five tenets including courtesy", "expect": [["courtesy"], ["integrity"], ["perseverance"]] },
+    { "id": "everyday-dobok-clothing", "q": "what is a dobok and what clothing is it?", "expect": [["dobok"], ["uniform", "training"]] }
   ]
 }

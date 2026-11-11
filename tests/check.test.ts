@@ -61,6 +61,15 @@ describe("Answer:/Question: labels after whitespace flatten", () => {
     expect(r.usedCard).toBe(true);
     expect(r.how.source).toBe("notes");
   });
+
+  it("detects Answer: without a preceding period after newline collapse", () => {
+    const plan = planAsk(loadBeltContent(), "What does makgi mean?");
+    expect(plan.kind).toBe("model");
+    if (plan.kind !== "model") return;
+    const r = finaliseAsk("Makgi means block\nAnswer: It is a block.", plan);
+    expect(r.usedCard).toBe(true);
+    expect(r.how.source).toBe("notes");
+  });
 });
 
 describe("single-number ask rejects a full counting list", () => {
@@ -87,6 +96,25 @@ describe("single-number ask rejects a full counting list", () => {
     );
     expect(r.usedCard).toBe(true);
     expect(r.how.source).toBe("notes");
+  });
+
+  it("recognises N is korean forms for dumps and out-of-order lists", () => {
+    const single = planAsk(loadBeltContent(), "what is three in Korean");
+    expect(single.kind).toBe("model");
+    if (single.kind !== "model") return;
+    const dump = finaliseAsk(
+      "Three is set. 1 is hana, 2 is dul, 3 is set, 4 is net, 5 is dasot, 6 is yosot, 7 is ilgop, 8 is yodul, 9 is ahop, 10 is yol.",
+      single,
+    );
+    expect(dump.usedCard).toBe(true);
+    const count = planAsk(loadBeltContent(), "how do you count to 10 in Korean");
+    expect(count.kind).toBe("model");
+    if (count.kind !== "model") return;
+    const ooo = finaliseAsk(
+      "10 is yol, 1 is hana, 2 is dul, 3 is set, 4 is net, 5 is dasot, 6 is yosot, 7 is ilgop, 8 is yodul, 9 is ahop.",
+      count,
+    );
+    expect(ooo.usedCard).toBe(true);
   });
 });
 
