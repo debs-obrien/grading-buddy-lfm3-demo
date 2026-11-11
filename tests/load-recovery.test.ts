@@ -28,15 +28,19 @@ describe("startup after a broken load", () => {
     expect(startupScreen("download", false)).toBe("setup");
   });
 
-  it("uses plain parent-friendly recover copy; iPhone wording only on iPhone", () => {
+  it("uses plain parent-friendly recover copy with no iOS Ask support claims", () => {
     const phone = recoverLoadMessage(true);
     const desk = recoverLoadMessage(false);
     expect(phone.toLowerCase()).not.toMatch(/\bnotes\b/);
     expect(desk.toLowerCase()).not.toMatch(/\bnotes\b/);
-    expect(phone).toMatch(/iPhone/i);
-    expect(desk).not.toMatch(/iPhone/i);
+    expect(phone).toMatch(/desktop browser with WebGPU/i);
+    expect(phone).not.toMatch(/Safari/i);
+    expect(phone).not.toMatch(/iOS/i);
+    expect(desk).not.toMatch(/iPhone|iOS|Safari/i);
     expect(desk).toMatch(/Try again/i);
-    expect(RECOVER_NO_GPU_MESSAGE).toMatch(/Learn and Quiz/i);
+    expect(RECOVER_NO_GPU_MESSAGE).toMatch(/Learn and Quiz work everywhere/i);
+    expect(RECOVER_NO_GPU_MESSAGE).toMatch(/desktop browser with WebGPU/i);
+    expect(RECOVER_NO_GPU_MESSAGE).not.toMatch(/iPhone|iOS|Safari/i);
   });
 });
 
