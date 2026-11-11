@@ -27,7 +27,7 @@ Open http://localhost:5173, press **Download and start** (about 1.1 GB, once) an
 
 ## Try the model in one file
 
-Want just the model, no app shell? See [`examples/minimal`](examples/minimal): one HTML page that loads LFM3 with Transformers.js.
+Want just the model, no app shell? See [`examples/minimal`](examples/minimal): one HTML page that loads LFM3 with Transformers.js. Pure model out of the box; the full app adds topic notes and answer checks on top.
 
 ```bash
 cd examples/minimal && python3 -m http.server 8000

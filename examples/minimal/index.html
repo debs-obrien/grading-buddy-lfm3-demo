@@ -19,15 +19,12 @@
     <progress id="bar" value="0" max="100" hidden></progress>
     <p id="prog" hidden></p>
     <label for="q">Your question</label>
-    <textarea id="q">Which way do I turn in Chon-Ji?</textarea>
+    <textarea id="q">What is the capital of France?</textarea>
     <p><button id="go" type="button">Ask</button></p>
     <pre id="out"></pre>
     <script type="module">
       // Same Transformers.js version the main app uses.
       import { pipeline } from "https://cdn.jsdelivr.net/npm/@huggingface/transformers@4.3.2";
-
-      const notes =
-        "Chon-Ji has 19 moves. It starts in parallel ready stance (narani junbi sogi), facing D (the front). A is to your right, B is to your left and C is behind you. The first move steps the left foot to the left (B) into a left walking stance with a left forearm low block. Move 3 turns right (clockwise) towards A with a right forearm low block.";
 
       const status = document.getElementById("status");
       const bar = document.getElementById("bar");
@@ -127,10 +124,10 @@
           status.textContent = "Thinking…";
           const out = await chat(
             [
-              { role: "system", content: "Answer using only these notes: " + notes },
+              { role: "system", content: "You are a helpful assistant. Answer briefly." },
               { role: "user", content: document.getElementById("q").value },
             ],
-            { max_new_tokens: 150, tokenizer_encode_kwargs: { enable_thinking: false } },
+            { max_new_tokens: 150, do_sample: false, tokenizer_encode_kwargs: { enable_thinking: false } },
           );
           const raw = String(out[0].generated_text.at(-1).content ?? "");
           const answer = stripThinking(raw);
