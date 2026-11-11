@@ -48,8 +48,8 @@ Open http://localhost:8000 in desktop Chrome or Edge and click **Ask** (first ru
 
 - Small models should get their facts from the app, not from memory. LFM3 docs: "Use retrieval or search for knowledge-heavy tasks." ([LFM3-1.7B](https://docs.liquid.ai/lfm/models/lfm3-1.7b))
 - Liquid's cookbook describes the same pattern: "Small models are usually deployed with retrieval: your app finds a few relevant documents, and the model answers from them." It also warns the stock model "often writes the fallback sentence and then answers anyway, which an app can't rely on." That is why the app refuses out-of-scope questions before calling the model and checks answers afterwards. ([DPO notebook](https://github.com/Liquid4All/cookbook/blob/main/finetuning/notebooks/lfm3_dpo_with_trl.ipynb))
-- Liquid's recommended fix for clean refusals is fine-tuning (DPO). This app does that job in code instead. The answer check and verbatim official wording are this app's own choices.
-- Thinking is off ("Set enable_thinking=False ... for direct answers", [same LFM3 docs](https://docs.liquid.ai/lfm/models/lfm3-1.7b)). Decoding is greedy, as in Liquid's grounded-answer notebook. The general LFM3 default is light sampling. Greedy keeps the same question giving the same answer, so the eval is repeatable (some sentences are flatter than a sampled run).
+- Liquid's cookbook shows a fine-tuning fix for clean refusals (DPO). This app does that job in code instead. The answer check and verbatim official wording are this app's own choices.
+- Thinking is off ("Set enable_thinking=False ... for direct answers", [same LFM3 docs](https://docs.liquid.ai/lfm/models/lfm3-1.7b)). Decoding is greedy, as in the same notebook. The general LFM3 default is light sampling. Greedy keeps the same question giving the same answer, so the eval is repeatable (some sentences are flatter than a sampled run).
 - Browser runtime: ONNX in browsers via Transformers.js with WebGPU, fully client-side. ([ONNX](https://docs.liquid.ai/deployment/on-device/onnx))
 
 ## Why this model, approach and runtime
@@ -86,7 +86,6 @@ With notes, a real answer was: "Charyot means attention. When you hear charyot, 
 - I tested on iPhone and the part that loads the LFM model failed, so it's desktop only for now. The ConstantFolding session option in `shared/config.ts` did not make Ask reliable on iPhone; next step is native llama.cpp/GGUF.
 - Speed numbers I have so far are Node CPU eval figures, not Mac browser timings yet.
 - Some LFM3 answers still come out messy (repeated or cut off) and pass the checks. Fixes are in progress.
-- Some everyday ways of asking, like "how many tenets are there", are still declined.
 - Quiz "Learn why" is written by LFM3, but if its check fails you get the note instead.
 - The notes are still a draft, so always follow your instructor.
 
