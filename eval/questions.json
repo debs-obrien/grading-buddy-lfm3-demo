@@ -821,6 +821,14 @@
     {
       "id": "twist-hips",
       "q": "Do I twist my hips in a block?"
+    },
+    {
+      "id": "karate-low-block",
+      "q": "How do I do a low block in karate?"
+    },
+    {
+      "id": "christmas-after",
+      "q": "What comes after Christmas?"
     }
   ],
   "quality": [
@@ -899,12 +907,12 @@
     { "id": "everyday-invented", "q": "who invented taekwondo", "expect": [["choi"]] },
     { "id": "everyday-made", "q": "who made taekwon-do", "expect": [["choi"]] },
     { "id": "everyday-pattern", "q": "what is a pattern", "expect": [["tul", "teul", "pattern"]] },
-    { "id": "everyday-middle-punch", "q": "how do i do a middle punch", "expect": [["middle", "kaunde"]] },
+    { "id": "everyday-middle-punch", "q": "how do i do a middle punch", "expect": [["punch", "jirugi", "forefist", "joomuk"], ["middle", "kaunde"]] },
     { "id": "everyday-instructor", "q": "what do i call my instructor", "expect": [["sabum"]] },
     { "id": "everyday-kup", "q": "what is a kup", "expect": [["kup", "belt", "grade"]] },
     { "id": "everyday-bow", "q": "how do i bow", "expect": [["kyong", "bow"]] },
     { "id": "everyday-last-move", "q": "what is the last move of chon ji", "expect": [["left", "ready", "19", "end"]] },
-    { "id": "everyday-turn", "q": "which way do i turn in chon ji", "expect": [["turn", "spot", "chon"]] },
+    { "id": "everyday-turn", "q": "which way do i turn in chon ji", "expect": [["dolgi", "gujari", "spot"], ["turn", "turning"]] },
     { "id": "everyday-itf-mean", "q": "what does ITF mean", "expect": [["international"]] },
     { "id": "everyday-itf-founded", "q": "when was the ITF founded", "expect": [["1966", "international"]] },
     { "id": "everyday-yellow-grade", "q": "what grade is yellow belt", "expect": [["yellow", "8th", "earth"]] }

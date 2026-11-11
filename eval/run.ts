@@ -146,7 +146,7 @@ if (!matchOnly) {
 
 // Practice set of everyday phrasings (not frozen) — match-only or grounded.
 const everyday = [];
-for (const item of (qs.everyday_practice ?? []).slice(0, limit)) {
+for (const item of qualityOnly ? [] : (qs.everyday_practice ?? []).slice(0, limit)) {
   const r = await ask(item.q);
   const outcome = gradeInScope(r.answer, item.expect, matchOnly ? undefined : item.forbid_re, {
     order: !!item.order,

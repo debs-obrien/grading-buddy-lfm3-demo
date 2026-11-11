@@ -63,6 +63,27 @@ describe("Learn panels", () => {
   });
 });
 
+describe("browse-only Ask retry", () => {
+  it("exposes a Download and start control in the Ask-unavailable panel", () => {
+    const html = fs.readFileSync("app/index.html", "utf8");
+    expect(html).toMatch(/id="ask-unavailable"/);
+    expect(html).toMatch(/id="ask-retry-download"/);
+    expect(html).toMatch(/Download and start/);
+    const main = fs.readFileSync("app/src/main.ts", "utf8");
+    expect(main).toMatch(/ask-retry-download/);
+    expect(main).toMatch(/askRetry\.hidden = mode === "no-gpu"/);
+  });
+});
+
+describe("eval --quality-only", () => {
+  it("skips the everyday_practice loop the same way as in-scope and out-of-scope", () => {
+    const src = fs.readFileSync("eval/run.ts", "utf8");
+    expect(src).toMatch(
+      /for \(const item of qualityOnly \? \[\] : \(qs\.everyday_practice/,
+    );
+  });
+});
+
 // Copilot #4529813965 — no duplicate simple/learnBody in cardText
 describe("note card text", () => {
   it("does not append learnBody when it equals simple", () => {

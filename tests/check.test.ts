@@ -52,6 +52,17 @@ describe("short verbatim repeats fall back to notes", () => {
   });
 });
 
+describe("Answer:/Question: labels after whitespace flatten", () => {
+  it("treats a mid-answer Answer: label as broken", () => {
+    const plan = planAsk(loadBeltContent(), "What does makgi mean?");
+    expect(plan.kind).toBe("model");
+    if (plan.kind !== "model") return;
+    const r = finaliseAsk("Makgi means block.\n\nAnswer: Makgi means block.", plan);
+    expect(r.usedCard).toBe(true);
+    expect(r.how.source).toBe("notes");
+  });
+});
+
 describe("grounding check", () => {
   const facts = `Title: Counting 1 to 10 in Korean
 Type: counting
@@ -114,6 +125,14 @@ Simple: count in Korean.`;
     expect(checkAnswer("Chon-Ji starts in parallel ready stance (narani junbi sogi).", facts, "pattern").ok).toBe(
       true,
     );
+  });
+
+  it("rejects a truncated technique phrase inside a longer allowed word (cha busigi)", () => {
+    const bundle = loadBeltContent();
+    const techFacts = topicFacts(bundle, "techniques");
+    const r = checkAnswer("A front snap kick is cha busigi.", techFacts, "technique");
+    expect(r.ok).toBe(false);
+    expect(r.badKorean.some((k) => /cha/.test(k))).toBe(true);
   });
 
   it("fails on a number not in the facts", () => {

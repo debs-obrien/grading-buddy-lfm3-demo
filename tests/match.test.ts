@@ -88,6 +88,31 @@ describe("topic matching", () => {
       expect(plan.kind, q).toBe("model");
     }
   });
+
+  it("routes middle punch to the front-punch technique (not height alone)", () => {
+    const plan = planAsk(bundle, "how do i do a middle punch");
+    expect(plan.kind).toBe("model");
+    if (plan.kind !== "model") return;
+    expect(plan.match.topic.id).toBe("techniques");
+    expect(plan.cardItem.id).toBe("front-punch-ap-jirugi");
+    expect(plan.cardItem.simple.toLowerCase()).toMatch(/punch|jirugi/);
+  });
+
+  it("routes turn-in-chon-ji to the turning note (not the pattern definition)", () => {
+    const plan = planAsk(bundle, "which way do i turn in chon ji");
+    expect(plan.kind).toBe("model");
+    if (plan.kind !== "model") return;
+    expect(plan.cardItem.id).toBe("turning-in-place-and-step-turning");
+    expect(plan.cardItem.simple.toLowerCase()).toMatch(/dolgi|gujari|spot turn/);
+  });
+
+  it("refuses other-art and generic comes-after questions", () => {
+    for (const q of ["How do I do a low block in karate?", "What comes after Christmas?"]) {
+      const plan = planAsk(bundle, q);
+      expect(plan.kind, q).toBe("gated");
+      if (plan.kind === "gated") expect(plan.text).toBe(DECLINE);
+    }
+  });
 });
 
 describe("frozen eval: match or refuse every question", () => {

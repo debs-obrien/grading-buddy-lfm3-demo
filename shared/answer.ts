@@ -90,7 +90,7 @@ export function planAsk(bundle: ContentBundle, question: string): AskMode {
     return { kind: "gated", text: DECLINE, gateReason: "no-match", match: null };
   }
   const facts = topicFacts(bundle, match.topic.id);
-  const cardItem = match.primary ?? match.items[0];
+  const cardItem = cardItemForQuestion(match, question);
   return {
     kind: "model",
     messages: askMessages(question, facts),
@@ -100,6 +100,27 @@ export function planAsk(bundle: ContentBundle, question: string): AskMode {
     requiredFacts: requiredFactsForMatch(bundle, match, question),
     bundle,
   };
+}
+
+/** Prefer the matched item that actually answers the asked action (turn/punch/…). */
+function cardItemForQuestion(match: Match, question: string): ContentItem {
+  const primary = match.primary ?? match.items[0];
+  if (!primary) return match.items[0];
+  const q = question.toLowerCase();
+  const action = /\bturn/.test(q)
+    ? /turn|dolgi|gujari/i
+    : /\bpunch/.test(q)
+      ? /punch|jirugi|forefist|joomuk/i
+      : /\bkick/.test(q)
+        ? /kick|chagi|busigi|olligi/i
+        : /\bblock/.test(q)
+          ? /block|makgi/i
+          : null;
+  if (!action) return primary;
+  const hit = [primary, ...match.items].find((i) =>
+    action.test([i.title, i.english ?? "", i.simple, ...(i.aliases ?? [])].join(" ")),
+  );
+  return hit ?? primary;
 }
 
 /**
@@ -139,8 +160,9 @@ export function answerLooksBroken(text: string, opts?: { hitTokenCap?: boolean }
   if (/\bthe simple line\b/i.test(t)) return true;
   if (/\btwo short sentences max\b/i.test(t)) return true;
   if (/\b(?:so we can|need to check)\b/i.test(t)) return true;
-  if (/(?:^|\n)\s*answer\s*:/i.test(t)) return true;
-  if (/(?:^|\n)\s*question\s*:/i.test(t)) return true;
+  // After stripThinking flattens newlines, still catch "…. Answer: …" mid-text.
+  if (/(?:^|[.!?]\s+)answer\s*:/i.test(t)) return true;
+  if (/(?:^|[.!?]\s+)question\s*:/i.test(t)) return true;
   if (/[*_`#]{1,2}/.test(t)) return true; // markdown bold/code/headers
   if (repeatsChunk(t)) return true;
   // Numbered fragments like "2. 10." that are not a real counting list line

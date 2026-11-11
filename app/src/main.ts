@@ -447,7 +447,7 @@ function wireAppShell() {
   renderLearn($("learn"), notes);
   renderScore();
   $("download").onclick = () => startLoad("download");
-  $("retry").onclick = async () => {
+  const retryAskLoad = async () => {
     if (!choice) {
       openWithoutModel(RECOVER_NO_GPU_MESSAGE, "no-gpu");
       return;
@@ -456,9 +456,12 @@ function wireAppShell() {
     const alreadyReady = !!localStorage.getItem(DOWNLOADED_KEY);
     startLoad(state === "cached" || alreadyReady ? "cached" : state);
   };
+  $("retry").onclick = retryAskLoad;
+  const askRetry = $("ask-retry-download");
+  if (askRetry) askRetry.onclick = retryAskLoad;
   const lookAround = () => {
     openWithoutModel(
-      "You can browse Learn and Quiz now. Tap Try again later if you want Ask. We keep anything already saved on this device.",
+      "You can browse Learn and Quiz now. Tap Download and start on the Ask tab when you want Ask. We keep anything already saved on this device.",
       "ask-later",
     );
   };
@@ -505,7 +508,13 @@ function openWithoutModel(reason: string, mode: "no-gpu" | "ask-later" = "ask-la
   $("ask-unavailable-body").textContent =
     mode === "no-gpu"
       ? "Ask needs a desktop browser with WebGPU (latest Chrome or Edge on a laptop or desktop). Learn and Quiz work everywhere."
-      : "The download didn't finish (or hasn't started). Learn and Quiz still work. Tap Try again later for Ask.";
+      : "The download didn't finish (or hasn't started). Learn and Quiz still work. Use Download and start below when you want Ask.";
+  const askRetry = $("ask-retry-download");
+  if (askRetry) {
+    // Download cannot enable Ask without WebGPU; only show for deferred setup/download.
+    askRetry.hidden = mode === "no-gpu";
+    askRetry.textContent = "Download and start";
+  }
   wireAppShell();
   screen("app");
   tab("learn");
