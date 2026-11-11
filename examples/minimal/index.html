@@ -10,6 +10,7 @@
       textarea { height: 5rem; }
       pre { white-space: pre-wrap; background: #f4f4f5; padding: 0.8rem; }
       progress { height: 0.8rem; }
+      label { display: block; margin: 0.8rem 0 0.3rem; font-weight: 600; }
     </style>
   </head>
   <body>
@@ -17,6 +18,7 @@
     <p id="status">Checking for WebGPU…</p>
     <progress id="bar" value="0" max="100" hidden></progress>
     <p id="prog" hidden></p>
+    <label for="q">Your question</label>
     <textarea id="q">Which way do I turn in Chon-Ji?</textarea>
     <p><button id="go" type="button">Ask</button></p>
     <pre id="out"></pre>
@@ -31,6 +33,7 @@
       const bar = document.getElementById("bar");
       const prog = document.getElementById("prog");
       const noGpu = "This browser has no WebGPU. Open this page in desktop Chrome or Edge.";
+      const noF16 = "This GPU does not support shader-f16, which q4f16 needs. Try another desktop GPU or browser.";
 
       // Reuse one pipeline across Ask clicks (do not recreate each time).
       let chat = null;
@@ -78,13 +81,31 @@
         }
       }
 
+      // Keep text after the last </think>; drop any leftover unclosed <think>.
+      function stripThinking(text) {
+        const close = "</think>";
+        const open = "<think>";
+        const low = text.toLowerCase();
+        const lastClose = low.lastIndexOf(close);
+        let out = lastClose >= 0 ? text.slice(lastClose + close.length) : text;
+        const openIdx = out.toLowerCase().indexOf(open);
+        if (openIdx >= 0) out = out.slice(0, openIdx);
+        return out.trim();
+      }
+
       const adapter = navigator.gpu && (await navigator.gpu.requestAdapter());
+      const hasF16 = !!adapter?.features?.has?.("shader-f16");
       if (!adapter) status.textContent = noGpu;
+      else if (!hasF16) status.textContent = noF16;
       else status.textContent = "WebGPU is ready. Click Ask to download the model (about 1 GB the first time) and answer.";
 
       document.getElementById("go").onclick = async () => {
         if (!adapter) {
           status.textContent = noGpu;
+          return;
+        }
+        if (!hasF16) {
+          status.textContent = noF16;
           return;
         }
         const btn = document.getElementById("go");
@@ -111,9 +132,9 @@
             ],
             { max_new_tokens: 150, tokenizer_encode_kwargs: { enable_thinking: false } },
           );
-          // Keep only the text after any </think> block.
           const raw = String(out[0].generated_text.at(-1).content ?? "");
-          document.getElementById("out").textContent = raw.split("</think>").pop().trim();
+          const answer = stripThinking(raw);
+          document.getElementById("out").textContent = answer || "(No final answer after thinking.)";
           status.textContent = "Done.";
         } catch (err) {
           status.textContent = String(err?.message ?? err);
