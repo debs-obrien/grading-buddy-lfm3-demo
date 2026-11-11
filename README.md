@@ -44,6 +44,14 @@ Open http://localhost:8000 in desktop Chrome or Edge and click **Ask** (first ru
 - The model is asked to answer in a sentence or two from those facts. A grounding check (Korean terms, numbers, type) and a required-facts check must pass; if either fails, the UI shows the note card labelled **From the notes** instead.
 - Quiz questions and grading are plain code, straight from the notes (no model). Optional **Learn why** after a wrong answer is written by LFM3, with the same kind of check and a note fallback.
 
+## Why this design
+
+- Small models should get their facts from the app, not from memory. LFM3 docs: "Use retrieval or search for knowledge-heavy tasks." ([LFM3-1.7B](https://docs.liquid.ai/lfm/models/lfm3-1.7b))
+- Liquid's cookbook describes the same pattern: "Small models are usually deployed with retrieval: your app finds a few relevant documents, and the model answers from them." It also warns the stock model "often writes the fallback sentence and then answers anyway, which an app can't rely on." That is why the app refuses out-of-scope questions before calling the model and checks answers afterwards. ([DPO notebook](https://github.com/Liquid4All/cookbook/blob/main/finetuning/notebooks/lfm3_dpo_with_trl.ipynb))
+- Liquid's cookbook shows a fine-tuning fix for clean refusals (DPO). This app does that job in code instead. The answer check and verbatim official wording are this app's own choices.
+- Thinking is off ("Set enable_thinking=False ... for direct answers", [same LFM3 docs](https://docs.liquid.ai/lfm/models/lfm3-1.7b)). Decoding is greedy, as in the same notebook. The general LFM3 default is light sampling. Greedy keeps the same question giving the same answer, so the eval is repeatable (some sentences are flatter than a sampled run).
+- Browser runtime: ONNX in browsers via Transformers.js with WebGPU, fully client-side. ([ONNX](https://docs.liquid.ai/deployment/on-device/onnx))
+
 ## Why this model, approach and runtime
 
 | Choice | Why | What it cost |
@@ -51,7 +59,6 @@ Open http://localhost:8000 in desktop Chrome or Edge and click **Ask** (first ru
 | **LFM3-1.7B** ([ONNX export](https://huggingface.co/onnx-community/LFM3-1.7B-ONNX), q4f16) | The text model in the LFM3 family: small enough for on-device Ask, strong at following “answer only from these facts” instructions, and the ONNX export is Liquid’s documented web path. | **About 1.1 GB** first download (q4f16). Without the notes and checks it can invent Korean words and advice. |
 | **Transformers.js + WebGPU** | One static link, no server and no API key: the model runs in a Web Worker in the browser and works offline after the first download. | **Desktop only** (needs WebGPU). My CPU fallback failed twice, so there isn’t one. Slower than a native llama.cpp build. |
 | **Topic match + LFM3 answers + grounding / required-facts checks, no fine-tune** | Fast to build and easy to check: match a whole topic, let LFM3 write one or two sentences from that topic’s facts, then either keep the answer or fall back to the note card. You can edit the notes without retraining. | When the grounding or required-facts check fails, the UI shows **From the notes** instead of the model’s wording. Two frozen-eval misses remain (see Does it work?). |
-| **Greedy decoding** | The same question gives the same answer, so the eval is repeatable. | Ignores the model card’s suggested sampling settings, so some sentences are flatter than a sampled run. |
 
 ## Does it work?
 
@@ -79,7 +86,6 @@ With notes, a real answer was: "Charyot means attention. When you hear charyot, 
 - I tested on iPhone and the part that loads the LFM model failed, so it's desktop only for now. The ConstantFolding session option in `shared/config.ts` did not make Ask reliable on iPhone; next step is native llama.cpp/GGUF.
 - Speed numbers I have so far are Node CPU eval figures, not Mac browser timings yet.
 - Some LFM3 answers still come out messy (repeated or cut off) and pass the checks. Fixes are in progress.
-- Some everyday ways of asking, like "how many tenets are there", are still declined.
 - Quiz "Learn why" is written by LFM3, but if its check fails you get the note instead.
 - The notes are still a draft, so always follow your instructor.
 
