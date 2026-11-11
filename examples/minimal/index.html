@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Try LFM3</title>
-  <style>body{font:16px system-ui,sans-serif;max-width:36rem;margin:1.5rem auto;padding:0 1rem}textarea,pre{width:100%;box-sizing:border-box}textarea{height:4rem}</style>
+  <style>body{font:16px system-ui,sans-serif;max-width:36rem;margin:1.5rem auto;padding:0 1rem}textarea,pre{width:100%;box-sizing:border-box}textarea{height:4rem}pre{white-space:pre-wrap}</style>
 </head>
 <body>
   <label for="q">Your question</label>
@@ -13,29 +13,40 @@
   <pre id="out"></pre>
   <script type="module">
     import { pipeline } from "https://cdn.jsdelivr.net/npm/@huggingface/transformers@4.3.2";
-    const status = document.getElementById("status"), files = new Map();
+    const status = document.getElementById("status"), go = document.getElementById("go"), files = new Map();
     let chat;
-    if (!(await navigator.gpu?.requestAdapter())) status.textContent = "WebGPU required (desktop Chrome or Edge).";
-    document.getElementById("go").onclick = async () => {
-      if (!chat) {
-        chat = await pipeline("text-generation", "onnx-community/LFM3-1.7B-ONNX", {
-          dtype: "q4f16", device: "webgpu",
-          progress_callback: (ev) => {
-            if (ev.status !== "progress" || !ev.file) return;
-            files.set(ev.file, { loaded: ev.loaded ?? 0, total: ev.total ?? 0 });
-            let loaded = 0, total = 0;
-            for (const f of files.values()) { loaded += f.loaded; total += f.total; }
-            if (total) status.textContent = `Downloading model… ${Math.min(100, Math.round((loaded / total) * 100))}%`;
-          },
-        });
-        status.textContent = "Ready";
+    if (!(await navigator.gpu?.requestAdapter())) {
+      status.textContent = "WebGPU required (desktop Chrome or Edge).";
+      go.disabled = true;
+    }
+    go.onclick = async () => {
+      go.disabled = true;
+      try {
+        if (!chat) {
+          chat = await pipeline("text-generation", "onnx-community/LFM3-1.7B-ONNX", {
+            dtype: "q4f16", device: "webgpu",
+            progress_callback: (ev) => {
+              if (ev.status !== "progress" || !ev.file) return;
+              files.set(ev.file, { loaded: ev.loaded ?? 0, total: ev.total ?? 0 });
+              let loaded = 0, total = 0;
+              for (const f of files.values()) { loaded += f.loaded; total += f.total; }
+              if (total) status.textContent = `Downloading model… ${Math.min(100, Math.round((loaded / total) * 100))}%`;
+            },
+          });
+          status.textContent = "Ready";
+        }
+        const out = await chat([
+          { role: "system", content: "You are a helpful assistant. Answer briefly." },
+          { role: "user", content: document.getElementById("q").value },
+        ], { max_new_tokens: 150, do_sample: false, tokenizer_encode_kwargs: { enable_thinking: false } });
+        const raw = String(out[0].generated_text.at(-1).content ?? "");
+        document.getElementById("out").textContent =
+          raw.replace(/^[\s\S]*<\/think>/i, "").replace(/<think>[\s\S]*$/i, "").trim() || "(No answer.)";
+      } catch (err) {
+        status.textContent = String(err?.message ?? err);
+      } finally {
+        go.disabled = false;
       }
-      const out = await chat([
-        { role: "system", content: "You are a helpful assistant. Answer briefly." },
-        { role: "user", content: document.getElementById("q").value },
-      ], { max_new_tokens: 150, do_sample: false, tokenizer_encode_kwargs: { enable_thinking: false } });
-      const raw = String(out[0].generated_text.at(-1).content ?? "");
-      document.getElementById("out").textContent = raw.replace(/^[\s\S]*?<\/think>/i, "").trim();
     };
   </script>
 </body>
