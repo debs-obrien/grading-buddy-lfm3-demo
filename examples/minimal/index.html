@@ -18,8 +18,7 @@
     if (!(await navigator.gpu?.requestAdapter())) {
       status.textContent = "WebGPU required (desktop Chrome or Edge).";
       go.disabled = true;
-    }
-    go.onclick = async () => {
+    } else go.onclick = async () => {
       go.disabled = true;
       try {
         if (!chat) {
