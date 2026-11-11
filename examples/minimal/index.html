@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="data:," />
+    <title>Try LFM3 in the browser</title>
+    <style>
+      body { font: 16px system-ui, sans-serif; max-width: 40rem; margin: 2rem auto; padding: 0 1rem; }
+      textarea, pre, progress { width: 100%; box-sizing: border-box; }
+      textarea { height: 5rem; }
+      pre { white-space: pre-wrap; background: #f4f4f5; padding: 0.8rem; }
+      progress { height: 0.8rem; }
+    </style>
+  </head>
+  <body>
+    <h1>Try LFM3</h1>
+    <p id="status">Checking for WebGPU…</p>
+    <progress id="bar" value="0" max="100" hidden></progress>
+    <p id="prog" hidden></p>
+    <textarea id="q">Which way do I turn in Chon-Ji?</textarea>
+    <p><button id="go" type="button">Ask</button></p>
+    <pre id="out"></pre>
+    <script type="module">
+      // Same Transformers.js version the main app uses.
+      import { pipeline } from "https://cdn.jsdelivr.net/npm/@huggingface/transformers@4.3.2";
+
+      const notes =
+        "Chon-Ji has 19 moves. It starts in parallel ready stance (narani junbi sogi), facing D (the front). A is to your right, B is to your left and C is behind you. The first move steps the left foot to the left (B) into a left walking stance with a left forearm low block. Move 3 turns right (clockwise) towards A with a right forearm low block.";
+
+      const status = document.getElementById("status");
+      const bar = document.getElementById("bar");
+      const prog = document.getElementById("prog");
+      const noGpu = "This browser has no WebGPU. Open this page in desktop Chrome or Edge.";
+
+      // Reuse one pipeline across Ask clicks (do not recreate each time).
+      let chat = null;
+
+      // Sum loaded/total across every file Transformers.js reports.
+      const files = new Map();
+
+      function mb(n) {
+        return Math.round(n / 1e6).toLocaleString();
+      }
+
+      function showProgress(text, pct) {
+        bar.hidden = false;
+        prog.hidden = false;
+        prog.textContent = text;
+        if (pct != null) bar.value = pct;
+      }
+
+      // Events: initiate | download | progress | done | ready.
+      // Progress events include file, loaded, total, progress.
+      function onProgress(ev) {
+        if (ev.status === "initiate" || ev.status === "download") {
+          // Cached runs often never emit progress; keep saying "Loading…".
+          if (!files.size) showProgress("Loading model…", 0);
+          return;
+        }
+        if (ev.status === "progress" && ev.file) {
+          files.set(ev.file, { loaded: ev.loaded ?? 0, total: ev.total ?? 0 });
+          let loaded = 0;
+          let total = 0;
+          for (const f of files.values()) {
+            loaded += f.loaded;
+            total += f.total;
+          }
+          if (!total) {
+            showProgress("Loading model…", 0);
+            return;
+          }
+          const pct = Math.min(100, Math.round((loaded / total) * 100));
+          showProgress(`Downloading model: ${mb(loaded)} / ${mb(total)} MB (${pct}%)`, pct);
+          return;
+        }
+        if (ev.status === "done" || ev.status === "ready") {
+          if (!files.size) showProgress("Loading model…", 100);
+        }
+      }
+
+      const adapter = navigator.gpu && (await navigator.gpu.requestAdapter());
+      if (!adapter) status.textContent = noGpu;
+      else status.textContent = "WebGPU is ready. Click Ask to download the model (about 1 GB the first time) and answer.";
+
+      document.getElementById("go").onclick = async () => {
+        if (!adapter) {
+          status.textContent = noGpu;
+          return;
+        }
+        const btn = document.getElementById("go");
+        btn.disabled = true;
+        try {
+          if (!chat) {
+            status.textContent = "Loading LFM3 (q4f16, WebGPU)…";
+            files.clear();
+            bar.value = 0;
+            showProgress("Loading model…", 0);
+            chat = await pipeline("text-generation", "onnx-community/LFM3-1.7B-ONNX", {
+              device: "webgpu",
+              dtype: "q4f16",
+              progress_callback: onProgress,
+            });
+            bar.hidden = true;
+            prog.hidden = true;
+          }
+          status.textContent = "Thinking…";
+          const out = await chat(
+            [
+              { role: "system", content: "Answer using only these notes: " + notes },
+              { role: "user", content: document.getElementById("q").value },
+            ],
+            { max_new_tokens: 150, tokenizer_encode_kwargs: { enable_thinking: false } },
+          );
+          // Keep only the text after any </think> block.
+          const raw = String(out[0].generated_text.at(-1).content ?? "");
+          document.getElementById("out").textContent = raw.split("</think>").pop().trim();
+          status.textContent = "Done.";
+        } catch (err) {
+          status.textContent = String(err?.message ?? err);
+        } finally {
+          btn.disabled = false;
+        }
+      };
+    </script>
+  </body>
+</html>
