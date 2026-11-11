@@ -829,6 +829,26 @@
     {
       "id": "christmas-after",
       "q": "What comes after Christmas?"
+    },
+    {
+      "id": "pattern-maths",
+      "q": "what is a pattern in maths"
+    },
+    {
+      "id": "pattern-dress",
+      "q": "what is a pattern on a dress"
+    },
+    {
+      "id": "kup-of-tea",
+      "q": "what is a kup of tea"
+    },
+    {
+      "id": "middle-parting",
+      "q": "how do i do a middle parting"
+    },
+    {
+      "id": "korean-won",
+      "q": "what is 5 in korean won"
     }
   ],
   "quality": [
@@ -896,7 +916,7 @@
     { "id": "everyday-tenets-how-many", "q": "how many tenets", "expect": [["courtesy"], ["integrity"]] },
     { "id": "everyday-tenets-are-there", "q": "how many tenets are there", "expect": [["courtesy"], ["integrity"]] },
     { "id": "everyday-tenets-of-tkd", "q": "how many tenets of taekwondo are there", "expect": [["courtesy"], ["integrity"]] },
-    { "id": "everyday-courtesy", "q": "what is courtesy", "expect": [["courtesy"]] },
+    { "id": "everyday-courtesy", "q": "what is courtesy", "expect": [["courtesy"], ["polite", "please", "kind"]] },
     { "id": "everyday-3-korean", "q": "what is 3 in korean", "expect": [["set"]] },
     { "id": "everyday-5-korean", "q": "whats 5 in korean", "expect": [["dasot"]] },
     { "id": "everyday-2-korean", "q": "how do you say 2 in korean", "expect": [["dul", "dool"]] },
@@ -909,12 +929,12 @@
     { "id": "everyday-pattern", "q": "what is a pattern", "expect": [["tul", "teul", "pattern"]] },
     { "id": "everyday-middle-punch", "q": "how do i do a middle punch", "expect": [["punch", "jirugi", "forefist", "joomuk"], ["middle", "kaunde"]] },
     { "id": "everyday-instructor", "q": "what do i call my instructor", "expect": [["sabum"]] },
-    { "id": "everyday-kup", "q": "what is a kup", "expect": [["kup", "belt", "grade"]] },
+    { "id": "everyday-kup", "q": "what is a kup", "expect": [["kup"], ["grade", "belt", "colour", "color"]] },
     { "id": "everyday-bow", "q": "how do i bow", "expect": [["kyong", "bow"]] },
-    { "id": "everyday-last-move", "q": "what is the last move of chon ji", "expect": [["left", "ready", "19", "end"]] },
+    { "id": "everyday-last-move", "q": "what is the last move of chon ji", "expect": [["left"], ["ready"]] },
     { "id": "everyday-turn", "q": "which way do i turn in chon ji", "expect": [["dolgi", "gujari", "spot"], ["turn", "turning"]] },
     { "id": "everyday-itf-mean", "q": "what does ITF mean", "expect": [["international"]] },
     { "id": "everyday-itf-founded", "q": "when was the ITF founded", "expect": [["1966", "international"]] },
-    { "id": "everyday-yellow-grade", "q": "what grade is yellow belt", "expect": [["yellow", "8th", "earth"]] }
+    { "id": "everyday-yellow-grade", "q": "what grade is yellow belt", "expect": [["yellow"], ["8th", "earth", "kup"]] }
   ]
 }

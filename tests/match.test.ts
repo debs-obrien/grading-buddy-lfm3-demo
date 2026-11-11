@@ -113,6 +113,42 @@ describe("topic matching", () => {
       if (plan.kind === "gated") expect(plan.text).toBe(DECLINE);
     }
   });
+
+  it("refuses shared-word off-topic questions (maths, dress, tea, parting, won)", () => {
+    for (const q of [
+      "what is a pattern in maths",
+      "what is a pattern on a dress",
+      "what is a kup of tea",
+      "how do i do a middle parting",
+      "what is 5 in korean won",
+    ]) {
+      const plan = planAsk(bundle, q);
+      expect(plan.kind, q).toBe("gated");
+      if (plan.kind === "gated") expect(plan.text).toBe(DECLINE);
+    }
+  });
+
+  it("matches what number is yodul to counting", () => {
+    const plan = planAsk(bundle, "what number is yodul");
+    expect(plan.kind).toBe("model");
+    if (plan.kind !== "model") return;
+    expect(plan.match.topic.id).toBe("counting");
+  });
+
+  it("routes last-move and courtesy to the answering note cards", () => {
+    const last = planAsk(bundle, "what is the last move of chon ji");
+    expect(last.kind).toBe("model");
+    if (last.kind === "model") {
+      expect(last.cardItem.id).toBe("chon-ji-moves-17-to-19-and-the-end");
+      expect(last.cardItem.simple.toLowerCase()).toMatch(/left|ready/);
+    }
+    const courtesy = planAsk(bundle, "what is courtesy");
+    expect(courtesy.kind).toBe("model");
+    if (courtesy.kind === "model") {
+      expect(courtesy.cardItem.id).toBe("courtesy");
+      expect(courtesy.cardItem.simple.toLowerCase()).toMatch(/polite|please|kind/);
+    }
+  });
 });
 
 describe("frozen eval: match or refuse every question", () => {

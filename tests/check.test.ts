@@ -63,6 +63,33 @@ describe("Answer:/Question: labels after whitespace flatten", () => {
   });
 });
 
+describe("single-number ask rejects a full counting list", () => {
+  it("falls back to notes when the model dumps 1–10 for a single number", () => {
+    const plan = planAsk(loadBeltContent(), "what is three in Korean");
+    expect(plan.kind).toBe("model");
+    if (plan.kind !== "model") return;
+    const r = finaliseAsk(
+      "Three in Korean is set. 1 hana, 2 dul, 3 set, 4 net, 5 dasot, 6 yosot, 7 ilgop, 8 yodul, 9 ahop, 10 yol.",
+      plan,
+    );
+    expect(r.usedCard).toBe(true);
+    expect(r.how.source).toBe("notes");
+    expect(r.text).toMatch(/3 is set/i);
+  });
+
+  it("falls back when a counting list is out of order", () => {
+    const plan = planAsk(loadBeltContent(), "how do you count to 10 in Korean");
+    expect(plan.kind).toBe("model");
+    if (plan.kind !== "model") return;
+    const r = finaliseAsk(
+      "10 yol. 1 hana, 2 dul, 3 set, 4 net, 5 dasot, 6 yosot, 7 ilgop, 8 yodul, 9 ahop.",
+      plan,
+    );
+    expect(r.usedCard).toBe(true);
+    expect(r.how.source).toBe("notes");
+  });
+});
+
 describe("grounding check", () => {
   const facts = `Title: Counting 1 to 10 in Korean
 Type: counting
@@ -133,6 +160,14 @@ Simple: count in Korean.`;
     const r = checkAnswer("A front snap kick is cha busigi.", techFacts, "technique");
     expect(r.ok).toBe(false);
     expect(r.badKorean.some((k) => /cha/.test(k))).toBe(true);
+  });
+
+  it("rejects pcha busigi the same way (substring of apcha busigi)", () => {
+    const bundle = loadBeltContent();
+    const techFacts = topicFacts(bundle, "techniques");
+    const r = checkAnswer("A front snap kick is pcha busigi.", techFacts, "technique");
+    expect(r.ok).toBe(false);
+    expect(r.badKorean.some((k) => /pcha/.test(k))).toBe(true);
   });
 
   it("fails on a number not in the facts", () => {

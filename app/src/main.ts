@@ -72,7 +72,20 @@ const clearLoadAttempted = () => {
     /* ignore */
   }
 };
+/** True after Look around first while a download/load is still in flight. */
+let browsingDuringLoad = false;
+
 const showLoadError = (raw: string) => {
+  // If the kid is already browsing Learn/Quiz, stay there — update the Ask panel
+  // instead of yanking them to the error screen with a stale card above it.
+  if (browsingDuringLoad || !$("app").hidden) {
+    browsingDuringLoad = false;
+    openWithoutModel(
+      "The download didn't finish. Learn and Quiz still work. Use Download and start below when you want to try Ask again.",
+      "ask-later",
+    );
+    return;
+  }
   $("error-text").textContent = friendlyLoadError(raw);
   screen("error");
 };
@@ -157,6 +170,7 @@ worker.onmessage = (e: MessageEvent<FromWorker>) => {
   } else if (m.type === "ready") {
     localStorage.setItem(DOWNLOADED_KEY, "1");
     clearLoadAttempted();
+    browsingDuringLoad = false;
     askReady = true;
     show("ask-form");
     show("ask-unavailable", false);
@@ -460,8 +474,12 @@ function wireAppShell() {
   const askRetry = $("ask-retry-download");
   if (askRetry) askRetry.onclick = retryAskLoad;
   const lookAround = () => {
+    const stillDownloading = !$("loading").hidden;
+    browsingDuringLoad = stillDownloading;
     openWithoutModel(
-      "You can browse Learn and Quiz now. Tap Download and start on the Ask tab when you want Ask. We keep anything already saved on this device.",
+      stillDownloading
+        ? "You can browse Learn and Quiz now. The download is still running — Ask will turn on when it finishes. Or use Download and start on the Ask tab to try again."
+        : "You can browse Learn and Quiz now. Tap Download and start on the Ask tab when you want Ask. We keep anything already saved on this device.",
       "ask-later",
     );
   };
@@ -508,7 +526,9 @@ function openWithoutModel(reason: string, mode: "no-gpu" | "ask-later" = "ask-la
   $("ask-unavailable-body").textContent =
     mode === "no-gpu"
       ? "Ask needs a desktop browser with WebGPU (latest Chrome or Edge on a laptop or desktop). Learn and Quiz work everywhere."
-      : "The download didn't finish (or hasn't started). Learn and Quiz still work. Use Download and start below when you want Ask.";
+      : browsingDuringLoad
+        ? "The download is still running. Learn and Quiz still work. Ask will turn on when it finishes, or use Download and start below to try again."
+        : "The download didn't finish. Learn and Quiz still work. Use Download and start below when you want Ask.";
   const askRetry = $("ask-retry-download");
   if (askRetry) {
     // Download cannot enable Ask without WebGPU; only show for deferred setup/download.

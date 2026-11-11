@@ -72,6 +72,9 @@ describe("browse-only Ask retry", () => {
     const main = fs.readFileSync("app/src/main.ts", "utf8");
     expect(main).toMatch(/ask-retry-download/);
     expect(main).toMatch(/askRetry\.hidden = mode === "no-gpu"/);
+    // Download failure while browsing must not yank the kid to the error screen.
+    expect(main).toMatch(/browsingDuringLoad/);
+    expect(main).not.toMatch(/hasn't started/);
   });
 });
 

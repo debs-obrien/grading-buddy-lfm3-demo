@@ -107,6 +107,33 @@ function cardItemForQuestion(match: Match, question: string): ContentItem {
   const primary = match.primary ?? match.items[0];
   if (!primary) return match.items[0];
   const q = question.toLowerCase();
+  const pool = [primary, ...match.items.filter((i) => i.id !== primary.id)];
+
+  // Named tenet → that tenet's note, not the whole five-tenets list.
+  for (const name of ["courtesy", "integrity", "perseverance", "self-control", "indomitable"]) {
+    if (new RegExp(`\\b${name}\\b`).test(q)) {
+      const tenet = pool.find(
+        (i) =>
+          i.id === name ||
+          i.id === name.replace("-", "") ||
+          new RegExp(`\\b${name}\\b`, "i").test(i.title),
+      );
+      if (tenet) return tenet;
+    }
+  }
+
+  // Last / first move of Chon-Ji → the matching move-range card.
+  if (/\bmoves?\b/.test(q) && /chon\s*-?\s*ji/.test(q)) {
+    if (/\b(last|end|final)\b/.test(q)) {
+      const last = pool.find((i) => i.id === "chon-ji-moves-17-to-19-and-the-end");
+      if (last) return last;
+    }
+    if (/\bfirst\b/.test(q)) {
+      const first = pool.find((i) => i.id === "chon-ji-moves-1-to-4");
+      if (first) return first;
+    }
+  }
+
   const action = /\bturn/.test(q)
     ? /turn|dolgi|gujari/i
     : /\bpunch/.test(q)
@@ -117,7 +144,7 @@ function cardItemForQuestion(match: Match, question: string): ContentItem {
           ? /block|makgi/i
           : null;
   if (!action) return primary;
-  const hit = [primary, ...match.items].find((i) =>
+  const hit = pool.find((i) =>
     action.test([i.title, i.english ?? "", i.simple, ...(i.aliases ?? [])].join(" ")),
   );
   return hit ?? primary;
@@ -189,6 +216,45 @@ function repeatsChunk(text: string): boolean {
     if (!key) continue;
     if (seen.has(key)) return true;
     seen.add(key);
+  }
+  return false;
+}
+
+const COUNT_ROWS: [number, string][] = [
+  [1, "hana"],
+  [2, "dul"],
+  [3, "set"],
+  [4, "net"],
+  [5, "dasot"],
+  [6, "yosot"],
+  [7, "ilgop"],
+  [8, "yodul"],
+  [9, "ahop"],
+  [10, "yol"],
+];
+
+/** How many of the canonical "N korean" counting rows appear in the answer. */
+function countListRowHits(text: string): number {
+  const low = text.toLowerCase().replace(/\s+/g, " ");
+  let hits = 0;
+  for (const [n, ko] of COUNT_ROWS) {
+    if (new RegExp(`\\b${n}\\s+${ko}\\b`).test(low)) hits += 1;
+  }
+  return hits;
+}
+
+/** True when several counting rows appear but not in ascending order. */
+function countingListOutOfOrder(text: string): boolean {
+  const low = text.toLowerCase().replace(/\s+/g, " ");
+  const positions: { n: number; at: number }[] = [];
+  for (const [n, ko] of COUNT_ROWS) {
+    const m = low.match(new RegExp(`\\b${n}\\s+${ko}\\b`));
+    if (m && m.index !== undefined) positions.push({ n, at: m.index });
+  }
+  if (positions.length < 3) return false;
+  positions.sort((a, b) => a.at - b.at);
+  for (let i = 1; i < positions.length; i++) {
+    if (positions[i].n < positions[i - 1].n) return true;
   }
   return false;
 }
@@ -279,7 +345,15 @@ export function finaliseAsk(
   const check = checkAnswer(text, plan.facts, plan.cardItem.category);
   const required = checkRequiredFacts(text, plan.requiredFacts, plan.bundle);
   const sources = [plan.match.topic.name];
-  const broken = answerLooksBroken(text, { hitTokenCap: timing?.hitTokenCap });
+  const singleCount =
+    plan.requiredFacts.length === 1 && plan.requiredFacts[0].id.startsWith("count-");
+  // Full 1–10 dump on a single-number ask, or an out-of-order count list → notes.
+  const countShapeBroken =
+    (singleCount && countListRowHits(text) >= 5) ||
+    (plan.match.topic.id === "counting" && countingListOutOfOrder(text));
+  const broken =
+    answerLooksBroken(text, { hitTokenCap: timing?.hitTokenCap }) || countShapeBroken;
+  // Prefer the missing-fact reason when both fire — kids/debug need the named gap.
   const checkTrace = {
     ok: check.ok && required.ok && !broken,
     badKorean: check.badKorean,
@@ -287,10 +361,10 @@ export function finaliseAsk(
     badCategory: check.badCategory,
     badBodyParts: check.badBodyParts,
     missingRequired: required.missing.map((m) => `${m.id} [${m.alts.join("|")}]`),
-    summary: broken
-      ? "Failed. Showed the note instead. Answer looked truncated, repeated, or meta-reasoned."
-      : !required.ok
-        ? required.summary
+    summary: !required.ok
+      ? required.summary
+      : broken
+        ? "Failed. Showed the note instead. Answer looked truncated, repeated, or meta-reasoned."
         : checkSummary({
             ...check,
             missingRequired: [],
@@ -315,25 +389,8 @@ export function finaliseAsk(
   if (broken) return useCard("check-failed");
 
   // Single-number counting answers can be short ("Yodul is 8.") — do not treat as thin.
-  const singleCount =
-    plan.requiredFacts.length === 1 && plan.requiredFacts[0].id.startsWith("count-");
   if (!singleCount && (text.length < 24 || /:\s*$/.test(text))) {
     return useCard("thin-or-glossary-fallback");
-  }
-
-  // Meaning answers stay Written by LFM3 (we do not demand 19 as a hard fact),
-  // but fold the move count into the last sentence when missing so frozen
-  // expects still pass without bumping the quality sentence cap.
-  if (plan.match.topic.id === "chonji") {
-    const moves = plan.match.items.find((i) => i.id === "how-many-moves-chon-ji-has");
-    if (
-      moves?.english &&
-      !plan.requiredFacts.some((r) => r.id === "chonji-moves") &&
-      plan.requiredFacts.some((r) => r.id === "chonji-heaven") &&
-      !new RegExp(`\\b${moves.english}\\b`).test(text)
-    ) {
-      text = text.replace(/\s*[.!?…]["']?\s*$/, "") + `, and it has ${moves.english} moves.`;
-    }
   }
 
   return {

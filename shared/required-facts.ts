@@ -141,6 +141,12 @@ function singleCountRequirement(
     const row = numbers.find((x) => x.n === n);
     return row ? { id: `count-${n}`, alts: [row.korean, String(n)] } : null;
   }
+  // Reverse ask: "what number is yodul"
+  for (const row of numbers) {
+    if (new RegExp(`\\b${row.korean}\\b`, "i").test(q)) {
+      return { id: `count-${row.n}`, alts: [row.korean, String(row.n)] };
+    }
+  }
   return null;
 }
 
