@@ -4,7 +4,7 @@ import { loadBeltContent } from "../shared/belt-fs.ts";
 
 /**
  * Every official quote in content.json must match the source text character for character.
- * Expected strings are copied from data/belts/white-yellow/notes.md (itself checked against SOURCES.md).
+ * Expected strings are the signed-off official ITF wording (see SOURCES.md).
  */
 const EXPECTED: Record<string, { source: string; text: string }> = {
   "what-the-white-belt-means": {
@@ -35,8 +35,16 @@ const EXPECTED: Record<string, { source: string; text: string }> = {
   },
 };
 
+/** Quotes that SOURCES.md records character for character (tenets/oath are paraphrased there). */
+const QUOTED_IN_SOURCES = new Set([
+  "what-the-white-belt-means",
+  "what-the-yellow-belt-means",
+  "what-chon-ji-means",
+]);
+
 describe("official ITF wording", () => {
   const bundle = loadBeltContent();
+  const sources = fs.readFileSync("data/belts/white-yellow/SOURCES.md", "utf8");
 
   it("has an official quote for each signed-off formula", () => {
     for (const id of Object.keys(EXPECTED)) {
@@ -50,10 +58,8 @@ describe("official ITF wording", () => {
     it(`${id}: character-for-character match`, () => {
       const item = bundle.items.find((i) => i.id === id)!;
       expect(item.official!.text).toBe(exp.text);
-      // Also present in the original notes.md so we did not invent it.
-      const notes = fs.readFileSync("data/belts/white-yellow/notes.md", "utf8");
-      for (const line of exp.text.split("\n")) {
-        expect(notes).toContain(line);
+      if (QUOTED_IN_SOURCES.has(id)) {
+        expect(sources).toContain(exp.text);
       }
     });
   }

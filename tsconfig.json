@@ -11,5 +11,5 @@
     "verbatimModuleSyntax": true,
     "skipLibCheck": true
   },
-  "include": ["app/src", "shared", "eval", "scripts", "tests", "vite.config.ts", "vitest.config.ts"]
+  "include": ["app/src", "shared", "eval", "tests", "vite.config.ts", "vitest.config.ts"]
 }

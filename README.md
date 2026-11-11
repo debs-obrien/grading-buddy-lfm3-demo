@@ -40,7 +40,7 @@ Open http://localhost:5173, press **Download and start** (about 1.1 GB, once) an
 |---|---|---|
 | **LFM3-1.7B** ([ONNX export](https://huggingface.co/onnx-community/LFM3-1.7B-ONNX), q4f16) | The text model in the LFM3 family: small enough for on-device Ask, strong at following “answer only from these facts” instructions, and the ONNX export is Liquid’s documented web path. | **About 1.1 GB** first download (q4f16). Without the notes and checks it can invent Korean words and advice. |
 | **Transformers.js + WebGPU** | One static link, no server and no API key: the model runs in a Web Worker in the browser and works offline after the first download. | **Desktop only** (needs WebGPU). My CPU fallback failed twice, so there isn’t one. Slower than a native llama.cpp build. |
-| **Topic match + LFM3 answers + grounding / required-facts checks, no fine-tune** | Fast to build and easy to check: match a whole topic, let LFM3 write one or two sentences from that topic’s facts, then either keep the answer or fall back to the note card. You can edit the notes without retraining. | When the grounding or required-facts check fails, the UI shows **From the notes** instead of the model’s wording. One frozen-eval miss remains (see [docs/eval.md](docs/eval.md)). |
+| **Topic match + LFM3 answers + grounding / required-facts checks, no fine-tune** | Fast to build and easy to check: match a whole topic, let LFM3 write one or two sentences from that topic’s facts, then either keep the answer or fall back to the note card. You can edit the notes without retraining. | When the grounding or required-facts check fails, the UI shows **From the notes** instead of the model’s wording. Two frozen-eval misses remain (see Does it work?). |
 | **Greedy decoding** | The same question gives the same answer, so the eval is repeatable. | Ignores the model card’s suggested sampling settings, so some sentences are flatter than a sampled run. |
 
 ## Does it work?
@@ -52,20 +52,21 @@ npm run eval:match   # topic match / refusal only
 npm run eval         # with notes, like the app (grounded Ask)
 ```
 
-This repo has no `--no-retrieval` or `--open` baselines, so there is no no-notes column here. Every number below is from the same frozen question set (`eval/questions.json`).
+This repo has no `--no-retrieval` or `--open` baselines, so there is no no-notes column here. Grading, off-topic and quality numbers below are from the frozen question set (`eval/questions.json`). The everyday practice row is a separate, non-frozen practice set.
 
 | | With notes (topic match + checks) |
 |---|---|
-| Grading questions right | **42 / 43** |
-| Off-topic questions declined | **13 / 13** |
-| Quality checks passed | **2 / 4** |
+| Grading questions right | **41 / 43** |
+| Off-topic questions declined | **21 / 21** |
+| Quality checks passed | **4 / 4** |
+| Everyday practice set (not frozen) | **26 / 26** |
 
-With notes, a real answer was: "Charyot means attention. When you hear charyot, you stand up straight in attention stance, quiet and still, ready to listen." The one graded wrong was "Why do I pull my toes back?" (model said to hit with the ball of the foot and mentioned the knee; the frozen `forbid_re` still fails that wording even though the notes include knee). Of the 43 in-scope answers, 36 kept **Written by LFM3 on this device** and 7 fell back to **From the notes**. Tokens/s on that Node CPU run: **4.5** (`eval/results/grounded.json`, an Intel Xeon x4 server CPU, not a Mac browser). It's small and keyword-graded, so it's a sanity check, not a benchmark. More in [docs/eval.md](docs/eval.md).
+With notes, a real answer was: "Charyot means attention. When you hear charyot, you stand up straight in attention stance, quiet and still, ready to listen." The two graded wrong were "Why do I pull my toes back?" (model said to hit with the ball of the foot and mentioned the knee; the frozen `forbid_re` still fails that wording even though the notes include knee) and "what does chon-ji mean" (correct heaven/earth answer, but the frozen expect also wants 19). Of the 43 in-scope answers, 33 kept **Written by LFM3 on this device** and 10 fell back to **From the notes**. Match-only (`npm run eval:match`): **43 / 43** in-scope and **21 / 21** declined. Tokens/s on that Node CPU run: **5.91** (`eval/results/grounded.json`, Intel(R) Xeon(R) Processor x4, 17 GB RAM, Node v22.23.4; desktop/server CPU, not a Mac browser). It's small and keyword-graded, so it's a sanity check, not a benchmark.
 
 ## Where it falls short
 
 - The first download is big, and you need WebGPU.
-- I tested on iPhone and the part that loads the LFM model failed, so it's desktop only for now.
+- I tested on iPhone and the part that loads the LFM model failed, so it's desktop only for now. The ConstantFolding session option in `shared/config.ts` did not make Ask reliable on iPhone; next step is native llama.cpp/GGUF.
 - Speed numbers I have so far are Node CPU eval figures, not Mac browser timings yet.
 - Some LFM3 answers still come out messy (repeated or cut off) and pass the checks. Fixes are in progress.
 - Some everyday ways of asking, like "how many tenets are there", are still declined.
