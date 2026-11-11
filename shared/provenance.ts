@@ -44,10 +44,6 @@ export interface HowAnswered {
   check?: CheckTrace;
 }
 
-export function labelFor(source: AnswerSource): string {
-  return source === "model" ? LABEL_MODEL : LABEL_NOTES;
-}
-
 export function checkSummary(c: {
   ok: boolean;
   badKorean: string[];
@@ -69,7 +65,7 @@ export function checkSummary(c: {
   if (c.missingRequired?.length) {
     bits.push(`missing required fact(s): ${c.missingRequired.join("; ")}`);
   }
-  return `Failed — showed the note instead. ${bits.join("; ")}.`;
+  return `Failed. Showed the note instead. ${bits.join("; ")}.`;
 }
 
 export function tokensPerSecond(tokens: number, seconds: number): number | null {

@@ -19,20 +19,17 @@ export function startupScreen(cache: CacheState, loadAttempted: boolean): Startu
   return "setup";
 }
 
-/** Kid/parent-friendly wording for a load that was interrupted. Mentions iPhone only on iPhone. */
+/** Kid/parent-friendly wording for a load that was interrupted. */
 export function recoverLoadMessage(isiPhone: boolean): string {
   if (isiPhone) {
-    return "The brain started loading last time, but this page had to reload before it finished. On an iPhone, browser tabs sometimes run out of memory with a big download — try Safari, or a computer. If the download already finished, tap Try again; we may already have it saved on this device. Or look around in Learn and Quiz first.";
+    return "The brain started loading last time, but this page had to reload before it finished. Phone browser tabs can run out of memory with a big download. If the download already finished, tap Try again; we may already have it saved on this device. Or look around in Learn and Quiz first. Ask needs a desktop browser with WebGPU. Learn and Quiz work everywhere.";
   }
-  return "The brain started loading last time, but this page had to reload before it finished. Tap Try again — we may already have it saved on this device. Or look around in Learn and Quiz first.";
+  return "The brain started loading last time, but this page had to reload before it finished. Tap Try again. We may already have it saved on this device. Or look around in Learn and Quiz first.";
 }
-
-/** @deprecated Use recoverLoadMessage(true) — kept so older imports keep working in tests. */
-export const RECOVER_LOAD_MESSAGE = recoverLoadMessage(true);
 
 /** When the browser also has no WebGPU: recover copy + Learn/Quiz still work. */
 export const RECOVER_NO_GPU_MESSAGE =
-  "The brain started loading last time, but this page had to reload before it finished. This browser can't run the on-device AI (it needs WebGPU). You can still use Learn and Quiz offline. For Ask answers, try Safari on a newer iPhone, or a computer.";
+  "The brain started loading last time, but this page had to reload before it finished. Ask needs a desktop browser with WebGPU (latest Chrome or Edge on a laptop or desktop). Learn and Quiz work everywhere.";
 
 /** Short clue from a raw error (keeps "Load failed" when WebKit says that). */
 export function errorClue(raw: string): string {

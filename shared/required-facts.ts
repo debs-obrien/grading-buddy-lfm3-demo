@@ -16,7 +16,13 @@ export interface RequiredFactsResult {
   summary: string;
 }
 
-const norm = (s: string) => s.toLowerCase().replace(/[’']/g, "").replace(/\s+/g, " ").trim();
+const norm = (s: string) =>
+  s
+    .toLowerCase()
+    .replace(/[’']/g, "")
+    .replace(/[–—-]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
 
 function hasAlt(answer: string, alts: string[]): boolean {
   const a = norm(answer);
@@ -62,6 +68,15 @@ export function requiredFactsForMatch(
     return req;
   }
 
+  if (topic === "tenets") {
+    // "How many tenets" / "what are the tenets" must name them — "five" alone is thin.
+    if (/\btenets?\b/.test(q) && (/\bhow many\b/.test(q) || /\bwhat(?:'s|s| are)\b/.test(q) || /\blist\b/.test(q))) {
+      req.push({ id: "tenet-courtesy", alts: ["courtesy"] });
+      req.push({ id: "tenet-integrity", alts: ["integrity"] });
+    }
+    return req;
+  }
+
   if (topic === "chonji") {
     const moves = match.items.find((i) => i.id === "how-many-moves-chon-ji-has");
     // "How many moves?" only needs 19 — not the full identity bundle.
@@ -69,6 +84,8 @@ export function requiredFactsForMatch(
       if (moves?.english) req.push({ id: "chonji-moves", alts: [moves.english, "nineteen"] });
       return req;
     }
+    // Meaning / what-is / explain: heaven + earth + pattern — do NOT demand 19
+    // (that forced good meaning answers onto the whole-topic dump).
     if (isChonJiIdentityQuestion(q, match.primary)) {
       const pattern = match.items.find((i) => i.id === "what-a-pattern-tul-is");
       const meaning = match.items.find((i) => i.id === "what-chon-ji-means");
@@ -80,9 +97,6 @@ export function requiredFactsForMatch(
         req.push({ id: "chonji-heaven", alts: ["heaven"] });
         req.push({ id: "chonji-earth", alts: ["earth"] });
       }
-      if (moves?.english) {
-        req.push({ id: "chonji-moves", alts: [moves.english, "nineteen"] });
-      }
     }
   }
 
@@ -91,7 +105,9 @@ export function requiredFactsForMatch(
 
 function wantsFullCountingList(q: string): boolean {
   if (/\bcount(?:ing|s)?\b/.test(q) || /\bcont\b/.test(q) || /\bcout\b/.test(q)) return true;
-  if (/\bone\s+to\s+ten\b/.test(q) || /\b1\s*10\b/.test(q)) return true;
+  if (/\bone\s+to\s+ten\b/.test(q) || /\b1\s+10\b/.test(q) || /\b1\s+to\s+10\b/.test(q)) return true;
+  // Partial ranges still need the full list from the notes (safer than inventing a slice).
+  if (/\b([1-9]|10)\s+to\s+([1-9]|10)\b/.test(q)) return true;
   if (/\bnumbers?\b/.test(q) && (/\b10\b|\bten\b|\bkorean\b/.test(q))) return true;
   if (/\bwords?\b/.test(q) && /\bcount/.test(q)) return true;
   return false;
@@ -130,6 +146,12 @@ function singleCountRequirement(
 
 /** Meaning / what-is / explain Chon-Ji — not start stance, end foot, or move count alone. */
 function isChonJiIdentityQuestion(q: string, primary: ContentItem | null): boolean {
+  // "What is the first move of Chon-Ji?" has "what is" + chon-ji but is not identity.
+  if (
+    /\b(how many|moves?|stance|foot|start|end|turn|block|first move|last move)\b/.test(q)
+  ) {
+    return false;
+  }
   const id = primary?.id ?? "";
   if (id === "what-chon-ji-means" || id === "what-a-pattern-tul-is") return true;
   if (/\b(explain|what is|what does|mean|meaning)\b/.test(q) && /chon\s*ji|chonji/.test(q)) {
@@ -173,6 +195,6 @@ export function checkRequiredFacts(
   return {
     ok: false,
     missing,
-    summary: `Failed — showed the note instead. Missing required fact(s): ${bits}.`,
+    summary: `Failed. Showed the note instead. Missing required fact(s): ${bits}.`,
   };
 }

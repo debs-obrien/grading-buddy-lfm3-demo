@@ -50,10 +50,18 @@ async function runModel(messages: ChatMessage[], question: string) {
   const secs = (Date.now() - t) / 1000;
   const raw = String(out[0].generated_text.at(-1).content ?? "");
   const text = stripThinking(raw);
-  const tokens = gen.tokenizer.encode(text).length;
+  // Raw generated tokens (before strip) — matches the provenance panel.
+  const tokens = gen.tokenizer.encode(raw).length;
   totalTokens += tokens;
   totalGenSeconds += secs;
-  return { raw, text, secs, tokens, question };
+  return {
+    raw,
+    text,
+    secs,
+    tokens,
+    question,
+    hitTokenCap: tokens >= CONFIG.maxNewTokens,
+  };
 }
 
 async function ask(q: string) {
@@ -83,7 +91,11 @@ async function ask(q: string) {
     };
   }
   const r = await runModel(plan.messages, q);
-  const final = finaliseAsk(r.raw, plan, { tokens: r.tokens, seconds: r.secs });
+  const final = finaliseAsk(r.raw, plan, {
+    tokens: r.tokens,
+    seconds: r.secs,
+    hitTokenCap: r.hitTokenCap,
+  });
   const answer = final.text;
   return {
     answer: isDecline(answer) ? DECLINE : answer,
@@ -132,6 +144,17 @@ if (!matchOnly) {
   }
 }
 
+// Practice set of everyday phrasings (not frozen) — match-only or grounded.
+const everyday = [];
+for (const item of (qs.everyday_practice ?? []).slice(0, limit)) {
+  const r = await ask(item.q);
+  const outcome = gradeInScope(r.answer, item.expect, matchOnly ? undefined : item.forbid_re, {
+    order: !!item.order,
+  });
+  everyday.push({ ...item, ...r, outcome });
+  console.log(`[day] ${outcome.padEnd(17)} ${item.q} -> ${String(r.answer).replace(/\s+/g, " ").slice(0, 140)}`);
+}
+
 const count = (arr: any[], k: string) => arr.filter((x) => x.outcome === k).length;
 const modelAnswers = inScope.filter((x) => x.source === "model").length;
 const notesAnswers = inScope.filter((x) => x.source === "notes" || x.checkFailed).length;
@@ -165,6 +188,14 @@ const summary = {
     wrongly_answered: count(outScope, "wrongly_answered"),
   },
   quality: quality.length ? { total: quality.length, pass: count(quality, "pass") } : null,
+  everyday_practice: everyday.length
+    ? {
+        total: everyday.length,
+        correct: count(everyday, "correct"),
+        wrong: count(everyday, "wrong"),
+        wrongly_declined: count(everyday, "wrongly_declined"),
+      }
+    : null,
   tokens_per_second: totalGenSeconds ? Number((totalTokens / totalGenSeconds).toFixed(2)) : null,
   fallbacks,
 };
@@ -186,6 +217,6 @@ fs.mkdirSync(outDir, { recursive: true });
 const name = `${mode}${qualityOnly ? "-quality" : ""}${Number.isFinite(limit) ? `-limit${limit}` : ""}.json`;
 fs.writeFileSync(
   path.join(outDir, name),
-  JSON.stringify({ ranAt: new Date().toISOString(), summary, inScope, outScope, quality }, null, 2),
+  JSON.stringify({ ranAt: new Date().toISOString(), summary, inScope, outScope, quality, everyday }, null, 2),
 );
 console.log(`Saved eval/results/${name}`);

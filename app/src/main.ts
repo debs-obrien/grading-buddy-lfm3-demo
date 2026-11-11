@@ -449,18 +449,22 @@ function wireAppShell() {
   $("download").onclick = () => startLoad("download");
   $("retry").onclick = async () => {
     if (!choice) {
-      openWithoutModel(RECOVER_NO_GPU_MESSAGE);
+      openWithoutModel(RECOVER_NO_GPU_MESSAGE, "no-gpu");
       return;
     }
     const state = await modelCacheState();
     const alreadyReady = !!localStorage.getItem(DOWNLOADED_KEY);
     startLoad(state === "cached" || alreadyReady ? "cached" : state);
   };
-  $("look-around").onclick = () => {
+  const lookAround = () => {
     openWithoutModel(
-      "You can browse Learn and Quiz now. Tap Try again later if you want Ask — we keep anything already saved on this device.",
+      "You can browse Learn and Quiz now. Tap Try again later if you want Ask. We keep anything already saved on this device.",
+      "ask-later",
     );
   };
+  $("look-around").onclick = lookAround;
+  $("look-around-setup").onclick = lookAround;
+  $("look-around-loading").onclick = lookAround;
   $("ask-btn").onclick = ask;
   $("next-btn").onclick = nextQuestion;
   $("again-btn").onclick = newRound;
@@ -485,12 +489,23 @@ function wireAppShell() {
   });
 }
 
-function openWithoutModel(reason: string) {
+/** Browse Learn/Quiz without Ask. `no-gpu` is a missing WebGPU browser; `ask-later` is download/setup. */
+function openWithoutModel(reason: string, mode: "no-gpu" | "ask-later" = "ask-later") {
   askReady = false;
   $("no-gpu-why").textContent = reason;
+  $("no-gpu-title").textContent =
+    mode === "no-gpu" ? "Ask needs a newer browser" : "Ask isn't ready yet";
+  const hint = $("no-gpu-hint");
+  if (hint) hint.hidden = mode !== "no-gpu";
   show("no-gpu");
   show("ask-form", false);
   show("ask-unavailable");
+  $("ask-unavailable-label").textContent =
+    mode === "no-gpu" ? "Ask isn't available on this browser" : "Ask isn't ready yet";
+  $("ask-unavailable-body").textContent =
+    mode === "no-gpu"
+      ? "Ask needs a desktop browser with WebGPU (latest Chrome or Edge on a laptop or desktop). Learn and Quiz work everywhere."
+      : "The download didn't finish (or hasn't started). Learn and Quiz still work. Tap Try again later for Ask.";
   wireAppShell();
   screen("app");
   tab("learn");
@@ -532,7 +547,8 @@ async function init() {
     openWithoutModel(
       loadAttempted
         ? RECOVER_NO_GPU_MESSAGE
-        : "This phone's browser can't run the on-device AI (it needs WebGPU). You can still use Learn and Quiz offline.",
+        : "Ask needs a desktop browser with WebGPU. Learn and Quiz work everywhere.",
+      "no-gpu",
     );
     return;
   }
@@ -540,10 +556,10 @@ async function init() {
   $("size-label").textContent = sizeLabel();
   if (choice.device === "wasm") {
     $("mode-note").textContent =
-      "🐢 No WebGPU here, so Grading Buddy will run in slow mode on the CPU. Answers can take a while, and phones may run out of memory.";
+      "🐢 No WebGPU here, so Grading Buddy will run in slow mode on the CPU. Answers can take a while, and phones may run out of memory. Ask needs a desktop browser with WebGPU.";
   } else if (isiPhone) {
     $("mode-note").textContent =
-      "📱 On iPhone, keep this tab open until it finishes. If the page reloads by itself, use Safari or a computer — phone browser tabs can run out of memory with this download.";
+      "📱 Keep this tab open until it finishes. If the page reloads by itself, try a computer. Phone browser tabs can run out of memory with this download. Ask needs a desktop browser with WebGPU.";
   }
   wireAppShell();
   const state = await modelCacheState();

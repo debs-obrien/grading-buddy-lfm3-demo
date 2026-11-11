@@ -883,5 +883,30 @@
     }
   ],
   "frozen": true,
-  "frozenNote": "v1 questions.json plus korean-words-need, korean-words-counting; count-to-10/count-to-ten and QA live counting variants require order; cj-moves kept; plus explain-chon-ji-like-im-5, what-is-chon-ji, what-does-chon-ji-mean (pattern + official meaning + 19); plus numbers-one-to-ten / say-1-10 / korean-numbers-1-10 / cont+cout typos."
+  "frozenNote": "v1 questions.json plus korean-words-need, korean-words-counting; count-to-10/count-to-ten and QA live counting variants require order; cj-moves kept; plus explain-chon-ji-like-im-5, what-is-chon-ji, what-does-chon-ji-mean (pattern + official meaning + 19); plus numbers-one-to-ten / say-1-10 / korean-numbers-1-10 / cont+cout typos.",
+  "everyday_practice": [
+    { "id": "everyday-tenets-how-many", "q": "how many tenets", "expect": [["courtesy"], ["integrity"]] },
+    { "id": "everyday-tenets-are-there", "q": "how many tenets are there", "expect": [["courtesy"], ["integrity"]] },
+    { "id": "everyday-tenets-of-tkd", "q": "how many tenets of taekwondo are there", "expect": [["courtesy"], ["integrity"]] },
+    { "id": "everyday-courtesy", "q": "what is courtesy", "expect": [["courtesy"]] },
+    { "id": "everyday-3-korean", "q": "what is 3 in korean", "expect": [["set"]] },
+    { "id": "everyday-5-korean", "q": "whats 5 in korean", "expect": [["dasot"]] },
+    { "id": "everyday-2-korean", "q": "how do you say 2 in korean", "expect": [["dul", "dool"]] },
+    { "id": "everyday-1-to-5", "q": "what's 1 to 5 in Korean", "expect": [["hana"], ["yol", "dasot"]] },
+    { "id": "everyday-6-to-10", "q": "what is 6 to 10 in korean", "expect": [["yosot"], ["yol"]] },
+    { "id": "everyday-oath", "q": "what is the oath", "expect": [["observe", "tenets", "shall"]] },
+    { "id": "everyday-punch-korean", "q": "whats the korean for punch", "expect": [["jirugi"]] },
+    { "id": "everyday-invented", "q": "who invented taekwondo", "expect": [["choi"]] },
+    { "id": "everyday-made", "q": "who made taekwon-do", "expect": [["choi"]] },
+    { "id": "everyday-pattern", "q": "what is a pattern", "expect": [["tul", "teul", "pattern"]] },
+    { "id": "everyday-middle-punch", "q": "how do i do a middle punch", "expect": [["middle", "kaunde"]] },
+    { "id": "everyday-instructor", "q": "what do i call my instructor", "expect": [["sabum"]] },
+    { "id": "everyday-kup", "q": "what is a kup", "expect": [["kup", "belt", "grade"]] },
+    { "id": "everyday-bow", "q": "how do i bow", "expect": [["kyong", "bow"]] },
+    { "id": "everyday-last-move", "q": "what is the last move of chon ji", "expect": [["left", "ready", "19", "end"]] },
+    { "id": "everyday-turn", "q": "which way do i turn in chon ji", "expect": [["turn", "spot", "chon"]] },
+    { "id": "everyday-itf-mean", "q": "what does ITF mean", "expect": [["international"]] },
+    { "id": "everyday-itf-founded", "q": "when was the ITF founded", "expect": [["1966", "international"]] },
+    { "id": "everyday-yellow-grade", "q": "what grade is yellow belt", "expect": [["yellow", "8th", "earth"]] }
+  ]
 }

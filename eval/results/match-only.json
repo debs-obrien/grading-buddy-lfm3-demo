@@ -1,5 +1,5 @@
 {
-  "ranAt": "2026-11-10T21:58:29.933Z",
+  "ranAt": "2026-11-10T22:53:50.277Z",
   "summary": {
     "model": "onnx-community/LFM3-1.7B-ONNX",
     "dtype": "q4",
@@ -21,6 +21,12 @@
       "wrongly_answered": 0
     },
     "quality": null,
+    "everyday_practice": {
+      "total": 23,
+      "correct": 23,
+      "wrong": 0,
+      "wrongly_declined": 0
+    },
     "tokens_per_second": null,
     "fallbacks": []
   },
@@ -1325,5 +1331,454 @@
       "outcome": "correctly_declined"
     }
   ],
-  "quality": []
+  "quality": [],
+  "everyday": [
+    {
+      "id": "everyday-tenets-how-many",
+      "q": "how many tenets",
+      "expect": [
+        [
+          "courtesy"
+        ],
+        [
+          "integrity"
+        ]
+      ],
+      "answer": "Title: The five tenets\nType: tenet\nEnglish: Courtesy, Integrity, Perseverance, Self-Control and Indomitable Spirit\nOfficial ITF wording (source ITF-P): 1. Courtesy. 2. Integrity. 3. Perseverance. 4. Self-Control. 5. Indomitable Spirit.\nSimple: the tenets are the five big ideas every Taekwon-Do student tries to live by.\n\nTitle: Courtesy\nType: tenet\nEnglish: Courtesy\nSimple: Courtesy is the first tenet. It means being polite and kind: saying please and thank you, bowing, listening to your instructor and being nice to other students.\nCourtesy is the first tenet. It means being polite and kind: saying please and thank you, bowing, listening to your instructor and being nice to other students.\n\nTitle: Integrity\nType: tenet\nEnglish: Being honest and doing the right thing\nSimple: Integrity is the second tenet. It means being honest, knowing what is right and wrong, and doing the right thing even when nobody is watching.\nIntegrity is the second tenet. It means being honest, knowing what is right and wrong, and doing the right thing even when nobody is watching.\n\nTitle: Perseverance\nType: tenet\nEnglish: Perseverance\nSimple: Perseverance is the third tenet. It means you keep trying, even when something is hard, and you practise again and again until you get better.\nPerseverance is the third tenet. It means you keep trying, even when something is hard, and you practise again and again until you get better.\n\nTitle: Self-Control\nType: tenet\nEnglish: Self-Control\nSimple: Self-Control is the fourth tenet. It means you are the boss of your body and your feelings. You stay calm, you do not lose your temper, and you are careful not to hurt your partner.\nSelf-Control is the fourth tenet. It means you are the boss of your body and your feelings. You stay calm, you do not lose your temper, and you are careful not to hurt your partner.\n\nTitle: Indomitable Spirit\nType: tenet\nEnglish: Indomitable Spirit\nSimple: Indomitable Spirit is the fifth tenet. It means being brave and having a strong heart: you stand up for what is right and you do not give up, even when you feel scared or tired.\nIndomitable Spirit is the fifth tenet. It means being brave and having a strong heart: you stand up for what is right and you do not give up, even when you feel scared or tired.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "tenets",
+      "itemId": "the-five-tenets",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "everyday-tenets-are-there",
+      "q": "how many tenets are there",
+      "expect": [
+        [
+          "courtesy"
+        ],
+        [
+          "integrity"
+        ]
+      ],
+      "answer": "Title: The five tenets\nType: tenet\nEnglish: Courtesy, Integrity, Perseverance, Self-Control and Indomitable Spirit\nOfficial ITF wording (source ITF-P): 1. Courtesy. 2. Integrity. 3. Perseverance. 4. Self-Control. 5. Indomitable Spirit.\nSimple: the tenets are the five big ideas every Taekwon-Do student tries to live by.\n\nTitle: Courtesy\nType: tenet\nEnglish: Courtesy\nSimple: Courtesy is the first tenet. It means being polite and kind: saying please and thank you, bowing, listening to your instructor and being nice to other students.\nCourtesy is the first tenet. It means being polite and kind: saying please and thank you, bowing, listening to your instructor and being nice to other students.\n\nTitle: Integrity\nType: tenet\nEnglish: Being honest and doing the right thing\nSimple: Integrity is the second tenet. It means being honest, knowing what is right and wrong, and doing the right thing even when nobody is watching.\nIntegrity is the second tenet. It means being honest, knowing what is right and wrong, and doing the right thing even when nobody is watching.\n\nTitle: Perseverance\nType: tenet\nEnglish: Perseverance\nSimple: Perseverance is the third tenet. It means you keep trying, even when something is hard, and you practise again and again until you get better.\nPerseverance is the third tenet. It means you keep trying, even when something is hard, and you practise again and again until you get better.\n\nTitle: Self-Control\nType: tenet\nEnglish: Self-Control\nSimple: Self-Control is the fourth tenet. It means you are the boss of your body and your feelings. You stay calm, you do not lose your temper, and you are careful not to hurt your partner.\nSelf-Control is the fourth tenet. It means you are the boss of your body and your feelings. You stay calm, you do not lose your temper, and you are careful not to hurt your partner.\n\nTitle: Indomitable Spirit\nType: tenet\nEnglish: Indomitable Spirit\nSimple: Indomitable Spirit is the fifth tenet. It means being brave and having a strong heart: you stand up for what is right and you do not give up, even when you feel scared or tired.\nIndomitable Spirit is the fifth tenet. It means being brave and having a strong heart: you stand up for what is right and you do not give up, even when you feel scared or tired.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "tenets",
+      "itemId": "the-five-tenets",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "everyday-tenets-of-tkd",
+      "q": "how many tenets of taekwondo are there",
+      "expect": [
+        [
+          "courtesy"
+        ],
+        [
+          "integrity"
+        ]
+      ],
+      "answer": "Title: The five tenets\nType: tenet\nEnglish: Courtesy, Integrity, Perseverance, Self-Control and Indomitable Spirit\nOfficial ITF wording (source ITF-P): 1. Courtesy. 2. Integrity. 3. Perseverance. 4. Self-Control. 5. Indomitable Spirit.\nSimple: the tenets are the five big ideas every Taekwon-Do student tries to live by.\n\nTitle: Courtesy\nType: tenet\nEnglish: Courtesy\nSimple: Courtesy is the first tenet. It means being polite and kind: saying please and thank you, bowing, listening to your instructor and being nice to other students.\nCourtesy is the first tenet. It means being polite and kind: saying please and thank you, bowing, listening to your instructor and being nice to other students.\n\nTitle: Integrity\nType: tenet\nEnglish: Being honest and doing the right thing\nSimple: Integrity is the second tenet. It means being honest, knowing what is right and wrong, and doing the right thing even when nobody is watching.\nIntegrity is the second tenet. It means being honest, knowing what is right and wrong, and doing the right thing even when nobody is watching.\n\nTitle: Perseverance\nType: tenet\nEnglish: Perseverance\nSimple: Perseverance is the third tenet. It means you keep trying, even when something is hard, and you practise again and again until you get better.\nPerseverance is the third tenet. It means you keep trying, even when something is hard, and you practise again and again until you get better.\n\nTitle: Self-Control\nType: tenet\nEnglish: Self-Control\nSimple: Self-Control is the fourth tenet. It means you are the boss of your body and your feelings. You stay calm, you do not lose your temper, and you are careful not to hurt your partner.\nSelf-Control is the fourth tenet. It means you are the boss of your body and your feelings. You stay calm, you do not lose your temper, and you are careful not to hurt your partner.\n\nTitle: Indomitable Spirit\nType: tenet\nEnglish: Indomitable Spirit\nSimple: Indomitable Spirit is the fifth tenet. It means being brave and having a strong heart: you stand up for what is right and you do not give up, even when you feel scared or tired.\nIndomitable Spirit is the fifth tenet. It means being brave and having a strong heart: you stand up for what is right and you do not give up, even when you feel scared or tired.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "tenets",
+      "itemId": "the-five-tenets",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "everyday-courtesy",
+      "q": "what is courtesy",
+      "expect": [
+        [
+          "courtesy"
+        ]
+      ],
+      "answer": "Title: The five tenets\nType: tenet\nEnglish: Courtesy, Integrity, Perseverance, Self-Control and Indomitable Spirit\nOfficial ITF wording (source ITF-P): 1. Courtesy. 2. Integrity. 3. Perseverance. 4. Self-Control. 5. Indomitable Spirit.\nSimple: the tenets are the five big ideas every Taekwon-Do student tries to live by.\n\nTitle: Courtesy\nType: tenet\nEnglish: Courtesy\nSimple: Courtesy is the first tenet. It means being polite and kind: saying please and thank you, bowing, listening to your instructor and being nice to other students.\nCourtesy is the first tenet. It means being polite and kind: saying please and thank you, bowing, listening to your instructor and being nice to other students.\n\nTitle: Integrity\nType: tenet\nEnglish: Being honest and doing the right thing\nSimple: Integrity is the second tenet. It means being honest, knowing what is right and wrong, and doing the right thing even when nobody is watching.\nIntegrity is the second tenet. It means being honest, knowing what is right and wrong, and doing the right thing even when nobody is watching.\n\nTitle: Perseverance\nType: tenet\nEnglish: Perseverance\nSimple: Perseverance is the third tenet. It means you keep trying, even when something is hard, and you practise again and again until you get better.\nPerseverance is the third tenet. It means you keep trying, even when something is hard, and you practise again and again until you get better.\n\nTitle: Self-Control\nType: tenet\nEnglish: Self-Control\nSimple: Self-Control is the fourth tenet. It means you are the boss of your body and your feelings. You stay calm, you do not lose your temper, and you are careful not to hurt your partner.\nSelf-Control is the fourth tenet. It means you are the boss of your body and your feelings. You stay calm, you do not lose your temper, and you are careful not to hurt your partner.\n\nTitle: Indomitable Spirit\nType: tenet\nEnglish: Indomitable Spirit\nSimple: Indomitable Spirit is the fifth tenet. It means being brave and having a strong heart: you stand up for what is right and you do not give up, even when you feel scared or tired.\nIndomitable Spirit is the fifth tenet. It means being brave and having a strong heart: you stand up for what is right and you do not give up, even when you feel scared or tired.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "tenets",
+      "itemId": "the-five-tenets",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "everyday-3-korean",
+      "q": "what is 3 in korean",
+      "expect": [
+        [
+          "set"
+        ]
+      ],
+      "answer": "Title: Counting 1 to 10 in Korean\nType: counting\nEnglish: Counting from one to ten in Korean\nCounting 1 to 10:\n1 hana\n2 dul\n3 set\n4 net\n5 dasot\n6 yosot\n7 ilgop\n8 yodul\n9 ahop\n10 yol\nSimple: 1 hana, 2 dul, 3 set, 4 net, 5 dasot, 6 yosot, 7 ilgop, 8 yodul, 9 ahop, 10 yol. (Dul is sometimes spelled dool.)",
+      "gated": false,
+      "gateReason": null,
+      "topic": "counting",
+      "itemId": "counting-1-to-10-in-korean",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "everyday-5-korean",
+      "q": "whats 5 in korean",
+      "expect": [
+        [
+          "dasot"
+        ]
+      ],
+      "answer": "Title: Counting 1 to 10 in Korean\nType: counting\nEnglish: Counting from one to ten in Korean\nCounting 1 to 10:\n1 hana\n2 dul\n3 set\n4 net\n5 dasot\n6 yosot\n7 ilgop\n8 yodul\n9 ahop\n10 yol\nSimple: 1 hana, 2 dul, 3 set, 4 net, 5 dasot, 6 yosot, 7 ilgop, 8 yodul, 9 ahop, 10 yol. (Dul is sometimes spelled dool.)",
+      "gated": false,
+      "gateReason": null,
+      "topic": "counting",
+      "itemId": "counting-1-to-10-in-korean",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "everyday-2-korean",
+      "q": "how do you say 2 in korean",
+      "expect": [
+        [
+          "dul",
+          "dool"
+        ]
+      ],
+      "answer": "Title: Counting 1 to 10 in Korean\nType: counting\nEnglish: Counting from one to ten in Korean\nCounting 1 to 10:\n1 hana\n2 dul\n3 set\n4 net\n5 dasot\n6 yosot\n7 ilgop\n8 yodul\n9 ahop\n10 yol\nSimple: 1 hana, 2 dul, 3 set, 4 net, 5 dasot, 6 yosot, 7 ilgop, 8 yodul, 9 ahop, 10 yol. (Dul is sometimes spelled dool.)",
+      "gated": false,
+      "gateReason": null,
+      "topic": "counting",
+      "itemId": "counting-1-to-10-in-korean",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "everyday-1-to-5",
+      "q": "what's 1 to 5 in Korean",
+      "expect": [
+        [
+          "hana"
+        ],
+        [
+          "yol",
+          "dasot"
+        ]
+      ],
+      "answer": "Title: Counting 1 to 10 in Korean\nType: counting\nEnglish: Counting from one to ten in Korean\nCounting 1 to 10:\n1 hana\n2 dul\n3 set\n4 net\n5 dasot\n6 yosot\n7 ilgop\n8 yodul\n9 ahop\n10 yol\nSimple: 1 hana, 2 dul, 3 set, 4 net, 5 dasot, 6 yosot, 7 ilgop, 8 yodul, 9 ahop, 10 yol. (Dul is sometimes spelled dool.)",
+      "gated": false,
+      "gateReason": null,
+      "topic": "counting",
+      "itemId": "counting-1-to-10-in-korean",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "everyday-6-to-10",
+      "q": "what is 6 to 10 in korean",
+      "expect": [
+        [
+          "yosot"
+        ],
+        [
+          "yol"
+        ]
+      ],
+      "answer": "Title: Counting 1 to 10 in Korean\nType: counting\nEnglish: Counting from one to ten in Korean\nCounting 1 to 10:\n1 hana\n2 dul\n3 set\n4 net\n5 dasot\n6 yosot\n7 ilgop\n8 yodul\n9 ahop\n10 yol\nSimple: 1 hana, 2 dul, 3 set, 4 net, 5 dasot, 6 yosot, 7 ilgop, 8 yodul, 9 ahop, 10 yol. (Dul is sometimes spelled dool.)",
+      "gated": false,
+      "gateReason": null,
+      "topic": "counting",
+      "itemId": "counting-1-to-10-in-korean",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "everyday-oath",
+      "q": "what is the oath",
+      "expect": [
+        [
+          "observe",
+          "tenets",
+          "shall"
+        ]
+      ],
+      "answer": "Title: The student oath\nType: oath\nEnglish: I shall observe the Tenets of Taekwon-Do\nOfficial ITF wording (source ITF-P): I shall observe the Tenets of Taekwon-Do\nI shall respect the Instructor and Seniors.\nI shall never misuse Taekwon-Do.\nI shall be a champion of freedom and justice.\nI shall build a more peaceful world.\nSimple: The first promise of the oath is \"I shall observe the Tenets of Taekwon-Do\". In simple words: I will follow the five tenets.\nThe student oath is five promises we say together in class.\nCheck with your instructor: some ITF groups use slightly different words (for example \"help to build a more peaceful world\"), so say it the way your club does.\n\nTitle: What the oath promises mean\nType: oath\nEnglish: Never use Taekwon-Do to hurt or bully anyone, only to stay safe\nSimple: In kid words: follow the five tenets, be respectful to your instructor and the older belts, never use Taekwon-Do to bully or show off, stand up for what is fair, and help make the world a kinder place.\nIn kid words: follow the five tenets, be respectful to your instructor and the older belts, never use Taekwon-Do to bully or show off, stand up for what is fair, and help make the world a kinder place.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "oath",
+      "itemId": "the-student-oath",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "everyday-punch-korean",
+      "q": "whats the korean for punch",
+      "expect": [
+        [
+          "jirugi"
+        ]
+      ],
+      "answer": "Title: Punch, block and kick words\nType: technique\nEnglish: block\nKorean: makgi\nKorean: jirugi = punch\nKorean: chagi = kick\nSimple: Three words you hear all the time: jirugi means punch, makgi means block, chagi means kick.\nThree words you hear all the time: jirugi means punch, makgi means block, chagi means kick.\n\nTitle: Forearm low block (palmok najunde makgi)\nType: technique\nEnglish: forearm low block\nKorean: palmok najunde makgi\nSimple: A forearm low block is palmok najunde makgi. Palmok means forearm. You sweep your forearm down and out to stop a kick or punch aimed at your tummy or legs. It is the first move of Chon-Ji.\nA forearm low block is palmok najunde makgi. Palmok means forearm. You sweep your forearm down and out to stop a kick or punch aimed at your tummy or legs. It is the first move of Chon-Ji.\n\nTitle: Knife-hand low block (sonkal najunde makgi)\nType: technique\nEnglish: knife-hand low block\nKorean: sonkal najunde makgi\nSimple: A knife-hand low block is sonkal najunde makgi. Sonkal means knife-hand: an open hand with the fingers together, blocking with the little-finger edge. It is a low block, used in Saju Makgi.\nA knife-hand low block is sonkal najunde makgi. Sonkal means knife-hand: an open hand with the fingers together, blocking with the little-finger edge. It is a low block, used in Saju Makgi.\n\nTitle: Inner forearm side block (an palmok yop makgi)\nType: technique\nEnglish: inner forearm side block\nKorean: an palmok yop makgi\nSimple: An inner forearm side block is an palmok yop makgi. An palmok means inner forearm, the thumb side of your arm. You bring it across to block at middle height. It is used in Saju Makgi and in Chon-Ji.\nAn inner forearm side block is an palmok yop makgi. An palmok means inner forearm, the thumb side of your arm. You bring it across to block at middle height. It is used in Saju Makgi and in Chon-Ji.\n\nTitle: Front punch (ap jirugi)\nType: technique\nEnglish: front punch\nKorean: ap jirugi\nSimple: A front punch is ap jirugi. You punch with the forefist (ap joomuk): the first two big knuckles of your fist. You can punch high (nopunde), middle (kaunde) or low (najunde). The other hand pulls back to your hip.\nA front punch is ap jirugi. You punch with the forefist (ap joomuk): the first two big knuckles of your fist. You can punch high (nopunde), middle (kaunde) or low (najunde). The other hand pulls back to your hip.\n\nTitle: Front snap kick (apcha busigi)\nType: technique\nEnglish: front snap kick\nKorean: apcha busigi\nSimple: A front snap kick is apcha busigi. Lift your knee, snap your foot out and pull it straight back. You hit with the ball of your foot (ap kumchi), so pull your toes back.\nA front snap kick is apcha busigi. Lift your knee, snap your foot out and pull it straight back. You hit with the ball of your foot (ap kumchi), so pull your toes back.\n\nTitle: Front rising kick (apcha olligi)\nType: technique\nEnglish: front rising kick\nKorean: apcha olligi\nSimple: A front rising kick is apcha olligi. Keep your kicking leg straight and swing it up in front of you, then bring it back down with control. It helps stretch your legs.\nA front rising kick is apcha olligi. Keep your kicking leg straight and swing it up in front of you, then bring it back down with control. It helps stretch your legs.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "techniques",
+      "itemId": "punch-block-and-kick-words",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "everyday-invented",
+      "q": "who invented taekwondo",
+      "expect": [
+        [
+          "choi"
+        ]
+      ],
+      "answer": "Title: What the word Taekwon-Do means\nType: history\nEnglish: Tae is foot, Kwon is fist or hand, Do is the way\nSimple: Tae means foot (kicking). Kwon means fist or hand (punching). Do means the way.\nTaekwon-Do is made of three little words. Tae means foot (kicking). Kwon means fist or hand (punching). Do means the way, like a way of living and learning.\n\nTitle: Who started Taekwon-Do\nType: history\nEnglish: General Choi Hong Hi\nSimple: The founder of Taekwon-Do is General Choi Hong Hi. He was a general in the Korean army. He was born in 1918 and died in 2002.\nThe founder of Taekwon-Do is General Choi Hong Hi. He was a general in the Korean army. He was born in 1918 and died in 2002.\n\nTitle: When Taekwon-Do got its name\nType: history\nEnglish: 1955\nSimple: General Choi gave Taekwon-Do its name on 11 April 1955. You can think of 11 April as Taekwon-Do's name day.\nGeneral Choi gave Taekwon-Do its name on 11 April 1955. You can think of 11 April as Taekwon-Do's name day.\n\nTitle: What ITF means\nType: history\nEnglish: International Taekwon-Do Federation\nSimple: ITF stands for International Taekwon-Do Federation. General Choi started it in Seoul, Korea, on 22 March 1966. Our club does ITF Taekwon-Do. World Taekwondo (WT) is a different style with different patterns, so this app only covers ITF.\nITF stands for International Taekwon-Do Federation. General Choi started it in Seoul, Korea, on 22 March 1966. Our club does ITF Taekwon-Do. World Taekwondo (WT) is a different style with different patterns, so this app only covers ITF.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "history",
+      "itemId": "who-started-taekwon-do",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "everyday-made",
+      "q": "who made taekwon-do",
+      "expect": [
+        [
+          "choi"
+        ]
+      ],
+      "answer": "Title: What the word Taekwon-Do means\nType: history\nEnglish: Tae is foot, Kwon is fist or hand, Do is the way\nSimple: Tae means foot (kicking). Kwon means fist or hand (punching). Do means the way.\nTaekwon-Do is made of three little words. Tae means foot (kicking). Kwon means fist or hand (punching). Do means the way, like a way of living and learning.\n\nTitle: Who started Taekwon-Do\nType: history\nEnglish: General Choi Hong Hi\nSimple: The founder of Taekwon-Do is General Choi Hong Hi. He was a general in the Korean army. He was born in 1918 and died in 2002.\nThe founder of Taekwon-Do is General Choi Hong Hi. He was a general in the Korean army. He was born in 1918 and died in 2002.\n\nTitle: When Taekwon-Do got its name\nType: history\nEnglish: 1955\nSimple: General Choi gave Taekwon-Do its name on 11 April 1955. You can think of 11 April as Taekwon-Do's name day.\nGeneral Choi gave Taekwon-Do its name on 11 April 1955. You can think of 11 April as Taekwon-Do's name day.\n\nTitle: What ITF means\nType: history\nEnglish: International Taekwon-Do Federation\nSimple: ITF stands for International Taekwon-Do Federation. General Choi started it in Seoul, Korea, on 22 March 1966. Our club does ITF Taekwon-Do. World Taekwondo (WT) is a different style with different patterns, so this app only covers ITF.\nITF stands for International Taekwon-Do Federation. General Choi started it in Seoul, Korea, on 22 March 1966. Our club does ITF Taekwon-Do. World Taekwondo (WT) is a different style with different patterns, so this app only covers ITF.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "history",
+      "itemId": "who-started-taekwon-do",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "everyday-pattern",
+      "q": "what is a pattern",
+      "expect": [
+        [
+          "tul",
+          "teul",
+          "pattern"
+        ]
+      ],
+      "answer": "Title: What a pattern (tul) is\nType: pattern\nEnglish: pattern\nKorean: tul\nSimple: A pattern is called tul (you may also see it spelled teul). It is a set of moves done in a fixed order, as if fighting pretend opponents. ITF Taekwon-Do has 24 patterns. Chon-Ji is the first one.\nA pattern is called tul (you may also see it spelled teul). It is a set of moves done in a fixed order, as if fighting pretend opponents. ITF Taekwon-Do has 24 patterns. Chon-Ji is the first one.\n\nTitle: What Chon-Ji means\nType: pattern\nEnglish: The Heaven the Earth\nOfficial ITF wording (source NZ-HB): Chon-Ji means literally “the Heaven the Earth”. It is, in the Orient, interpreted as the creation of the world or the beginning of human history, therefore, it is the initial pattern played by the beginner. This pattern consists of two similar parts; one to represent the Heaven and the other the Earth.\nSimple: Chon is Heaven (the sky above) and Ji is Earth (the ground below). It is about how everything began, so it is the first pattern you learn. It has two halves that are alike: one for Heaven and one for Earth.\n\nTitle: How many moves Chon-Ji has\nType: pattern\nEnglish: 19\nSimple: Chon-Ji has 19 moves. It is the pattern you need for the grading from 9th kup to 8th kup (yellow stripe to yellow belt).\nChon-Ji has 19 moves. It is the pattern you need for the grading from 9th kup to 8th kup (yellow stripe to yellow belt).\n\nTitle: Chon-Ji start position and diagram\nType: pattern\nEnglish: Parallel ready stance (narani junbi sogi)\nSimple: Chon-Ji starts in parallel ready stance (narani junbi sogi). The floor pattern is a cross, like a plus sign. You stand in the middle facing D (the front). A is to your right, B is to your left and C is behind you.\nChon-Ji starts in parallel ready stance (narani junbi sogi). The floor pattern is a cross, like a plus sign. You stand in the middle facing D (the front). A is to your right, B is to your left and C is behind you.\n\nTitle: Chon-Ji moves 1 to 4\nType: pattern\nEnglish: Left walking stance to the left with a left forearm low block\n1. Step the left foot to the left (B) into a left walking stance and do a low block with the left forearm.\n2. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n3. Turn to the right (clockwise) towards A, into a right walking stance, and do a low block with the right forearm.\n4. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\nSimple: Moves 1 to 4:\n\nTitle: Chon-Ji moves 5 to 8\nType: pattern\nEnglish: A forearm low block in walking stance\n5. Turn to face the front (D) with the left foot, into a left walking stance, and do a low block with the left forearm.\n6. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n7. Turn to the right (clockwise) to face the back (C), into a right walking stance, and do a low block with the right forearm.\n8. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\nSimple: Moves 5 to 8:\n\nTitle: Chon-Ji moves 9 to 12\nType: pattern\nEnglish: L-stance (niunja sogi)\n9. Move the left foot towards A into a right L-stance and do a middle block with the left inner forearm.\n10. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n11. Turn clockwise towards B into a left L-stance and do a middle block with the right inner forearm.\n12. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\nSimple: The second part, the part for Earth, uses L-stance for the blocks.\n\nTitle: Chon-Ji moves 13 to 16\nType: pattern\nEnglish: The inner forearm\n13. Move the left foot towards C into a right L-stance and do a middle block with the left inner forearm.\n14. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n15. Turn clockwise towards D into a left L-stance and do a middle block with the right inner forearm.\n16. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\nSimple: In move 13 you block with the left inner forearm, and in move 15 with the right inner forearm.\n\nTitle: Chon-Ji moves 17 to 19 and the end\nType: pattern\nEnglish: Bring the left foot back to the ready position\n17. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n18. Step backwards with the right foot into a left walking stance, still facing D, and do a middle punch with the left fist.\n19. Step backwards with the left foot into a right walking stance, still facing D, and do a middle punch with the right fist.\nEnd: bring the left foot back to parallel ready stance.\nSimple: At the end, bring the left foot back to parallel ready stance.\n\nTitle: Punches in Chon-Ji (obverse punch)\nType: pattern\nEnglish: The hand on the same side as the front foot\nSimple: All the punches in Chon-Ji are middle obverse punches (kaunde baro jirugi). Obverse means you punch with the hand on the same side as your front foot: right foot in front, right fist punches. A reverse punch (bandae jirugi) uses the other hand.\nAll the punches in Chon-Ji are middle obverse punches (kaunde baro jirugi). Obverse means you punch with the hand on the same side as your front foot: right foot in front, right fist punches. A reverse punch (bandae jirugi) uses the other hand.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "chonji",
+      "itemId": "what-a-pattern-tul-is",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "everyday-middle-punch",
+      "q": "how do i do a middle punch",
+      "expect": [
+        [
+          "middle",
+          "kaunde"
+        ]
+      ],
+      "answer": "Title: Charyot (attention)\nType: command\nEnglish: attention\nKorean: charyot\nSimple: Charyot means attention. When you hear charyot, you stand up straight in attention stance, quiet and still, ready to listen.\nCharyot means attention. When you hear charyot, you stand up straight in attention stance, quiet and still, ready to listen.\n\nTitle: Kyong ye (bow)\nType: command\nEnglish: bow\nKorean: kyong ye\nSimple: Kyong ye means bow. We bow to show respect, for example to the instructor, to a partner, and when we come into or leave the training hall.\nKyong ye means bow. We bow to show respect, for example to the instructor, to a partner, and when we come into or leave the training hall.\n\nTitle: Junbi (ready)\nType: command\nEnglish: ready\nKorean: junbi\nSimple: Junbi means ready. When you hear junbi, you get into your ready stance and wait for the next command.\nJunbi means ready. When you hear junbi, you get into your ready stance and wait for the next command.\n\nTitle: Si jak (begin)\nType: command\nEnglish: begin or start\nKorean: si jak\nSimple: Si jak means begin, or start. It is the command to start the exercise or the pattern.\nSi jak means begin, or start. It is the command to start the exercise or the pattern.\n\nTitle: Baro (return)\nType: command\nEnglish: return\nKorean: baro\nSimple: Baro means return. When you hear baro at the end of an exercise, you go back to your ready position.\nBaro means return. When you hear baro at the end of an exercise, you go back to your ready position.\n\nTitle: Kihap (yell)\nType: command\nEnglish: yell or shout\nKorean: kihap\nSimple: Kihap means a yell or shout. A good kihap is short, loud and comes from your belly. It helps you breathe out and put power into a move.\nKihap means a yell or shout. A good kihap is short, loud and comes from your belly. It helps you breathe out and put power into a move.\n\nTitle: Dojang and dobok\nType: command\nEnglish: training hall\nKorean: dojang\nKorean: dobok = training uniform\nSimple: The dojang (do jang) is the training hall, the place where we practise. The dobok (do bok) is the white training uniform we wear.\nThe dojang (do jang) is the training hall, the place where we practise. The dobok (do bok) is the white training uniform we wear.\n\nTitle: Instructor (sabum nim)\nType: command\nEnglish: instructor\nKorean: sabum nim\nSimple: We call the instructor sabum nim. Some clubs use boosabum nim for a 1st to 3rd degree black belt instructor and sabum nim for 4th to 6th degree. Ask your club which one they use.\nWe call the instructor sabum nim. Some clubs use boosabum nim for a 1st to 3rd degree black belt instructor and sabum nim for 4th to 6th degree. Ask your club which one they use.\n\nTitle: High, middle and low\nType: command\nEnglish: middle\nKorean: kaunde\nKorean: nopunde = high\nKorean: najunde = low\nSimple: Middle is kaunde, about shoulder level.\nMoves aim at three heights. High is nopunde (about eye level). Middle is kaunde (about shoulder level). Low is najunde (about belt level and below).\n\nTitle: Turning in place and step turning\nType: command\nEnglish: spot turning\nKorean: gujari dolgi\nSimple: Dolgi means turning. Spot turning (gujari dolgi) means you turn around where you are standing. Step turning means you take a step as you turn. Chon-Ji has turns, so practise turning without losing your balance.\nDolgi means turning. Spot turning (gujari dolgi) means you turn around where you are standing. Step turning means you take a step as you turn. Chon-Ji has turns, so practise turning without losing your balance.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "commands",
+      "itemId": "high-middle-and-low",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "everyday-instructor",
+      "q": "what do i call my instructor",
+      "expect": [
+        [
+          "sabum"
+        ]
+      ],
+      "answer": "Title: Charyot (attention)\nType: command\nEnglish: attention\nKorean: charyot\nSimple: Charyot means attention. When you hear charyot, you stand up straight in attention stance, quiet and still, ready to listen.\nCharyot means attention. When you hear charyot, you stand up straight in attention stance, quiet and still, ready to listen.\n\nTitle: Kyong ye (bow)\nType: command\nEnglish: bow\nKorean: kyong ye\nSimple: Kyong ye means bow. We bow to show respect, for example to the instructor, to a partner, and when we come into or leave the training hall.\nKyong ye means bow. We bow to show respect, for example to the instructor, to a partner, and when we come into or leave the training hall.\n\nTitle: Junbi (ready)\nType: command\nEnglish: ready\nKorean: junbi\nSimple: Junbi means ready. When you hear junbi, you get into your ready stance and wait for the next command.\nJunbi means ready. When you hear junbi, you get into your ready stance and wait for the next command.\n\nTitle: Si jak (begin)\nType: command\nEnglish: begin or start\nKorean: si jak\nSimple: Si jak means begin, or start. It is the command to start the exercise or the pattern.\nSi jak means begin, or start. It is the command to start the exercise or the pattern.\n\nTitle: Baro (return)\nType: command\nEnglish: return\nKorean: baro\nSimple: Baro means return. When you hear baro at the end of an exercise, you go back to your ready position.\nBaro means return. When you hear baro at the end of an exercise, you go back to your ready position.\n\nTitle: Kihap (yell)\nType: command\nEnglish: yell or shout\nKorean: kihap\nSimple: Kihap means a yell or shout. A good kihap is short, loud and comes from your belly. It helps you breathe out and put power into a move.\nKihap means a yell or shout. A good kihap is short, loud and comes from your belly. It helps you breathe out and put power into a move.\n\nTitle: Dojang and dobok\nType: command\nEnglish: training hall\nKorean: dojang\nKorean: dobok = training uniform\nSimple: The dojang (do jang) is the training hall, the place where we practise. The dobok (do bok) is the white training uniform we wear.\nThe dojang (do jang) is the training hall, the place where we practise. The dobok (do bok) is the white training uniform we wear.\n\nTitle: Instructor (sabum nim)\nType: command\nEnglish: instructor\nKorean: sabum nim\nSimple: We call the instructor sabum nim. Some clubs use boosabum nim for a 1st to 3rd degree black belt instructor and sabum nim for 4th to 6th degree. Ask your club which one they use.\nWe call the instructor sabum nim. Some clubs use boosabum nim for a 1st to 3rd degree black belt instructor and sabum nim for 4th to 6th degree. Ask your club which one they use.\n\nTitle: High, middle and low\nType: command\nEnglish: middle\nKorean: kaunde\nKorean: nopunde = high\nKorean: najunde = low\nSimple: Middle is kaunde, about shoulder level.\nMoves aim at three heights. High is nopunde (about eye level). Middle is kaunde (about shoulder level). Low is najunde (about belt level and below).\n\nTitle: Turning in place and step turning\nType: command\nEnglish: spot turning\nKorean: gujari dolgi\nSimple: Dolgi means turning. Spot turning (gujari dolgi) means you turn around where you are standing. Step turning means you take a step as you turn. Chon-Ji has turns, so practise turning without losing your balance.\nDolgi means turning. Spot turning (gujari dolgi) means you turn around where you are standing. Step turning means you take a step as you turn. Chon-Ji has turns, so practise turning without losing your balance.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "commands",
+      "itemId": "instructor-sabum-nim",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "everyday-kup",
+      "q": "what is a kup",
+      "expect": [
+        [
+          "kup",
+          "belt",
+          "grade"
+        ]
+      ],
+      "answer": "Title: What the white belt means\nType: belt\nEnglish: Innocence, as that of a beginning student who has no previous knowledge of Taekwon-Do\nOfficial ITF wording (source NZ-HB): White signifies innocence, as that of a beginning student who has no previous knowledge of Taekwon-Do.\nSimple: everyone starts with a white belt. You are a beginner, just starting to learn, with lots to learn.\n\nTitle: What the yellow belt means\nType: belt\nEnglish: The earth from which a plant sprouts and takes root as the Taekwon-Do foundation is being laid\nOfficial ITF wording (source NZ-HB): Yellow signifies the earth from which a plant sprouts and takes root as the Taekwon-Do foundation is being laid.\nSimple: yellow is the colour of the earth. Like a seed putting down roots before it grows tall, at yellow belt you practise the basics until they are strong.\n\nTitle: Belt order for the first gradings\nType: belt\nEnglish: White belt with a yellow stripe (9th kup)\nSimple: 10th kup is white belt. 9th kup is white belt with a yellow stripe (some clubs call it a tag).\nColoured belt grades are called kup (also spelled gup) and they count down. 10th kup is white belt. After white belt comes a white belt with a yellow stripe (9th kup; some clubs call it a tag). 8th kup is yellow belt.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "belts",
+      "itemId": "belt-order-for-the-first-gradings",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "everyday-bow",
+      "q": "how do i bow",
+      "expect": [
+        [
+          "kyong",
+          "bow"
+        ]
+      ],
+      "answer": "Title: Charyot (attention)\nType: command\nEnglish: attention\nKorean: charyot\nSimple: Charyot means attention. When you hear charyot, you stand up straight in attention stance, quiet and still, ready to listen.\nCharyot means attention. When you hear charyot, you stand up straight in attention stance, quiet and still, ready to listen.\n\nTitle: Kyong ye (bow)\nType: command\nEnglish: bow\nKorean: kyong ye\nSimple: Kyong ye means bow. We bow to show respect, for example to the instructor, to a partner, and when we come into or leave the training hall.\nKyong ye means bow. We bow to show respect, for example to the instructor, to a partner, and when we come into or leave the training hall.\n\nTitle: Junbi (ready)\nType: command\nEnglish: ready\nKorean: junbi\nSimple: Junbi means ready. When you hear junbi, you get into your ready stance and wait for the next command.\nJunbi means ready. When you hear junbi, you get into your ready stance and wait for the next command.\n\nTitle: Si jak (begin)\nType: command\nEnglish: begin or start\nKorean: si jak\nSimple: Si jak means begin, or start. It is the command to start the exercise or the pattern.\nSi jak means begin, or start. It is the command to start the exercise or the pattern.\n\nTitle: Baro (return)\nType: command\nEnglish: return\nKorean: baro\nSimple: Baro means return. When you hear baro at the end of an exercise, you go back to your ready position.\nBaro means return. When you hear baro at the end of an exercise, you go back to your ready position.\n\nTitle: Kihap (yell)\nType: command\nEnglish: yell or shout\nKorean: kihap\nSimple: Kihap means a yell or shout. A good kihap is short, loud and comes from your belly. It helps you breathe out and put power into a move.\nKihap means a yell or shout. A good kihap is short, loud and comes from your belly. It helps you breathe out and put power into a move.\n\nTitle: Dojang and dobok\nType: command\nEnglish: training hall\nKorean: dojang\nKorean: dobok = training uniform\nSimple: The dojang (do jang) is the training hall, the place where we practise. The dobok (do bok) is the white training uniform we wear.\nThe dojang (do jang) is the training hall, the place where we practise. The dobok (do bok) is the white training uniform we wear.\n\nTitle: Instructor (sabum nim)\nType: command\nEnglish: instructor\nKorean: sabum nim\nSimple: We call the instructor sabum nim. Some clubs use boosabum nim for a 1st to 3rd degree black belt instructor and sabum nim for 4th to 6th degree. Ask your club which one they use.\nWe call the instructor sabum nim. Some clubs use boosabum nim for a 1st to 3rd degree black belt instructor and sabum nim for 4th to 6th degree. Ask your club which one they use.\n\nTitle: High, middle and low\nType: command\nEnglish: middle\nKorean: kaunde\nKorean: nopunde = high\nKorean: najunde = low\nSimple: Middle is kaunde, about shoulder level.\nMoves aim at three heights. High is nopunde (about eye level). Middle is kaunde (about shoulder level). Low is najunde (about belt level and below).\n\nTitle: Turning in place and step turning\nType: command\nEnglish: spot turning\nKorean: gujari dolgi\nSimple: Dolgi means turning. Spot turning (gujari dolgi) means you turn around where you are standing. Step turning means you take a step as you turn. Chon-Ji has turns, so practise turning without losing your balance.\nDolgi means turning. Spot turning (gujari dolgi) means you turn around where you are standing. Step turning means you take a step as you turn. Chon-Ji has turns, so practise turning without losing your balance.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "commands",
+      "itemId": "kyong-ye-bow",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "everyday-last-move",
+      "q": "what is the last move of chon ji",
+      "expect": [
+        [
+          "left",
+          "ready",
+          "19",
+          "end"
+        ]
+      ],
+      "answer": "Title: What a pattern (tul) is\nType: pattern\nEnglish: pattern\nKorean: tul\nSimple: A pattern is called tul (you may also see it spelled teul). It is a set of moves done in a fixed order, as if fighting pretend opponents. ITF Taekwon-Do has 24 patterns. Chon-Ji is the first one.\nA pattern is called tul (you may also see it spelled teul). It is a set of moves done in a fixed order, as if fighting pretend opponents. ITF Taekwon-Do has 24 patterns. Chon-Ji is the first one.\n\nTitle: What Chon-Ji means\nType: pattern\nEnglish: The Heaven the Earth\nOfficial ITF wording (source NZ-HB): Chon-Ji means literally “the Heaven the Earth”. It is, in the Orient, interpreted as the creation of the world or the beginning of human history, therefore, it is the initial pattern played by the beginner. This pattern consists of two similar parts; one to represent the Heaven and the other the Earth.\nSimple: Chon is Heaven (the sky above) and Ji is Earth (the ground below). It is about how everything began, so it is the first pattern you learn. It has two halves that are alike: one for Heaven and one for Earth.\n\nTitle: How many moves Chon-Ji has\nType: pattern\nEnglish: 19\nSimple: Chon-Ji has 19 moves. It is the pattern you need for the grading from 9th kup to 8th kup (yellow stripe to yellow belt).\nChon-Ji has 19 moves. It is the pattern you need for the grading from 9th kup to 8th kup (yellow stripe to yellow belt).\n\nTitle: Chon-Ji start position and diagram\nType: pattern\nEnglish: Parallel ready stance (narani junbi sogi)\nSimple: Chon-Ji starts in parallel ready stance (narani junbi sogi). The floor pattern is a cross, like a plus sign. You stand in the middle facing D (the front). A is to your right, B is to your left and C is behind you.\nChon-Ji starts in parallel ready stance (narani junbi sogi). The floor pattern is a cross, like a plus sign. You stand in the middle facing D (the front). A is to your right, B is to your left and C is behind you.\n\nTitle: Chon-Ji moves 1 to 4\nType: pattern\nEnglish: Left walking stance to the left with a left forearm low block\n1. Step the left foot to the left (B) into a left walking stance and do a low block with the left forearm.\n2. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n3. Turn to the right (clockwise) towards A, into a right walking stance, and do a low block with the right forearm.\n4. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\nSimple: Moves 1 to 4:\n\nTitle: Chon-Ji moves 5 to 8\nType: pattern\nEnglish: A forearm low block in walking stance\n5. Turn to face the front (D) with the left foot, into a left walking stance, and do a low block with the left forearm.\n6. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n7. Turn to the right (clockwise) to face the back (C), into a right walking stance, and do a low block with the right forearm.\n8. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\nSimple: Moves 5 to 8:\n\nTitle: Chon-Ji moves 9 to 12\nType: pattern\nEnglish: L-stance (niunja sogi)\n9. Move the left foot towards A into a right L-stance and do a middle block with the left inner forearm.\n10. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n11. Turn clockwise towards B into a left L-stance and do a middle block with the right inner forearm.\n12. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\nSimple: The second part, the part for Earth, uses L-stance for the blocks.\n\nTitle: Chon-Ji moves 13 to 16\nType: pattern\nEnglish: The inner forearm\n13. Move the left foot towards C into a right L-stance and do a middle block with the left inner forearm.\n14. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n15. Turn clockwise towards D into a left L-stance and do a middle block with the right inner forearm.\n16. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\nSimple: In move 13 you block with the left inner forearm, and in move 15 with the right inner forearm.\n\nTitle: Chon-Ji moves 17 to 19 and the end\nType: pattern\nEnglish: Bring the left foot back to the ready position\n17. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n18. Step backwards with the right foot into a left walking stance, still facing D, and do a middle punch with the left fist.\n19. Step backwards with the left foot into a right walking stance, still facing D, and do a middle punch with the right fist.\nEnd: bring the left foot back to parallel ready stance.\nSimple: At the end, bring the left foot back to parallel ready stance.\n\nTitle: Punches in Chon-Ji (obverse punch)\nType: pattern\nEnglish: The hand on the same side as the front foot\nSimple: All the punches in Chon-Ji are middle obverse punches (kaunde baro jirugi). Obverse means you punch with the hand on the same side as your front foot: right foot in front, right fist punches. A reverse punch (bandae jirugi) uses the other hand.\nAll the punches in Chon-Ji are middle obverse punches (kaunde baro jirugi). Obverse means you punch with the hand on the same side as your front foot: right foot in front, right fist punches. A reverse punch (bandae jirugi) uses the other hand.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "chonji",
+      "itemId": "chon-ji-moves-1-to-4",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "everyday-turn",
+      "q": "which way do i turn in chon ji",
+      "expect": [
+        [
+          "turn",
+          "spot",
+          "chon"
+        ]
+      ],
+      "answer": "Title: What a pattern (tul) is\nType: pattern\nEnglish: pattern\nKorean: tul\nSimple: A pattern is called tul (you may also see it spelled teul). It is a set of moves done in a fixed order, as if fighting pretend opponents. ITF Taekwon-Do has 24 patterns. Chon-Ji is the first one.\nA pattern is called tul (you may also see it spelled teul). It is a set of moves done in a fixed order, as if fighting pretend opponents. ITF Taekwon-Do has 24 patterns. Chon-Ji is the first one.\n\nTitle: What Chon-Ji means\nType: pattern\nEnglish: The Heaven the Earth\nOfficial ITF wording (source NZ-HB): Chon-Ji means literally “the Heaven the Earth”. It is, in the Orient, interpreted as the creation of the world or the beginning of human history, therefore, it is the initial pattern played by the beginner. This pattern consists of two similar parts; one to represent the Heaven and the other the Earth.\nSimple: Chon is Heaven (the sky above) and Ji is Earth (the ground below). It is about how everything began, so it is the first pattern you learn. It has two halves that are alike: one for Heaven and one for Earth.\n\nTitle: How many moves Chon-Ji has\nType: pattern\nEnglish: 19\nSimple: Chon-Ji has 19 moves. It is the pattern you need for the grading from 9th kup to 8th kup (yellow stripe to yellow belt).\nChon-Ji has 19 moves. It is the pattern you need for the grading from 9th kup to 8th kup (yellow stripe to yellow belt).\n\nTitle: Chon-Ji start position and diagram\nType: pattern\nEnglish: Parallel ready stance (narani junbi sogi)\nSimple: Chon-Ji starts in parallel ready stance (narani junbi sogi). The floor pattern is a cross, like a plus sign. You stand in the middle facing D (the front). A is to your right, B is to your left and C is behind you.\nChon-Ji starts in parallel ready stance (narani junbi sogi). The floor pattern is a cross, like a plus sign. You stand in the middle facing D (the front). A is to your right, B is to your left and C is behind you.\n\nTitle: Chon-Ji moves 1 to 4\nType: pattern\nEnglish: Left walking stance to the left with a left forearm low block\n1. Step the left foot to the left (B) into a left walking stance and do a low block with the left forearm.\n2. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n3. Turn to the right (clockwise) towards A, into a right walking stance, and do a low block with the right forearm.\n4. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\nSimple: Moves 1 to 4:\n\nTitle: Chon-Ji moves 5 to 8\nType: pattern\nEnglish: A forearm low block in walking stance\n5. Turn to face the front (D) with the left foot, into a left walking stance, and do a low block with the left forearm.\n6. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n7. Turn to the right (clockwise) to face the back (C), into a right walking stance, and do a low block with the right forearm.\n8. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\nSimple: Moves 5 to 8:\n\nTitle: Chon-Ji moves 9 to 12\nType: pattern\nEnglish: L-stance (niunja sogi)\n9. Move the left foot towards A into a right L-stance and do a middle block with the left inner forearm.\n10. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n11. Turn clockwise towards B into a left L-stance and do a middle block with the right inner forearm.\n12. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\nSimple: The second part, the part for Earth, uses L-stance for the blocks.\n\nTitle: Chon-Ji moves 13 to 16\nType: pattern\nEnglish: The inner forearm\n13. Move the left foot towards C into a right L-stance and do a middle block with the left inner forearm.\n14. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n15. Turn clockwise towards D into a left L-stance and do a middle block with the right inner forearm.\n16. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\nSimple: In move 13 you block with the left inner forearm, and in move 15 with the right inner forearm.\n\nTitle: Chon-Ji moves 17 to 19 and the end\nType: pattern\nEnglish: Bring the left foot back to the ready position\n17. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n18. Step backwards with the right foot into a left walking stance, still facing D, and do a middle punch with the left fist.\n19. Step backwards with the left foot into a right walking stance, still facing D, and do a middle punch with the right fist.\nEnd: bring the left foot back to parallel ready stance.\nSimple: At the end, bring the left foot back to parallel ready stance.\n\nTitle: Punches in Chon-Ji (obverse punch)\nType: pattern\nEnglish: The hand on the same side as the front foot\nSimple: All the punches in Chon-Ji are middle obverse punches (kaunde baro jirugi). Obverse means you punch with the hand on the same side as your front foot: right foot in front, right fist punches. A reverse punch (bandae jirugi) uses the other hand.\nAll the punches in Chon-Ji are middle obverse punches (kaunde baro jirugi). Obverse means you punch with the hand on the same side as your front foot: right foot in front, right fist punches. A reverse punch (bandae jirugi) uses the other hand.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "chonji",
+      "itemId": "what-a-pattern-tul-is",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "everyday-itf-mean",
+      "q": "what does ITF mean",
+      "expect": [
+        [
+          "international"
+        ]
+      ],
+      "answer": "Title: What the word Taekwon-Do means\nType: history\nEnglish: Tae is foot, Kwon is fist or hand, Do is the way\nSimple: Tae means foot (kicking). Kwon means fist or hand (punching). Do means the way.\nTaekwon-Do is made of three little words. Tae means foot (kicking). Kwon means fist or hand (punching). Do means the way, like a way of living and learning.\n\nTitle: Who started Taekwon-Do\nType: history\nEnglish: General Choi Hong Hi\nSimple: The founder of Taekwon-Do is General Choi Hong Hi. He was a general in the Korean army. He was born in 1918 and died in 2002.\nThe founder of Taekwon-Do is General Choi Hong Hi. He was a general in the Korean army. He was born in 1918 and died in 2002.\n\nTitle: When Taekwon-Do got its name\nType: history\nEnglish: 1955\nSimple: General Choi gave Taekwon-Do its name on 11 April 1955. You can think of 11 April as Taekwon-Do's name day.\nGeneral Choi gave Taekwon-Do its name on 11 April 1955. You can think of 11 April as Taekwon-Do's name day.\n\nTitle: What ITF means\nType: history\nEnglish: International Taekwon-Do Federation\nSimple: ITF stands for International Taekwon-Do Federation. General Choi started it in Seoul, Korea, on 22 March 1966. Our club does ITF Taekwon-Do. World Taekwondo (WT) is a different style with different patterns, so this app only covers ITF.\nITF stands for International Taekwon-Do Federation. General Choi started it in Seoul, Korea, on 22 March 1966. Our club does ITF Taekwon-Do. World Taekwondo (WT) is a different style with different patterns, so this app only covers ITF.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "history",
+      "itemId": "what-itf-means",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "everyday-itf-founded",
+      "q": "when was the ITF founded",
+      "expect": [
+        [
+          "1966",
+          "international"
+        ]
+      ],
+      "answer": "Title: What the word Taekwon-Do means\nType: history\nEnglish: Tae is foot, Kwon is fist or hand, Do is the way\nSimple: Tae means foot (kicking). Kwon means fist or hand (punching). Do means the way.\nTaekwon-Do is made of three little words. Tae means foot (kicking). Kwon means fist or hand (punching). Do means the way, like a way of living and learning.\n\nTitle: Who started Taekwon-Do\nType: history\nEnglish: General Choi Hong Hi\nSimple: The founder of Taekwon-Do is General Choi Hong Hi. He was a general in the Korean army. He was born in 1918 and died in 2002.\nThe founder of Taekwon-Do is General Choi Hong Hi. He was a general in the Korean army. He was born in 1918 and died in 2002.\n\nTitle: When Taekwon-Do got its name\nType: history\nEnglish: 1955\nSimple: General Choi gave Taekwon-Do its name on 11 April 1955. You can think of 11 April as Taekwon-Do's name day.\nGeneral Choi gave Taekwon-Do its name on 11 April 1955. You can think of 11 April as Taekwon-Do's name day.\n\nTitle: What ITF means\nType: history\nEnglish: International Taekwon-Do Federation\nSimple: ITF stands for International Taekwon-Do Federation. General Choi started it in Seoul, Korea, on 22 March 1966. Our club does ITF Taekwon-Do. World Taekwondo (WT) is a different style with different patterns, so this app only covers ITF.\nITF stands for International Taekwon-Do Federation. General Choi started it in Seoul, Korea, on 22 March 1966. Our club does ITF Taekwon-Do. World Taekwondo (WT) is a different style with different patterns, so this app only covers ITF.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "history",
+      "itemId": "what-itf-means",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    },
+    {
+      "id": "everyday-yellow-grade",
+      "q": "what grade is yellow belt",
+      "expect": [
+        [
+          "yellow",
+          "8th",
+          "earth"
+        ]
+      ],
+      "answer": "Title: What the white belt means\nType: belt\nEnglish: Innocence, as that of a beginning student who has no previous knowledge of Taekwon-Do\nOfficial ITF wording (source NZ-HB): White signifies innocence, as that of a beginning student who has no previous knowledge of Taekwon-Do.\nSimple: everyone starts with a white belt. You are a beginner, just starting to learn, with lots to learn.\n\nTitle: What the yellow belt means\nType: belt\nEnglish: The earth from which a plant sprouts and takes root as the Taekwon-Do foundation is being laid\nOfficial ITF wording (source NZ-HB): Yellow signifies the earth from which a plant sprouts and takes root as the Taekwon-Do foundation is being laid.\nSimple: yellow is the colour of the earth. Like a seed putting down roots before it grows tall, at yellow belt you practise the basics until they are strong.\n\nTitle: Belt order for the first gradings\nType: belt\nEnglish: White belt with a yellow stripe (9th kup)\nSimple: 10th kup is white belt. 9th kup is white belt with a yellow stripe (some clubs call it a tag).\nColoured belt grades are called kup (also spelled gup) and they count down. 10th kup is white belt. After white belt comes a white belt with a yellow stripe (9th kup; some clubs call it a tag). 8th kup is yellow belt.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "belts",
+      "itemId": "what-the-yellow-belt-means",
+      "secs": 0,
+      "tokens": 0,
+      "matchOnly": true,
+      "outcome": "correct"
+    }
+  ]
 }

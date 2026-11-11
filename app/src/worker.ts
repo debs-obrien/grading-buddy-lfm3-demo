@@ -125,11 +125,14 @@ async function generate(messages: ChatMessage[], maxNewTokens: number) {
   } as any);
   const raw = String(out[0].generated_text.at(-1).content ?? "");
   const text = stripThinking(raw);
+  // Count raw generated tokens (before strip) so think-leak answers do not show 0.
+  const tokens = g.tokenizer.encode(raw).length;
   return {
     text,
     raw,
     seconds: (performance.now() - t0) / 1000,
-    tokens: g.tokenizer.encode(text).length,
+    tokens,
+    hitTokenCap: tokens >= maxNewTokens,
   };
 }
 
@@ -157,7 +160,11 @@ self.onmessage = async (e: MessageEvent<ToWorker>) => {
       }
       // No streaming: show Thinking… in the UI, then the final answer.
       const r = await generate(plan.messages, CONFIG.maxNewTokens);
-      const final = finaliseAsk(r.raw, plan, { tokens: r.tokens, seconds: r.seconds });
+      const final = finaliseAsk(r.raw, plan, {
+        tokens: r.tokens,
+        seconds: r.seconds,
+        hitTokenCap: r.hitTokenCap,
+      });
       post({
         type: "answer",
         id: msg.id,

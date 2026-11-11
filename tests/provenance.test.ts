@@ -74,10 +74,9 @@ describe("source labels match the path taken", () => {
     expect(r.how.check?.ok).toBe(false);
     expect(r.how.check?.badCategory).toBe("stance");
     expect(labelMatchesSource(r.how)).toBe(true);
-    // Multi-item topic match → note shows the matched items, not only primary.
-    expect(r.text.toLowerCase()).toMatch(/heaven/);
-    expect(r.text.toLowerCase()).toMatch(/earth/);
-    expect(r.text).toMatch(/19/);
+    // Primary item card only (not the whole Chon-Ji topic dump).
+    expect(r.text.toLowerCase()).toMatch(/pattern|tul|teul/);
+    expect(r.text.length).toBeLessThan(800);
   });
 
   it("model decline after generation is From the notes", () => {
@@ -150,6 +149,9 @@ describe("how-answered panel markup", () => {
     expect(html).toContain('aria-labelledby="ask-how-btn"');
     expect(html).toContain("Show how this was answered");
     expect(html).toContain("Written by LFM3 on this device");
+    expect(html).toContain("Passed:");
+    expect(html).toContain("Matched topic");
+    expect(html).toMatch(/Tokens<\/dt><dd>10/);
   });
 
   it("wireHowToggle flips aria-expanded and hidden", () => {
