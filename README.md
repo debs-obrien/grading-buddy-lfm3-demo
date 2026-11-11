@@ -52,14 +52,14 @@ npm run eval:match   # topic match / refusal only
 npm run eval         # with notes, like the app (grounded Ask)
 ```
 
-This repo has no `--no-retrieval` or `--open` baselines, so there is no no-notes column here. Every number below is from the same frozen question set (`eval/questions.json`).
+This repo has no `--no-retrieval` or `--open` baselines, so there is no no-notes column here. Grading, off-topic and quality numbers below are from the frozen question set (`eval/questions.json`). The everyday practice row is a separate, non-frozen practice set.
 
 | | With notes (topic match + checks) |
 |---|---|
 | Grading questions right | **41 / 43** |
 | Off-topic questions declined | **21 / 21** |
 | Quality checks passed | **4 / 4** |
-| Everyday practice set | **26 / 26** |
+| Everyday practice set (not frozen) | **26 / 26** |
 
 With notes, a real answer was: "Charyot means attention. When you hear charyot, you stand up straight in attention stance, quiet and still, ready to listen." The two graded wrong were "Why do I pull my toes back?" (model said to hit with the ball of the foot and mentioned the knee; the frozen `forbid_re` still fails that wording even though the notes include knee) and "what does chon-ji mean" (correct heaven/earth answer, but the frozen expect also wants 19). Of the 43 in-scope answers, 33 kept **Written by LFM3 on this device** and 10 fell back to **From the notes**. Match-only (`npm run eval:match`): **43 / 43** in-scope and **21 / 21** declined. Tokens/s on that Node CPU run: **5.91** (`eval/results/grounded.json`, Intel(R) Xeon(R) Processor x4, 17 GB RAM, Node v22.23.4; desktop/server CPU, not a Mac browser). It's small and keyword-graded, so it's a sanity check, not a benchmark.
 
