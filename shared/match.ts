@@ -30,6 +30,41 @@ const GENERIC_PHRASES = new Set([
   "comes after",
 ]);
 
+/** Other martial arts / sports — never answer even if a shared technique word matches. */
+const OTHER_ART =
+  /\b(karate|kung\s*fu|kungfu|wushu|judo|jiu\s*jitsu|jiujitsu|aikido|hapkido|muay\s*thai|boxing|mma|krav\s*maga)\b/;
+
+/**
+ * Off-topic *contexts* that share a grading word (pattern, kup, middle, korean…).
+ * Do not blacklist ordinary words like "clothing" alone — "dobok … clothing" is in scope.
+ */
+const OFF_TOPIC =
+  /\bpattern\b.{0,24}\b(maths?|mathematics|algebra|geometry|dress|skirt|fabric)\b|\b(maths?|mathematics|algebra|geometry|dress|skirt|fabric)\b.{0,24}\bpattern\b|\bkup\b.{0,16}\b(tea|coffee)\b|\b(tea|coffee)\b.{0,16}\bkup\b|\bmiddle\s+parting\b|\bparting\b|\b(korean\s+)?won\b|\b(currency|money|chess|football|soccer|haircut|hairstyle)\b/;
+
+/** Counting Korean that are also ordinary English words — need counting context. */
+const AMBIGUOUS_COUNT_KO = new Set(["set", "net"]);
+
+const COUNT_KO = new Set([
+  "hana",
+  "dul",
+  "dool",
+  "set",
+  "net",
+  "dasot",
+  "yosot",
+  "ilgop",
+  "yodul",
+  "ahop",
+  "yol",
+]);
+
+function hasCountingContext(qNorm: string): boolean {
+  return (
+    /\b(korean|number|numbers|count|counts|counting|cont|cout)\b/.test(qNorm) ||
+    /\b(one|two|three|four|five|six|seven|eight|nine|ten|[1-9]|10)\b/.test(qNorm)
+  );
+}
+
 const norm = (s: string) =>
   s
     .toLowerCase()
@@ -103,6 +138,48 @@ function scoreItem(qNorm: string, qTokens: string[], item: ContentItem): number 
     if (wantsCounting(qNorm) || /\bnumbers?\b/.test(qNorm)) score += 5;
   }
 
+  // Prefer the action the kid asked how to do (punch/kick/block/turn) over a
+  // height or topic-name near-miss ("middle punch" → front punch, not kaunde).
+  const joined = phrases.join(" ");
+  if (/\bpunch(?:es|ing)?\b/.test(qNorm) && /\b(?:punch|jirugi)\b/.test(joined)) score += 4;
+  if (/\bkick(?:s|ing)?\b/.test(qNorm) && /\b(?:kick|chagi|busigi|olligi)\b/.test(joined)) score += 4;
+  if (/\bblock(?:s|ing)?\b/.test(qNorm) && /\b(?:block|makgi)\b/.test(joined)) score += 4;
+  // Generic turning note only when the question is not about Chon-Ji directions.
+  if (
+    /\bturn(?:s|ing|ed)?\b/.test(qNorm) &&
+    !/\bkick\b/.test(qNorm) &&
+    !/chon\s*ji/.test(qNorm) &&
+    /\b(?:turn|turning|dolgi|gujari)\b/.test(joined)
+  ) {
+    score += 5;
+  }
+  // "which way do i turn in chon ji" → a Chon-Ji move card that names the turn.
+  if (
+    /\bturn(?:s|ing|ed)?\b/.test(qNorm) &&
+    /chon\s*ji/.test(qNorm) &&
+    item.topic === "chonji" &&
+    /\bturn/.test(norm(`${item.simple} ${item.learnBody ?? ""}`))
+  ) {
+    score += 10;
+  }
+  // Prefer the technique card whose Korean term matches the action asked
+  // (ap jirugi for punch), not a vocab list whose primary korean is something else.
+  const k = norm(
+    [item.korean, ...(item.alsoKorean ?? []).map((a) => a.korean)].filter(Boolean).join(" "),
+  );
+  if (/\bpunch(?:es|ing)?\b/.test(qNorm) && /\bjirugi\b/.test(k)) score += 3;
+  if (/\bkick(?:s|ing)?\b/.test(qNorm) && /\b(?:chagi|busigi|olligi)\b/.test(k)) score += 3;
+  if (/\bblock(?:s|ing)?\b/.test(qNorm) && /\bmakgi\b/.test(k)) score += 3;
+  // Height + punch → the front-punch note (high/middle/low) over saju / vocab.
+  if (
+    /\b(?:high|middle|low)\b/.test(qNorm) &&
+    /\bpunch(?:es|ing)?\b/.test(qNorm) &&
+    /\bjirugi\b/.test(k) &&
+    /\b(?:high|middle|low|nopunde|kaunde|najunde)\b/.test(norm(item.simple ?? ""))
+  ) {
+    score += 4;
+  }
+
   return score;
 }
 
@@ -115,6 +192,8 @@ function hasPhrase(qNorm: string, phrase: string): boolean {
 
 /** True when the question is asking for Korean counting 1–10 (including typos / ranges). */
 export function wantsCounting(qNorm: string): boolean {
+  // Currency / money senses of "won" are not counting questions.
+  if (OFF_TOPIC.test(qNorm)) return false;
   const countWord = /\b(?:count|counts|counting|cont|cout)\b/.test(qNorm);
   const numbersWord = /\bnumbers?\b/.test(qNorm);
   const range =
@@ -140,6 +219,15 @@ export function wantsCounting(qNorm: string): boolean {
   ) {
     return true;
   }
+  // "what number is yodul" — Korean counting word looking for its digit.
+  // Ambiguous English words (set, net) need clearer counting context than "number" alone
+  // only when paired with a non-ambiguous counting token, or korean + number ask above.
+  if (
+    numbersWord &&
+    qNorm.split(/\s+/).some((t) => COUNT_KO.has(t) && !AMBIGUOUS_COUNT_KO.has(t))
+  ) {
+    return true;
+  }
   return false;
 }
 
@@ -151,6 +239,9 @@ export function matchQuestion(bundle: ContentBundle, question: string): Match | 
   const qNorm = norm(question);
   const qTokens = tokens(question);
   if (!qTokens.length) return null;
+
+  // Off-topic domains that only share a grading word (pattern, kup, middle, korean…).
+  if (OTHER_ART.test(qNorm) || OFF_TOPIC.test(qNorm)) return null;
 
   // Broad "all Korean words" → glossary (whole topic facts).
   // Singular "Korean word for X" is a single-term question, not the glossary.
@@ -182,14 +273,27 @@ export function matchQuestion(bundle: ContentBundle, question: string): Match | 
   }
 
   // Score every non-glossary item; pick the best. Topic = that item's topic.
+  // On a score tie, prefer the item that covers more of the question's content words.
   let bestItem: ContentItem | null = null;
   let bestScore = 0;
+  let bestCover = -1;
   for (const item of bundle.items) {
     if (item.glossary) continue;
     const s = scoreItem(qNorm, qTokens, item);
-    if (s > bestScore) {
+    const phrases = itemPhrases(item);
+    const coverToks = new Set([
+      ...phrases.flatMap((p) => tokens(p)),
+      ...tokens(item.simple ?? ""),
+      ...tokens(item.learnBody ?? ""),
+    ]);
+    const contentQ = qTokens.filter((t) => t.length >= 4 || /^\d+$/.test(t));
+    const cover = contentQ.length
+      ? contentQ.filter((t) => coverToks.has(t)).length / contentQ.length
+      : 0;
+    if (s > bestScore || (s === bestScore && cover > bestCover)) {
       bestScore = s;
       bestItem = item;
+      bestCover = cover;
     }
   }
 
@@ -216,23 +320,45 @@ export function matchQuestion(bundle: ContentBundle, question: string): Match | 
     "name",
   ]);
   const phrases = itemPhrases(bestItem);
-  const itemToks = new Set(phrases.flatMap((p) => tokens(p)));
+  // Include simple/learnBody tokens so "middle" on the front-punch note counts
+  // toward coverage without admitting unknown modifiers (turning kick, twist…).
+  const coverToks = new Set([
+    ...phrases.flatMap((p) => tokens(p)),
+    ...tokens(bestItem.simple ?? ""),
+    ...tokens(bestItem.learnBody ?? ""),
+  ]);
   const contentQ = qTokens.filter(
     (t) => (t.length >= 4 || /^\d+$/.test(t)) && !SCAFFOLD.has(t),
   );
-  // Strong evidence: Korean term, or a multi-word alias/title/english in the question.
+  // Strong evidence: Korean term, counting row, or a multi-word alias/title/english.
+  // Generic frames ("comes after") must not count as strong evidence.
+  // Ambiguous counting words (set, net) need Korean/counting context ("what is a film set").
+  const numberHit = (bestItem.numbers ?? []).some((n) => {
+    const k = norm(n.korean);
+    if (!hasPhrase(qNorm, k) && !(k === "dul" && hasPhrase(qNorm, "dool"))) return false;
+    if (AMBIGUOUS_COUNT_KO.has(k) && !hasCountingContext(qNorm)) return false;
+    return true;
+  });
   const koreanHit =
     (bestItem.korean && hasPhrase(qNorm, norm(bestItem.korean))) ||
-    (bestItem.alsoKorean ?? []).some((a) => hasPhrase(qNorm, norm(a.korean)));
-  const strongPhraseHit = phrases.some((p) => p.split(" ").length >= 2 && hasPhrase(qNorm, p));
-  const englishHit = !!(bestItem.english && hasPhrase(qNorm, norm(bestItem.english)));
+    (bestItem.alsoKorean ?? []).some((a) => hasPhrase(qNorm, norm(a.korean))) ||
+    numberHit;
+  const strongPhraseHit = phrases.some(
+    (p) => p.split(" ").length >= 2 && hasPhrase(qNorm, p) && !GENERIC_PHRASES.has(p),
+  );
+  // Lone english labels like "pattern" are too weak when other content words miss.
+  const englishHit = !!(
+    bestItem.english &&
+    hasPhrase(qNorm, norm(bestItem.english)) &&
+    norm(bestItem.english).split(" ").length >= 2
+  );
   if (contentQ.length && !koreanHit && !strongPhraseHit) {
-    const hit = contentQ.filter((t) => itemToks.has(t)).length;
+    const hit = contentQ.filter((t) => coverToks.has(t)).length;
     const ratio = hit / contentQ.length;
-    // Full coverage, or english meaning hit with at least half the content words
-    // (e.g. "middle punch" → height note), or a very strong score.
-    const ok =
-      ratio >= 0.75 || (englishHit && ratio >= 0.5 && bestScore >= 4) || bestScore >= 14;
+    // Full coverage, or multi-word english meaning with at least half the content words.
+    // Do not let a high score alone bypass coverage — that admitted twist/punch
+    // how-tos that never mention twist on the card.
+    const ok = ratio >= 0.75 || (englishHit && ratio >= 0.5 && bestScore >= 4);
     if (!ok) return null;
   }
 

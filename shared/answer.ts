@@ -90,7 +90,7 @@ export function planAsk(bundle: ContentBundle, question: string): AskMode {
     return { kind: "gated", text: DECLINE, gateReason: "no-match", match: null };
   }
   const facts = topicFacts(bundle, match.topic.id);
-  const cardItem = match.primary ?? match.items[0];
+  const cardItem = cardItemForQuestion(match, question);
   return {
     kind: "model",
     messages: askMessages(question, facts),
@@ -100,6 +100,78 @@ export function planAsk(bundle: ContentBundle, question: string): AskMode {
     requiredFacts: requiredFactsForMatch(bundle, match, question),
     bundle,
   };
+}
+
+/** Prefer the matched item that actually answers the asked action (turn/punch/…). */
+function cardItemForQuestion(match: Match, question: string): ContentItem {
+  const primary = match.primary ?? match.items[0];
+  if (!primary) return match.items[0];
+  const q = question.toLowerCase();
+  const pool = [primary, ...match.items.filter((i) => i.id !== primary.id)];
+
+  // List/count of tenets → the five-tenets card even if a named tenet appears.
+  if (
+    /\btenets?\b/.test(q) &&
+    /\b(how many|what are|list|five|all|including)\b/.test(q)
+  ) {
+    const five = pool.find((i) => i.id === "the-five-tenets");
+    if (five) return five;
+  }
+  // Named tenet alone → that tenet's note, not the whole list.
+  for (const name of ["courtesy", "integrity", "perseverance", "self-control", "indomitable"]) {
+    if (new RegExp(`\\b${name}\\b`).test(q)) {
+      const tenet = pool.find(
+        (i) =>
+          i.id === name ||
+          i.id === name.replace("-", "") ||
+          new RegExp(`\\b${name}\\b`, "i").test(i.title),
+      );
+      if (tenet) return tenet;
+    }
+  }
+
+  // Yellow belt grade → the belt-order note (has "8th kup"), not only the colour meaning.
+  if (/\byellow\b/.test(q) && /\b(grade|kup)\b/.test(q)) {
+    const order = pool.find((i) => i.id === "belt-order-for-the-first-gradings");
+    if (order) return order;
+  }
+
+  // Last / first move of Chon-Ji → the matching move-range card.
+  if (/\bmoves?\b/.test(q) && /chon\s*-?\s*ji/.test(q)) {
+    if (/\b(last|end|final)\b/.test(q)) {
+      const last = pool.find((i) => i.id === "chon-ji-moves-17-to-19-and-the-end");
+      if (last) return last;
+    }
+    if (/\bfirst\b/.test(q)) {
+      const first = pool.find((i) => i.id === "chon-ji-moves-1-to-4");
+      if (first) return first;
+    }
+  }
+
+  // Turn directions in Chon-Ji → a move card that names the turn, not the generic dolgi note.
+  if (/\bturn/.test(q) && /chon\s*-?\s*ji/.test(q)) {
+    const move = pool.find(
+      (i) =>
+        i.topic === "chonji" &&
+        /\bturn/i.test(`${i.simple} ${i.learnBody ?? ""}`),
+    );
+    if (move) return move;
+  }
+
+  const action = /\bturn/.test(q)
+    ? /turn|dolgi|gujari/i
+    : /\bpunch/.test(q)
+      ? /punch|jirugi|forefist|joomuk/i
+      : /\bkick/.test(q)
+        ? /kick|chagi|busigi|olligi/i
+        : /\bblock/.test(q)
+          ? /block|makgi/i
+          : null;
+  if (!action) return primary;
+  const hit = pool.find((i) =>
+    action.test([i.title, i.english ?? "", i.simple, ...(i.aliases ?? [])].join(" ")),
+  );
+  return hit ?? primary;
 }
 
 /**
@@ -139,8 +211,10 @@ export function answerLooksBroken(text: string, opts?: { hitTokenCap?: boolean }
   if (/\bthe simple line\b/i.test(t)) return true;
   if (/\btwo short sentences max\b/i.test(t)) return true;
   if (/\b(?:so we can|need to check)\b/i.test(t)) return true;
-  if (/(?:^|\n)\s*answer\s*:/i.test(t)) return true;
-  if (/(?:^|\n)\s*question\s*:/i.test(t)) return true;
+  // After stripThinking flattens newlines, catch Answer:/Question: even with no
+  // preceding period ("Makgi means block Answer: It is a block.").
+  if (/\banswer\s*:/i.test(t)) return true;
+  if (/\bquestion\s*:/i.test(t)) return true;
   if (/[*_`#]{1,2}/.test(t)) return true; // markdown bold/code/headers
   if (repeatsChunk(t)) return true;
   // Numbered fragments like "2. 10." that are not a real counting list line
@@ -167,6 +241,62 @@ function repeatsChunk(text: string): boolean {
     if (!key) continue;
     if (seen.has(key)) return true;
     seen.add(key);
+  }
+  return false;
+}
+
+const COUNT_ROWS: [number, string, ...string[]][] = [
+  [1, "hana"],
+  [2, "dul", "dool"],
+  [3, "set"],
+  [4, "net"],
+  [5, "dasot"],
+  [6, "yosot"],
+  [7, "ilgop"],
+  [8, "yodul"],
+  [9, "ahop"],
+  [10, "yol"],
+];
+
+/** Parse counting rows: "3 set", "3 is set", "3. set", "set is 3", punctuation forms. */
+function parseCountRows(text: string): { n: number; at: number }[] {
+  const low = text.toLowerCase().replace(/\s+/g, " ");
+  const found: { n: number; at: number }[] = [];
+  for (const [n, ...kos] of COUNT_ROWS) {
+    for (const ko of kos) {
+      const patterns = [
+        new RegExp(`\\b${n}\\s*(?:is|=|:|\\.)?\\s*${ko}\\b`, "g"),
+        new RegExp(`\\b${ko}\\s*(?:is|=|:)?\\s*${n}\\b`, "g"),
+      ];
+      for (const re of patterns) {
+        let m: RegExpExecArray | null;
+        while ((m = re.exec(low)) !== null) {
+          found.push({ n, at: m.index });
+        }
+      }
+    }
+  }
+  // Dedupe by number (keep earliest mention).
+  const byN = new Map<number, number>();
+  for (const row of found) {
+    const prev = byN.get(row.n);
+    if (prev === undefined || row.at < prev) byN.set(row.n, row.at);
+  }
+  return [...byN.entries()].map(([n, at]) => ({ n, at }));
+}
+
+/** How many of the canonical counting rows appear in the answer. */
+function countListRowHits(text: string): number {
+  return parseCountRows(text).length;
+}
+
+/** True when several counting rows appear but not in ascending order. */
+function countingListOutOfOrder(text: string): boolean {
+  const positions = parseCountRows(text);
+  if (positions.length < 3) return false;
+  positions.sort((a, b) => a.at - b.at);
+  for (let i = 1; i < positions.length; i++) {
+    if (positions[i].n < positions[i - 1].n) return true;
   }
   return false;
 }
@@ -257,7 +387,15 @@ export function finaliseAsk(
   const check = checkAnswer(text, plan.facts, plan.cardItem.category);
   const required = checkRequiredFacts(text, plan.requiredFacts, plan.bundle);
   const sources = [plan.match.topic.name];
-  const broken = answerLooksBroken(text, { hitTokenCap: timing?.hitTokenCap });
+  const singleCount =
+    plan.requiredFacts.length === 1 && plan.requiredFacts[0].id.startsWith("count-");
+  // Full 1–10 dump on a single-number ask, or an out-of-order count list → notes.
+  const countShapeBroken =
+    (singleCount && countListRowHits(text) >= 5) ||
+    (plan.match.topic.id === "counting" && countingListOutOfOrder(text));
+  const broken =
+    answerLooksBroken(text, { hitTokenCap: timing?.hitTokenCap }) || countShapeBroken;
+  // Prefer the missing-fact reason when both fire — kids/debug need the named gap.
   const checkTrace = {
     ok: check.ok && required.ok && !broken,
     badKorean: check.badKorean,
@@ -265,10 +403,10 @@ export function finaliseAsk(
     badCategory: check.badCategory,
     badBodyParts: check.badBodyParts,
     missingRequired: required.missing.map((m) => `${m.id} [${m.alts.join("|")}]`),
-    summary: broken
-      ? "Failed. Showed the note instead. Answer looked truncated, repeated, or meta-reasoned."
-      : !required.ok
-        ? required.summary
+    summary: !required.ok
+      ? required.summary
+      : broken
+        ? "Failed. Showed the note instead. Answer looked truncated, repeated, or meta-reasoned."
         : checkSummary({
             ...check,
             missingRequired: [],
@@ -293,25 +431,8 @@ export function finaliseAsk(
   if (broken) return useCard("check-failed");
 
   // Single-number counting answers can be short ("Yodul is 8.") — do not treat as thin.
-  const singleCount =
-    plan.requiredFacts.length === 1 && plan.requiredFacts[0].id.startsWith("count-");
   if (!singleCount && (text.length < 24 || /:\s*$/.test(text))) {
     return useCard("thin-or-glossary-fallback");
-  }
-
-  // Meaning answers stay Written by LFM3 (we do not demand 19 as a hard fact),
-  // but fold the move count into the last sentence when missing so frozen
-  // expects still pass without bumping the quality sentence cap.
-  if (plan.match.topic.id === "chonji") {
-    const moves = plan.match.items.find((i) => i.id === "how-many-moves-chon-ji-has");
-    if (
-      moves?.english &&
-      !plan.requiredFacts.some((r) => r.id === "chonji-moves") &&
-      plan.requiredFacts.some((r) => r.id === "chonji-heaven") &&
-      !new RegExp(`\\b${moves.english}\\b`).test(text)
-    ) {
-      text = text.replace(/\s*[.!?…]["']?\s*$/, "") + `, and it has ${moves.english} moves.`;
-    }
   }
 
   return {

@@ -19,20 +19,19 @@ describe("required facts from content (not eval)", () => {
     }
   });
 
-  it("keeps a good Chon-Ji meaning answer as Written by LFM3 without demanding 19", () => {
+  it("keeps a good Chon-Ji meaning answer as Written by LFM3 without splicing in 19", () => {
     const plan = planAsk(bundle, "what does chon-ji mean");
     expect(plan.kind).toBe("model");
     if (plan.kind !== "model") return;
-    const r = finaliseAsk(
-      "Chon-Ji means the Heaven the Earth; it is the first pattern with two parts for Heaven and Earth.",
-      plan,
-    );
+    const raw =
+      "Chon-Ji means the Heaven the Earth; it is the first pattern with two parts for Heaven and Earth.";
+    const r = finaliseAsk(raw, plan);
     expect(r.usedCard).toBe(false);
     expect(r.how.source).toBe("model");
     expect(r.how.label).toBe(LABEL_MODEL);
-    // Fold 19 into the last sentence so frozen expect passes without a 3rd sentence.
-    expect(r.text).toMatch(/\b19\b/);
-    expect(r.text.match(/[.!?]/g)?.length ?? 0).toBeLessThanOrEqual(2);
+    // Honest model text — do not append notes (", and it has 19 moves.") under the LFM3 label.
+    expect(r.text).toBe(raw);
+    expect(r.text).not.toMatch(/and it has 19 moves/i);
   });
 
   it("how-many-tenets falls back to the notes when the model only says five", () => {

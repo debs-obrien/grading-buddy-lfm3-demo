@@ -1,23 +1,23 @@
 {
-  "ranAt": "2026-11-10T22:53:47.895Z",
+  "ranAt": "2026-11-11T09:22:04.641Z",
   "summary": {
     "model": "onnx-community/LFM3-1.7B-ONNX",
     "dtype": "q4",
     "device": "cpu (onnxruntime-node)",
     "mode": "grounded",
     "machine": "Intel(R) Xeon(R) Processor x4, 17 GB RAM, Node v22.23.4",
-    "loadSeconds": 2.859,
+    "loadSeconds": 3.209,
     "in_scope": {
       "total": 43,
-      "correct": 42,
-      "wrong": 1,
+      "correct": 41,
+      "wrong": 2,
       "wrongly_declined": 0,
       "written_by_lfm3": 33,
       "from_the_notes": 10
     },
     "out_of_scope": {
-      "total": 13,
-      "correctly_declined": 13,
+      "total": 21,
+      "correctly_declined": 21,
       "wrongly_answered": 0
     },
     "quality": {
@@ -25,12 +25,12 @@
       "pass": 4
     },
     "everyday_practice": {
-      "total": 23,
-      "correct": 23,
+      "total": 26,
+      "correct": 26,
       "wrong": 0,
       "wrongly_declined": 0
     },
-    "tokens_per_second": 5.98,
+    "tokens_per_second": 5.91,
     "fallbacks": [
       {
         "id": "cj-moves",
@@ -44,7 +44,7 @@
           "missingRequired": [
             "chonji-moves [19|nineteen]"
           ],
-          "summary": "Failed. Showed the note instead. Answer looked truncated, repeated, or meta-reasoned."
+          "summary": "Failed. Showed the note instead. Missing required fact(s): chonji-moves: need one of [19 | nineteen]."
         },
         "rawModel": "<think>We need to answer the question: \"How many moves are in Chon-Ji?\" from the FACTS.\n\nLooking at the FACTS:\n\n- Title: How many moves Chon-Ji has\n- Type: pattern\n- English: 19\n- Simple: Chon-Ji has 19 moves. It is the pattern you need for the grading from 9th kup to 8th kup (ye"
       },
@@ -60,7 +60,7 @@
           "missingRequired": [
             "count-3 [set|3]"
           ],
-          "summary": "Failed. Showed the note instead. Answer looked truncated, repeated, or meta-reasoned."
+          "summary": "Failed. Showed the note instead. Missing required fact(s): count-3: need one of [set | 3]."
         },
         "rawModel": "<think>We need to answer the question: \"How do you say three in Korean?\" from the FACTS.\n\nLooking at the FACTS:\n\nTitle: Counting 1 to 10 in Korean\nType: counting\nEnglish: Counting from one to ten in Korean\nCounting 1 to 10:\n1 hana\n2 dul\n3 set\n4 net\n5 dasot\n6 yosot\n7 ilgop\n8 yodul"
       },
@@ -174,7 +174,7 @@
           "missingRequired": [
             "glossary-coverage [at least 20 glossary terms (found 11)]"
           ],
-          "summary": "Failed. Showed the note instead. Answer looked truncated, repeated, or meta-reasoned."
+          "summary": "Failed. Showed the note instead. Missing required fact(s): glossary-coverage: need one of [at least 20 glossary terms (found 11)]."
         },
         "rawModel": "Charyot sogi is attention stance, charyot = attention. Kigapu? Actually, kihap = yell or shout. You need: chagi = kick, chuk? Let's see: list includes many. The question: \"what korean words do i need to know\". From facts, we need to list the Korean words. Probably all the terms g"
       }
@@ -212,10 +212,10 @@
         "missingRequired": [
           "chonji-moves [19|nineteen]"
         ],
-        "summary": "Failed. Showed the note instead. Answer looked truncated, repeated, or meta-reasoned."
+        "summary": "Failed. Showed the note instead. Missing required fact(s): chonji-moves: need one of [19 | nineteen]."
       },
       "rawModel": "<think>We need to answer the question: \"How many moves are in Chon-Ji?\" from the FACTS.\n\nLooking at the FACTS:\n\n- Title: How many moves Chon-Ji has\n- Type: pattern\n- English: 19\n- Simple: Chon-Ji has 19 moves. It is the pattern you need for the grading from 9th kup to 8th kup (yellow stripe to yellow belt).\n\nSo the answer is 19 moves.\n\nWe must output only the direct answer first, plain text, no lists, no bold. At most two short sentences in plain words a 7 year old knows. Stop after the second period. So we can write: \"Chon-Ji has 19 moves.\" That's one sentence. But we",
-      "secs": 27.227,
+      "secs": 26.986,
       "tokens": 160,
       "outcome": "correct"
     },
@@ -230,7 +230,7 @@
           "earth"
         ]
       ],
-      "answer": "Chon-Ji means “the Heaven the Earth”; it is the first pattern you learn and has two identical parts for Heaven and Earth. It is the initial pattern played by beginners, and it has 19 moves.",
+      "answer": "Chon-Ji means “the Heaven the Earth”; it is the first pattern you learn and has two identical parts for Heaven and Earth. It is the initial pattern played by beginners.",
       "gated": false,
       "gateReason": null,
       "topic": "chonji",
@@ -248,7 +248,7 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "Chon-Ji means “the Heaven the Earth”; it is the first pattern you learn and has two identical parts for Heaven and Earth. It is the initial pattern played by beginners.",
-      "secs": 13.709,
+      "secs": 13.771,
       "tokens": 37,
       "outcome": "correct"
     },
@@ -278,7 +278,7 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "Charyot means attention. When you hear charyot, you stand up straight in attention stance, quiet and still, ready to listen.",
-      "secs": 10.06,
+      "secs": 9.573,
       "tokens": 29,
       "outcome": "correct"
     },
@@ -308,7 +308,7 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "Kyong ye means bow. We bow to show respect, for example to the instructor, to a partner, and when we come into or leave the training hall.",
-      "secs": 10.048,
+      "secs": 9.776,
       "tokens": 33,
       "outcome": "correct"
     },
@@ -338,7 +338,7 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "Junbi means ready. When you hear junbi, you get into your ready stance and wait for the next command.</think>Junbi means ready. When you hear junbi, you get into your ready stance and wait for the next command.",
-      "secs": 11.269,
+      "secs": 11.286,
       "tokens": 49,
       "outcome": "correct"
     },
@@ -369,7 +369,7 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "Si jak means begin or start. It is the command to start the exercise or the pattern.",
-      "secs": 8.899,
+      "secs": 8.448,
       "tokens": 19,
       "outcome": "correct"
     },
@@ -400,7 +400,7 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "Baro means return. When you hear baro at the end of an exercise, you go back to your ready position.",
-      "secs": 9.407,
+      "secs": 9.134,
       "tokens": 25,
       "outcome": "correct"
     },
@@ -430,7 +430,7 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "General Choi Hong Hi was the founder of Taekwon-Do. He was a general in the Korean army, born in 1918 and died in 2002.",
-      "secs": 6.943,
+      "secs": 6.7,
       "tokens": 35,
       "outcome": "correct"
     },
@@ -473,7 +473,7 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "Courtesy, Integrity, Perseverance, Self-Control and Indomitable Spirit.\n\nThese are the five big ideas for Taekwon-Do.",
-      "secs": 7.279,
+      "secs": 7.149,
       "tokens": 32,
       "outcome": "correct"
     },
@@ -506,7 +506,7 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "White belt means innocence, as that of a beginning student who has no previous knowledge of Taekwon-Do. It shows you are just starting to learn.",
-      "secs": 5.487,
+      "secs": 5.402,
       "tokens": 33,
       "outcome": "correct"
     },
@@ -545,7 +545,7 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "Yellow signifies the earth from which a plant sprouts and takes root as the Taekwon-Do foundation is being laid. It means you practice the basics until they are strong.\n\nWhite belt is for beginners with no previous knowledge. Yellow belt is the next step after white.",
-      "secs": 7.113,
+      "secs": 7.049,
       "tokens": 57,
       "outcome": "correct"
     },
@@ -580,10 +580,10 @@
         "missingRequired": [
           "count-3 [set|3]"
         ],
-        "summary": "Failed. Showed the note instead. Answer looked truncated, repeated, or meta-reasoned."
+        "summary": "Failed. Showed the note instead. Missing required fact(s): count-3: need one of [set | 3]."
       },
       "rawModel": "<think>We need to answer the question: \"How do you say three in Korean?\" from the FACTS.\n\nLooking at the FACTS:\n\nTitle: Counting 1 to 10 in Korean\nType: counting\nEnglish: Counting from one to ten in Korean\nCounting 1 to 10:\n1 hana\n2 dul\n3 set\n4 net\n5 dasot\n6 yosot\n7 ilgop\n8 yodul\n9 ahop\n10 yol\n\nSo for 3, it's \"set\". The simple line also says: 3 set.\n\nThus answer: \"3 set\" or just \"set\"? The question: \"How do you say three in Korean?\" So we should say \"three is'set' in Korean.\" But need",
-      "secs": 12.7,
+      "secs": 12.404,
       "tokens": 160,
       "outcome": "correct"
     },
@@ -613,7 +613,7 @@
         "summary": "Failed. Showed the note instead. Answer looked truncated, repeated, or meta-reasoned."
       },
       "rawModel": "Yodul. (8 yodul)\n\nSeven is ilgop. (7 ilgop)\n\nEight is yodul. (8 yodul)\n\nWait, need to check: The fact says \"8 yodul\". So eight = yodul.\n\nAnswer: 8 yodul.\n\nBut question: \"What is eight in Korean?\" So answer: yodul.\n\nTwo short sentences max. First sentence: \"Eight is yodul.\" Second: maybe not needed? But must stop after second period. So one sentence? Actually \"Write at most two short sentences in plain words a 7 year old knows — never a third sentence. Stop after the second period.\" Means we can have up to two sentences, ending with periods. So we can",
-      "secs": 12.54,
+      "secs": 12.271,
       "tokens": 160,
       "outcome": "correct"
     },
@@ -647,7 +647,7 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "Yol.\n\nTen in Korean is yol.",
-      "secs": 2.722,
+      "secs": 2.69,
       "tokens": 9,
       "outcome": "correct"
     },
@@ -705,7 +705,7 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "1 hana, 2 dul, 3 set, 4 net, 5 dasot, 6 yosot, 7 ilgop, 8 yodul, 9 ahop, 10 yol.  \nCount from one to ten using these Korean words.",
-      "secs": 5.964,
+      "secs": 5.986,
       "tokens": 58,
       "outcome": "correct"
     },
@@ -763,7 +763,7 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "1 hana, 2 dul, 3 set, 4 net, 5 dasot, 6 yosot, 7 ilgop, 8 yodul, 9 ahop, 10 yol.</think>1 hana, 2 dul, 3 set, 4 net, 5 dasot, 6 yosot, 7 ilgop, 8 yodul, 9 ahop, 10 yol.",
-      "secs": 8.16,
+      "secs": 8.441,
       "tokens": 95,
       "outcome": "correct"
     },
@@ -822,7 +822,7 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "1 hana, 2 dul, 3 set, 4 net, 5 dasot, 6 yosot, 7 ilgop, 8 yodul, 9 ahop, 10 yol.</think>1 hana, 2 dul, 3 set, 4 net, 5 dasot, 6 yosot, 7 ilgop, 8 yodul, 9 ahop, 10 yol.",
-      "secs": 8.264,
+      "secs": 8.164,
       "tokens": 95,
       "outcome": "correct"
     },
@@ -881,7 +881,7 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "1 hana, 2 dul, 3 set, 4 net, 5 dasot, 6 yosot, 7 ilgop, 8 yodul, 9 ahop, 10 yol.",
-      "secs": 5.087,
+      "secs": 5.297,
       "tokens": 47,
       "outcome": "correct"
     },
@@ -940,7 +940,7 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "1 hana, 2 dul, 3 set, 4 net, 5 dasot, 6 yosot, 7 ilgop, 8 yodul, 9 ahop, 10 yol.</think>1 hana, 2 dul, 3 set, 4 net, 5 dasot, 6 yosot, 7 ilgop, 8 yodul, 9 ahop, 10 yol.",
-      "secs": 8.081,
+      "secs": 8.197,
       "tokens": 95,
       "outcome": "correct"
     },
@@ -999,7 +999,7 @@
         "summary": "Failed. Showed the note instead. Answer looked truncated, repeated, or meta-reasoned."
       },
       "rawModel": "He says: 1 hana, 2 dul, 3 set, 4 net, 5 dasot, 6 yosot, 7 ilgop, 8 yodul, 9 ahop, 10 yol.\n\nHe counts from one to ten in Korean like this: 1 hana, 2 dul, 3 set, 4 net, 5 dasot, 6 yosot, 7 ilgop, 8 yodul, 9 ahop, 10 yol.",
-      "secs": 9.125,
+      "secs": 9.152,
       "tokens": 110,
       "outcome": "correct"
     },
@@ -1058,7 +1058,7 @@
         "summary": "Failed. Showed the note instead. Answer looked truncated, repeated, or meta-reasoned."
       },
       "rawModel": "10 yol.  \n1 hana, 2 dul, 3 set, 4 net, 5 dasot, 6 yosot, 7 ilgop, 8 yodul, 9 ahop, 10 yol.",
-      "secs": 5.296,
+      "secs": 5.37,
       "tokens": 51,
       "outcome": "correct"
     },
@@ -1095,7 +1095,7 @@
         "summary": "Failed. Showed the note instead. Answer looked truncated, repeated, or meta-reasoned."
       },
       "rawModel": "<think>We need to answer the question: \"What is the first line of the student oath?\" from the FACTS provided.\n\nLooking at the FACTS:\n\n- Title: The student oath\n- Type: oath\n- English: I shall observe the Tenets of Taekwon-Do\n- Official ITF wording (source ITF-P): I shall observe the Tenets of Taekwon-Do\n- Then list of promises:\n  - I shall respect the Instructor and Seniors.\n  - I shall never misuse Taekwon-Do.\n  - I shall be a champion of freedom and justice.\n  - I shall build a more peaceful world.\n  - Simple:... five tenets.\n\n- Also: \"The simple promise of the oath is 'I shall observe the",
-      "secs": 14.541,
+      "secs": 14.031,
       "tokens": 160,
       "outcome": "correct"
     },
@@ -1129,7 +1129,7 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "Parallel ready stance (narani junbi sogi). Chon-Ji starts in parallel ready stance.",
-      "secs": 11.678,
+      "secs": 12.278,
       "tokens": 21,
       "outcome": "correct"
     },
@@ -1159,7 +1159,7 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "Left foot goes back to the ready position at the end of Chon-Ji.\n\nChon-Ji ends by bringing the left foot back to parallel ready stance.",
-      "secs": 13.169,
+      "secs": 13.193,
       "tokens": 33,
       "outcome": "correct"
     },
@@ -1190,7 +1190,7 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "Step the left foot to the left (B) into a left walking stance and do a low block with the left forearm.\n\nChon-Ji starts in parallel ready stance (narani junbi sogi). The first move is step the left foot to the left (B) into a left walking stance and do a low block with the left forearm.",
-      "secs": 17.126,
+      "secs": 17.504,
       "tokens": 75,
       "outcome": "correct"
     },
@@ -1228,7 +1228,7 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "L-stance is niunja sogi. Chon-Ji uses L-stance for the inner forearm blocks.",
-      "secs": 8.138,
+      "secs": 8.186,
       "tokens": 26,
       "outcome": "correct"
     },
@@ -1261,7 +1261,7 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "Saju Jirugi is the four-direction punch. It is a practice exercise, not a pattern. It starts in parallel ready stance, then walking stance, then turns with a low block and punches until facing all four directions, doing it once with the right foot and once with the left.\n\nSorry, that's not part of the white to yellow belt grading.",
-      "secs": 8.437,
+      "secs": 8.908,
       "tokens": 75,
       "outcome": "correct"
     },
@@ -1294,7 +1294,7 @@
         "summary": "Failed. Showed the note instead. Answer looked truncated, repeated, or meta-reasoned."
       },
       "rawModel": "Saju Makgi is the four-direction block, a practice exercise where you do it once on each side. In walking stance you do a knife-hand low block, then step forward with an inner forearm middle block, and you turn so you block in all four directions.\n\nIt is also a practice exercise. In walking stance you do a knife-hand low block, then step forward with an inner forearm middle block, and you turn so you block in all four directions. You do it once on each side.",
-      "secs": 11.193,
+      "secs": 11.432,
       "tokens": 105,
       "outcome": "correct"
     },
@@ -1324,7 +1324,7 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "Gunnun sogi. (One foot in front, bend front knee, back leg straight, weight even.)\n\nThe Korean name for walking stance is gunnun sogi.",
-      "secs": 9.29,
+      "secs": 9.177,
       "tokens": 36,
       "outcome": "correct"
     },
@@ -1354,7 +1354,7 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "The ball of your foot is used for a front snap kick.",
-      "secs": 7.825,
+      "secs": 7.739,
       "tokens": 13,
       "outcome": "correct"
     },
@@ -1393,7 +1393,7 @@
         "summary": "Failed. Showed the note instead. Answer looked truncated, repeated, or meta-reasoned."
       },
       "rawModel": "<think>We need to answer the question: \"What belt comes after white?\" We have the FACTS.\n\nFrom the \"Belt order for the first gradings\" section:\n\n- Title: Belt order for the first gradings\n- Type: belt\n- English: White belt with a yellow stripe (9th kup)\n- Simple: 10th kup is white belt. After white belt comes a white belt with a yellow stripe (9th kup; some clubs call it a tag). 8th kup is yellow belt.\n\nWait, there's some confusion. Let's parse carefully.\n\nThe user gave three FACTS:\n\n1. Title: What the white belt means - says white signifies innocence, etc. Simple: everyone starts with a white belt. You are a beginner.\n\n2",
-      "secs": 15.013,
+      "secs": 13.985,
       "tokens": 160,
       "outcome": "correct"
     },
@@ -1430,7 +1430,7 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "Pulling your toes back helps you hit with the ball of your foot. A front snap kick is apcha busigi. Lift your knee, snap your foot out and pull it straight back. You hit with the ball of your foot (ap kumchi), so pull your toes back.",
-      "secs": 11.92,
+      "secs": 13.861,
       "tokens": 60,
       "outcome": "wrong"
     },
@@ -1460,7 +1460,7 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "The dobok is the white training uniform we wear. The dojang is the training hall where we practice.",
-      "secs": 8.556,
+      "secs": 9.016,
       "tokens": 22,
       "outcome": "correct"
     },
@@ -1491,7 +1491,7 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "Kihap means a yell or shout. It is a short, loud shout from your belly that helps you breathe out and put power into a move.",
-      "secs": 9.355,
+      "secs": 9.785,
       "tokens": 31,
       "outcome": "correct"
     },
@@ -1521,7 +1521,7 @@
         "summary": "Failed. Showed the note instead. Answer looked truncated, repeated, or meta-reasoned."
       },
       "rawModel": "Makgi is the Korean word for block.\n\nJirugi means punch.\n\nChagi means kick.\n\nThe simple line says: \"Three words you hear all the time: jirugi means punch, makgi means block, chagi means kick.\"\n\nSo the Korean word for block is **makgi**.",
-      "secs": 12.034,
+      "secs": 12.78,
       "tokens": 63,
       "outcome": "correct"
     },
@@ -1554,7 +1554,7 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "International Taekwon-Do Federation. General Choi started it in Seoul, Korea, on 22 March 1966. Our club does ITF Taekwon-Do.\n\nITF stands for International Taekwon-Do Federation.",
-      "secs": 7.421,
+      "secs": 7.763,
       "tokens": 48,
       "outcome": "correct"
     },
@@ -1584,7 +1584,7 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "General Choi gave Taekwon-Do its name on 11 April 1955. It was on that date in 1955.",
-      "secs": 5.91,
+      "secs": 6.065,
       "tokens": 28,
       "outcome": "correct"
     },
@@ -1614,7 +1614,7 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "Middle is kaunde, about shoulder level.\nIt means the middle height of the moves.",
-      "secs": 8.195,
+      "secs": 8.272,
       "tokens": 18,
       "outcome": "correct"
     },
@@ -1652,10 +1652,10 @@
         "missingRequired": [
           "glossary-coverage [at least 20 glossary terms (found 11)]"
         ],
-        "summary": "Failed. Showed the note instead. Answer looked truncated, repeated, or meta-reasoned."
+        "summary": "Failed. Showed the note instead. Missing required fact(s): glossary-coverage: need one of [at least 20 glossary terms (found 11)]."
       },
       "rawModel": "Charyot sogi is attention stance, charyot = attention. Kigapu? Actually, kihap = yell or shout. You need: chagi = kick, chuk? Let's see: list includes many. The question: \"what korean words do i need to know\". From facts, we need to list the Korean words. Probably all the terms given. But we must answer in at most two short sentences, plain words a 7 year old knows. Direct answer first.\n\nWe need to pick the relevant words. The facts include many: charyot, kyong ye, junbi, si jak, baro, kihap, dojang, dobok, sabum nim, sabum? Actually \"sabum nim = instructor",
-      "secs": 13.78,
+      "secs": 14.633,
       "tokens": 159,
       "outcome": "correct"
     },
@@ -1713,7 +1713,7 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "1 hana, 2 dul, 3 set, 4 net, 5 dasot, 6 yosot, 7 ilgop, 8 yodul, 9 ahop, 10 yol.</think>1 hana, 2 dul, 3 set, 4 net, 5 dasot, 6 yosot, 7 ilgop, 8 yodul, 9 ahop, 10 yol.",
-      "secs": 8.158,
+      "secs": 7.893,
       "tokens": 95,
       "outcome": "correct"
     },
@@ -1761,7 +1761,7 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "Chon-Ji is the first pattern, like a game of pretend fights, and it starts with two equal parts for heaven and earth. It has 19 moves and begins in a balanced stance, then goes left, right, and turns around. At the end, you go back to the ready stance.",
-      "secs": 15.633,
+      "secs": 15.727,
       "tokens": 62,
       "outcome": "correct"
     },
@@ -1807,7 +1807,7 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "Chon-Ji is the first pattern, called “the Heaven the Earth,” and it has 19 moves. It starts in a parallel ready stance with the floor pattern as a cross, and all punches are middle obverse punches.",
-      "secs": 14.401,
+      "secs": 14.489,
       "tokens": 49,
       "outcome": "correct"
     },
@@ -1835,7 +1835,7 @@
         "way of standing",
         "\\bis a stance\\b"
       ],
-      "answer": "Chon-Ji means “the Heaven the Earth”; it is the first pattern you learn and has two identical parts for Heaven and Earth. It starts in parallel ready stance and ends by bringing the left foot back to parallel ready stance, and it has 19 moves.",
+      "answer": "Chon-Ji means “the Heaven the Earth”; it is the first pattern you learn and has two identical parts for Heaven and Earth. It starts in parallel ready stance and ends by bringing the left foot back to parallel ready stance.",
       "gated": false,
       "gateReason": null,
       "topic": "chonji",
@@ -1853,9 +1853,9 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "Chon-Ji means “the Heaven the Earth”; it is the first pattern you learn and has two identical parts for Heaven and Earth. It starts in parallel ready stance and ends by bringing the left foot back to parallel ready stance.",
-      "secs": 14.149,
+      "secs": 14.174,
       "tokens": 47,
-      "outcome": "correct"
+      "outcome": "wrong"
     }
   ],
   "outScope": [
@@ -2001,6 +2001,94 @@
       "secs": 0,
       "tokens": 0,
       "outcome": "correctly_declined"
+    },
+    {
+      "id": "karate-low-block",
+      "q": "How do I do a low block in karate?",
+      "answer": "Sorry, that's not part of the white to yellow belt grading.",
+      "gated": true,
+      "gateReason": "no-match",
+      "topic": null,
+      "secs": 0,
+      "tokens": 0,
+      "outcome": "correctly_declined"
+    },
+    {
+      "id": "christmas-after",
+      "q": "What comes after Christmas?",
+      "answer": "Sorry, that's not part of the white to yellow belt grading.",
+      "gated": true,
+      "gateReason": "no-match",
+      "topic": null,
+      "secs": 0,
+      "tokens": 0,
+      "outcome": "correctly_declined"
+    },
+    {
+      "id": "pattern-maths",
+      "q": "what is a pattern in maths",
+      "answer": "Sorry, that's not part of the white to yellow belt grading.",
+      "gated": true,
+      "gateReason": "no-match",
+      "topic": null,
+      "secs": 0,
+      "tokens": 0,
+      "outcome": "correctly_declined"
+    },
+    {
+      "id": "pattern-dress",
+      "q": "what is a pattern on a dress",
+      "answer": "Sorry, that's not part of the white to yellow belt grading.",
+      "gated": true,
+      "gateReason": "no-match",
+      "topic": null,
+      "secs": 0,
+      "tokens": 0,
+      "outcome": "correctly_declined"
+    },
+    {
+      "id": "kup-of-tea",
+      "q": "what is a kup of tea",
+      "answer": "Sorry, that's not part of the white to yellow belt grading.",
+      "gated": true,
+      "gateReason": "no-match",
+      "topic": null,
+      "secs": 0,
+      "tokens": 0,
+      "outcome": "correctly_declined"
+    },
+    {
+      "id": "middle-parting",
+      "q": "how do i do a middle parting",
+      "answer": "Sorry, that's not part of the white to yellow belt grading.",
+      "gated": true,
+      "gateReason": "no-match",
+      "topic": null,
+      "secs": 0,
+      "tokens": 0,
+      "outcome": "correctly_declined"
+    },
+    {
+      "id": "korean-won",
+      "q": "what is 5 in korean won",
+      "answer": "Sorry, that's not part of the white to yellow belt grading.",
+      "gated": true,
+      "gateReason": "no-match",
+      "topic": null,
+      "secs": 0,
+      "tokens": 0,
+      "outcome": "correctly_declined"
+    },
+    {
+      "id": "film-set",
+      "q": "what is a film set",
+      "answer": "Sorry, that's not part of the white to yellow belt grading.",
+      "gated": true,
+      "gateReason": "no-match",
+      "topic": null,
+      "secs": 0,
+      "tokens": 0,
+      "outcome": "correctly_declined"
     }
   ],
   "quality": [
@@ -2030,10 +2118,10 @@
         "missingRequired": [
           "chonji-moves [19|nineteen]"
         ],
-        "summary": "Failed. Showed the note instead. Answer looked truncated, repeated, or meta-reasoned."
+        "summary": "Failed. Showed the note instead. Missing required fact(s): chonji-moves: need one of [19 | nineteen]."
       },
       "rawModel": "<think>We need to answer the question: \"How many moves in Chon-Ji?\" from the FACTS.\n\nLooking at the FACTS:\n\n- Title: How many moves Chon-Ji has\n- Type: pattern\n- English: 19\n- Simple: Chon-Ji has 19 moves. It is the pattern you need for the grading from 9th kup to 8th kup (yellow stripe to yellow belt).\n\nSo the answer is 19 moves.\n\nWe must output only the direct answer first, plain text, no lists, no bold. At most two short sentences in plain words a 7 year old knows. Stop after the second period. So we can write: \"Chon-Ji has 19 moves.\" That's one sentence. But we need",
-      "secs": 25.557,
+      "secs": 26.526,
       "tokens": 160,
       "outcome": "pass",
       "problems": []
@@ -2049,7 +2137,7 @@
           "earth"
         ]
       ],
-      "answer": "Chon-Ji means “the Heaven the Earth”; it is the first pattern you learn and has two identical parts for Heaven and Earth. It is the initial pattern played by beginners, and it has 19 moves.",
+      "answer": "Chon-Ji means “the Heaven the Earth”; it is the first pattern you learn and has two identical parts for Heaven and Earth. It is the initial pattern played by beginners.",
       "gated": false,
       "gateReason": null,
       "topic": "chonji",
@@ -2067,7 +2155,7 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "Chon-Ji means “the Heaven the Earth”; it is the first pattern you learn and has two identical parts for Heaven and Earth. It is the initial pattern played by beginners.",
-      "secs": 12.988,
+      "secs": 13.253,
       "tokens": 37,
       "outcome": "pass",
       "problems": []
@@ -2101,7 +2189,7 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "Bring the left foot back to parallel ready stance.",
-      "secs": 10.457,
+      "secs": 10.374,
       "tokens": 10,
       "outcome": "pass",
       "problems": []
@@ -2146,7 +2234,7 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "Courtesy, Integrity, Perseverance, Self-Control and Indomitable Spirit.",
-      "secs": 5.977,
+      "secs": 5.874,
       "tokens": 19,
       "outcome": "pass",
       "problems": []
@@ -2182,7 +2270,7 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "Five tenets.\n\nThe five tenets are Courtesy, Integrity, Perseverance, Self-Control, and Indomitable Spirit.",
-      "secs": 6.745,
+      "secs": 6.883,
       "tokens": 29,
       "outcome": "correct"
     },
@@ -2218,7 +2306,7 @@
         "summary": "Failed. Showed the note instead. Missing required fact(s): tenet-courtesy: need one of [courtesy]; tenet-integrity: need one of [integrity]."
       },
       "rawModel": "There are five tenets.",
-      "secs": 4.991,
+      "secs": 5.026,
       "tokens": 6,
       "outcome": "correct"
     },
@@ -2254,7 +2342,7 @@
         "summary": "Failed. Showed the note instead. Missing required fact(s): tenet-courtesy: need one of [courtesy]; tenet-integrity: need one of [integrity]."
       },
       "rawModel": "There are five tenets of taekwondo.\n\nFive.",
-      "secs": 5.588,
+      "secs": 5.611,
       "tokens": 13,
       "outcome": "correct"
     },
@@ -2264,13 +2352,18 @@
       "expect": [
         [
           "courtesy"
+        ],
+        [
+          "polite",
+          "please",
+          "kind"
         ]
       ],
       "answer": "Courtesy is the first tenet. It means being polite and kind: saying please and thank you, bowing, listening to your instructor and being nice to other students.",
       "gated": false,
       "gateReason": null,
       "topic": "tenets",
-      "itemId": "the-five-tenets",
+      "itemId": "courtesy",
       "checkFailed": false,
       "source": "model",
       "label": "Written by LFM3 on this device",
@@ -2284,7 +2377,7 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "Courtesy is the first tenet. It means being polite and kind: saying please and thank you, bowing, listening to your instructor and being nice to other students.",
-      "secs": 7.209,
+      "secs": 7.671,
       "tokens": 36,
       "outcome": "correct"
     },
@@ -2314,7 +2407,7 @@
         "summary": "Failed. Showed the note instead. Answer looked truncated, repeated, or meta-reasoned."
       },
       "rawModel": "3 is set.\n10 yol.\n1 hana, 2 dul, 3 set, 4 net, 5 dasot, 6 yosot, 7 ilgop, 8 yodul, 9 ahop, 10 yol.",
-      "secs": 5.373,
+      "secs": 5.987,
       "tokens": 54,
       "outcome": "correct"
     },
@@ -2344,7 +2437,7 @@
         "summary": "Failed. Showed the note instead. Answer looked truncated, repeated, or meta-reasoned."
       },
       "rawModel": "5 dasot.\n\n5 dasot.",
-      "secs": 2.693,
+      "secs": 2.741,
       "tokens": 8,
       "outcome": "correct"
     },
@@ -2375,7 +2468,7 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "2 dul\n\n7 ilgop\n\n10 yol.\n\n2 dul.</think>2 dul.",
-      "secs": 3.273,
+      "secs": 3.231,
       "tokens": 17,
       "outcome": "correct"
     },
@@ -2415,7 +2508,7 @@
         "summary": "Failed. Showed the note instead. Missing required fact(s): count-6: need one of [yosot]; count-7: need one of [ilgop]; count-8: need one of [yodul]; count-9: need one of [ahop]; count-10: need one of [yol]."
       },
       "rawModel": "1 hana, 2 dul, 3 set, 4 net, 5 dasot\n1 is hana, 2 is dul, 3 is set, 4 is net, 5 is dasot.\n\n1 hana, 2 dul, 3 set, 4 net, 5 dasot.</think>1 hana, 2 dul, 3 set, 4 net, 5 dasot.",
-      "secs": 7.744,
+      "secs": 7.84,
       "tokens": 90,
       "outcome": "correct"
     },
@@ -2450,10 +2543,10 @@
           "count-4 [net]",
           "count-5 [dasot]"
         ],
-        "summary": "Failed. Showed the note instead. Answer looked truncated, repeated, or meta-reasoned."
+        "summary": "Failed. Showed the note instead. Missing required fact(s): count-1: need one of [hana]; count-3: need one of [set]; count-4: need one of [net]; count-5: need one of [dasot]."
       },
       "rawModel": "6 yosot, 7 ilgop, 8 yodul, 9 ahop, 10 yol.  \n6 yosot, 7 ilgop, 8 yodul, 9 ahop, 10 yol.  \n\nWait, need to stop after second period. Let's rewrite:  \n6 yosot, 7 ilgop, 8 yodul, 9 ahop, 10 yol. That's one sentence? Actually need two sentences max. The question: \"what is 6 to 10 in korean\". So list from 6 to 10. One sentence can contain all. But we must have at most two short sentences. I'll give: \"6 yosot, 7 ilgop, 8 y",
-      "secs": 12.058,
+      "secs": 12.184,
       "tokens": 160,
       "outcome": "correct"
     },
@@ -2485,7 +2578,7 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "I shall observe the Tenets of Taekwon-Do. It is five promises: I will follow the five tenets, respect my instructor and seniors, never misuse Taekwon-Do, be a champion of freedom and justice, and build a more peaceful world.\n\nSorry, that's not part of the white to yellow belt grading.",
-      "secs": 7.857,
+      "secs": 7.884,
       "tokens": 70,
       "outcome": "correct"
     },
@@ -2515,7 +2608,7 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "Jirugi means punch.",
-      "secs": 7.294,
+      "secs": 7.228,
       "tokens": 6,
       "outcome": "correct"
     },
@@ -2545,7 +2638,7 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "General Choi Hong Hi invented Taekwon-Do. He was a general in the Korean army, born in 1918 and died in 2002.",
-      "secs": 6.322,
+      "secs": 6.549,
       "tokens": 32,
       "outcome": "correct"
     },
@@ -2575,7 +2668,7 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "General Choi Hong Hi made Taekwon-Do. He was a general in the Korean army, born in 1918 and died in 2002. He gave the name on 11 April 1955.",
-      "secs": 7.174,
+      "secs": 7.343,
       "tokens": 44,
       "outcome": "correct"
     },
@@ -2612,7 +2705,7 @@
         "summary": "Failed. Showed the note instead. Missing required fact(s): chonji-heaven: need one of [heaven]; chonji-earth: need one of [earth]."
       },
       "rawModel": "A pattern is a set of moves done in a fixed order, like fighting pretend opponents. ITF Taekwon-Do has 24 patterns, and Chon-Ji is the first one.",
-      "secs": 13.906,
+      "secs": 14.408,
       "tokens": 40,
       "outcome": "correct"
     },
@@ -2621,15 +2714,21 @@
       "q": "how do i do a middle punch",
       "expect": [
         [
+          "punch",
+          "jirugi",
+          "forefist",
+          "joomuk"
+        ],
+        [
           "middle",
           "kaunde"
         ]
       ],
-      "answer": "Middle is kaunde, about shoulder level.\n\nMoves aim at three heights. High is nopunde (about eye level). Middle is kaunde (about shoulder level). Low is najunde (about belt level and below).",
+      "answer": "A front punch is ap jirugi. You punch with the forefist (ap joomuk): the first two big knuckles of your fist. You can punch high (nopunde), middle (kaunde) or low (najunde). The other hand pulls back to your hip.",
       "gated": false,
       "gateReason": null,
-      "topic": "commands",
-      "itemId": "high-middle-and-low",
+      "topic": "techniques",
+      "itemId": "front-punch-ap-jirugi",
       "checkFailed": true,
       "source": "notes",
       "label": "From the notes",
@@ -2642,9 +2741,9 @@
         "missingRequired": [],
         "summary": "Failed. Showed the note instead. Answer looked truncated, repeated, or meta-reasoned."
       },
-      "rawModel": "When you hear middle, you stand up straight in attention stance, quiet and still, ready to listen. Middle is kaunde, about shoulder level. Moves aim at three heights. High is nopunde (about eye level). Middle is kaunde (about shoulder level). Low is najunde (about belt level and below).",
-      "secs": 12.753,
-      "tokens": 67,
+      "rawModel": "<think>We need to answer the question: \"how do i do a middle punch\". We have FACTS about various techniques. Need to find middle punch. In the facts, there is \"Front punch (ap jirugi)\" mentions punching high (nopunde), middle (kaunde) or low (najunde). But we need specifics on how to do a middle punch. Let's search the facts.\n\nThe first paragraph: \"Punch, block and kick words\" says jirugi = punch, etc. Not directly.\n\nLater: \"Front punch (ap jirugi)\" says: \"You punch with the forefist (ap joomuk): the first two big knuckles of your fist. You can punch high (nopunde), middle (",
+      "secs": 21.91,
+      "tokens": 160,
       "outcome": "correct"
     },
     {
@@ -2673,7 +2772,7 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "Call your instructor sabum nim. Some clubs use boosabum nim for 1st to 3rd degree and sabum nim for 4th to 6th degree, ask your club.",
-      "secs": 10.576,
+      "secs": 10.716,
       "tokens": 42,
       "outcome": "correct"
     },
@@ -2682,9 +2781,13 @@
       "q": "what is a kup",
       "expect": [
         [
-          "kup",
+          "kup"
+        ],
+        [
+          "grade",
           "belt",
-          "grade"
+          "colour",
+          "color"
         ]
       ],
       "answer": "White belt is the first belt; a colored belt grade is called a kup and counts down, like 10th kup is white belt, then 9th kup is white with a yellow stripe, and 8th kup is yellow belt. Yellow belt is the earth from which a plant sprouts and takes root as the Taekwon-Do foundation is being laid.",
@@ -2705,7 +2808,7 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "White belt is the first belt; a colored belt grade is called a kup and counts down, like 10th kup is white belt, then 9th kup is white with a yellow stripe, and 8th kup is yellow belt.\n\nYellow belt is the earth from which a plant sprouts and takes root as the Taekwon-Do foundation is being laid.",
-      "secs": 8.407,
+      "secs": 8.499,
       "tokens": 76,
       "outcome": "correct"
     },
@@ -2736,7 +2839,7 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "When you hear Kyong ye, bow to show respect, for example to the instructor, to a partner, and when you come into or leave the training hall.",
-      "secs": 9.83,
+      "secs": 9.622,
       "tokens": 33,
       "outcome": "correct"
     },
@@ -2745,17 +2848,21 @@
       "q": "what is the last move of chon ji",
       "expect": [
         [
-          "left",
-          "ready",
-          "19",
-          "end"
+          "left"
+        ],
+        [
+          "punch",
+          "jirugi"
+        ],
+        [
+          "right"
         ]
       ],
       "answer": "Bring the left foot back to the ready position. Step forward with the right foot into a right walking stance and do a middle punch with the right fist. Step backwards with the right foot into a left walking stance, still facing D, and do a middle punch with the left fist. Step backwards with the left foot into a right walking stance, still facing D, and do a middle punch with the right fist. End: bring the left foot back to parallel ready stance. The last move is step backwards with the left foot into a right walking stance, then do a middle punch with the right fist, and finally bring the left foot back to parallel ready stance.",
       "gated": false,
       "gateReason": null,
       "topic": "chonji",
-      "itemId": "chon-ji-moves-1-to-4",
+      "itemId": "chon-ji-moves-17-to-19-and-the-end",
       "checkFailed": false,
       "source": "model",
       "label": "Written by LFM3 on this device",
@@ -2769,7 +2876,7 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "Bring the left foot back to the ready position. Step forward with the right foot into a right walking stance and do a middle punch with the right fist. Step backwards with the right foot into a left walking stance, still facing D, and do a middle punch with the left fist. Step backwards with the left foot into a right walking stance, still facing D, and do a middle punch with the right fist. End: bring the left foot back to parallel ready stance.\n\nThe last move is step backwards with the left foot into a right walking stance, then do a middle punch with the right fist, and finally bring the left foot back to parallel ready stance.",
-      "secs": 23.86,
+      "secs": 24.341,
       "tokens": 133,
       "outcome": "correct"
     },
@@ -2778,16 +2885,20 @@
       "q": "which way do i turn in chon ji",
       "expect": [
         [
+          "clockwise",
+          "right",
+          "left"
+        ],
+        [
           "turn",
-          "spot",
-          "chon"
+          "turning"
         ]
       ],
-      "answer": "A pattern is called tul (you may also see it spelled teul). It is a set of moves done in a fixed order, as if fighting pretend opponents. ITF Taekwon-Do has 24 patterns. Chon-Ji is the first one.\n\nChon-Ji has 19 moves.",
+      "answer": "Moves 1 to 4:\n\n1. Step the left foot to the left (B) into a left walking stance and do a low block with the left forearm.\n2. Step forward with the right foot into a right walking stance and do a middle punch with the right fist.\n3. Turn to the right (clockwise) towards A, into a right walking stance, and do a low block with the right forearm.\n4. Step forward with the left foot into a left walking stance and do a middle punch with the left fist.\n\nChon-Ji has 19 moves.",
       "gated": false,
       "gateReason": null,
       "topic": "chonji",
-      "itemId": "what-a-pattern-tul-is",
+      "itemId": "chon-ji-moves-1-to-4",
       "checkFailed": true,
       "source": "notes",
       "label": "From the notes",
@@ -2801,7 +2912,7 @@
         "summary": "Failed. Showed the note instead. Answer looked truncated, repeated, or meta-reasoned."
       },
       "rawModel": "Bring the left foot back to the ready position. Then turn clockwise towards B into a left L-stance. (From the fact: \"Turn clockwise towards B into a left L-stance...\") Actually, the question: \"which way do i turn in chon ji\". In moves 9-12, there is \"Turn clockwise towards A\" etc. Let's locate: In moves 9-12: \"Turn clockwise towards A, into a right walking stance...\" Wait earlier: Move 9: \"Move the left foot towards A into a right L-stance and do a middle block...\" Not sure. But we have explicit: \"Turn clockwise towards B into a left L-stance\" (move 11). Also earlier: \"Turn to the right (clockwise) towards A",
-      "secs": 26.606,
+      "secs": 27.692,
       "tokens": 160,
       "outcome": "correct"
     },
@@ -2831,7 +2942,7 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "International Taekwon-Do Federation.",
-      "secs": 4.476,
+      "secs": 4.502,
       "tokens": 8,
       "outcome": "correct"
     },
@@ -2862,7 +2973,7 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "General Choi started ITF on 22 March 1966. It was started in Seoul, Korea.",
-      "secs": 5.369,
+      "secs": 5.42,
       "tokens": 21,
       "outcome": "correct"
     },
@@ -2871,16 +2982,17 @@
       "q": "what grade is yellow belt",
       "expect": [
         [
-          "yellow",
-          "8th",
-          "earth"
+          "yellow"
+        ],
+        [
+          "8th"
         ]
       ],
       "answer": "Yellow belt is the 8th kup, meaning the earth from which a plant sprouts and takes root as the Taekwon-Do foundation is being laid. It is the colour of the earth and shows you have practiced the basics until they are strong.",
       "gated": false,
       "gateReason": null,
       "topic": "belts",
-      "itemId": "what-the-yellow-belt-means",
+      "itemId": "belt-order-for-the-first-gradings",
       "checkFailed": false,
       "source": "model",
       "label": "Written by LFM3 on this device",
@@ -2894,8 +3006,109 @@
         "summary": "Passed: every Korean term and number was in the facts, and the type matched."
       },
       "rawModel": "Yellow belt is the 8th kup, meaning the earth from which a plant sprouts and takes root as the Taekwon-Do foundation is being laid. It is the colour of the earth and shows you have practiced the basics until they are strong.\n\nSorry, that's not part of the white to yellow belt grading.",
-      "secs": 7.761,
+      "secs": 8.123,
       "tokens": 68,
+      "outcome": "correct"
+    },
+    {
+      "id": "everyday-number-yodul",
+      "q": "what number is yodul",
+      "expect": [
+        [
+          "8",
+          "eight"
+        ]
+      ],
+      "answer": "Yodul is 8. 8 yodul.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "counting",
+      "itemId": "counting-1-to-10-in-korean",
+      "checkFailed": false,
+      "source": "model",
+      "label": "Written by LFM3 on this device",
+      "path": "model",
+      "check": {
+        "ok": true,
+        "badKorean": [],
+        "badNumbers": [],
+        "badBodyParts": [],
+        "missingRequired": [],
+        "summary": "Passed: every Korean term and number was in the facts, and the type matched."
+      },
+      "rawModel": "Yodul is 8.\n\n8 yodul.",
+      "secs": 2.943,
+      "tokens": 12,
+      "outcome": "correct"
+    },
+    {
+      "id": "everyday-tenets-including-courtesy",
+      "q": "what are the five tenets including courtesy",
+      "expect": [
+        [
+          "courtesy"
+        ],
+        [
+          "integrity"
+        ],
+        [
+          "perseverance"
+        ]
+      ],
+      "answer": "Courtesy, Integrity, Perseverance, Self-Control and Indomitable Spirit.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "tenets",
+      "itemId": "the-five-tenets",
+      "checkFailed": false,
+      "source": "model",
+      "label": "Written by LFM3 on this device",
+      "path": "model",
+      "check": {
+        "ok": true,
+        "badKorean": [],
+        "badNumbers": [],
+        "badBodyParts": [],
+        "missingRequired": [],
+        "summary": "Passed: every Korean term and number was in the facts, and the type matched."
+      },
+      "rawModel": "Courtesy, Integrity, Perseverance, Self-Control and Indomitable Spirit.",
+      "secs": 5.915,
+      "tokens": 19,
+      "outcome": "correct"
+    },
+    {
+      "id": "everyday-dobok-clothing",
+      "q": "what is a dobok and what clothing is it?",
+      "expect": [
+        [
+          "dobok"
+        ],
+        [
+          "uniform",
+          "training"
+        ]
+      ],
+      "answer": "A dobok is the white training uniform we wear. The dojang is the training hall where we practice. Baro means return; when you hear baro at the end of an exercise, you go back to your ready position.",
+      "gated": false,
+      "gateReason": null,
+      "topic": "commands",
+      "itemId": "dojang-and-dobok",
+      "checkFailed": false,
+      "source": "model",
+      "label": "Written by LFM3 on this device",
+      "path": "model",
+      "check": {
+        "ok": true,
+        "badKorean": [],
+        "badNumbers": [],
+        "badBodyParts": [],
+        "missingRequired": [],
+        "summary": "Passed: every Korean term and number was in the facts, and the type matched."
+      },
+      "rawModel": "A dobok is the white training uniform we wear. The dojang is the training hall where we practice.\n\nBaro means return; when you hear baro at the end of an exercise, you go back to your ready position.",
+      "secs": 11.006,
+      "tokens": 47,
       "outcome": "correct"
     }
   ]

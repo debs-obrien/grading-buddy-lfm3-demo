@@ -166,10 +166,14 @@ export function checkAnswer(
     // listed — that let "yop chagi" / "ap chagi" pass when only "chagi" and "yop"
     // (from yop makgi) were known.
     if (parts.length === 2 && TECH_HEAD.test(parts[1]) && !ENGLISH_SKIP.has(parts[0])) {
+      // Require the full phrase as whole words inside an allowed phrase
+      // ("junbi sogi" in "narani junbi sogi"), not a substring ("cha busigi" in "apcha busigi").
+      const esc = low.replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/\s+/g, "\\s+");
+      const asWords = new RegExp(`(?:^|\\s)${esc}(?:\\s|$)`);
       const phraseOk =
         allowedK.has(low) ||
         allowedK.has(compact) ||
-        [...allowedK].some((a) => a.includes(low));
+        [...allowedK].some((a) => asWords.test(a));
       if (!phraseOk) {
         badKorean.push(k);
         continue;
