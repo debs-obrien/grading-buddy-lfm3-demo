@@ -4,8 +4,8 @@ Copyright (c) 2026 Debbie O'Brien
 1. Code
    The source code in this repository is licensed under the MIT License (see LICENSE).
 
-2. Notes (data/belts/white-yellow/notes.md and content.json)
-   The study notes in data/belts/white-yellow/notes.md / content.json are licensed under the Creative Commons
+2. Notes (data/belts/white-yellow/content.json)
+   The study notes in data/belts/white-yellow/content.json are licensed under the Creative Commons
    Attribution-ShareAlike 4.0 International licence (CC BY-SA 4.0):
    https://creativecommons.org/licenses/by-sa/4.0/
 
@@ -13,7 +13,7 @@ Copyright (c) 2026 Debbie O'Brien
    (https://en.wikipedia.org/wiki/Chon-Ji_(teul)) by Wikipedia contributors,
    licensed under CC BY-SA 4.0. Changes: reworded and shortened for young
    children, grouped into sets of moves, and the ending changed to "left foot"
-   to match the ITF's own description. Any adaptation of data/belts/white-yellow/notes.md must be
+   to match the ITF's own description. Any adaptation of data/belts/white-yellow/content.json must be
    shared under the same licence.
 
    The official ITF meanings and fixed formulas (the Chon-Ji meaning, the white

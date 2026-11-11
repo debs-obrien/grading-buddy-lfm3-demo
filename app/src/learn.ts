@@ -1,4 +1,4 @@
-// Learn tab: short study cards and the Chon-Ji section, all from data/belts/white-yellow/notes.md.
+// Learn tab: short study cards and the Chon-Ji section, all from data/belts/white-yellow/content.json.
 import type { Note } from "../../shared/notes.ts";
 import { chonjiMoves, stepIndex, type Move, type Dir } from "../../shared/chonji.ts";
 import { BELTS } from "../../shared/belts.ts";

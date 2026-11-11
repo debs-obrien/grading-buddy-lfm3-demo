@@ -1,4 +1,4 @@
-// Chon-Ji moves for the Learn page, read straight from the Chon-Ji notes in data/belts/white-yellow/notes.md.
+// Chon-Ji moves for the Learn page, read straight from the Chon-Ji notes in data/belts/white-yellow/content.json.
 // Nothing is added: each move's text is the note's own line. The direction letter (A-D) is
 // read from that line ("(B)", "towards A", "facing D"); a line with no letter keeps the last one.
 import type { Note } from "./notes.ts";

@@ -1,4 +1,4 @@
-# Sources and fact-check notes for data/belts/white-yellow/notes.md
+# Sources and fact-check notes for data/belts/white-yellow/content.json
 
 **Status: signed off for this demo** (10 Nov 2026). Official ITF wording quotes are frozen character for character.
 
