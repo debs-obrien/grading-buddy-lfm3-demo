@@ -1,144 +1,42 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" href="data:," />
-    <title>Try LFM3 in the browser</title>
-    <style>
-      body { font: 16px system-ui, sans-serif; max-width: 40rem; margin: 2rem auto; padding: 0 1rem; }
-      textarea, pre, progress { width: 100%; box-sizing: border-box; }
-      textarea { height: 5rem; }
-      pre { white-space: pre-wrap; background: #f4f4f5; padding: 0.8rem; }
-      progress { height: 0.8rem; }
-      label { display: block; margin: 0.8rem 0 0.3rem; font-weight: 600; }
-    </style>
-  </head>
-  <body>
-    <h1>Try LFM3</h1>
-    <p id="status">Checking for WebGPU…</p>
-    <progress id="bar" value="0" max="100" hidden></progress>
-    <p id="prog" hidden></p>
-    <label for="q">Your question</label>
-    <textarea id="q">What is the capital of France?</textarea>
-    <p><button id="go" type="button">Ask</button></p>
-    <pre id="out"></pre>
-    <script type="module">
-      // Same Transformers.js version the main app uses.
-      import { pipeline } from "https://cdn.jsdelivr.net/npm/@huggingface/transformers@4.3.2";
-
-      const status = document.getElementById("status");
-      const bar = document.getElementById("bar");
-      const prog = document.getElementById("prog");
-      const noGpu = "This browser has no WebGPU. Open this page in desktop Chrome or Edge.";
-      const noF16 = "This GPU does not support shader-f16, which q4f16 needs. Try another desktop GPU or browser.";
-
-      // Reuse one pipeline across Ask clicks (do not recreate each time).
-      let chat = null;
-
-      // Sum loaded/total across every file Transformers.js reports.
-      const files = new Map();
-
-      function mb(n) {
-        return Math.round(n / 1e6).toLocaleString();
+<head>
+  <meta charset="UTF-8" />
+  <title>Try LFM3</title>
+  <style>body{font:16px system-ui,sans-serif;max-width:36rem;margin:1.5rem auto;padding:0 1rem}textarea,pre{width:100%;box-sizing:border-box}textarea{height:4rem}</style>
+</head>
+<body>
+  <label for="q">Your question</label>
+  <textarea id="q">What is the capital of France?</textarea>
+  <p><button id="go">Ask</button></p>
+  <p id="status"></p>
+  <pre id="out"></pre>
+  <script type="module">
+    import { pipeline } from "https://cdn.jsdelivr.net/npm/@huggingface/transformers@4.3.2";
+    const status = document.getElementById("status"), files = new Map();
+    let chat;
+    if (!(await navigator.gpu?.requestAdapter())) status.textContent = "WebGPU required (desktop Chrome or Edge).";
+    document.getElementById("go").onclick = async () => {
+      if (!chat) {
+        chat = await pipeline("text-generation", "onnx-community/LFM3-1.7B-ONNX", {
+          dtype: "q4f16", device: "webgpu",
+          progress_callback: (ev) => {
+            if (ev.status !== "progress" || !ev.file) return;
+            files.set(ev.file, { loaded: ev.loaded ?? 0, total: ev.total ?? 0 });
+            let loaded = 0, total = 0;
+            for (const f of files.values()) { loaded += f.loaded; total += f.total; }
+            if (total) status.textContent = `Downloading model… ${Math.min(100, Math.round((loaded / total) * 100))}%`;
+          },
+        });
+        status.textContent = "Ready";
       }
-
-      function showProgress(text, pct) {
-        bar.hidden = false;
-        prog.hidden = false;
-        prog.textContent = text;
-        if (pct != null) bar.value = pct;
-      }
-
-      // Events: initiate | download | progress | done | ready.
-      // Progress events include file, loaded, total, progress.
-      function onProgress(ev) {
-        if (ev.status === "initiate" || ev.status === "download") {
-          // Cached runs often never emit progress; keep saying "Loading…".
-          if (!files.size) showProgress("Loading model…", 0);
-          return;
-        }
-        if (ev.status === "progress" && ev.file) {
-          files.set(ev.file, { loaded: ev.loaded ?? 0, total: ev.total ?? 0 });
-          let loaded = 0;
-          let total = 0;
-          for (const f of files.values()) {
-            loaded += f.loaded;
-            total += f.total;
-          }
-          if (!total) {
-            showProgress("Loading model…", 0);
-            return;
-          }
-          const pct = Math.min(100, Math.round((loaded / total) * 100));
-          showProgress(`Downloading model: ${mb(loaded)} / ${mb(total)} MB (${pct}%)`, pct);
-          return;
-        }
-        if (ev.status === "done" || ev.status === "ready") {
-          if (!files.size) showProgress("Loading model…", 100);
-        }
-      }
-
-      // Keep text after the last </think>; drop any leftover unclosed <think>.
-      function stripThinking(text) {
-        const close = "</think>";
-        const open = "<think>";
-        const low = text.toLowerCase();
-        const lastClose = low.lastIndexOf(close);
-        let out = lastClose >= 0 ? text.slice(lastClose + close.length) : text;
-        const openIdx = out.toLowerCase().indexOf(open);
-        if (openIdx >= 0) out = out.slice(0, openIdx);
-        return out.trim();
-      }
-
-      const adapter = navigator.gpu && (await navigator.gpu.requestAdapter());
-      const hasF16 = !!adapter?.features?.has?.("shader-f16");
-      if (!adapter) status.textContent = noGpu;
-      else if (!hasF16) status.textContent = noF16;
-      else status.textContent = "WebGPU is ready. Click Ask to download the model (about 1 GB the first time) and answer.";
-
-      document.getElementById("go").onclick = async () => {
-        if (!adapter) {
-          status.textContent = noGpu;
-          return;
-        }
-        if (!hasF16) {
-          status.textContent = noF16;
-          return;
-        }
-        const btn = document.getElementById("go");
-        btn.disabled = true;
-        try {
-          if (!chat) {
-            status.textContent = "Loading LFM3 (q4f16, WebGPU)…";
-            files.clear();
-            bar.value = 0;
-            showProgress("Loading model…", 0);
-            chat = await pipeline("text-generation", "onnx-community/LFM3-1.7B-ONNX", {
-              device: "webgpu",
-              dtype: "q4f16",
-              progress_callback: onProgress,
-            });
-            bar.hidden = true;
-            prog.hidden = true;
-          }
-          status.textContent = "Thinking…";
-          const out = await chat(
-            [
-              { role: "system", content: "You are a helpful assistant. Answer briefly." },
-              { role: "user", content: document.getElementById("q").value },
-            ],
-            { max_new_tokens: 150, do_sample: false, tokenizer_encode_kwargs: { enable_thinking: false } },
-          );
-          const raw = String(out[0].generated_text.at(-1).content ?? "");
-          const answer = stripThinking(raw);
-          document.getElementById("out").textContent = answer || "(No final answer after thinking.)";
-          status.textContent = "Done.";
-        } catch (err) {
-          status.textContent = String(err?.message ?? err);
-        } finally {
-          btn.disabled = false;
-        }
-      };
-    </script>
-  </body>
+      const out = await chat([
+        { role: "system", content: "You are a helpful assistant. Answer briefly." },
+        { role: "user", content: document.getElementById("q").value },
+      ], { max_new_tokens: 150, do_sample: false, tokenizer_encode_kwargs: { enable_thinking: false } });
+      const raw = String(out[0].generated_text.at(-1).content ?? "");
+      document.getElementById("out").textContent = raw.replace(/^[\s\S]*?<\/think>/i, "").trim();
+    };
+  </script>
+</body>
 </html>
