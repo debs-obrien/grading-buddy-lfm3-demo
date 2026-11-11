@@ -478,7 +478,7 @@ function wireAppShell() {
     browsingDuringLoad = stillDownloading;
     openWithoutModel(
       stillDownloading
-        ? "You can browse Learn and Quiz now. The download is still running — Ask will turn on when it finishes. Or use Download and start on the Ask tab to try again."
+        ? "You can browse Learn and Quiz now. The download is still running. Ask will turn on when it finishes. Or use Download and start on the Ask tab to try again."
         : "You can browse Learn and Quiz now. Tap Download and start on the Ask tab when you want Ask. We keep anything already saved on this device.",
       "ask-later",
     );
